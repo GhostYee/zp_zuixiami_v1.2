@@ -54,7 +54,7 @@ body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, He
 .adshow-1{background-color: #f1a400;color:#fff;line-height: 1.2;font-size: 16px;font-weight: 700;text-align: left;margin-top: 10px;padding:3px 5px;display: block;}
 .adshow-1 strong{font-size:24px}
 .adshow-1:hover{text-decoration: none;}
-.adshow-2{height:180px;width:280px;display: inline-block;}
+.adshow-2{height:150px;width:235px;display: inline-block;overflow: hidden;}
 
 /*** 4= top wgt
 ****************************************/
@@ -108,8 +108,8 @@ body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, He
 .wgt-topNav{float: right;margin: 0;padding: 0;}
 .wgt-topNav li{display: inline-block;margin:5px}
 
-.wgt-bannerList{background-color:#fff;position: relative;width:59%;display: inline-block;margin-right: 2.4%;}
-.wgt-bannerList .box-show{height:180px;overflow: hidden;}
+.wgt-bannerList{background-color:#fff;position: relative;width:487px;display: inline-block;margin-right: 2.4%;}
+.wgt-bannerList .box-show{height:150px;overflow: hidden;}
 .wgt-bannerList .box-ctrl{}
 .wgt-bannerList .box-ctrl a{position: absolute;top:50%;margin-top: -21px;display: inline-block;width:42px;height:42px;}
 .wgt-bannerList .box-ctrl a.btn-prev{left:15px;background:url(../img/btn-banner-ctrl.png)}
