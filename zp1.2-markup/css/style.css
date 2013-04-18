@@ -12,6 +12,9 @@ body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, He
 
 /*** 2= layout
 ****************************************/
+.layout-dib{font-size:0;line-height:0}
+.layout-dib>*{font-size:12px;line-height: 1.2}
+
 .layout-container{font-size:0;line-height: 0;text-align: center;background:url(../img/bg.gif);}
 .layout-container>*{font-size:12px;line-height: 1.1;vertical-align: top;display: inline-block;}
 .layout-top{width:100%;height:3px;background-color:#222}
@@ -24,6 +27,9 @@ body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, He
 
 /*** 3= common
 ****************************************/
+.btn-default{background-color: #53b20e;height:30px;line-height: 30px;font-size:14px;color:#fff;text-align: center;box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);}
+.btn-default:hover{text-decoration: none;}
+
 .btn-min{}
 .btn-submitZP{color:#fff;float: right:0;border:0;background: none;line-height: 20px;font-size:14px;background-color: #e65100;padding:0 8px;height:25px;display: inline-block;box-shadow: 0 0 7px rgba(0, 0, 0, 0.10);}
 .btn-submitZP em{font-size: 20px;font-style: normal;font-weight: 700;display: inline-block;line-height:22px }
@@ -98,7 +104,7 @@ body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, He
 .wgt-zpRankList ul li h5 a{color:#666;}
 .wgt-zpRankList ul li h5 a:hover{color:#29a8e1;}
 
-.wgt-searchBar{ text-align:center;vertical-align: middle;position: relative;margin:10px auto;}
+.wgt-searchBar{text-align:center;vertical-align: middle;position: relative;margin:10px auto;}
 .wgt-searchBar input[type="text"]{margin-bottom:0;border-radius: 0;width:195px;}
 .wgt-searchBar .btn-search{position: absolute;top:2px;right:12px;background-color: #fff;padding-bottom: 2px;}
 .wgt-searchBar *{vertical-align: middle;}
@@ -110,10 +116,49 @@ body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, He
 .wgt-nav .nav-list > .active > a:focus{border-left:3px solid #53b20e;background-color: rgba(83, 178, 14, 0.15);color:#53b20e;text-shadow: 0 -1px 0 rgba(255,255,255,0.2);font-weight: bold;padding:5px 15px 5px 12px;}
 .wgt-nav .nav > li > a:hover,
 .wgt-nav .nav > li > a:focus{background-color: rgba(83, 178, 14, 0.05)}
+
+.wgt-userInfo-base{margin-top:20px}
+.wgt-userInfo-base>.inner{padding:10px;text-align: left;font-size: 0;line-height: 1.2;vertical-align: top;}
+.wgt-userInfo-base>.inner>*{font-size:12px;line-height: 1.2;display:inline-block;vertical-align: top;}
+.wgt-userInfo-base .con{padding-left: 10px;line-height: 1.7;color:#999;}
+.wgt-userInfo-base .con a{font-size: 14px}
+.wgt-userInfo-base .con a.user-zpNum,
+.wgt-userInfo-base .con a.user-link-num{font-weight: bold;}
+.wgt-userInfo-base .con p{margin: 0;padding: 0;}
+.wgt-userInfo-base .user-header{font-size: 0;line-height:0;width:70px;height:70;}
+.wgt-userInfo-base .opts{display: block;padding:10px 0 0;border-top:1px dotted #ddd;margin-top: 5px;text-align:left;}
+.wgt-userInfo-base .opts a{display: inline-block;padding:3px 5px;color:#333;background-color: #e9e9e9;border:1px solid #e9e9e9;margin-right: 3px;}
+.wgt-userInfo-base .opts a:hover{color:#499b0d;border:1px solid #53b20e;background-color: #f9fff5;text-decoration: none;}
+ 
+.wgt-zp-detail{display: inline-block;width:612px;margin-right: 10px;} 
+.wgt-zp-detail>h2{font-size:20px;padding:10px;line-height: 1.6;margin: 0;}
+.wgt-zp-detail .pic{text-align: center;padding:0 10px 10px;}
+.wgt-zp-detail .intr{font-size: 14px;color:#666;padding:10px;line-height: 1.6}
+.wgt-zp-detail .intr em.dqm{font-size: 36px;font-weight:700;color:rgba(83, 178, 17, 0.5);font-style: normal;font-family: Helvetica;line-height:30px}
+.wgt-zp-detail .intr blockquote{margin-bottom: 0;}
+.wgt-zp-detail .info{line-height:1.8;padding:10px;font-size: 12px;}
+.wgt-zp-detail .info p{margin: 0;padding: 0;}
+
+.wgt-zp-messsage{padding:10px;margin-top: 10px;width:592px;}
+.wgt-zp-messsage .message-total{font-size: 12px;font-weight: 400;margin-bottom: 5px;}
+.wgt-zp-messsage .pub-message{padding:10px 0;border:1px dotted #eee;border-right: 0;border-left: 0}
+.wgt-zp-messsage .pub-input{margin-bottom: 5px;}
+.wgt-zp-messsage .pub-input textarea{width:578px;border-radius:0;display: block;border:1px solid #53b20e;margin-bottom: 0;outline:5px solid #f9fff5}
+.wgt-zp-messsage .btns{text-align: right}
+.wgt-zp-messsage .btn-default{padding:3px 5px;}
+.wgt-zp-messsage .message-list{padding-top: 10px;}
+.wgt-zp-messsage h4.media-heading{font-size: 12px;font-weight: 400}
+.wgt-zp-messsage .opts-Mark{background-color:#f9fff5 ;color:#53b20e;margin:0 4px;}
+
+
+.wgt-zp-opts{display: inline-block;width:120px;}
+.wgt-zp-opts a{display: block;margin-bottom: 10px;}
+.wgt-zp-opts a:hover{text-decoration: none;}
+
 /*** 6= main wgt
 ****************************************/
 .wgt-topNav{float: right;margin: 0;padding: 0;}
-.wgt-topNav li{display: inline-block;margin:5px}
+.wgt-topNav li{display:inline-block;margin:5px}
 
 .wgt-bannerList{background-color:#fff;position: relative;width:487px;display: inline-block;margin-right: 2.4%;}
 .wgt-bannerList .box-show{height:150px;overflow: hidden;}
