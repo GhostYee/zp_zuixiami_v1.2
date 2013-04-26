@@ -38,20 +38,33 @@
     <div class="l-b-col l-side">
       <div class="box-shadow">
         <h1 class="wgt-logo"> <a href="#">最虾米-发现前端价值</a> </h1>
+          <div class="wgt-searchBar">
+            <input type="text" name="" id="" placeholder="请输入作者名、标签" >
+            <button class="btn-search" ><i class="icon-search"></i></button>
+          </div>
+      </div>
+      <div class="wgt-nav box-shadow">
+        <ul class="nav nav-list">
+          <li><a href="#">个人信息管理</a></li>
+          <li><a href="#">作品管理</a></li>
+          <li class="active"><a href="#">团队管理</a></li>
+          <li><a href="#">评论管理</a></li>
+          <li><a href="#">退出</a></li>          
+        </ul>
       </div>
     </div>
     <div class="l-b-col l-main">
       <div class="l-inner">
-        <div class="l-header" >
-          <div class="wgt-breadcrumb"> <a href="#">首页</a>/<span>团队列表</span> </div>
+        <div class="l-header">
+          <div class="wgt-breadcrumb"> <a href="#">首页</a>/<a href="#">用户中心</a>/<span>团队管理</span> </div>
           <nav class="wgt-topNav">
-            <li> <a href="#">登录/注册</a> </li>
-            <li> <a href="#">工具箱</a> </li>
+            <li><a href="#">TheWei</a></li>
+            <li><a href="#">工具箱</a></li>
           </nav>
         </div>
         <div class="l-b-row row-fluid">
-          <div class="wgt-team box-shadow span10">
-            <h2 class="page-title" >团队列表</h2>
+           <div class="wgt-team box-shadow span10">
+            <h2 class="page-title" >团队管理</h2>
             <div class="team-list">
               <ul class="media-list">
                 <li class="media"><a class="pull-left" href="#"> <img class="media-object" data-src="holder.js/100x100" alt="100x100" style="width: 100px; height: 100px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABN0lEQVR4Xu2YQQ6EIAxFdeXFODZnYu9qJk5C0sGiUiAx8FyKVPr76VPWEMJnmfhaEQAHsAXoARP3wIUmCAWgABSAAlBgYgXAIBgEg2AQDE4MAX6GwCAYBINgEAyCwYkVAIO1GPTe//nHOXfyU3xGG9PM1yNmzuRVDpCJ5ZKUyTwRoEfMqx3eTIBcJbdtW/Z9/w2XCtAqZncB5Atkkkc1NQFileVYFCi1fypcLqa1jzd1QM6+2va4EycKWRLTIkI3AY7FPKmmVmF5LxXvLmapCF0FiItp5QCZXClZulBAq/IVBtN9rvUAa8zSysfnqxxgfemb5iFA7Zfgm6ppWQsOwAEciXEkxpGYpXuOMgcKQAEoAAWgwCgd3ZIHFIACUAAKQAFL9xxlDhSAAlAACkCBUTq6JY/pKfAFwO6XkLwNdToAAAAASUVORK5CYII="> </a>
@@ -59,7 +72,7 @@
                     <h4 class="media-heading"><a href="#">w3cplus</a></h4>
                     <p>团队网站：<a href="http://www.w3cplus.com">http://www.w3cplus.com</a></p>
                     <p>团队成员：<a href="#">111</a><span class="division" >|</span>团队作品：<a href="#">111</a></p>
-                    <p class="opts"><a href="#" class="btn-default" >查看作品</a></p>
+                    <p class="opts"><span><a href="#">编辑</a><a href="#">管理成员</a><a href="#">删除</a></span><a href="#" class="btn-default" >管理作品</a></p>
                     <blockquote>提供丰富的资源</blockquote>
                   </div>
                 </li>
@@ -68,7 +81,7 @@
                     <h4 class="media-heading"><a href="#">w3cplus</a></h4>
                     <p>团队网站：<a href="http://www.w3cplus.com">http://www.w3cplus.com</a></p>
                     <p>团队成员：<a href="#">111</a><span class="division" >|</span>团队作品：<a href="#">111</a></p>
-                    <p class="opts"><a href="#" class="btn-default" >查看作品</a></p>
+                    <p class="opts"><span><a href="#">编辑</a><a href="#">管理成员</a><a href="#">删除</a></span><a href="#" class="btn-default" >管理作品</a></p>
                     <blockquote>提供丰富的资源</blockquote>
                   </div>
                 </li>
@@ -77,14 +90,24 @@
                     <h4 class="media-heading"><a href="#">w3cplus</a></h4>
                     <p>团队网站：<a href="http://www.w3cplus.com">http://www.w3cplus.com</a></p>
                     <p>团队成员：<a href="#">111</a><span class="division" >|</span>团队作品：<a href="#">111</a></p>
-                    <p class="opts"><a href="#" class="btn-default" >查看作品</a></p>
+                    <p class="opts"><span><a href="#">编辑</a><a href="#">管理成员</a><a href="#">删除</a></span><a href="#" class="btn-default" >管理作品</a></p>
                     <blockquote>提供丰富的资源</blockquote>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="wgt-zp-opts span2"> <a href="#" class="btn-default" >创建</a> </div>
+          <div class="wgt-zp-opts span2">  
+            <a href="#" class="btn-default" >创建团队</a>
+            <div class="btn-group">
+                <a class="btn-default" href="javascript:;" data-toggle="dropdown">默认排序 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">按创建时间</a></li>
+                  <li><a href="#">按作品量</a></li>   
+                  <li><a href="#">按成员数</a></li>               
+                </ul>
+              </div>              
+            </div>
         </div>
       </div>
     </div>
