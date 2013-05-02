@@ -37,17 +37,17 @@
   <div class="l-b-row ta-c">
     <div class="l-b-col l-side">
       <div class="box-shadow">
-        <h1 class="wgt-logo"> <a href="#">最虾米-发现前端价值</a> </h1>
+        <h1 class="wgt-logo"> <a href="index.html">最虾米-发现前端价值</a> </h1>
         <div class="wgt-searchBar">
           <input type="text" name="" id="" placeholder="请输入作者名、标签" >
-          <button class="btn-search" ><i class="icon-search"></i></button>
+          <button class="btn-search"  onclick="location.href='index-search.html'" ><i class="icon-search" ></i></button>
         </div>
       </div> 
            
       <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
           <li class="active"><a href="uc-info.html">个人信息管理</a></li>
-          <li><a href="uc-zp-list.html">作品管理</a></li>
+          <li><a href="uc-zplist.html">作品管理</a></li>
           <li><a href="uc-teamlist.html">团队管理</a></li>
           <li><a href="uc-message.html">评论管理</a></li>
           <li><a href="#">退出</a></li>
@@ -57,20 +57,21 @@
     <div class="l-b-col l-main">
       <div class="l-inner">
         <div class="l-header">
-          <div class="wgt-breadcrumb"> <a href="#">首页</a>/<a href="#">用户中心</a>/<span>团队管理</span> </div>
+          <div class="wgt-breadcrumb"> <a href="index.html">首页</a>/<a href="#">用户中心</a>/<span>个人信息编辑</span> </div>
           <nav class="wgt-topNav">
-            <li><a href="#">TheWei</a></li>
-            <li><a href="#">工具箱</a></li>
+            <li><a href="uc-info.html">TheWei</a></li>
+            <li><a href="tools.html">工具箱</a></li>
           </nav>
         </div>
         <div class="l-b-row row-fluid">
-           <div class="wgt-uc-info box-shadow span10">            
-            <fieldset class="wgt-submitFrom">
+           <div class="wgt-uc-info box-shadow">            
+            <fieldset class="wgt-submitFrom  form-horizontal">
             <legend class="page-title" >个人信息编辑</legend>  
             <div class="control-group">
               <label class="control-label">昵称：</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" value="">           
+                <input type="text" class="input-xlarge" value=""> 
+                <span class="help-block" >默认显示绑定QQ的昵称；<a href="#">解除绑定</a></span>          
               </div>
             </div>
 
@@ -80,51 +81,33 @@
                 <select name="" id=""  >
                   <option value="">成长群</option>
                   <option value="">高级群</option>
-                </select>                               
+                </select> 
+                <span class="help-block" >周期性更新，群员归属</span>
               </div>
             </div>
 
-            <div class="control-group error">
-              <label class="control-label">作品名称：</label>
-              <div class="controls">
-                <input type="text" class="input-xlarge" value="">
-                <span class="help-inline">注意：不能为空</span>
-              </div>
-            </div>            
-            <div class="control-group success">
-              <label class="control-label" >演示地址：</label>
-              <div class="controls">
-                <div class="input-prepend"><span class="add-on">http://</span>
-                  <input type="text" class="span2"  placeholder="Blog地址" value="">
-                  <span class="help-inline">完成</span>
-                </div>
+            <div class="control-group">
+              <label class="control-label">其他信息：</label>
+              <div class="controls">                
+                <p class="labelInfo" >
+                  上传 <a href="#"><strong>1111</strong></a> 件作品；<br/>
+                  审核通过 <a href="#"><strong>122</strong></a> 件；<br/>
+                  加入 <a href="#"><strong>3</strong></a> 个团队;<br/>
+                  参加 <a href="#"><strong>3</strong></a> 个专题;<br/>
+                </p>
               </div>
             </div> 
-             <div class="control-group success">
-              <label class="control-label" >开源地址：</label>
-              <div class="controls">
-                <div class="input-prepend"><span class="add-on">http://</span>
-                  <input type="text" class="span2"  placeholder="Blog地址" value="">
-                  <span class="help-inline">完成</span>
-                </div>
-              </div>
-            </div>         
             <div class="control-group">
-              <label class="control-label">作品描述：</label>
+              <label class="control-label">自我简介：</label>
               <div class="controls">
-                <textarea name="description" class="input-xxlarge" rows="8"></textarea>
+                <textarea name="description" class="input-xlarge" rows="3"></textarea>
               </div>
             </div>
-            <div class="form-actions">
-              <a href="#">返回</a>
-              <a href="#" class="btn-default" >下一步</a>              
+            <div class="form-actions">              
+              <a href="#" class="btn-default" >保存</a>              
             </div>
             </fieldset>
-          </div>  
-          <div class="wgt-zp-opts span2"> 
-            <a href="#" class="btn-default">评论管理(+3)</a>  
-            <a href="#" class="btn-default">返回作品列表</a>           
-          </div>       
+          </div>                  
         </div>
       </div>
     </div>

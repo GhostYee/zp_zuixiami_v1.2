@@ -37,37 +37,29 @@
   <div class="l-b-row ta-c">
     <div class="l-b-col l-side">
       <div class="box-shadow">
-        <h1 class="wgt-logo"> <a href="index.html">最虾米-发现前端价值</a> </h1>                
+        <h1 class="wgt-logo"> <a href="#">最虾米-发现前端价值</a> </h1>        
       </div> 
     </div>
     <div class="l-b-col l-main">
       <div class="l-inner">
         <div class="l-header">
-          <div class="wgt-breadcrumb"> <a href="index.html">首页</a>/<span>提交作品</span> </div>
+          <div class="wgt-breadcrumb"> <a href="#">首页</a>/<a href="#">用户中心</a>/<span>团队管理</span> </div>
           <nav class="wgt-topNav">
-            <li><a href="uc-info.html">TheWei</a></li>
-            <li><a href="tools.html">工具箱</a></li>
+            <li><a href="#">TheWei</a></li>
+            <li><a href="#">工具箱</a></li>
           </nav>
         </div>
         <div class="l-b-row row-fluid">
-           <div class="wgt-zp-edit box-shadow">                       
-            <fieldset class="wgt-submitFrom form-horizontal">
-            <div class="wgt-steps">
-              <ul class="clearfix  steps-4">
-                <li  class="current">1.填写基本信息<em></em><i></i></li>
-                <li>2.上传图片<em></em><i></i></li>
-                <li>3.增加标签<em></em><i></i></li>
-                <li>4.完成等待审核<em></em><i></i></li>
-              </ul>
-            </div>
-            <legend class="page-title" >作品提交-基本信息</legend>            
+           <div class="wgt-zp-edit box-shadow">            
+            <fieldset class="wgt-submitFrom">
+            <legend class="page-title" >作品提交</legend> 
             <div class="control-group">
               <label class="control-label">所属团队：</label>
               <div class="controls">
                 <select name="" id=""  >
                   <option value=""></option>
                 </select>
-                <span class="help-block">没有您的团队？<a href="team-1.html">创建新团队</a>。点击查看 <a href="teams.html">所有团队</a></span>                             
+                <span class="help-block">*<a href="#">创建新团队</a></span>                             
               </div>
             </div>
 
@@ -76,37 +68,39 @@
               <div class="controls">
                 <select name="" id=""  >
                   <option value=""></option>
-                </select> 
-                <span class="help-block">点击查看 <a href="zt.html">专题列表</a></span>
+                </select>                               
               </div>
             </div>
-            <div class="control-group">
+
+            <div class="control-group error">
               <label class="control-label">作品名称：</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" value="">                
+                <input type="text" class="input-xlarge" value="">
+                <span class="help-block">*注意：不能为空</span>
               </div>
             </div>            
-            <div class="control-group">
+            <div class="control-group success">
               <label class="control-label" >演示地址：</label>
               <div class="controls">
                 <div class="input-prepend"><span class="add-on">http://</span>
-                  <input type="text" class="span2"  placeholder="演示地址" value=""> 
-                </div>                   
+                  <input type="text" class="span2"  placeholder="Blog地址" value="">
+                  <span class="help-inline">完成</span>
+                </div>
               </div>
             </div> 
-             <div class="control-group">
+             <div class="control-group success">
               <label class="control-label" >开源地址：</label>
               <div class="controls">
                 <div class="input-prepend"><span class="add-on">http://</span>
-                  <input type="text" class="span2"  placeholder="开源地址" value="">                 
+                  <input type="text" class="span2"  placeholder="Blog地址" value="">
+                  <span class="help-inline">完成</span>
                 </div>
-                <span class="help-block" >推荐代码存放:<a href="#" >Gitub</a>、<a href="http://jsbin.com/">jsbin</a>、<a href="http://jsfiddle.net/">jsfiddle</a>. </span>
               </div>
             </div>         
             <div class="control-group">
               <label class="control-label">作品描述：</label>
               <div class="controls">
-                <textarea name="description" class="input-xlarge" placeholder="从作品本身的功能性和技术性描述" rows="4"></textarea>
+                <textarea name="description" class="input-xlarge" rows="8"></textarea>
               </div>
             </div>
             <div class="form-actions">

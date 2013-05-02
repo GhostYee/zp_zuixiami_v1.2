@@ -46,13 +46,14 @@
             </button>
           </div>
         </div>
+
         <div class="wgt-nav box-shadow">
           <ul class="nav nav-list">
             <li>
               <a href="uc-info.html">个人信息管理</a>
             </li>
             <li  class="active">
-              <a href="uc-zplist.html">作品管理</a>
+              <a href="uc-zp-list.html">作品管理</a>
             </li>
             <li>
               <a href="uc-teamlist.html">团队管理</a>
@@ -88,13 +89,12 @@
           <div class="l-b-row row-fluid">
             <div class="wgt-zp-edit box-shadow span10">
               <fieldset class="wgt-submitFrom form-horizontal">
-                <legend class="page-title" >编辑作品-编辑上传图片</legend>
-                <div class="wgt-steps ">
-                  <ul class="clearfix steps-4">
-                    <li>
+                <div class="wgt-steps">
+                  <ul class="clearfix  steps-4">
+                    <li  class="current">
                       1.编辑基本信息 <em></em> <i></i>
                     </li>
-                    <li class="current" >
+                    <li>
                       2.编辑上传图片 <em></em>
                       <i></i>
                     </li>
@@ -110,17 +110,92 @@
                     </li>
                   </ul>
                 </div>
-                <div class="control-group">
-                  <div class="imgPrev">
-                    <img src="" alt="" style="display:none" id="imgView"> <strong id="imgTips">图片预览</strong>
-                    <a href="javascript:void(0);" class="imgRemove" id="imgRemove">删除</a>
+                <legend class="page-title" >编辑作品-基本信息</legend>
+                 <div class="control-group">
+                  <label class="control-label">星级评价：</label>
+                  <div class="controls">
+                    <div class=" labelInfo" >
+                      <span class="wgt-star star-30">
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                                <b></b>
+                      </span>
+                      (4.5星)  | 喜欢(4)
+                    </div>
                   </div>
                 </div>
-                <div class="form-actions ta-c">
-                  <a class="btn-default" href="uc-zp-1.html">上一步</a>
-                  <a href="#" class="btn-default" >上传</a>
-                  <a href="#" class="btn-default" >再增加一张</a>
-                  <a href="uc-zp-3.html" class="btn-default" >下一步</a>
+                <div class="control-group">
+                  <label class="control-label">所属团队：</label>
+                  <div class="controls">
+                    <select name="" id=""  >
+                      <option value=""></option>
+                    </select>
+                    <span class="help-block">
+                      没有您的团队？
+                      <a href="team-1.html">创建新团队</a>
+                      。点击查看
+                      <a href="teams.html">所有团队</a>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label">所属专题：</label>
+                  <div class="controls">
+                    <select name="" id=""  >
+                      <option value=""></option>
+                    </select>
+                    <span class="help-block">
+                      点击查看
+                      <a href="zt.html">专题列表</a>
+                    </span>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">作品名称：</label>
+                  <div class="controls">
+                    <input type="text" class="input-xlarge" value=""></div>
+                </div>               
+                <div class="control-group">
+                  <label class="control-label" >演示地址：</label>
+                  <div class="controls">
+                    <div class="input-prepend">
+                      <span class="add-on">http://</span>
+                      <input type="text" class="span2"  placeholder="演示地址" value=""></div>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" >开源地址：</label>
+                  <div class="controls">
+                    <div class="input-prepend">
+                      <span class="add-on">http://</span>
+                      <input type="text" class="span2"  placeholder="开源地址" value=""></div>
+                    <span class="help-block" >
+                      推荐代码存放:
+                      <a href="#" >Gitub</a>
+                      、
+                      <a href="http://jsbin.com/">jsbin</a>
+                      、
+                      <a href="http://jsfiddle.net/">jsfiddle</a>
+                      .
+                    </span>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">作品描述：</label>
+                  <div class="controls">
+                    <textarea name="description" class="input-xlarge" placeholder="从作品本身的功能性和技术性描述" rows="4"></textarea>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <a href="uc-zp-2.html" class="btn-default" >下一步</a>
                 </div>
               </fieldset>
             </div>
