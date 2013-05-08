@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Public:head"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!-- 主要内容 ｛ -->
+<div class="container-fluid">
+  
+  <include file="Public:works_quickpost"/> 
+  <!-- 二级菜单 ｛ -->
+  <div class="subnav subnav-fixed">
+    <h4>{$qun_member['name']}的作品 <span>已经有<span ><b id="do_await_{$qun_member['id']}">{$qun_member['await']}</b></span>人次期待他</span><a href="javascript:void(0)" onclick="do_good_await('Qun_member','await',{$qun_member['id']})" class="btn  btn-primary" >期待新作</a></h4>    
+    <ul class="nav nav-pills">
+      <li <if condition="$status eq 2">class="cur"</if> > <a href="__APP__/author/{$id}">已审核通过</a> </li>
+      <li <if condition="$status eq 1">class="cur"</if> > <a href="__APP__/author/{$id}/nochecked" >待审核</a> </li>
+      <li <if condition="$status eq 3">class="cur"</if> > <a href="__APP__/author/{$id}/checkedn">待抢救</a> </li>
+      <li class="divider-vertical"></li>
+    </ul>
+  </div>
+  <!-- } -->
+  
+  <div class="worksList" id="worksList">
+    <ul class="row-fluid" id="zpList">
+      <foreach name="works" item="val">
+      <li>
+        <div class="inner">
+          <div class="zpStatus">
+              <if condition="$status eq 2">
+              <a href="javascript:void(0)" onclick="works_status({$val['id']},1)" class="btnReCheck" >重新审核</a> <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btnGood" >赞(<span id="do_good_{$val['id']}">{$val['good']}</span>)</a>
+              <elseif condition="$status eq 1" />
+              <a href="javascript:void(0)" onclick="works_status({$val['id']},2)" class="btnCheckY" >审核通过!!!</a>
+          	  <a href="javascript:void(0)" onclick="works_status({$val['id']},3)" class="btnCheckN" >审核不通过!!!</a>
+              <elseif condition="$status eq 3" />
+              <a href="javascript:void(0)" onclick="works_status({$val['id']},1)" class="btnCheckY" >再给我机会重新审核!!!</a>
+              </if>
+          </div>
+          <h5 class="worksTit" >
+            <if condition="$val['qun_sortid'] eq 2">
+          	<span class="label label-warning">{$val['qunname']}</span>
+            <else />
+            <span class="label label-important">{$val['qunname']}</span>
+            </if>		  
+		  <a href="{$val['url']}" target="_blank">{$val['name']}</a></h5>
+          <if condition="$val['img'] neq ''">
+          	<div class="pic"> <a href="{$val['url']}" target="_blank"><img src="{$val['img']}" /></a> </div>
+		  </if>
+          <if condition="$val['description'] neq ''">
+          <blockquote>{$val['description']|strip_tags|msubstr=0,200}......</blockquote>
+           </if>
+          <div class="worksInfo"> <span class="author" ><a href="__APP__/author/{$val['author_id']}" target="_blank">{$val['author']}</a></span> <span class="pubTime">{$val['checktime']|inttodate_han}</span> </div>          
+        </div>
+      </li>
+      </foreach>
+    </ul>
+  </div>
+</div>
+<!-- 主要内容 } -->
+<include file="Public:footer"/>
+<script type="text/javascript" src="../Public/js/jquery.base64.min.js"></script>
+<script language="javascript">
+//作品状态 by wewe
+function works_status(id,status){
+	if(id!='' && status!='')
+	{
+		var fromurl="<?php echo __INFO__;?>";
+		$.ajax({
+			type: "POST",
+			url: "<?php echo __APP__;?>/Works/status",
+			data: "id="+id+"&status="+status,
+			dataType: "json",
+			success: function(data){
+				if(data.msg=='jump'){
+					location.href='<?php echo __APP__;?>/user/login/?fromurl='+$.base64.encode(fromurl);
+				}
+				else if(data.msg!=''){
+					alert(data.msg);
+					location.reload()
+					/*
+					if(data.workslist){
+						$("#worksList").html(data.workslist);
+					}
+					*/
+				}
+			}
+		});
+	}
+}
+//赞/期待 by wewe
+function do_good_await(module,mtype,mid){
+	if(module!='' && mtype!='' && mid!='')
+	{
+		$.ajax({
+			type: "POST",
+			url: "<?php echo __APP__;?>/works/user_action",
+			data: "module="+module+"&mtype="+mtype+"&mid="+mid,
+			dataType: "json",
+			success: function(data){
+				if(data.code=='ok'){
+					if(mtype=='good'){
+						$("#do_good_"+mid).html(data.msg);
+					}
+					else if(mtype=='await'){
+						$("#do_await_"+mid).html(data.msg);
+					}
+				}
+				else if(data.code=='error'){
+					alert(data.msg);
+				}
+			}
+		});
+	}
+}
+</script>
+</body>
+</html>

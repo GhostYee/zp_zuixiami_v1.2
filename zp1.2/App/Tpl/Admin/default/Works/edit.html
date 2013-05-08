@@ -1,0 +1,108 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+
+
+    	<input name="id" type="hidden" id="id" value="{$vo['id']}" />
+		<div class="pageFormContent" layoutH="58">
+			<div class="unit">
+				<label>成员分类：</label>
+				<select name="qun_sortid" id="qun_sortid">
+                    <option value="">请选择分类</option>
+                    <foreach name="qun_sort_list" item="v">
+                    <option value="{$v['id']}" <if condition="$vo['qun_sortid'] eq $v['id']">selected="selected"</if>>
+                    {$v['name']}</option>
+                    </foreach>
+                </select>
+			</div>
+			
+			<div class="unit">
+				<label>作品分类：</label>
+				<select name="sortid" id="sortid">
+                  <option value="">请选择分类</option>
+                  <foreach name="works_sort_list" item="v">
+                  <option value="{$v['id']}"  <if condition="$vo['sortid'] eq $v['id']">selected="selected"</if>>
+                    <?=implode('' , array_fill(1, $v['level'], '　'))?>
+                    ├
+                    {$v['name']}
+                    </option>
+                  </foreach>
+                </select>
+			</div>
+            <div class="unit">
+				<label>名称：</label>
+                <input name="name" type="text" id="name" value="{$vo[name]}"/>
+            </div>
+            <div class="unit">
+				<label>作者：</label>
+                <input name="author" type="text" id="author" value="{$vo[author]}"/>
+            </div>
+            <div class="unit">
+				<label>作品地址：</label>
+                <input name="url" type="text" class="required" id="url" value="{$vo[url]}"/>
+            </div>
+            <div class="unit">
+				<label>图片：</label>
+                <input name="img" type="text" id="name" value="{$vo[img]}"/>网络图片可直接输入
+            </div>
+            <div class="unit">
+				<label>&nbsp;</label>
+                <input id="fileimg" type="file" name="fileimg"/>本地上传优先
+            </div>
+            <if condition="(ACTION_NAME eq 'edit') and ($vo[img] neq '')">
+            <div class="unit">
+            	<label>&nbsp;</label>
+				<a href="{$vo[img]}" target="_blank"><img src="{$vo[img]}" height="180"/></a>
+            </div>
+            </if>
+            <div class="unit">
+				<label>QQ号码：</label>
+                <input name="qq" type="text" class="required" id="qq" value="{$vo[qq]}"/>
+            </div>
+            <div class="unit">
+				<label>描述：</label>
+                {$vo.description|xheditor=description,###,15,60}
+            </div>
+            <div class="unit">
+				<label>审核：</label>
+                <input type="radio" name="status" value="2" <if condition="($vo['status'] eq 2) or (ACTION_NAME eq 'add')">checked="checked"</if> />审核通过
+                <input type="radio" name="status" value="1" <if condition="$vo['status'] eq 1">checked="checked"</if>/>等待审核
+                <input type="radio" name="status" value="3" <if condition="$vo['status'] eq 3">checked="checked"</if>/>审核不通过
+                <input type="radio" name="status" value="4" <if condition="$vo['status'] eq 4">checked="checked"</if>/>回收站(用户删除)
+            </div>
+            <div class="unit">
+				<label>推荐：</label>
+                <input name="is_top" type="checkbox" id="is_top" value="1" <if condition="$vo['is_top'] eq 1">checked="checked"</if>/>
+  	    推荐
+            </div>
+            <div class="unit">
+				<label>推荐排序：</label>
+                <input name="top_sid" type="text" id="top_sid" value="{$vo[top_sid]}"/>
+            </div>
+            <div class="unit">
+				<label>添加时间：</label>
+                {$vo[addtime]|inttodate}
+            </div>
+            <div class="unit">
+				<label>审核人：</label>
+                {$vo[checkuser]}
+            </div>
+            <div class="unit">
+				<label>审核时间：</label>
+                {$vo[checktime]|inttodate}
+            </div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

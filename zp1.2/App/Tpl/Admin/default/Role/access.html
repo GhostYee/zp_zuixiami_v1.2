@@ -1,0 +1,66 @@
+<script language="javascript">
+/*function CheckAll(obj,theid){
+for (var i=0;i<obj.elements.length;i++){
+var e=obj.elements[i];
+if (e.cid==theid)e.checked=document.all[theid].checked;
+}
+}
+function CheckOnce(obj,theid){
+for (var i=0;i<obj.elements.length;i++){
+var e=obj.elements[i];
+if (e.id==theid) e.checked = true; 
+}
+}*/
+function CheckAll(theid){
+    $checkbocparent = $(":checkbox[id='"+theid+"']")
+    $checkboxLi = $(":checkbox[cid='"+theid+"']");
+    if($checkbocparent.is(":checked")){ 
+       $checkboxLi.attr('checked', true);
+    }else{ 
+        $checkboxLi.attr('checked', false);
+    } 
+
+}
+function CheckOnce(theid){
+$checkbocparent = $(":checkbox[id='"+theid+"']")
+ if(!$checkbocparent.is(":checked")){ 
+    $checkbocparent.attr('checked', true);
+ }
+}
+</script>
+<div class="page">
+	<div class="pageContent">
+<form method="post" action="__URL__/setGroupAll/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+    <input type="hidden" name="groupId" VALUE="{$groupId}" />
+    <input type="hidden" name="c[]"  value="{$nodeid}"/>
+    <div class="pageFormContent" layoutH="98">
+
+        <volist name="list" id="vo">
+
+
+            <div class="panel collapse" minH="70" defH="70"> 
+                <h1> <label><input type="checkbox" name="c[]" id="list_{$vo.id}" onclick="CheckAll(this.id)"  value="{$vo.id}"  <?php echo in_array($vo['id'], $currentMenu) ? "checked" : "" ?> />{$vo.title}</label></h1>
+                <div>   
+                    <volist name="vo['sub_node']" id="sub">
+
+                        <label><input type="checkbox"  name="c[]" cid="list_{$vo.id}" onclick='CheckOnce($(this).attr("cid"))'  value="{$sub.id}" <?php echo in_array($sub['id'], $currentMenu) ? "checked" : "" ?>/>{$sub.title}</label>
+                    </volist>
+                </div>
+            </div>
+        </volist>
+
+
+    </div>
+    <div class="formBar">
+        <ul
+            <li><div class="button"><div class="buttonContent"><button type="button" class="checkboxCtrl" group="c[]" selectType="all">全选</button></div></div></li>
+            <li><div class="button"><div class="buttonContent"><button type="button" class="checkboxCtrl" group="c[]" selectType="none">全不选</button></div></div></li>
+            <li><div class="button"><div class="buttonContent"><button type="button" class="checkboxCtrl" group="c[]" selectType="invert">反选</button></div></div></li>
+            <li><div class="buttonActive"><div class="buttonContent"><button type="submit">设置</button></div></div></li>
+            <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+        </ul>
+    </div>
+</form>
+            	</div>
+</div>
+

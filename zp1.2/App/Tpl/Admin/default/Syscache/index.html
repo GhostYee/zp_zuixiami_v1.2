@@ -1,0 +1,26 @@
+<div class="page">
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+			  <li><a target="selectedTodo" rel="ids" postType="string"  href="__URL__/post" class="delete"><span>批量更新</span></a></li>
+                               
+			</ul>
+		</div>
+		<table class="list" width="98%" layoutH="5">
+			<thead>
+								  <tr>
+                                      <th width="30"><input type="checkbox" group="ids" class="checkboxCtrl"></th>
+								      <th>名称</th>
+								  </tr>
+							  </thead>   
+							  <tbody>
+                                <foreach name="list" item="vo" key="key">
+								<tr>
+                                	<td width="30" height="30" align="center"><input name="ids" value="{$key}" type="checkbox"></td>
+									<td>{$vo}</td>
+								  </tr>
+                               </foreach>                         
+							  </tbody>
+		</table>
+	</div>
+</div>

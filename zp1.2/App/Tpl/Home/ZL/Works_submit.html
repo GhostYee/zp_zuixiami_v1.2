@@ -1,0 +1,71 @@
+<include file="Public:header"/>
+<!-- 提交 { -->
+<div class="container-fluid">
+       <form class="form-horizontal" action="__URL__/post" method="post">
+        <fieldset>
+          <legend>作品提交</legend>   
+                 
+          <div class="control-group">
+            <label class="control-label">所属群：</label>
+            <div class="controls">
+              <label class="radio">
+                <input type="radio" name="qun_sortid" id="optionsRadios1" value="1" checked="">
+		鬼懿IT-成长群(QQ群号：181368696)
+              </label>
+              <label class="radio">
+                <input type="radio" name="qun_sortid" id="optionsRadios2" value="2">
+		鬼懿IT-高级群(QQ群号：19046753)
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="input01">QQ号：</label>
+            <div class="controls">
+              <input type="text" name="qq" class="input-xlarge" id="input01" value="{$works['qq']}">             
+            </div>
+          </div>          
+          <div class="control-group">
+            <label class="control-label" for="input01">作品名称：</label>
+            <div class="controls">
+              <input type="text" name="name"class="input-xlarge" id="input01">             
+            </div>
+          </div>          
+          <div class="control-group">
+            <label class="control-label" for="input01">作品链接：</label>
+             <div class="controls">
+              <input type="text" name="url" class="input-xlarge" id="input01"  value="{$works['url']}">             
+            </div>
+          </div>
+          <!--
+          <div class="control-group">
+            <label class="control-label" for="input01">作品图片：</label>
+             <div class="controls">
+              <label class="radio">
+                <input type="radio" name="qun_sortid" id="optionsRadios2" value="2">
+		远程地址
+              </label>
+              <label class="radio">
+                <input type="radio" name="qun_sortid" id="optionsRadios2" value="2">
+		本地上传
+              </label>           
+            </div>
+          </div>  
+          -->             
+          <div class="control-group">
+            <label class="control-label" for="textarea">作品描述：</label>
+            <div class="controls">
+              <textarea name="description" class="input-xlarge" id="textarea" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" name="save" value="save" class="btn btn-primary">保存新增</button>
+            <button type="submit" name="save"  value="goon" class="btn btn-primary">保存新增并继续</button>
+            <button class="btn" name="save"  value="cancel">取消</button>
+          </div>
+        </fieldset>
+      </form>
+                
+        
+</div>
+<!-- ｝ -->
+<include file="Public:footer"/>

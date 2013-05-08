@@ -1,0 +1,30 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone)">
+    	<input name="id" type="hidden" id="id" value="{$works_special['id']}" />
+		<div class="pageFormContent" layoutH="58">
+        	<div class="unit">
+				<label></label>
+				作品专题:ID{$works_special.id} {$works_special.qishu} {$works_special.title}
+			</div>		
+		  <div class="unit">
+				<label>作品：</label>
+                <input type="hidden" name="orgLookup.id" value="${orgLookup.id}"/>
+				<textarea name="orgLookup.name" cols="60" rows="10"  class="required" type="text" value="" suggestFields="name" suggestUrl="__URL__/works_search_json" lookupGroup="orgLookup"></textarea>
+                <a class="btnLook" href="__URL__/workslist_selected/id/{$works_special['id']}" lookupGroup="orgLookup">查找带回</a>
+			</div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

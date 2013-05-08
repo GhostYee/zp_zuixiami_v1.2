@@ -1,0 +1,40 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+    	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
+		<div class="pageFormContent" layoutH="58">	
+        	<div class="unit">
+				<label>期数：</label>
+				<input name="qishu" type="text" id="qishu" value="{$vo['qishu']}"/>
+			</div>		
+		  <div class="unit">
+				<label>标题：</label>
+				<input name="title" class="required" type="text" id="title" value="{$vo['title']}"/>
+			</div>
+            <div class="unit">
+				<label>代码：</label>
+                <input name="code"  type="text" id="code" value="{$vo['code']}"/>伪静态用
+            </div>
+            <div class="unit">
+				<label>备注：</label>
+                {$vo['notice']|xheditor=notice,###,22,60}
+            </div>
+            <div class="unit">
+			  <label>添加时间：</label>
+                {$vo['addtime']|inttodate}
+            </div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

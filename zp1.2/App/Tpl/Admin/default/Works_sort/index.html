@@ -1,0 +1,56 @@
+<div class="page">
+	
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="add" href="__URL__/add" target="dialog" mask="true" width="500" height="400"><span>新增</span></a></li>
+				
+				<li class="line">line</li>
+				
+			</ul>
+		</div>
+		<table class="list" width="100%" layoutH="116">
+			<thead>
+			<tr>
+				<th>名称</th>
+                <th>别名</th>
+                <th>url代码</th>
+                <th>排序</th>
+                <th>隐藏</th>
+                <th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid_user" rel="{$vo['id']}">
+					<td>├ {$vo['name']}</td>
+					<td>{$vo['othername']}</td>
+					<td>{$vo['code']}</td>
+					<td>{$vo['orders']}</td>
+					<td><notempty name="vo['is_hide']">{$vo['is_hide']}</notempty></td>
+					<td>
+                        <a class="edit" href="__URL__/edit/id/{$vo['id']}/navTabId/__MODULE__" target="dialog" mask="true" width="500" height="400"><span>编辑</span></a>
+                        <a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a>
+                    </td>
+				</tr>
+                <volist id="child" name="vo['child']">
+                <tr target="sid_user" rel="{$child['id']}">
+					<td>&nbsp;&nbsp;&nbsp;├ {$child['name']}</td>
+					<td>{$child['othername']}</td>
+					<td>{$child['code']}</td>
+					<td>{$child['orders']}</td>
+					<td><notempty name="child['is_hide']">{$child['is_hide']}</notempty></td>
+					<td>
+                        <a class="edit" href="__URL__/edit/id/{$child['id']}/navTabId/__MODULE__" target="dialog" mask="true" width="500" height="400"><span>编辑</span></a>
+                        <a class="delete" href="__URL__/foreverdelete/id/{$child['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a>
+                    </td>
+				</tr>
+                </volist>
+			</volist>
+			</tbody>
+		</table>
+
+	</div>
+	
+</div>
+
