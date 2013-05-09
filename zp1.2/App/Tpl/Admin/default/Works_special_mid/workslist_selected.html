@@ -1,0 +1,60 @@
+<form id="pagerForm" action="__URL__/workslist_selected" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+    <input type="hidden" name="id" value="{$special_id}"/>
+	<input type="hidden" name="keyword" value="{$_REQUEST.keyword}"/>
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form rel="pagerForm" method="post" action="__URL__/workslist_selected" onsubmit="return dwzSearch(this, 'dialog');"    >
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>关键字：</label>
+					<input type="text" name="keyword" value="{$_REQUEST.keyword}" />
+                    <input type="hidden" name="id" value="{$special_id}"/>
+				</li>
+			</ul>
+			<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" multLookup="orgId" warn="请选择作品">选择带回</button></div></div></li>
+			</ul>
+			</div>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+
+		<table class="table" targetType="dialog" width="100%" layoutH="116">
+			<thead>
+			<tr>
+			  <th width="40"><input type="checkbox" group="orgId" class="checkboxCtrl" /></th>
+				<th>id</th>
+				<th>作品名称</th>
+				<th>&nbsp;</th>
+			</tr>
+			</thead>
+			<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid_user" rel="{$vo['id']}">
+				  <td width="40"><input name="orgId" value='{$vo[json]}' type="checkbox" /></td>
+					<td>{$vo['id']}</td>
+					<td>{$vo['name']}</td>
+					<td><a class="btnSelect" href='javascript:$.bringBack({$vo[json]})' title="查找带回">选择</a></td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$totalCount}条</span>
+		  </div>
+			<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	  </div>
+
+  </div>
+	
+</div>
+

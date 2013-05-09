@@ -1,0 +1,87 @@
+<div class="pageContent">
+  <p>&nbsp;</p>
+  <form enctype="multipart/form-data" method="post" action="__URL__/post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+  <div class="tabs" currentIndex="0" eventType="click">
+    <div class="tabsHeader">
+      <div class="tabsHeaderContent">
+        <ul>
+          <volist id="vo" name="group_list">
+          <li><a href="javascript:;"><span>{$vo['textname']}</span></a></li>
+          </volist>
+        </ul>
+      </div>
+    </div>    
+    <div class="tabsContent pageFormContent">
+      <volist id="group" name="group_list">
+      <div>
+        <table class="list" width="98%" layoutH="138">
+          <thead>
+            <tr>
+              <th >名称</th>
+              <th >值</th>
+              <th >调用 后CFG('代码') 前$CFG['代码']</th>
+            </tr>
+            <volist id="var" name="group[vars]">            
+            <tr>
+          </thead>
+          <tbody>
+              <td width="20%" height="30" >{$var['textname']}:</td>
+              <td width="60%" >
+                <if condition="$var['type'] eq 'text'">
+                	<input name="value[{$var['id']}]" type="text" value="{$var['value']}" size="40" />
+                    
+                <elseif condition="$var['type'] eq 'password'" />
+                	<input name="value[{$var['id']}]" type="password" value="{$var['value']}" size="40" />
+                    
+        		<elseif condition="$var['type'] eq 'textarea'" />
+                	<textarea name="value[{$var['id']}]" cols="60" rows="7">{$var['value']}</textarea>
+                    
+        		<elseif condition="$var['type'] eq 'select'" />
+                <foreach name="var['store_options']" item="opt" key="k">
+                <label class="checkbox inline">
+                  <input type="radio" name="value[{$var['id']}]" value="{$opt}"  <if condition="$var['value'] eq $opt">checked='true'</if> />
+                  {$var['display_options'][$k]}
+                </label>
+                </foreach>
+                
+                <elseif condition="$var['type'] eq 'options'" />
+                <select name="value[{$var['id']}]">
+                  <foreach name="_LANG[cfg_range][$var['code']]" item="v" key="ov">
+                  <option value="{$ov}" <if condition="$var['value'] eq $v">selected='selected'</if>>
+                  {$v}
+                  </option>
+                  </foreach>
+                </select>
+                <elseif condition="$var['type'] eq 'file'" />
+                <input name="value[{$var['id']}]" type="file" size="40" />
+                <if condition="$var['value'] neq ''"><a href="__APP__/{$var['value']}" target="_blank"><img src="__APP__/{$var['value']}" width="100" height="100" /></a>
+                </if>                
+                <elseif condition="$var['type'] eq 'html'" />
+                <?php $tmp=''; $tmp="value[".$var['id']."]";?>
+                {$var['value']|xheditor=$tmp,###,15,60}
+                </if>
+                <if condition="$var['cfg_desc'] neq '' ">{$var['cfg_desc']}</neq></td>
+              <td width="20%" >{$var['code']}</td>
+            </tr>
+            </volist>
+          </tbody>
+        </table>
+      </div>
+      </volist>
+    </div>
+    
+    <div class="formBar">
+			<ul>
+				<!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li>
+					<div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+				</li>
+			</ul>
+		</div>
+    <div class="tabsFooter">
+      <div class="tabsFooterContent"></div>
+    </div>
+  </div>
+  </form>
+</div>

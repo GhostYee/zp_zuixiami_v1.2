@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Public:head"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!-- 提交 { -->
+<div class="container-fluid">
+<div class="user-container clearfix"> 
+    <!-- 用户中心菜单 ｛ -->
+    <div class="l-side">
+      <ul class="nav nav-list">
+        <li class="active"><a href="__APP__/user/workslist">管理我的作品</a></li>
+        <li><a href="__APP__/user/worksadd">添加新作品</a></li>        
+        <li><a href="__APP__/user/logout">退出</a></li>
+      </ul>
+    </div>
+    <!-- } -->
+    <div class="l-main"> 
+      <!-- 面包屑 { -->
+      <ul class="breadcrumb" >
+        <li><a href="__APP__/user">用户中心</a> <span class="divider">/</span></li>
+        <li><a href="__APP__/user/workslist">作品列表</a> <span class="divider">/</span></li>
+        <li class="active">编辑作品</li>
+      </ul>
+      <!-- } --> 
+      
+      <!-- 用户中心头部 ｛ -->
+      <div class="subnav subnav-fixed">
+        <h4>编辑{$qun_member['name']}的作品</h4>
+      </div>
+      <!-- } -->
+       <form class="form-horizontal" action="__APP__/user/worksupdate" method="post">
+        <fieldset class="zpSubmitFull" >
+          <legend>作品提交</legend>
+          <div class="control-group">
+            <label class="control-label" for="zpQQ">QQ号：</label>
+            <div class="controls">
+              <input type="text" name="qq" class="input-xlarge" id="zpQQ" value="{$works['qq']}" readonly="readonly">             
+            </div>
+          </div>          
+          <div class="control-group">
+            <label class="control-label" for="zpName">作品名称：</label>
+            <div class="controls">
+              <input type="text" name="name"class="input-xlarge" id="zpName" value="{$works['name']}">             
+            </div>
+          </div>          
+          <div class="control-group">
+            <label class="control-label" for="zpUrl">作品链接：</label>
+             <div class="controls">
+              <div class="input-prepend"> <span class="add-on">http://</span>
+                <input type="text" name="url" class="span2" id="zpUrl" placeholder="作品地址" value="{$works['url']}">
+              </div>                           
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="zpImg">作品图片：</label>
+            <div class="controls">          
+                 <input type="text" class="span3" id="zpImg" placeholder="外部链接">
+                 （或）
+                 <span class="fileUpdateInput" >
+                  <input type="hidden" name="imgurl" value="{$works['img']}" id="imgUrl">
+                  <button class="btn" type="button" id="imgUploadBtn">上传</button>
+                </span>
+                <div class="imgPrev">
+                <empty name='works.img'>
+                    <img src="" alt="" style="display:none" id="imgView">
+                <else/>
+                    <img src="{$works['img']}" alt="" id="imgView">
+                </empty>
+                <strong id="imgTips">图片预览</strong>
+                <a href="javascript:void(0);" class="imgRemove" id="imgRemove">删除</a>
+              </div>
+            </div>
+          </div>           
+          <div class="control-group">
+            <label class="control-label" for="zpDes">作品描述：</label>
+            <div class="controls">
+              <textarea name="description" class="input-xlarge" id="zpDes" rows="3">{$works['description']}</textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <input type="hidden" name="id" value="{$works['id']}">
+            <button type="submit" name="save" value="save" class="btn btn-primary">保存新增</button>
+            <button type="submit" name="save"  value="goon" class="btn btn-primary">保存新增并继续</button>
+            <button class="btn" name="save"  value="cancel">取消</button>
+          </div>
+        </fieldset>
+      </form>
+</div>
+</div>
+</div>
+<!-- ｝ -->
+<include file="Public:footer"/>
+<script type="text/javascript" src="../Public/js/ajaxupload.js"></script>
+<script type="text/javascript" src="../Public/js/upload.js"></script>
+<script type="text/javascript">
+$(function() {
+    Upload.init("{:U('works/upload_file')}");
+});
+</script>
+</body>
+</html>

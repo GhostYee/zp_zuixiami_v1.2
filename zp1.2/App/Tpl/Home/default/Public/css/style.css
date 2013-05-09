@@ -1,0 +1,129 @@
+﻿/***************************************** 全局 */
+body{background-color:#fefefe;}
+body,input,botton,textarea{ font-family:"微软雅黑",Arial, Helvetica, sans-serif;font-size:14px;}
+.container-fluid{margin-top:50px;}
+.container{margin-left:20px;margin-right:20px;font-size:14px;}
+.hide{overflow:hidden}
+/***************************************** Layout */
+
+
+/* 通知 */
+#notic{margin:0 5px 10px;position:relative;font-size:14px;}
+
+/***************************************** 二级菜单 */
+.subnav{background-color:#fafafa;border-bottom:1px solid #eee; margin:5px; }
+.subnav .nav{margin-bottom:0;}
+.subnav h4{margin:0;padding:5px;padding-left:12px;font-size:16px;}
+.subnav h4 span{font-size:12px;font-weight:400;padding-left:15px;}
+.subnav h4 span b{color:#900;font-weight:700;font-size:16px;}
+.subnav h4 .btn{font-size:12px;margin-left:10px;}
+.subnav .nav .cur{font-size:14px;font-weight:700}
+.subnav .nav .cur a{color:#333;margin-bottom:0;border-bottom:2px solid #ccc}
+/* 作品提交 */
+.submitArea{overflow:hidden;text-align:center;vertical-align:middle;padding:10px 0; margin:0 5px 0;}
+.submitArea .input-prepend{display:inline-block;margin-right:10px;vertical-align:middle}
+.submitArea *{vertical-align:top}
+.submitArea .input-prepend{margin-bottom:0;}
+.submitArea form{margin:0;}
+.submitArea .moreOpts{vertical-align:middle;display:inline-block;margin-left:10px;}
+.submitArea .inner{width:1000px;margin:0 auto;}
+.submitArea .zpSubmit{float:left;}
+.submitArea .zpSearch{float:right;}
+
+/***************************************** 作品列表 */
+.worksList{margin:0px auto 10px;padding:0; }
+.worksList .row-fluid{width:1000px;padding:5px 0;margin:0 auto;}
+.worksList li{padding:0; list-style:none;position:relative;float:left;background-color:#fff;width:250px}
+.worksList li.width2{width:200px;}
+.worksList li.checkedN{*filter:alpha(opacity = 70);-moz-opacity:0.7;opacity:0.7;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=70)";}
+.worksList li.checkedN:hover{*filter:alpha(opacity = 100);-moz-opacity:1;opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=100)";}
+.worksList li.checkedN:hover a.btnCheckY{font-weight:700;}
+.worksList li .inner{padding:6px 10px 8px;font-size:12px;border:1px solid #cfcfcf;border-radius:5px;box-shadow: 1px 1px 5px #f1f1f1;margin:7px;position:relative;}
+.worksList li .nodeGood{font-size:12px;color:#666;margin-left:10px;}
+.worksList li .inner:hover{box-shadow: 1px 1px 10px #999;border:1px solid #ccc}
+.worksList li .pic{padding:5px 0;text-align:center;}
+.worksList li .inner h5.worksTit{color:#005580;margin:0;padding:0;font-size:14px;padding:2px 3px;line-height:18px;position:relative;}
+.worksList li .inner .label{position:absolute;top:-24px;left:-15px;font-size:12px;}
+.worksList li blockquote{padding:3px;line-height:20px;overflow:hidden;margin-bottom:0px;text-align:left;text-indent:0; color:#666;border-left:0;break-word:break-all;word-wrap:break-word;table-layout:fixed;}
+.worksList li .worksInfo{text-align:left;color:#777;background-color:#fefefe;padding:0 3px;overflow:hidden;zoom:1;position:relative; min-height:20px;}
+.worksList li .worksInfo .pubTime{background-color:#fff;position:absolute;right:0;top:0;color:#999}
+.worksList li .worksInfo span{ white-space:nowrap;display:block;}
+.worksList li .opts{padding:3px 0;margin:0;text-align:center;background-color:rgba(0,0,0,0.3);position:absolute;width:100%;top:50%;left:0;right:0;margin-top:-15px;display:none;}
+.worksList li:hover .opts{display:block;}
+.worksList  .zpStatus{padding:0px 3px 3px;border-bottom:1px dashed #ccc;text-align:right}
+.worksList  .zpStatus .btnReCheck,
+.worksList  .zpStatus .btnCheckY,
+.worksList  .zpStatus .btnCheckN{ visibility:hidden;}
+.worksList li:hover .zpStatus .btnReCheck,
+.worksList li:hover .zpStatus .btnCheckY,
+.worksList li:hover .zpStatus .btnCheckN{ visibility:visible;}
+.worksList  .zpStatus a{padding:0 0 0 10px;text-decoration:underline;}
+.worksList  .zpStatus a.btnGood{font-weight:700;font-size:14px;}
+
+/*****************************************作品提交 */
+.zpSubmitFull{position:relative;}
+.zpSubmitFull  .input-prepend  input{width:216px;}
+.zpSubmitFull .imgPrev{width:250px;height:250px;text-align:center;position:absolute;top:-153px;background-color:#f2f2f2;border:1px solid #CCC;padding:10px;left:310px;line-height:250px;overflow:hidden;font-size:22px;color:#999}
+.zpSubmitFull .imgPrev img{max-width:300px;max-height:300px;}
+.zpSubmitFull  .imgRemove{font-size:14px;background-color:rgba(0,0,0,0.3);display:block;position:absolute;bottom:33%;height:30px;text-align:center;width:100%;left:0;line-height:30px;vertical-align:middle}
+.zpSubmitFull  .imgRemove *{vertical-align:middle;}
+.zpSubmitFull  .imgRemove {color:#FFF}
+.zpSubmitFull .span3{width:166px}
+.zpSubmitFull .controls{position:relative;}
+/* fileUpdateInput */
+.fileUpdateInput{position:relative;display:inline-block;overflow:hidden;}
+.fileUpdateInput .fileInput{position:absolute;right:0;top:0;*filter:alpha(opacity = 0);-moz-opacity:0;opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)";}
+
+/*****************************************微博相关 */
+.weiboList li{line-height:2}
+
+/*****************************************左右结构 */
+.l-main{padding-left:220px;}
+.l-main .breadcrumb{margin:5px 0;}
+.l-main .worksList{padding-left:5px;}
+.l-main .subnav{margin:5px 0;} 
+.l-main .nav{height:34px;margin-bottom:-1px;}
+.l-main .worksList .row-fluid{width:auto}
+.l-side{float:left;width:205px;margin:5px 0 0 0;  border-bottom:1px solid #ddd;border-top:1px solid #ddd}
+.l-main legend{display:none;}
+.l-main legend+.control-group{margin-top:10px} 
+
+/*****************************************查询结果 */
+.search-result{padding-bottom:10px;}
+.search-result .keyword{background-color:#f1f1f1;color:#ff6000; margin:0 4px;display:inline-block;padding:0 5px;}
+.search-result .num{color:#ff6000;margin:0 3px;}
+
+/*****************************************列表成列模式 */
+.isotope-item { z-index: 2}
+.isotope-hidden.isotope-item {pointer-events: none;z-index: 1;}
+/**** Isotope CSS3 transitions ****/
+.isotope,.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:      -o-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+.isotope.no-transition,.isotope.no-transition .isotope-item,.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}

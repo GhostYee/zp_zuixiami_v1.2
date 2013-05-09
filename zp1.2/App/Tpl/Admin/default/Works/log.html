@@ -1,0 +1,28 @@
+<div class="page">
+	<div class="pageContent">
+		<table class="list" width="100%" layoutH="116" rel="jbsxBox">
+			<thead>
+			<tr>
+			  <th>ID</th>
+				<th>操作</th>
+				<th>备注</th>
+                <th>操作人</th>
+                <th>操作时间</th>
+			  </tr>
+			</thead>
+			<tbody>
+			<foreach name="list" item="vo" >
+				<tr >
+				  <td>{$vo['id']}</td>
+					<td>{$vo['action']}</td>
+					<td>{$vo['notice']}</td>
+                    <td>{$vo['adduser']}</td>
+                    <td>{$vo['addtime']|inttodate}</td>
+				</tr>
+			</foreach>
+			</tbody>
+		</table>
+  </div>
+</div>
+
+
