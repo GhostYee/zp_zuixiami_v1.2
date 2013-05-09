@@ -1277,3 +1277,55 @@ INSERT INTO `xiami_works_special_mid` (`id`, `special_id`, `works_id`, `adduser`
 (12, 3, 113, '', 1365732561),
 (13, 3, 75, '', 1365732561),
 (14, 3, 73, '', 1365732561);
+
+
+-- 
+-- 表的结构 `xiami_tag`.by Feenan add on 20130509
+-- 
+
+DROP TABLE IF EXISTS `xiami_tag`;
+CREATE TABLE IF NOT EXISTS `xiami_tag` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `tagname` varchar(200) NOT NULL COMMENT '标签名称',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+-- 
+-- 导出表中的数据 `xiami_tag` .by Feenan add on 20130509
+-- 
+
+INSERT INTO `xiami_tag` VALUES (1, 'javascript');
+INSERT INTO `xiami_tag` VALUES (2, 'nodejs');
+
+-- --------------------------------------------------------
+
+-- 
+-- 表的结构 `xiami_tag_relationship`.by Feenan add on 20130509
+-- 
+
+DROP TABLE IF EXISTS `xiami_tag_relationship`;
+CREATE TABLE IF NOT EXISTS `xiami_tag_relationship` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `tagid` int(11) NOT NULL COMMENT '标签ID',
+  `workid` int(11) NOT NULL COMMENT '作品ID',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 向node表里插入作品标签项. by Feenan add on 20130509
+--
+INSERT INTO  `zuixiami`.`xiami_node` (
+`id` ,
+`name` ,
+`title` ,
+`status` ,
+`remark` ,
+`sort` ,
+`pid` ,
+`level` ,
+`type` ,
+`group_id`
+)
+VALUES (
+NULL ,  'Tag',  '作品标签',  '1', '' ,  '33',  '1',  '2',  '0',  '14'
+);
