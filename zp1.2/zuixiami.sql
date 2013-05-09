@@ -1277,3 +1277,29 @@ INSERT INTO `xiami_works_special_mid` (`id`, `special_id`, `works_id`, `adduser`
 (12, 3, 113, '', 1365732561),
 (13, 3, 75, '', 1365732561),
 (14, 3, 73, '', 1365732561);
+
+
+-- 
+-- 表的结构 `xiami_tag` .by Feenan add on 20130509
+-- 
+
+DROP TABLE IF EXISTS `xiami_tag`;
+CREATE TABLE IF NOT EXISTS `xiami_tag` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `tagname` varchar(200) NOT NULL COMMENT '标签名称',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签表' AUTO_INCREMENT=1 ;
+
+
+-- 
+-- 表的结构 `xiami_tag_relationship` .by Feenan add on 20130509
+-- 
+
+DROP TABLE IF EXISTS `xiami_tag_relationship`;
+CREATE TABLE IF NOT EXISTS `xiami_tag_relationship` (
+  `id` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `tagid` int(11) NOT NULL COMMENT '标签ID',
+  `workid` int(11) NOT NULL COMMENT '作品ID',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签作品关系表一对多' AUTO_INCREMENT=1 ;
+
