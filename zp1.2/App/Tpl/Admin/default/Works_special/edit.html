@@ -14,12 +14,47 @@
 				<input name="title" class="required" type="text" id="title" value="{$vo['title']}"/>
 			</div>
             <div class="unit">
+				<label>图片：</label>
+                <input name="img" type="text" id="name" value="{$vo[img]}"/>网络图片可直接输入
+            </div>
+            <div class="unit">
+				<label>&nbsp;</label>
+                <input id="fileimg" type="file" name="fileimg"/>本地上传优先
+            </div>
+            <if condition="(ACTION_NAME eq 'edit') and ($vo[img] neq '')">
+            <div class="unit">
+            	<label>&nbsp;</label>
+				<a href="{$vo[img]}" target="_blank"><img src="{$vo[img]}" height="180"/></a>
+            </div>
+            </if>
+            <div class="unit">
+				<label>奖励：</label>
+                <input name="award"  type="text" id="award" value="{$vo['award']}"/>
+            </div>
+            <div class="unit">
 				<label>代码：</label>
                 <input name="code"  type="text" id="code" value="{$vo['code']}"/>伪静态用
+            </div>
+          <div class="unit">
+			<label>描述：</label>
+              <textarea name="description" cols="40" id="description">{$vo['description']}</textarea>
             </div>
             <div class="unit">
 				<label>备注：</label>
                 {$vo['notice']|xheditor=notice,###,22,60}
+            </div>
+            <div class="unit">
+				<label>推荐：</label>
+                <input name="is_top" type="checkbox" id="is_top" value="1" <if condition="$vo['is_top'] eq 1">checked="checked"</if>/>
+  	    推荐
+            </div>
+            <div class="unit">
+				<label>推荐排序：</label>
+                <input name="top_sid" type="text" id="top_sid" value="{$vo[top_sid]}"/>
+            </div>
+            <div class="unit">
+			  <label>添加人：</label>
+                {$vo['adduser']}
             </div>
             <div class="unit">
 			  <label>添加时间：</label>

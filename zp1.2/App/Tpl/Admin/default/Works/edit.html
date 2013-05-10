@@ -93,6 +93,22 @@
 				<label>审核时间：</label>
                 {$vo[checktime]|inttodate}
             </div>
+            <div class="unit">
+				<label>赞：</label>
+                <input name="good" type="text" id="good" value="{$vo[good]}"/>
+            </div>
+            <div class="unit">
+				<label>RANK星级：</label>
+                {$vo[rank_total]/$vo[rank_count]}
+            </div>
+            <div class="unit">
+				<label>总评分：</label>
+                <input name="rank_total" type="text" id="rank_total" value="{$vo[rank_total]}"/>
+            </div>
+            <div class="unit">
+				<label>评分总次数：</label>
+                <input name="rank_count" type="text" id="rank_count" value="{$vo[rank_count]}"/>
+            </div>
 		</div>
 		
 		<div class="formBar">

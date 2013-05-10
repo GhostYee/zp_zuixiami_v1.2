@@ -36,6 +36,7 @@ class PagesAction extends CommonAction {
 		}
 		$pages=$model->find();
 		$this->assign('pages',$pages);
+		$this->assign('id',$page);
 		$this->display();
 	}
     // ------------------------------------------------------------------------

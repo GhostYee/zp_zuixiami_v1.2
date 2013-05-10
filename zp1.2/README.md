@@ -44,8 +44,6 @@ App/Conf/db.php
 #### 四:目录说明 ####
 以thinkphp规则为主
 
-sql                  数据结构变更.sql
-
 App/Lib/Action/Admin 后台程序
 
 App/Lib/Action/Home  前台程序
@@ -53,8 +51,6 @@ App/Lib/Action/Home  前台程序
 App/Lib/Tpl/default/Admin    后台模板
 
 App/Lib/Tpl/default/Home     前台模板
-
-App/Lib/Tpl/new      未经处理的，前端提交过来的模板
 
 
 
@@ -78,3 +74,9 @@ thinkphp核心修改以下兼容DWZ
 
 
 #### 五:数据库mysql版本管理 ####
+git还不知道用什么进行版本管理,先接下面的进行
+
+zuixiami.sql 基础数据库 一般不做改动
+
+update.sql 更新的数据  有修改的数据结构等都放这边
+
