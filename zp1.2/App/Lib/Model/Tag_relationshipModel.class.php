@@ -1,5 +1,5 @@
-<?php
-// ×÷Æ·±êÇ©¹ØÏµÄ£ÐÍ
+ï»¿<?php
+// ä½œå“æ ‡ç­¾å…³ç³»æ¨¡åž‹
 class Tag_relationshipModel extends CommonModel {
 }
 ?>

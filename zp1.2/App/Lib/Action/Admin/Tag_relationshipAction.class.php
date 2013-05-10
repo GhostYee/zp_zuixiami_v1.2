@@ -1,11 +1,11 @@
-<?php
+ï»¿<?php
 /**
- * ±êÇ©×÷Æ·¹ÜÀí
+ * æ ‡ç­¾ä½œå“ç®¡ç†
  */
 class Tag_relationshipAction extends CommonAction {
 	/**
 		 +----------------------------------------------------------
-		 * ±êÇ©×÷Æ·ÁĞ±í¹ÜÀí
+		 * æ ‡ç­¾ä½œå“åˆ—è¡¨ç®¡ç†
 		 +----------------------------------------------------------
 		 */
 	public function index() {
@@ -15,7 +15,7 @@ class Tag_relationshipAction extends CommonAction {
 		$tag=$tag_model->find($tag_id);
 		$this->assign('tag',$tag);
 		
-		//ÁĞ±í¹ıÂËÆ÷£¬Éú³É²éÑ¯Map¶ÔÏó
+		//åˆ—è¡¨è¿‡æ»¤å™¨ï¼Œç”ŸæˆæŸ¥è¯¢Mapå¯¹è±¡
 		$search['keyword']=$_REQUEST['keyword'];
 		
 		$where=array();
@@ -38,7 +38,7 @@ class Tag_relationshipAction extends CommonAction {
 		}
 		
 		$this->assign('search',$search);
-		$this->assign('special_id',$special_id);
+		$this->assign('tag_id',$tag_id);
 		
 		$this->display ();
 	}

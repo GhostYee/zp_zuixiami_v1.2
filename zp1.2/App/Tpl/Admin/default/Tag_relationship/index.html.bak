@@ -12,7 +12,6 @@
 				<li>
 					<label>关键字</label>
 					<input type="text" name="keyword" value="{$_REQUEST.keyword}" />
-					<input type="hidden" name="id" value="{$tag_id}"/>
 				</li>
 			</ul>
 			<div class="subBar">

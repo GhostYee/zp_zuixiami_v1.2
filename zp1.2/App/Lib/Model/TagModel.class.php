@@ -1,5 +1,5 @@
-<?php
-// ±êÇ©Ä£ÐÍ
+ï»¿<?php
+// æ ‡ç­¾æ¨¡åž‹
 class TagModel extends CommonModel {
 }
 ?>
