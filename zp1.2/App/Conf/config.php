@@ -14,7 +14,7 @@ return array(
 	
 	//开启模板主题切换
 	'DEFAULT_THEME'  	=> 	'default',
-    'THEME_LIST'		=>	'default,ZL',
+    'THEME_LIST'		=>	'default,zuixiami',
     'TMPL_DETECT_THEME' => 	true, // 自动侦测模板主题
 
 	

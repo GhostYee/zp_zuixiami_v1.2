@@ -4,7 +4,8 @@ return array(
 	//'配置项'=>'配置值'
 	'URL_ROUTER_ON'   => true, //开启路由
 	'URL_ROUTE_RULES' => array( //定义路由规则
-		'about'               => 'Pages/view?id=about',
+		//单页
+		'/^pages\/(\w+)$/'               => 'Pages/view?id=:1',
 		//首页
 		'/^index\/nochecked$/'        		=> 'Index/index?status=1',
 		'/^index\/checkedn$/'        		=> 'Index/index?status=3',
