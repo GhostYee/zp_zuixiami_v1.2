@@ -1,5 +1,6 @@
 ﻿<form id="pagerForm" action="__URL__" method="post">
   <input type="hidden" name="pageNum" value="1"/>
+   <input type="hidden" name="id" value="{$tag_id}"/>
 	<input type="hidden" name="keyword" value="{$_REQUEST.keyword}"/>
 </form>
 
@@ -36,6 +37,7 @@
 			  <th width="40"><input type="checkbox" group="ids" class="checkboxCtrl" /></th>
 				<th>id</th>
 				<th>标签内容</th>
+                <th>作品名称</th>
 				<th width="30%">操作</th>
 			</tr>
 			</thead>
@@ -45,9 +47,8 @@
 				  <td width="40"><input name="ids" value="{$vo['id']}" type="checkbox" /></td>
 					<td>{$vo['id']}</td>
 					<td>{$vo['tagname']}</td>
+                    <td>{$vo['works_name']}</td>
 					<td>
-                        <a class="add" href="__GROUP__/Tag_relationship/add/id/{$vo['id']}" target="navTab" rel="Tag_relationship_add"><span>新增标签</span></a>
-                    	<a class="edit" href="__GROUP__/Tag_relationship/index/id/{$vo['id']}/navTabId/__MODULE__"  target="navTab" rel="Tag_relationship_id{$val['id']}"><span>标签作品管理</span></a>
 					<a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a></td>
 				</tr>
 			</volist>
