@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * 标签作品管理
  */
@@ -21,6 +21,7 @@ class Tag_relationshipAction extends CommonAction {
 		$where=array();
 		if(!empty($search['keyword'])){
 			$where['tag.tagname'] = array('like', "%" . $search['keyword'] . "%");
+			$where['works.name'] = array('like', "%" . $search['keyword'] . "%");
 			$where['_logic'] = 'or';
 		}
 		if($where){
@@ -31,8 +32,8 @@ class Tag_relationshipAction extends CommonAction {
 		$model = D ( 'Tag_relationship' );
 		if (! empty ( $model )) {
 			$allinone['where']=$map;
-			$allinone['field']='Tag_relationship.*,works.name works_name';
-			$allinone['join']=array(C('DB_PREFIX')."works works ON Tag_relationship.workid=works.id");
+			$allinone['field']='Tag.tagname tag_name,Tag_relationship.*,works.name works_name';
+			$allinone['join']=array(C('DB_PREFIX')."works works ON Tag_relationship.workid=works.id",C('DB_PREFIX')."tag tag ON Tag_relationship.tagid=tag.id");
 			$allinone['order']='tag_relationship.id DESC';
 			$this->_list_sql ( $model, $allinone );
 		}

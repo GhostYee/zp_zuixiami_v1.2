@@ -1,4 +1,4 @@
-﻿<form id="pagerForm" action="__URL__" method="post">
+<form id="pagerForm" action="__URL__" method="post">
   <input type="hidden" name="pageNum" value="1"/>
    <input type="hidden" name="id" value="{$tag_id}"/>
 	<input type="hidden" name="keyword" value="{$_REQUEST.keyword}"/>
@@ -47,7 +47,7 @@
 				<tr target="sid_user" rel="{$vo['id']}">
 				  <td width="40"><input name="ids" value="{$vo['id']}" type="checkbox" /></td>
 					<td>{$vo['id']}</td>
-					<td>{$vo['tagname']}</td>
+					<td>{$vo['tag_name']}</td>
                     <td>{$vo['works_name']}</td>
 					<td>
 					<a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a></td>
