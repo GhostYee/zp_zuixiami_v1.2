@@ -50,6 +50,12 @@ class IndexAction extends CommonAction {
     	$this->assign('works',$works);
     	$this->assign('keywords',$keywords);
     	$this->assign('status',$status);
+		
+		
+		//热度
+		$ranklist=$this->_get_ranklist(5);
+		$this->assign('ranklist',$ranklist);	
+		
     	
     	//解决__info__ 为空显示__info__ bug
     	$fromurl=__INFO__;
@@ -67,5 +73,26 @@ class IndexAction extends CommonAction {
 
     	$this->display();
     }
+	// ------------------------------------------------------------------------
+	/**
+	 * 首页取得热度前几个
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	protected function _get_ranklist($num=5){
+		$works_model=D('works');    	
+    	$orderby=" ORDER BY star desc ";    	
+    	$limit=" limit $num ";		
+    	// 取出需要的数据
+    	$sql	= "SELECT w.*,ceil(w.rank_total/w.rank_count) as star,round(ceil(w.rank_total/w.rank_count)/10,1) rank ".
+				" FROM ".C('DB_PREFIX')."works w ".
+    			//" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
+    			//" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
+    			//" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
+    			" where 1 $orderby $limit";
+    	$works	= $works_model->query($sql);
+		return $works;
+	}
     // ------------------------------------------------------------------------
 }

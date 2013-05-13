@@ -59,38 +59,16 @@
         <div class="wgt-zpRankList">
           <div class="box-title">
             <h3>热度<em>Top 5</em></h3>
-            <a href="ranklist.html" class="btn-more">总排行</a> </div>
+            <a href="__APP__/ranklist" class="btn-more">总排行</a> </div>
           <ul>
-            <li class="rank-1 active" > <em>1</em>
+            <foreach name="ranklist" item="val">
+            <li class="rank-{$key+1} <if condition="$key eq '0'">active</if> "> <em>{$key+1}</em>
               <div class="con">
-                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
-                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
+                <h5><a href="{$val['url']}">{$val['name']|msubstr=0,300,'utf-8',false}</a></h5>
+                <blockquote> {$val['description']|strip_tags|msubstr=0,26} </blockquote>
               </div>
             </li>
-            <li class="rank-2" > <em>2</em>
-              <div class="con">
-                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
-                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
-              </div>
-            </li>
-            <li class="rank-3" > <em>3</em>
-              <div class="con">
-                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
-                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
-              </div>
-            </li>
-            <li class="rank-4" > <em>4</em>
-              <div class="con">
-                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
-                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
-              </div>
-            </li>
-            <li class="rank-5" > <em>5</em>
-              <div class="con">
-                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
-                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
-              </div>
-            </li>
+            </foreach>
           </ul>
         </div>
       </div>
@@ -121,10 +99,14 @@
              <foreach name="works" item="val">
               <li class="span4" >
                 <div class="inner">
+                  <div class="preview-box">
                   <if condition="$val['img'] neq ''">
-                  <div class="preview-box"> <img src="{$val['img']}" alt=""> </div>
+                  <img src="{$val['img']}" alt="">
+                  <else />
+                  <blockquote> {$val['description']|strip_tags|msubstr=0,64} </blockquote>
+                  </if>
+                  </div>
                   <a class="preview-mask" href="{$val['url']}" ></a>
-                  </if>           
                   <h5><a href="{$val['url']}">{$val['name']}</a></h5>
                   <div class="info"> <span class="author-info" > <a href="__APP__/author/{$val['author_id']}" class="author-name">{$val['author']}</a> In <a href="{$val['url']}" class="author-group" >{$val['qunname']}</a> </span> <span class="opts" > <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btn-like" ><span id="do_good_{$val['id']}">{$val['good']}</span></a> <a href="zpView.html" class="btn-message" >5</a> </span> </div>
                 </div>
