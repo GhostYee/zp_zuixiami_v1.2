@@ -1,0 +1,78 @@
+<form id="pagerForm" action="__URL__" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="keyword" value="{$_REQUEST.keyword}"/>
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>关键字：</label>
+					<input type="text" name="keyword" value="{$_REQUEST.keyword}" />
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				</ul>
+			</div>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="add" href="__URL__/add" target="dialog" mask="true" width="700" height="550"><span>新增</span></a></li>
+				
+				<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string"  href="__URL__/selectedDelete" class="delete"><span>批量删除</span></a></li>
+				
+			</ul>
+		</div>
+
+		<table class="list" width="100%" layoutH="116">
+			<thead>
+			<tr>
+			  <th width="40"><input type="checkbox" group="ids" class="checkboxCtrl" /></th>
+				<th>id</th>
+				<th>第几期</th>
+				<th>标题</th>
+				<th>奖励</th>
+				<th>描述</th>
+				<th>添加时间</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid_user" rel="{$vo['id']}">
+				  <td width="40"><input name="ids" value="{$vo['id']}" type="checkbox" /></td>
+					<td>{$vo['id']}</td>
+					<td>{$vo['qishu']}</td>
+					<td>{$vo['title']}</td>
+					<td>{$vo['award']}</td>
+					<td>{$vo['description']}</td>
+					<td>{$vo['addtime']|inttodate}</td>
+					<td>
+                    	<a class="add" href="__GROUP__/Works_special_mid/add/id/{$vo['id']}" target="navTab" rel="Works_special_mid_add"><span>新增专题作品</span></a>
+                    	<a class="edit" href="__GROUP__/Works_special_mid/index/id/{$vo['id']}/navTabId/__MODULE__"  target="navTab" rel="Works_special_mid_id{$val['id']}"><span>专题作品管理</span></a>
+                        <a class="edit" href="__URL__/edit/id/{$vo['id']}/navTabId/__MODULE__" target="dialog" mask="true" width="700" height="550"><span>编辑</span></a>
+                        <a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a>
+                    </td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$totalCount}条</span>
+		  </div>
+			<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	  </div>
+
+	</div>
+	
+</div>
+

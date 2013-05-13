@@ -1,0 +1,69 @@
+<form id="pagerForm" action="__URL__" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="keyword" value="{$_REQUEST.keyword}"/>
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="__URL__" method="post">
+		<div class="searchBar">
+			<ul class="searchContent">
+				<li>
+					<label>关键字：</label>
+					<input type="text" name="keyword" />
+				</li>
+			</ul>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				</ul>
+			</div>
+		</div>
+		</form>
+	</div>
+
+	<div class="pageContent">
+
+
+		<table class="list" width="100%" layoutH="116" rel="jbsxBox">
+			<thead>
+			<tr>
+			  <th width="3%">ID</th>
+				<th width="12%">操作分组</th>
+				<th width="12%">操作模块</th>
+                                <th width="12%">操作对象</th>
+                                <th width="12%">备注</th>
+				<th width="12%">操作用户</th>
+				<th width="12%">操作用户ID</th>
+                                <th width="12%">操作用户IP</th>
+                                <th width="12%">操作时间</th>
+			</tr>
+			</thead>
+			<tbody>
+			<volist id="vo" name="list">
+				<tr target="sid_group" rel="{$vo['id']}">
+				  <td>{$vo['id']}</td>
+					<td>{$vo['modulename']}</td>
+					<td>{$vo['actionname']}</td>
+                                        <td>{$vo['opname']}</td>
+                                        <td>{$vo['message']}</td>
+					<td>{$vo['username']}</td>
+                                        <td>{$vo['userid']}</td>
+					<td>{$vo['userip']}</td>
+					<td>{$vo['create_time']|toDate}</td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>		
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$totalCount}条</span>
+			</div>
+			<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="2" currentPage="{$currentPage}"></div>
+		</div>
+
+  </div>
+	
+</div>
+
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <ul class="wgt-rainbow" >
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <h1 class="wgt-logo"> <a href="__APP__/">最虾米-发现前端价值</a> </h1>
+      </div>
+      <div class="wgt-nav box-shadow">
+        <ul class="nav nav-list">
+          <li <if condition="$id eq 'about'">class="active"</if> ><a href="__APP__/pages/about">关于我们</a></li>
+          <li <if condition="$id eq 'qun'">class="active"</if> ><a href="__APP__/pages/qun">了解鬼群</a></li>
+          <li <if condition="$id eq 'join'">class="active"</if> ><a href="__APP__/pages/join">加入最虾米</a></li>
+          <li <if condition="$id eq 'offer'">class="active"</if> ><a href="__APP__/pages/offer">捐助我们</a></li>
+          <li <if condition="$id eq 'about'">class="message"</if> ><a href="__APP__/message">意见和建议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb"> <a href="__APP__/">首页</a>/<span>{$pages['title']}</span> </div>
+          <nav class="wgt-topNav">
+            <li> <a href="__APP__/user">登录/注册</a> </li>
+            <li> <a href="__APP__/tools">工具箱</a> </li>
+          </nav>
+        </div>
+        <div class="l-b-row row-fluid">
+          <article class="wgt-simple-page box-shadow" >
+            <h2>{$pages['title']}</h2>
+            <div class="con"> {$pages['contents']} </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<div class="page">
+  <div class="pageContent">
+    <form method="post" action="__URL__/{$module}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+      <div class="tabs" currentIndex="0" eventType="click">
+        <div class="tabsHeader">
+          <div class="tabsHeaderContent">
+            <ul>
+              <li><a href="javascript:;"><span>本地上传</span></a></li>
+              <li><a href="javascript:;"><span>网络图片</span></a></li>
+              <li><a href="javascript:;"><span>系统图片</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tabsContent pageFormContent" style="height:250px;">
+          <div>
+            <div class="unit">
+              <label>本地上传：</label>
+              <input type="text"  name="name" value="{$data.name}">
+            </div>
+          </div>
+          <div>
+            <div class="unit">
+              <label>网络图片：</label>
+              <input type="text"  name="name" value="{$data.name}">
+            </div>
+          </div>
+          <div> 图片 </div>
+        </div>
+        <div class="formBar">
+          <ul>
+            <li>
+              <div class="buttonActive">
+                <div class="buttonContent">
+                  <button type="submit">选择</button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="button">
+                <div class="buttonContent">
+                  <button type="button" class="close">取消</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

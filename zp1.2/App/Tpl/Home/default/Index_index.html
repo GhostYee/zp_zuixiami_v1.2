@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <ul class="wgt-rainbow" >
+      <li>1</li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <h1 class="wgt-logo"> <a href="__APP__/">最虾米-发现前端价值</a> </h1>
+        <div class="wgt-searchBar">
+          <form action="__APP__/works/search/author/{$author}" method="post">
+          <input type="hidden" name="status" value="{$status}" />
+          <input type="text" name="keywords" id="" placeholder="请输入作者名、标签" >
+          <button class="btn-search" type="submit" ><i class="icon-search"></i></button>
+          </form>
+        </div>
+        <div class="wgt-tags">
+          <ul>
+            <li><a href="index-tag.html">javascript</a></li>
+            <li><a href="index-tag.html">css3</a></li>
+            <li><a href="index-tag.html">html5</a></li>
+            <li><a href="index-tag.html">coco2ds-html5</a></li>
+            <li><a href="index-tag.html">webapp</a></li>
+            <li><a href="index-tag.html">javascript</a></li>
+            <li><a href="index-tag.html">css3</a></li>
+            <li><a href="index-tag.html">html5</a></li>
+            <li><a href="index-tag.html">coco2ds-html5</a></li>
+            <li><a href="index-tag.html">webapp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="box-shadow">
+        <div class="wgt-zpRankList">
+          <div class="box-title">
+            <h3>热度<em>Top 5</em></h3>
+            <a href="ranklist.html" class="btn-more">总排行</a> </div>
+          <ul>
+            <li class="rank-1 active" > <em>1</em>
+              <div class="con">
+                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
+                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
+              </div>
+            </li>
+            <li class="rank-2" > <em>2</em>
+              <div class="con">
+                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
+                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
+              </div>
+            </li>
+            <li class="rank-3" > <em>3</em>
+              <div class="con">
+                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
+                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
+              </div>
+            </li>
+            <li class="rank-4" > <em>4</em>
+              <div class="con">
+                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
+                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
+              </div>
+            </li>
+            <li class="rank-5" > <em>5</em>
+              <div class="con">
+                <h5><a href="zpView.html">Kissy前端开发框架</a></h5>
+                <blockquote> 许多的 JS 框架类库都选择使用 $ 符号作为函数或变量名... </blockquote>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <a class="box-shadow adshow-1" href="__APP__/pages/about"> 了解<strong>最虾米</strong>,了解<strong>鬼群</strong>,加入我们,<strong>捐助</strong>最虾米 <strong>:)</strong> </a> </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" > <a href="__APP__/works/submit" class="btn-submitZP" ><em>+</em> 提交作品 </a>
+          <nav class="wgt-topNav">
+            <li> <a href="__APP__/user">登录/注册</a> </li>
+            <li> <a href="__APP__/tools">工具箱</a> </li>
+          </nav>
+        </div>
+        <div class="l-b-row row-fluid">
+          <div class="wgt-bannerList box-shadow span8">
+            <div class="box-show">
+              <ul>
+                <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
+                <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
+                <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
+                <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
+              </ul>
+            </div>
+            <div class="box-ctrl"> <a href="#" class="btn-prev" ></a> <a href="#" class="btn-next" ></a> </div>
+          </div>
+          <a class="box-shadow adshow-2 span4" href="teams.html" > <img src="../Public/images/0415.jpg" alt=""> </a>
+          <div class="wgt-zpList row-fluid  ">
+            <ul class="thumbnails">
+             <foreach name="works" item="val">
+              <li class="span4" >
+                <div class="inner">
+                  <if condition="$val['img'] neq ''">
+                  <div class="preview-box"> <img src="{$val['img']}" alt=""> </div>
+                  <a class="preview-mask" href="{$val['url']}" ></a>
+                  </if>           
+                  <h5><a href="{$val['url']}">{$val['name']}</a></h5>
+                  <div class="info"> <span class="author-info" > <a href="__APP__/author/{$val['author_id']}" class="author-name">{$val['author']}</a> In <a href="{$val['url']}" class="author-group" >{$val['qunname']}</a> </span> <span class="opts" > <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btn-like" ><span id="do_good_{$val['id']}">{$val['good']}</span></a> <a href="zpView.html" class="btn-message" >5</a> </span> </div>
+                </div>
+              </li>
+             </foreach>            
+            </ul>
+          </div>
+          <div class="pagination pagination-large">
+            <ul>
+              <li><a href="#">«</a></li>
+              <li><a href="#">»</a></li>
+            </ul>
+          </div>
+          <a class="btn-toTop" href="#" ></a> <a class="btn-toMessage" href="#" ></a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<script type="text/javascript" src="../Public/js/jquery.base64.min.js"></script>
+<script language="javascript">
+//赞/期待 by wewe
+function do_good_await(module,mtype,mid){
+	if(module!='' && mtype!='' && mid!='')
+	{
+		$.ajax({
+			type: "POST",
+			url: "<?php echo __APP__;?>/works/user_action",
+			data: "module="+module+"&mtype="+mtype+"&mid="+mid,
+			dataType: "json",
+			success: function(data){
+				if(data.code=='ok'){
+					if(mtype=='good'){
+						$("#do_good_"+mid).html(data.msg);
+					}
+					else if(mtype=='await'){
+						$("#do_await_"+mid).html(data.msg);
+					}
+				}
+				else if(data.code=='error'){
+					alert(data.msg);
+				}
+			}
+		});
+	}
+}
+</script>
+</body>
+</html>

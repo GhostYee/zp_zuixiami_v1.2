@@ -1,0 +1,89 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+    	<input name="id" type="hidden" id="id" value="<?=$sysconfig[id]?>" />
+		<div class="pageFormContent" layoutH="58">
+			<div class="unit">
+				<label>上级：</label>
+				<SELECT name="pid" id="pid">
+					<option value="">根目录</option>
+					<?php
+                    foreach ((array) $sysconfig_list as $id => $item) {
+                    ?>
+                  <option value="<?=$item['id']?>" <?php if($sysconfig['pid'] == $item['id']){?>selected="selected"<?php }?>>
+                    <?=implode('' , array_fill(1, $item['level'], '　'))?>
+                    ├
+                    <?=$item['textname']?>
+                    </option>
+                  <?php
+                    }
+                    ?>
+				</SELECT>
+			</div>
+			
+			<div class="unit">
+				<label>名称：</label>
+				<input type="text"  name="textname" value="{$sysconfig['textname']}">
+			</div>
+            <div class="unit">
+				<label>Code：</label>
+				<input type="text" class="required"   name="code" value="{$sysconfig['code']}">
+                自行加cfg_开头,避免跟TP重复
+            </div>
+            <div class="unit">
+				<label>类型Type：</label>
+                <select name="type" id="type">
+  	    <option value="" >请选择</option>
+  	    <option value="text" <?php if($sysconfig[type]=='text') echo "selected='selected'"; ?> >文本框text</option>
+  	    <option value="textarea" <?php if($sysconfig[type]=='textarea') echo "selected='selected'";?> >多行文本框textarea</option>
+  	    <option value="select" <?php if($sysconfig[type]=='select') echo "selected='selected'";?> >单选select</option>
+  	    <option value="options" <?php if($sysconfig[type]=='options') echo "selected='selected'";?> >下拉options</option>
+  	    <option value="hidden" <?php if($sysconfig[type]=='hidden') echo "selected='selected'";?> >隐藏hidden</option>
+  	    <option value="file" <?php if($sysconfig[type]=='file') echo "selected='selected'";?> >上传文件file</option>
+  	    <option value="html" <?php if($sysconfig[type]=='html') echo "selected='selected'";?> >html编辑器</option>
+  	    <option value="group" <?php if($sysconfig[type]=='group') echo "selected='selected'";?> >组group</option>
+  	    <option value="password" <?php if($sysconfig[type]=='password') echo "selected='selected'";?> >密码password</option>
+	    </select>
+			</div>
+            <div class="unit">
+				<label>存储范围store_range：</label>
+				<input type="text"   name="store_range" value="{$sysconfig['store_range']}">
+                Type为select,options的待选值,逗号分开1,2,3,4
+			</div>
+            <div class="unit">
+				<label>存储地址store_dir：</label>
+				<input type="text"  name="store_dir" value="{$sysconfig['store_dir']}">
+                Type为file时使用
+			</div>
+            <div class="unit">
+				<label>值value：</label>
+				<TEXTAREA name="value"  rows="3" cols="57">{$sysconfig['value']}</textarea>
+			</div>
+            <div class="unit">
+				<label>range_desc：</label>
+				<TEXTAREA name="range_desc"  rows="3" cols="57">{$sysconfig['range_desc']}</textarea>
+                对应store_range的说明,逗号分开1,2,3,4
+			</div>
+            <div class="unit">
+				<label>备注cfg_desc：</label>
+				<TEXTAREA name="cfg_desc"  rows="3" cols="57">{$sysconfig['cfg_desc']}</textarea>
+			</div>
+            <div class="unit">
+				<label>排序：</label>
+				<input type="text" class="required number" size="30" maxlength="20" name="sid" value="{$sysconfig['sid']}" />
+			</div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+
