@@ -1,13 +1,13 @@
-/*ÓÃ»§²Ù×÷±íuser_action Ôö¼Óvalue ÔÝÓÃÓÚ´æ·ÅrankÖµ by wewe 20130509*/
-ALTER TABLE  `xiami_user_action` ADD  `value` VARCHAR( 20 ) NOT NULL COMMENT  'Öµ' AFTER  `user_id` ;
-ALTER TABLE  `xiami_user_action` COMMENT =  'ÓÃ»§²Ù×÷ÔÝÓÃÓÚÔÞ/ÆÚ´ý/rank';
+ï»¿/*ç”¨æˆ·æ“ä½œè¡¨user_action å¢žåŠ value æš‚ç”¨äºŽå­˜æ”¾rankå€¼ by wewe 20130509*/
+ALTER TABLE  `xiami_user_action` ADD  `value` VARCHAR( 20 ) NOT NULL COMMENT  'å€¼' AFTER  `user_id` ;
+ALTER TABLE  `xiami_user_action` COMMENT =  'ç”¨æˆ·æ“ä½œæš‚ç”¨äºŽèµž/æœŸå¾…/rank';
 
-/*×÷Æ·±íworksÔö¼Ó ÐÇ¼¶×ÜÆÀ·Ö ÆÀ·Ö×Ü´ÎÊý  by wewe 20130509*/
-ALTER TABLE  `xiami_works` ADD  `rank_total` BIGINT NOT NULL DEFAULT  '0' COMMENT  'ÐÇ¼¶×ÜÆÀ·Ö' AFTER  `good` ,
-ADD  `rank_count` BIGINT NOT NULL DEFAULT  '0' COMMENT  'ÐÇ¼¶ÆÀ·Ö×Ü´ÎÊý' AFTER  `rank_total` ;
+/*ä½œå“è¡¨workså¢žåŠ  æ˜Ÿçº§æ€»è¯„åˆ† è¯„åˆ†æ€»æ¬¡æ•°  by wewe 20130509*/
+ALTER TABLE  `xiami_works` ADD  `rank_total` BIGINT NOT NULL DEFAULT  '0' COMMENT  'æ˜Ÿçº§æ€»è¯„åˆ†' AFTER  `good` ,
+ADD  `rank_count` BIGINT NOT NULL DEFAULT  '0' COMMENT  'æ˜Ÿçº§è¯„åˆ†æ€»æ¬¡æ•°' AFTER  `rank_total` ;
 
-ALTER TABLE  `xiami_works_special` ADD  `description` VARCHAR( 255 ) NOT NULL COMMENT  'ÃèÊö' AFTER  `title` ;
-ALTER TABLE  `xiami_works_special` ADD  `img` VARCHAR( 200 ) NOT NULL COMMENT  'ËõÂÔÍ¼';
-ALTER TABLE  `xiami_works_special` ADD  `award` VARCHAR( 50 ) NOT NULL COMMENT  '½±Àø';
-ALTER TABLE  `xiami_works_special` ADD  `is_top` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  'ÊÇ·ñÍÆ¼ö' AFTER  `code` ,
-ADD  `top_sid` INT NOT NULL DEFAULT  '0' COMMENT  'ÍÆ¼öÅÅÐò' AFTER  `is_top` ;
+ALTER TABLE  `xiami_works_special` ADD  `description` VARCHAR( 255 ) NOT NULL COMMENT  'æè¿°' AFTER  `title` ;
+ALTER TABLE  `xiami_works_special` ADD  `img` VARCHAR( 200 ) NOT NULL COMMENT  'ç¼©ç•¥å›¾';
+ALTER TABLE  `xiami_works_special` ADD  `award` VARCHAR( 50 ) NOT NULL COMMENT  'å¥–åŠ±';
+ALTER TABLE  `xiami_works_special` ADD  `is_top` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  'æ˜¯å¦æŽ¨è' AFTER  `code` ,
+ADD  `top_sid` INT NOT NULL DEFAULT  '0' COMMENT  'æŽ¨èæŽ’åº' AFTER  `is_top` ;
