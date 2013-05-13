@@ -1,0 +1,10 @@
+<include file="Public:header"/>
+<!-- log { -->
+<div class="container-fluid">
+   <h1>更新日志</h1>
+   <foreach name="website_log" item="val">
+       <h2>{$val['title']}</h2>
+       <p>{$val['contents']}</p>
+   </foreach>
+</div>
+<!-- ｝ --> 
