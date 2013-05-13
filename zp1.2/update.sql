@@ -1,13 +1,20 @@
-/*ÓÃ»§²Ù×÷±íuser_action Ôö¼Óvalue ÔÝÓÃÓÚ´æ·ÅrankÖµ by wewe 20130509*/
+/*ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½user_action ï¿½ï¿½ï¿½ï¿½value ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½rankÖµ by wewe 20130509*/
 ALTER TABLE  `xiami_user_action` ADD  `value` VARCHAR( 20 ) NOT NULL COMMENT  'Öµ' AFTER  `user_id` ;
-ALTER TABLE  `xiami_user_action` COMMENT =  'ÓÃ»§²Ù×÷ÔÝÓÃÓÚÔÞ/ÆÚ´ý/rank';
+ALTER TABLE  `xiami_user_action` COMMENT =  'ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½Ú´ï¿½/rank';
 
-/*×÷Æ·±íworksÔö¼Ó ÐÇ¼¶×ÜÆÀ·Ö ÆÀ·Ö×Ü´ÎÊý  by wewe 20130509*/
-ALTER TABLE  `xiami_works` ADD  `rank_total` BIGINT NOT NULL DEFAULT  '0' COMMENT  'ÐÇ¼¶×ÜÆÀ·Ö' AFTER  `good` ,
-ADD  `rank_count` BIGINT NOT NULL DEFAULT  '0' COMMENT  'ÐÇ¼¶ÆÀ·Ö×Ü´ÎÊý' AFTER  `rank_total` ;
+/*ï¿½ï¿½Æ·ï¿½ï¿½worksï¿½ï¿½ï¿½ï¿½ ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½  by wewe 20130509*/
+ALTER TABLE  `xiami_works` ADD  `rank_total` BIGINT NOT NULL DEFAULT  '0' COMMENT  'ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' AFTER  `good` ,
+ADD  `rank_count` BIGINT NOT NULL DEFAULT  '0' COMMENT  'ï¿½Ç¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½' AFTER  `rank_total` ;
 
-ALTER TABLE  `xiami_works_special` ADD  `description` VARCHAR( 255 ) NOT NULL COMMENT  'ÃèÊö' AFTER  `title` ;
-ALTER TABLE  `xiami_works_special` ADD  `img` VARCHAR( 200 ) NOT NULL COMMENT  'ËõÂÔÍ¼';
-ALTER TABLE  `xiami_works_special` ADD  `award` VARCHAR( 50 ) NOT NULL COMMENT  '½±Àø';
-ALTER TABLE  `xiami_works_special` ADD  `is_top` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  'ÊÇ·ñÍÆ¼ö' AFTER  `code` ,
-ADD  `top_sid` INT NOT NULL DEFAULT  '0' COMMENT  'ÍÆ¼öÅÅÐò' AFTER  `is_top` ;
+ALTER TABLE  `xiami_works_special` ADD  `description` VARCHAR( 255 ) NOT NULL COMMENT  'ï¿½ï¿½ï¿½ï¿½' AFTER  `title` ;
+ALTER TABLE  `xiami_works_special` ADD  `img` VARCHAR( 200 ) NOT NULL COMMENT  'ï¿½ï¿½ï¿½ï¿½Í¼';
+ALTER TABLE  `xiami_works_special` ADD  `award` VARCHAR( 50 ) NOT NULL COMMENT  'ï¿½ï¿½ï¿½ï¿½';
+ALTER TABLE  `xiami_works_special` ADD  `is_top` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  'ï¿½Ç·ï¿½ï¿½Æ¼ï¿½' AFTER  `code` ,
+ADD  `top_sid` INT NOT NULL DEFAULT  '0' COMMENT  'ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½' AFTER  `is_top` ;
+
+--
+--  by Feenan å‘ä½œå“æ ‡ç­¾ å…³ç³» è¡¨å¢žåŠ æ•°æ®
+--
+INSERT INTO xiami_tag_relationship(`tagid`,`workid`) VALUES('1','150');
+INSERT INTO xiami_tag_relationship(`tagid`,`workid`) VALUES('1','151');
+INSERT INTO xiami_tag_relationship(`tagid`,`workid`) VALUES('1','152');

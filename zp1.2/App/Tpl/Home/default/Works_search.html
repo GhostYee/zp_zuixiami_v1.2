@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Public:head"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!-- 主要内容 ｛ -->
+<div class="container-fluid"> 
+  
+  <div class="search-result">
+     <div class="input-append zpSearch">
+     	<form action="__APP__/works/search" method="post">
+        <input class="span2" id="appendedInputButton" name="keywords" type="text" value="{$keywords}" placeholder="输入你要查询的内容">
+        <button class="btn" type="submit">查询</button>
+        <input type="hidden" name="status" value="{$status}" />
+        </form> 
+      </div>
+      <if condition="($total.search_total neq '0')">
+       在<if1 condition="($qun_member neq '') and ($author neq '')"><strong>{$qun_member['name']}</strong><else1 />所有</if1>作品中，查找到<strong class="keyword" >{$keywords}</strong>相匹配的结果有<b class="num" >{$total.search_total}</b>个。
+       <else />
+       很抱歉，暂时没有您想要的作品，或者用别的关键词再找看看，或者看看我们的专题 <a href="__APP__/works_special">前往作品专题</a>
+       </if>
+  </div>
+  <div class="clearfix"> 
+    <!-- 用户中心菜单 ｛ -->
+    <div class="l-side">
+      <ul class="nav nav-list">
+      	<if condition="$author neq ''">
+            <li class="active"><a href="__APP__/works/search/keywords/{$keywords}/author/{author}">{$qun_member['name']}的作品<b>({$total.user_total})</b></a></li>
+        	<li><a href="__APP__/works/search//keywords/{$keywords}/status/{$status}">全部作品<b>({$total.total})</b></a></li>            
+        <else />
+            <li class="active" ><a href="__APP__/works/search/keywords/{$keywords}/status/{$status}">全部作品<b>({$total.total})</b></a></li>
+            <if condition="$Think.session.we_userid neq ''">
+            <li><a href="__APP__/works/search/keywords/{$keywords}/author/{$Think.session.we_userid}">我的作品<b>({$total.user_total})</b></a></li>
+            </if>
+        </if>     
+      </ul>
+    </div>
+    <!-- } --> 
+    <div class="l-main">     
+     <!-- 用户中心头部 ｛ -->
+  <div class="subnav subnav-fixed">
+    <ul class="nav nav-pills">
+      <li <if condition="$status eq 2">class="cur"</if> > <a href="__APP__/works/search/status/2/keywords/{$keywords}/author/{$author}">已审核通过<if condition="$total['checked'] neq '0'">({$total['checked']})</if></a> </li>
+      <li <if condition="$status eq 1">class="cur"</if> > <a href="__APP__/works/search/status/1/keywords/{$keywords}/author/{$author}" >待审核<if condition="$total['nochecked'] neq '0'">({$total['nochecked']})</if></a> </li>
+      <li <if condition="$status eq 3">class="cur"</if> > <a href="__APP__/works/search/status/3/keywords/{$keywords}/author/{$author}">待抢救<if condition="$total['checkedn'] neq '0'">({$total['checkedn']})</if></a> </li>
+      <li class="divider-vertical"></li>
+    </ul>
+  </div>
+  <!-- } -->
+  <div class="worksList" id="worksList"> 
+  <include file="Index:workslist"/>
+  </div>
+</div>
+</div>
+</div>
+<!-- 主要内容 } -->
+<include file="Public:footer"/>
+<script type="text/javascript" src="../Public/js/jquery.base64.min.js"></script>
+<script language="javascript">
+//作品状态 by wewe
+function works_status(id,status){
+	if(id!='' && status!='')
+	{
+		var fromurl="<?php echo __INFO__;?>";
+		$.ajax({
+			type: "POST",
+			url: "<?php echo __APP__;?>/Works/status",
+			data: "id="+id+"&status="+status,
+			dataType: "json",
+			success: function(data){
+				if(data.msg=='jump'){
+					location.href='<?php echo __APP__;?>/user/login/?fromurl='+$.base64.encode(fromurl);
+				}
+				else if(data.msg!=''){
+					alert(data.msg);
+					location.reload()
+					/*
+					if(data.workslist){
+						$("#worksList").html(data.workslist);
+					}
+					*/
+				}
+			}
+		});
+	}
+}
+//赞/期待 by wewe
+function do_good_await(module,mtype,mid){
+	if(module!='' && mtype!='' && mid!='')
+	{
+		$.ajax({
+			type: "POST",
+			url: "<?php echo __APP__;?>/works/user_action",
+			data: "module="+module+"&mtype="+mtype+"&mid="+mid,
+			dataType: "json",
+			success: function(data){
+				if(data.code=='ok'){
+					if(mtype=='good'){
+						$("#do_good_"+mid).html(data.msg);
+					}
+					else if(mtype=='await'){
+						$("#do_await_"+mid).html(data.msg);
+					}
+				}
+				else if(data.code=='error'){
+					alert(data.msg);
+				}
+			}
+		});
+	}
+}
+</body>
+</html>
