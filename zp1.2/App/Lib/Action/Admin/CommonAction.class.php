@@ -488,6 +488,40 @@ class CommonAction extends Action {
 	}
 	/**
       +----------------------------------------------------------
+     * 关联删除单条主表记录
+      +----------------------------------------------------------
+     * @access public
+      +----------------------------------------------------------
+     * @return string
+      +----------------------------------------------------------
+     * @throws ThinkExecption
+      +----------------------------------------------------------
+     */
+	public function deleterelation() {
+		$name=$this->getActionName();
+		$model = D ($name);
+		if (! empty ( $model )) {
+			$pk = $model->getPk ();
+			$id = $_REQUEST [$pk];
+			if (isset ( $id )) {
+				//$condition = array ($pk => array ('in', explode ( ',', $id ) ) );
+				if (false !== $model->relation(true)->delete ($id)) {
+					//echo $model->getlastsql();
+					$this->sysLogs('删除成功ID:'.$id);
+					$this->success ('删除成功！');
+				} else {
+					$this->sysLogs('删除失败ID:'.$id);
+					$this->error ('删除失败！');
+				}
+			} else {
+				$this->error ( '非法操作' );
+			}
+		}
+		$this->forward ();
+	}
+	
+	/**
+      +----------------------------------------------------------
      * 默认永久删除操作
       +----------------------------------------------------------
      * @access public

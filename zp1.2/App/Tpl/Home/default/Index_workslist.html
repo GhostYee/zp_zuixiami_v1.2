@@ -1,0 +1,33 @@
+    <ul class="row-fluid" id="zpList">
+      <foreach name="works" item="val">
+      <li>
+        <div class="inner">
+          <div class="zpStatus">
+          	<if condition="$status eq 1">
+            <a href="javascript:void(0)" onclick="works_status({$val['id']},2)" class="btnCheckY" >审核通过!!!</a>
+          	<a href="javascript:void(0)" onclick="works_status({$val['id']},3)" class="btnCheckN" >审核不通过!!!</a>
+            <elseif condition="$status eq 2" />
+          	<a href="javascript:void(0)" onclick="works_status({$val['id']},1)" class="btnReCheck" >重新审核</a>
+            <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btnGood" >赞(<span id="do_good_{$val['id']}">{$val['good']}</span>)</a>
+            <elseif condition="$status eq 3" />
+            <a href="javascript:void(0)" onclick="works_status({$val['id']},1)" class="btnCheckY" >再给我机会重新审核!!!</a>
+            </if>
+          </div>
+          <h5 class="worksTit" >
+            <if condition="$val['qun_sortid'] eq 1">
+          	<span class="label label-warning">{$val['qunname']}</span>
+            <else />
+            <span class="label label-important">{$val['qunname']}</span>
+            </if>		  
+		  <a href="{$val['url']}" target="_blank">{$val['name']}</a></h5>
+          <if condition="$val['img'] neq ''">
+          	<div class="pic"> <a href="{$val['url']}" target="_blank"><img src="{$val['img']}" /></a> </div>
+		  </if>
+          <if condition="$val['description'] neq ''">
+          <blockquote>{$val['description']|strip_tags|msubstr=0,200}......</blockquote>
+           </if>
+          <div class="worksInfo"> <span class="author" ><a href="__APP__/author/{$val['author_id']}" target="_blank">{$val['author']}</a></span> <span class="pubTime">{$val['checktime']|inttodate_han}</span> </div>          
+        </div>
+      </li>
+      </foreach>
+    </ul>
