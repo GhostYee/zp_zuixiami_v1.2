@@ -44,8 +44,7 @@
               <span>专题列表</span>
             </div>
             <nav class="wgt-topNav">
-            <li> <a href="__APP__/user">登录/注册</a> </li>
-            <li> <a href="__APP__/tools">工具箱</a> </li>
+            	<include file="Public:top_login"/>
           	</nav>
           </div>
           <div class="l-b-row row-fluid">
@@ -59,12 +58,11 @@
                     <img class="media-object" src="{$val['img']}"></a>
                   </if>
                   <div class="media-body">
-                    <if condition="$val['qishu'] neq ''">
+                    
                     <h4 class="media-heading">
-                      {$val['qishu']}：
+                      <if condition="$val['qishu'] neq ''">{$val['qishu']}：</if>
                       <a href="__APP__/works_special/{$val['id']}">{$val['title']}</a>
                     </h4>
-                    </if>
                     <blockquote>{$val['description']}</blockquote>
                     <p>
                       个人作品：
@@ -82,7 +80,7 @@
                       <span>
                         <a href="__APP__/works_special/message/{$val['id']}">专题讨论区</a>
                       </span>
-                      <a href="zp-submit-1.html" class="btn-default" >参加专题</a>
+                      <a href="__APP__/works/submit" class="btn-default" >参加专题</a>
                     </p>
                   </div>
                 </li>

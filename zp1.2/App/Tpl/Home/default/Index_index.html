@@ -64,7 +64,7 @@
             <foreach name="ranklist" item="val">
             <li class="rank-{$key+1} <if condition="$key eq '0'">active</if> "> <em>{$key+1}</em>
               <div class="con">
-                <h5><a href="{$val['url']}">{$val['name']|msubstr=0,300,'utf-8',false}</a></h5>
+                <h5><a href="__APP__/works/{$val['id']}">{$val['name']|msubstr=0,300,'utf-8',false}</a></h5>
                 <blockquote> {$val['description']|strip_tags|msubstr=0,26} </blockquote>
               </div>
             </li>
@@ -77,8 +77,7 @@
       <div class="l-inner">
         <div class="l-header" > <a href="__APP__/works/submit" class="btn-submitZP" ><em>+</em> 提交作品 </a>
           <nav class="wgt-topNav">
-            <li> <a href="__APP__/user">登录/注册</a> </li>
-            <li> <a href="__APP__/tools">工具箱</a> </li>
+            <include file="Public:top_login"/>
           </nav>
         </div>
         <div class="l-b-row row-fluid">
