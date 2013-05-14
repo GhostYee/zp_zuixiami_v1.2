@@ -427,3 +427,7 @@ blockquote{text-indent: 0;margin-bottom: 5px;}
 .wgt-footerNav a{color:#fff;font-size:12px;color:#666;line-height: 30px;padding:0 10px;}
 
 .wgt-copyright{color:#999;font-size: 12px}
+
+/***** box-banner code by scorpio *****/
+.box-banner li{overflow:hidden;display:inline;float:left;}
+.box-banner li img{width: 494px;height: 150px;}
