@@ -113,14 +113,14 @@
         <div class="l-b-row row-fluid">
           <div class="wgt-bannerList box-shadow span8">
             <div class="box-show">
-              <ul id="index_banner" class="box-banner">
+              <ul id="page-banner">
                 <li><a href="zt.html"><img src="images/0415.jpg" title="图片1" alt=""></a></li>
                 <li><a href="zt.html"><img src="images/2012022922332451.jpg" title="图片2" alt=""></a></li>
                 <li><a href="zt.html"><img src="images/2012022922332451.jpg" title="图片3" alt=""></a></li>
                 <li><a href="zt.html"><img src="images/2012022922332451.jpg" title="图片4" alt=""></a></li>
               </ul>
             </div>
-            <div class="box-ctrl"> <a href="#" id="btn-prev" class="btn-prev" ></a> <a href="#" id="btn-next" class="btn-next" ></a> </div>
+            <div class="box-ctrl"> <a href="javascript:;" id="page-btn-prev" class="btn-prev" ></a> <a href="javascript:;" id="page-btn-next" class="btn-next" ></a> </div>
           </div>
           <a class="box-shadow adshow-2 span4" href="teams.html" > <img src="images/0415.jpg" alt=""> </a>
           <div class="wgt-zpList row-fluid  ">
@@ -256,34 +256,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.transit.js"></script>
-<script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/scrollpic.js"></script>
-<script type="text/javascript">
-var focusScroll = new ScrollPic();
-focusScroll.scrollContId = "index_banner"; //内容容器ID
-focusScroll.dotClassName = "";//点className
-focusScroll.dotOnClassName = "cur";//当前点className
-focusScroll.listType = "";//列表类型(number:数字，其它为空)
-focusScroll.listEvent = "onmouseover"; //切换事件
-focusScroll.frameWidth = 494;//显示框宽度
-focusScroll.pageWidth = 494; //翻页宽度
-focusScroll.upright = false; //垂直滚动
-focusScroll.speed = 10; //移动速度(单位毫秒，越小越快)
-focusScroll.space = 40; //每次移动像素(单位px，越大越快)
-focusScroll.autoPlay = true; //自动播放
-focusScroll.autoPlayTime = 5; //自动播放间隔时间(秒)
-focusScroll.circularly = true;
-focusScroll.initialize(); //初始化
-
-$('.btn-prev').click(function(){
-  focusScroll.pre();
-  return false;
-}) 
-
-$('.btn-next').click(function(){
-    focusScroll.next();
-    return false;
-})
-</script>
+<script type="text/javascript" src="js/page.js"></script>
 </body>
 </html>
