@@ -1,6 +1,6 @@
 <?php
 // 通用模型
-class CommonModel extends Model {
+class CommonModel extends RelationModel {
 
 	// 获取当前用户的ID
     public function getMemberId() {
