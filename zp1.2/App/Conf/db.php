@@ -6,7 +6,7 @@ return array(
     'DB_HOST'	=>	'localhost',
     'DB_NAME'	=>	'zuixiami',
     'DB_USER'	=>	'root',
-    'DB_PWD'	=>	'',
+    'DB_PWD'	=>	'phpwind.net',
     'DB_PORT'	=>	'3306',
     'DB_PREFIX'	=>	'xiami_',	
 );

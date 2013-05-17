@@ -7,7 +7,7 @@
 <div class="l-container">
   <div class="l-b-row">
     <ul class="wgt-rainbow" >
-      <li>1</li>
+      <li></li>
       <li></li>
       <li></li>
       <li></li>
@@ -28,6 +28,11 @@
       <li></li>
       <li></li>
     </ul>
+    <div class="logo-ani">
+      <div class="logo-ani-detail">
+        <img src="../Public/img/logo_ani.png" alt="">
+      </div>
+    </div>
   </div>
   <div class="l-b-row ta-c">
     <div class="l-b-col l-side">
@@ -42,16 +47,9 @@
         </div>
         <div class="wgt-tags">
           <ul>
-            <li><a href="index-tag.html">javascript</a></li>
-            <li><a href="index-tag.html">css3</a></li>
-            <li><a href="index-tag.html">html5</a></li>
-            <li><a href="index-tag.html">coco2ds-html5</a></li>
-            <li><a href="index-tag.html">webapp</a></li>
-            <li><a href="index-tag.html">javascript</a></li>
-            <li><a href="index-tag.html">css3</a></li>
-            <li><a href="index-tag.html">html5</a></li>
-            <li><a href="index-tag.html">coco2ds-html5</a></li>
-            <li><a href="index-tag.html">webapp</a></li>
+            <foreach name="tags" item="val">
+              <li><a href="index-tag.html">{$val['tagname']}</a></li>
+            </foreach>            
           </ul>
         </div>
       </div>
@@ -106,14 +104,14 @@
         <div class="l-b-row row-fluid">
           <div class="wgt-bannerList box-shadow span8">
             <div class="box-show">
-              <ul>
+              <ul id="page-banner">
                 <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
                 <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
                 <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
                 <li><a href="zt.html"><img src="../Public/images/2012022922332451.jpg" alt=""></a></li>
               </ul>
             </div>
-            <div class="box-ctrl"> <a href="#" class="btn-prev" ></a> <a href="#" class="btn-next" ></a> </div>
+            <div class="box-ctrl"> <a href="javascript:;" id="page-btn-prev" class="btn-prev" ></a> <a  class="btn-next"  href="javascript:;" id="page-btn-next" ></a> </div>
           </div>
           <a class="box-shadow adshow-2 span4" href="teams.html" > <img src="../Public/images/0415.jpg" alt=""> </a>
           <div class="wgt-zpList row-fluid  ">
@@ -121,12 +119,16 @@
              <foreach name="works" item="val">
               <li class="span4" >
                 <div class="inner">
-                  <if condition="$val['img'] neq ''">
-                  <div class="preview-box"> <img src="{$val['img']}" alt=""> </div>
-                  <a class="preview-mask" href="{$val['url']}" ></a>
-                  </if>           
-                  <h5><a href="{$val['url']}">{$val['name']}</a></h5>
-                  <div class="info"> <span class="author-info" > <a href="__APP__/author/{$val['author_id']}" class="author-name">{$val['author']}</a> In <a href="{$val['url']}" class="author-group" >{$val['qunname']}</a> </span> <span class="opts" > <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btn-like" ><span id="do_good_{$val['id']}">{$val['good']}</span></a> <a href="zpView.html" class="btn-message" >5</a> </span> </div>
+                  <div class="preview-box"> 
+                    <if condition="$val['img'] neq ''">
+                      <img src="{$val['img']}" alt="{$val['name']}"> 
+                    <else/>
+                      <blockquote> {$val['description']} </blockquote>                      
+                    </if>
+                  </div>
+                  <a class="preview-mask" href="{$val['url']}" title="{$val['name']}" ></a>        
+                  <h5><a href="{$val['url']}" title="{$val['name']}" >{$val['name']}</a></h5>
+                  <div class="info"> <span class="author-info" > <a href="__APP__/author/{$val['author_id']}" class="author-name" title="了解{$val['author']}" >{$val['author']}</a> In <a href="{$val['url']}" class="author-group" >{$val['qunname']}</a> </span> <span class="opts" > <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btn-like" title="喜欢+1" ><span id="do_good_{$val['id']}">{$val['good']}</span></a> <a href="zpView.html" class="btn-message" title="评论" >5</a> </span> </div>
                 </div>
               </li>
              </foreach>            
@@ -156,16 +158,11 @@ function do_good_await(module,mtype,mid){
 			data: "module="+module+"&mtype="+mtype+"&mid="+mid,
 			dataType: "json",
 			success: function(data){
-				if(data.code=='ok'){
-					if(mtype=='good'){
-						$("#do_good_"+mid).html(data.msg);
-					}
-					else if(mtype=='await'){
-						$("#do_await_"+mid).html(data.msg);
-					}
+				if(data.code=='ok'){					
+					$("#do_"+mtype+"_"+mid).html(data.msg);	
 				}
 				else if(data.code=='error'){
-					alert(data.msg);
+					//alert(data.msg);
 				}
 			}
 		});
