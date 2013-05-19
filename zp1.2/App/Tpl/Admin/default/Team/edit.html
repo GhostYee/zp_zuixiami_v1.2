@@ -1,0 +1,24 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+    	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
+		<div class="pageFormContent" layoutH="58">	
+        	<div class="unit">
+				<label>团队名称：</label>
+				<input name="teamname" type="text" id="teamname" value="{$vo['teamname']}"/>
+			</div>		
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+
