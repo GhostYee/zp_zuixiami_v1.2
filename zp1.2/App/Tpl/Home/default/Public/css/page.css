@@ -4,6 +4,7 @@
 body{background-color:#fff;}
 body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, Helvetica, sans-serif;font-size:14px;}
 blockquote{text-indent: 0;margin-bottom: 5px;}
+form{margin: 0;padding: 0;}
 
 /*** 1= tools
 ****************************************/
@@ -100,13 +101,16 @@ blockquote{text-indent: 0;margin-bottom: 5px;}
 .wgt-rainbow li:nth-child(9n+8){background-color: #58919f}
 .wgt-rainbow li:nth-child(9n+9){background-color: #0f8899}
 
+.logo-ani{position: absolute;top:-50%;} 
+
 /*** 5= slider wgt
 ****************************************/
 .wgt-logo{background:url(../img/logo.png);height:117px;font-size:0;line-height: 0;margin: 0;padding: 0;}
 .wgt-logo a{display: block;height:117px;}
 
 .wgt-tags{text-align: right;margin:0 10px;border-top:1px dotted #dbdbdb;padding:3px 0;}
-.wgt-tags li{display: inline-block;margin:8px 0 0 5px;background: #e9e9e9;padding:0 7px;border:1px solid #e9e9e9; }
+.wgt-tags ul{margin: 0;padding: 0 0 10px;}
+.wgt-tags li{display: inline-block;margin:5px 0 0 5px;background: #e9e9e9;padding:0 7px;border:1px solid #e9e9e9; }
 .wgt-tags li a{text-decoration:none;color:#666666;}
 .wgt-tags li input{vertical-align: top;}
 .wgt-tags li a:hover{text-decoration: none}
@@ -243,6 +247,9 @@ blockquote{text-indent: 0;margin-bottom: 5px;}
 .wgt-bannerList .box-ctrl a.btn-next{right:15px;background:url(../img/btn-banner-ctrl.png) right 0}
 .wgt-bannerList .box-ctrl a.btn-next:hover{right:15px;background:url(../img/btn-banner-ctrl.png) right -42px}
 .wgt-bannerList .box-show>ul,.wgt-bannerList .box-show>ul>li{padding: 0;margin: 0;}
+/***** box-banner code by perkyliu@126.com *****/
+.wgt-bannerList .box-show ul li{overflow:hidden;display:inline;float:left;width:494px;height:150px;}
+.wgt-bannerList .box-show ul li img{min-width: 494px;min-height: 150px;}
 
 .wgt-zpList{margin-top: 5px;}
 .wgt-zpList h2.page-title{margin-bottom: -10px;font-size: 16px}
@@ -262,7 +269,8 @@ blockquote{text-indent: 0;margin-bottom: 5px;}
 .wgt-zpList li h5 a{display: block;white-space:nowrap;text-overflow:ellipsis;padding:0 10px;overflow: hidden;color:#333;}
 .wgt-zpList li h5 a:hover{color:#4eba00;}
 .wgt-zpList li .info{overflow: hidden;padding:10px 10px 3px;font-size:12px;font-weight: 400}
-.wgt-zpList li .info .author-info{float: left;text-align: left;color:#999;line-height: 16px}
+.wgt-zpList li .info .author-info{float: left;text-align: left;color:#999;line-height: 16px;max-width: 50%;-ms-text-overflow: ellipsis;
+text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-zpList li .info .author-info a{margin-right: 5px;color:#666;}
 .wgt-zpList li .info .author-info a.author-name{color:#29a8e1;}
 .wgt-zpList li .info .opts{float: right;display: block;text-align: right;}
