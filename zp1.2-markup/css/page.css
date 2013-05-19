@@ -245,7 +245,7 @@ blockquote{text-indent: 0;margin-bottom: 5px;}
 .wgt-bannerList .box-show>ul,.wgt-bannerList .box-show>ul>li{padding: 0;margin: 0;}
 /***** box-banner code by perkyliu@126.com *****/
 .wgt-bannerList .box-show ul li{overflow:hidden;display:inline;float:left;}
-.wgt-bannerList .box-show ul li img{width: 494px;height: 150px;}
+.wgt-bannerList .box-show ul li img{min-width: 494px;min-height: 150px;max-width: 494px;max-height: 150px;}
 
 .wgt-zpList{margin-top: 5px;}
 .wgt-zpList h2.page-title{margin-bottom: -10px;font-size: 16px}
