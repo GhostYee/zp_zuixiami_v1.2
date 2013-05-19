@@ -1315,7 +1315,6 @@ CREATE TABLE IF NOT EXISTS `xiami_tag_relationship` (
 -- 向node表里插入作品标签项. by Feenan add on 20130509
 --
 INSERT INTO  `zuixiami`.`xiami_node` (
-`id` ,
 `name` ,
 `title` ,
 `status` ,
@@ -1326,6 +1325,5 @@ INSERT INTO  `zuixiami`.`xiami_node` (
 `type` ,
 `group_id`
 )
-VALUES (
-NULL ,  'Tag',  '作品标签',  '1', '' ,  '33',  '1',  '2',  '0',  '14'
+VALUES ( 'Tag',  '标签管理',  '1', '' ,  '33',  '1',  '2',  '0',  '14'
 );
