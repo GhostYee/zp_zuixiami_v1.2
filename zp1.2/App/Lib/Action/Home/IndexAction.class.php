@@ -8,18 +8,69 @@ class IndexAction extends CommonAction {
 	 * @access  public
 	 * @return  void
 	 */
-    public function index(){
-    	   	
-    	$this->load_works();
-    	$this->load_seo();
-        $this->load_tags();     
+    public function index()
+    {    
+        $this->load_thisBase();
+    	$this->load_works();    	
     	$this->display();
     }
 
-   
-    function load_tags()
+    //查询-作品
+    public function search()
     {
-        $tag_model=M('works');
+        $currPage="search";
+        $this->assign('currPage',$currPage); 
+        $this->index();       
+    }
+
+    //标签-作品
+    public function tag()
+    {
+        $this->load_thisBase();  
+        $tagid=trim($_REQUEST['tagid']);    
+        $tag=trim($_REQUEST['tag']);
+
+        $works_model=M('works');
+        $sql    = "SELECT w.*,IFNULL(author,qm.name) author,s.name sortname,qs.name qunname,qm.id".
+                  " author_id FROM ".C('DB_PREFIX')."works w ".
+                  " LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
+                  " LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
+                  " LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
+                  " LEFT JOIN ".C('DB_PREFIX')."tag_relationship tr on tr.workid=w.id ".
+                  " WHERE w.status=2 AND tr.tagid=$tagid order by w.id desc ";
+        $works  = $works_model->query($sql); 
+        $this->assign('works',$works);  
+
+        $currPage="tag";
+        $this->assign('currPage',$currPage); 
+        $this->assign('tag',$tag); 
+        $this->display("Index:search");       
+    }
+
+
+    // ------------------------------------------------------------------------
+
+    // 转载 首页 基本数据
+    private function load_thisBase()
+    {
+        $this->load_seo();
+        $this->load_tags();    
+        $this->load_rankList(); 
+    }
+
+    //装载 排行版 数据
+    private function load_rankList()
+    {
+        $works_model=M('works');
+        $sql    = "SELECT * FROM xiami_works order by good DESC LIMIT 5 ";
+        $works  = $works_model->query($sql); 
+        $this->assign('rankList',$works);          
+    }
+   
+    //装载 tags 数据
+    private function load_tags()
+    {
+        $tag_model=M('tags');
         $sql    = "SELECT * from xiami_tag ";
         $tags  = $tag_model->query($sql);        
         $this->assign('tags',$tags);
@@ -27,7 +78,7 @@ class IndexAction extends CommonAction {
 
 
     //装载 SEO 数据
-    function load_seo()
+    private function load_seo()
     {
         //替换模板SEO的值
         $seo['title']='最蝦米*鬼懿IT*作品秀';
@@ -37,7 +88,7 @@ class IndexAction extends CommonAction {
     }
 
     //装载 作品 数据
-    function load_works()
+    private function load_works()
     {
         $keywords=trim($_POST['keywords']);
         $keywords=!empty($keywords)?$keywords:'';

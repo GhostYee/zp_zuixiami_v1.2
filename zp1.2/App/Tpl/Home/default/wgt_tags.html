@@ -1,0 +1,9 @@
+<div class="wgt-tags">
+	<ul>
+		<foreach name="tags" item="val">
+			<li>
+				<a href="__APP__/index/tag/tagid/{$val['id']}/tag/{$val['tagname']}">{$val['tagname']}</a>
+			</li>
+		</foreach>
+	</ul>
+</div>
