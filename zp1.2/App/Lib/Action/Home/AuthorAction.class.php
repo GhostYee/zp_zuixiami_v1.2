@@ -8,6 +8,19 @@ class AuthorAction extends CommonAction {
 	 * @access  public
 	 * @return  void
 	 */
+    public function _initialize() {
+        
+        $id = !empty($_GET['_URL_'][2]) ? (int)$_GET['_URL_'][2] : 0;
+        $action = !empty($_GET['_URL_'][1]) ? $_GET['_URL_'][1] : 'view';
+        $qunMemberModel = M('qun_member');
+        $authorSql = 'SELECT m.*, s.name as qun_sort_name FROM xiami_qun_member AS m LEFT JOIN xiami_qun_sort AS s ON m.qun_sort_id=s.sid '.
+            'WHERE m.id='.$id;
+        
+        $author	= $qunMemberModel->query($authorSql);
+        $this->assign('author', $author[0]);
+        $this->assign('active', array($action =>' class="active"'));
+    }    
+    
     public function index(){
     	$keywords=trim($_POST['keywords']);
     	$keywords=!empty($keywords)?$keywords:'';
@@ -77,4 +90,23 @@ class AuthorAction extends CommonAction {
 		}
     }
     // ------------------------------------------------------------------------
+    
+    public function view() {
+        $id = !empty($_GET['_URL_'][2]) ? (int)$_GET['_URL_'][2] : 0;
+
+        $worksModel = M('works');
+        $worksWhere['author_id'] = $id;
+        $works = $worksModel->where($worksWhere)->order('id desc')->select();
+        
+        $this->assign('works', $works);
+        $this->display();
+    }
+    
+    public function team() {
+        $this->display();
+    }
+    
+    public function message() {
+        $this->display();
+    }
 }

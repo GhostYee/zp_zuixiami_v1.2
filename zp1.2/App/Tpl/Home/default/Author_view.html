@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <ul class="wgt-rainbow" >
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="l-b-row ta-c">
+    <include file="Author:side"/>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb"> <a href="#">首页</a>/<span>查看-作品集合</span> </div>
+          <nav class="wgt-topNav">
+            <li> <a href="uc-info.html">登录/注册</a> </li>
+            <li> <a href="tools.html">工具箱</a> </li>
+          </nav>
+        </div>
+        <div class="l-b-row row-fluid">
+          <div class="wgt-zpList-summary box-shadow span10">
+            <h2 class="page-title" >Ta的作品集</h2>  
+            <ul class="media-list">
+                <volist name="works" id="work">
+              <li class="media">
+                
+                <a class="pull-left pic" href="zpView.html"> <notempty name="work.img"><img class="media-object" src="{$work.img}" ></notempty> </a>
+                <div class="media-body">
+                  <h4 class="media-heading"><a href="zpView.html">{$work.name}</a></h4>
+                  <div class="info">
+                  <span class="wgt-star star-{$work.rank_total|default='0'}" >
+                      <b></b>
+                      <b></b>
+                      <b></b>
+                      <b></b>
+                      <b></b>
+                      <b></b>
+                      <b></b>
+                      <b></b>
+                      <b></b>
+                      <b></b>                               
+                  </span>(4.5星) 
+                  </div>
+                  <blockquote>{$work.description}</blockquote>
+                  <p class="opts" ><span><a href="#">赞(3)</a><a href="zpView.html">评论(3)</a></span><a href="zpView.html">进入详细>></a></p>                  
+                </div>
+              </li>
+                </volist>
+            </ul>
+          </div>
+          <div class="wgt-zp-opts span2"> 
+            <div class="btn-group">
+                <a class="btn-default" href="javascript:;" data-toggle="dropdown">默认排序 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">按时间排序</a></li>
+                  <li><a href="#">按人气排序</a></li>   
+                  <li><a href="#">按星级排序</a></li>               
+                </ul>
+            </div>
+            <a href="#" class="btn-default" >期待新作(5)</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+</body>
+</html>

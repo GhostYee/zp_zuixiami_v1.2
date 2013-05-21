@@ -18,3 +18,6 @@ ADD  `top_sid` INT NOT NULL DEFAULT  '0' COMMENT  '推荐排序' AFTER  `is_top`
 INSERT INTO xiami_tag_relationship(`tagid`,`workid`) VALUES('1','150');
 INSERT INTO xiami_tag_relationship(`tagid`,`workid`) VALUES('1','151');
 INSERT INTO xiami_tag_relationship(`tagid`,`workid`) VALUES('1','152');
+
+/* 作品表works 添加作者id方便关联 */
+ALTER TABLE `xiami_works` ADD COLUMN `author_id`  int NULL AFTER `author`;

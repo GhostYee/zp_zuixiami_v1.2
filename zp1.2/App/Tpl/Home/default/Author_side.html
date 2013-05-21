@@ -1,0 +1,22 @@
+<div class="l-b-col l-side">
+  <div class="box-shadow">
+    <h1 class="wgt-logo"> <a href="index.html">最虾米-发现前端价值</a> </h1>
+  </div>
+  <div class="wgt-userInfo-base box-shadow">
+    <div class="inner"> <a href="{:U('Author/view')}/{$author.id}" class="user-header"><img src="images/uheader.jpg" alt="" /></a>
+      <div class="con">
+        <p><a href="{:U('Author/view')}/{$author.id}" class="user-name" >{$author.name}</a></p>
+        <p>来自 <a href="#" class="user-qqGroup" >[{$author.qun_sort_name}]</a>
+        <p>已经有 <a href="{:U('Author/view')}/{$author.id}" class="user-zpNum" >1111</a>件作品</p>
+        <p><a href="#" class="user-link-num" >1111</a>人期待他新作</p>
+      </div>
+    </div>
+  </div>
+  <div class="wgt-nav box-shadow">
+    <ul class="nav nav-list">
+      <li{$active.view}><a href="{:U('Author/view')}/{$author.id}">Ta的作品集</a></li>
+      <li{$active.team}><a href="{:U('Author/team')}/{$author.id}">Ta的团队</a></li>
+      <li{$active.message}><a href="{:U('Author/message')}/{$author.id}">给Ta的留言</a></li>
+    </ul>
+  </div>
+</div>
