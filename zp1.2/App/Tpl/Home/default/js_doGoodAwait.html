@@ -1,0 +1,22 @@
+<script language="javascript">
+//赞/期待 by wewe
+function do_good_await(module,mtype,mid){
+  if(module!='' && mtype!='' && mid!='')
+  {
+    $.ajax({
+      type: "POST",
+      url: "<?php echo __APP__;?>/works/user_action",
+      data: "module="+module+"&mtype="+mtype+"&mid="+mid,
+      dataType: "json",
+      success: function(data){
+        if(data.code=='ok'){          
+          $("#do_"+mtype+"_"+mid).html(data.msg); 
+        }
+        else if(data.code=='error'){
+          //alert(data.msg);
+        }
+      }
+    });
+  }
+}
+</script>
