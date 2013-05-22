@@ -1,38 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
 <include file="Public:head"/>
 </head>
 <body>
 <div class="l-container">
     <div class="l-b-row">
-      <ul class="wgt-rainbow" >
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <include file="wgt:rainbow"/>
     </div>
     <div class="l-b-row ta-c">
       <div class="l-b-col l-side">
         <div class="box-shadow">
-          <h1 class="wgt-logo"> <a href="__APP__/">最虾米-发现前端价值</a> </h1>
+          <include file="wgt:logo"/>
         </div>
       </div>
       <div class="l-b-col l-main">
@@ -44,7 +20,7 @@
               <span>专题列表</span>
             </div>
             <nav class="wgt-topNav">
-            	<include file="Public:top_login"/>
+            	<include file="wgt:topNav"/>
           	</nav>
           </div>
           <div class="l-b-row row-fluid">
@@ -93,5 +69,6 @@
     </div>
   </div>
 <include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
 </body>
 </html>
