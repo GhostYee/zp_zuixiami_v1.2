@@ -416,6 +416,10 @@ class WorksAction extends CommonAction {
 		$ip=get_client_ip();
 		$user_id=session("we_userid");
 		
+		if(empty($mid) || empty($module) || empty($mid)){ 
+			echo json_encode(array('code'=>'error','msg'=>'参数为空!'));exit;
+		}
+		
 		$mtype_lan['Works']['good']='赞';
 		$mtype_lan['Qun_member']['await']='期待';
 		
@@ -457,6 +461,81 @@ class WorksAction extends CommonAction {
 				$rs=$model_update->where("id='$mid'")->setField($mtype,$num+1);
 				if($rs!==false){
 					echo json_encode(array('code'=>'ok','msg'=>$num+1));exit;
+				}
+				else{
+					echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;
+				}
+			}
+			else{
+				echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;
+			}
+		}
+	}
+    // ------------------------------------------------------------------------
+	/**
+	 * 评星
+	 * IP限制
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	public function user_action_rank(){
+		$mid=$this->_post('mid');
+		$score=$this->_post('score');//得分
+		
+		if(empty($mid) || empty($score)){ 
+			echo json_encode(array('code'=>'error','msg'=>'参数为空!'));exit;
+		}
+		
+		$ip=get_client_ip();
+		$user_id=session("we_userid");
+		
+		$module='Works';
+		$mtype='rank';
+		
+		//判断是否存在记录
+		$model=M('user_action');
+		$map['module']=$module;
+		$map['mid']=$mid;
+		$map['mtype']=$mtype;
+		$map['ip']=$ip;
+		$user_action_id=$model->where($map)->getField('id');
+		$q=$user_action_id;
+		
+		//取得 最近一条记录,用于限制时间
+		$map2['module']=$module;
+		$map2['mtype']=$mtype;
+		$map2['ip']=$ip;
+		$user_action_addtime=$model->where($map2)->order("id desc")->getField('addtime');
+		
+		if(!empty($user_action_id)){//已操作
+			echo json_encode(array('code'=>'error','msg'=>'亲,您已评过!'));exit;
+		}
+		else if((time()-$user_action_addtime)<5){//限制5秒后再点
+			echo json_encode(array('code'=>'error','msg'=>'亲,您点得太快了!'));exit;
+		}
+		else{
+			//入库
+			$data['module']=$module;
+			$data['mid']=$mid;
+			$data['mtype']=$mtype;
+			$data['value']=$score;
+			$data['ip']=$ip;
+			if(!empty($user_id)){
+				$data['user_id']=$user_id;
+			}			
+			$data['addtime']=time();
+			$result=$model->add($data);
+			if($result!==false){
+				//取得作品星级总评分/星级评分总次数 并进行更新操作
+				$model_update=M($module);
+				$num=$model_update->where("id='$mid'")->getField("rank_total,rank_count");
+				$rank_total_update=$num[0]+$score;
+				$rank_count_update=$num[1]+1;
+				$rank_data=array('rank_total'=>$rank_total_update,'rank_count'=>$rank_count_update);
+				$rs=$model_update->where("id='$mid'")->setField($rank_data);
+				if($rs!==false){
+					echo json_encode(array('code'=>'ok','msg'=>round($rank_total_update/$rank_count_update/10),1));exit;
 				}
 				else{
 					echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;

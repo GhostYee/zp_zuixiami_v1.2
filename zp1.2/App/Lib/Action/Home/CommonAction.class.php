@@ -22,6 +22,7 @@ class CommonAction extends Action {
 		$seo['keywords']=C("CFG_SEO_KEYWORDS");
 		$seo['description']=C("CFG_SEO_DESCRIPTION");
 		$this->assign('seo',$seo);
+		
     }
 	/**
       +----------------------------------------------------------
@@ -36,6 +37,7 @@ class CommonAction extends Action {
       +----------------------------------------------------------
      */
 	public function index() {
+		
 		//列表过滤器，生成查询Map对象
 		$map = $this->_search ();
 		if (method_exists ( $this, '_filter' )) {
@@ -49,6 +51,7 @@ class CommonAction extends Action {
 		
 		$this->display ();
 		return;
+		
 	}
 	// ------------------------------------------------------------------------
 	/**

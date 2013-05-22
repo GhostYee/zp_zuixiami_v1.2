@@ -26,7 +26,7 @@ form{margin: 0;padding: 0;}
 .l-container{font-size:0;line-height: 0;text-align: center;background:url(../img/bg.gif);}
 .l-top{width:100%;height:3px;background-color:#222}
 .l-side{width:230px;position: relative;z-index: 2;margin-bottom:20px;}
-.l-main{width:770px;}
+.l-main{width:770px;padding-bottom: 20px;}
 .l-main>.l-inner{margin-left: 20px;vertical-align: top;font-size: 0;line-height: 0;text-align: left;position: relative;}
 .l-main>.l-inner>*{vertical-align: top;font-size: 12px;line-height: 1.1}
 .l-header{padding:10px 0;overflow: hidden;text-align: left}
@@ -127,8 +127,14 @@ form{margin: 0;padding: 0;}
 .wgt-zpRankList{margin-top:20px;padding:0 10px 10px;}
 .wgt-zpRankList ul{margin: 0;padding:5px 0 0;}
 .wgt-zpRankList ul li{list-style-type:none;padding: 0;margin: 0; text-align: left;overflow: hidden;padding:5px 0;}
-.wgt-zpRankList ul li blockquote{display: none;color:#999;padding:5px 0 0;border:0;margin: 0;text-indent:2em }
-.wgt-zpRankList ul li.active blockquote{display: block;}
+.wgt-zpRankList ul li blockquote{height:36px;overflow: hidden;display: none;color:#999;padding:5px 0 0;border:0;margin: 0;text-indent:2em }
+.wgt-zpRankList ul li blockquote a{color:#999;}
+.wgt-zpRankList ul li blockquote a:hover{text-decoration: none;color:#29a8e1;}
+.wgt-zpRankList ul:hover li:first-child blockquote{display: none;}
+.wgt-zpRankList ul li:first-child blockquote,
+.wgt-zpRankList ul li.active blockquote,
+.wgt-zpRankList ul li:hover blockquote,
+.wgt-zpRankList ul:hover li:first-child:hover blockquote{display: block;}
 .wgt-zpRankList ul li em{display: inline-block; font-style: normal;width:18px;height:18px;line-height: 18px;color:#fff;text-align: center;vertical-align: top;margin-right: 3px;}
 .wgt-zpRankList ul li.rank-1 em{background-color: #e65100}
 .wgt-zpRankList ul li.rank-2 em{background-color: #e65100}
@@ -269,7 +275,7 @@ form{margin: 0;padding: 0;}
 .wgt-zpList li h5 a{display: block;white-space:nowrap;text-overflow:ellipsis;padding:0 10px;overflow: hidden;color:#333;}
 .wgt-zpList li h5 a:hover{color:#4eba00;}
 .wgt-zpList li .info{overflow: hidden;padding:10px 10px 3px;font-size:12px;font-weight: 400}
-.wgt-zpList li .info .author-info{float: left;text-align: left;color:#999;line-height: 16px;max-width: 50%;-ms-text-overflow: ellipsis;
+.wgt-zpList li .info .author-info{float: left;text-align: left;color:#999;line-height: 16px;max-width: 120px;-ms-text-overflow: ellipsis;
 text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-zpList li .info .author-info a{margin-right: 5px;color:#666;}
 .wgt-zpList li .info .author-info a.author-name{color:#29a8e1;}

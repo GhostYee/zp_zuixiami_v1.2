@@ -1,0 +1,20 @@
+<div class="wgt-zpRankList">
+	<div class="box-title">
+		<h3>
+			热度 <em>Top 5</em>
+		</h3>
+		<a href="ranklist.html" class="btn-more">总排行</a>
+	</div>
+	<ul>
+		<foreach name="rankList" item="val">
+			<li class="rank-{$key+1}" > <em>{$key+1}</em>
+			<div class="con">
+				<h5>
+					<a href="zpView.html">{$val['name']}</a>
+				</h5>
+				<blockquote><a href="#">{$val['description']}</a></blockquote>
+			</div>
+		</li>
+		</foreach>		
+	</ul>
+</div>
