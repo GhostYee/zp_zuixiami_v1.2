@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+    <div class="l-b-row">
+      <ul class="wgt-rainbow" >
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="l-b-row ta-c">
+      <div class="l-b-col l-side">
+        <div class="box-shadow">
+          <h1 class="wgt-logo"> <a href="__APP__/">最虾米-发现前端价值</a> </h1>
+        </div>
+      </div>
+      <div class="l-b-col l-main">
+        <div class="l-inner">
+          <div class="l-header" >
+            <div class="wgt-breadcrumb">
+              <a href="__APP__/">首页</a>
+              /
+              <span>专题列表</span>
+            </div>
+            <nav class="wgt-topNav">
+            	<include file="Public:top_login"/>
+          	</nav>
+          </div>
+          <div class="l-b-row row-fluid">
+            <div class="wgt-zt-list box-shadow">
+              <h2 class="page-title" >专题列表</h2>
+              <ul class="media-list">
+                <foreach name="list" item="val">
+                <li class="media">
+                  <if condition="$val['img'] neq ''">
+                  <a class="pull-left pic" href="__APP__/works_special/{$val['id']}">
+                    <img class="media-object" src="{$val['img']}"></a>
+                  </if>
+                  <div class="media-body">
+                    
+                    <h4 class="media-heading">
+                      <if condition="$val['qishu'] neq ''">{$val['qishu']}：</if>
+                      <a href="__APP__/works_special/{$val['id']}">{$val['title']}</a>
+                    </h4>
+                    <blockquote>{$val['description']}</blockquote>
+                    <p>
+                      个人作品：
+                      <a href="zt-1.html">111</a>
+                      <span class="division" >|</span>
+                      团队作品：
+                      <a href="zt-1.html">111</a>
+                    </p>
+                    <if condition="$val['award'] neq ''">
+                    <p>
+                      本期奖励： <strong>{$val['award']}元</strong>
+                    </p>
+                    </if>
+                    <p class="opts">
+                      <span>
+                        <a href="__APP__/works_special/message/{$val['id']}">专题讨论区</a>
+                      </span>
+                      <a href="__APP__/works/submit" class="btn-default" >参加专题</a>
+                    </p>
+                  </div>
+                </li>
+                </foreach>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<include file="Public:footer"/>
+</body>
+</html>

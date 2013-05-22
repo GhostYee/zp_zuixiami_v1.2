@@ -29,10 +29,10 @@ class PagesAction extends CommonAction {
 		$page=$this->_get('id')?$this->_get('id'):'about';
 		$model = D ('pages');
 		if(is_numeric($page)){
-			$model->where(array('id',$page));
+			$model->where("`id`='$page'");
 		}
 		else{
-			$model->where(array('code',$page));
+			$model->where("`code`='$page'");
 		}
 		$pages=$model->find();
 		$this->assign('pages',$pages);
