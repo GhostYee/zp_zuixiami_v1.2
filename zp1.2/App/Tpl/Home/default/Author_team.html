@@ -8,7 +8,15 @@
   <div class="l-b-row ta-c">
     <div class="l-b-col l-side">
       <div class="box-shadow">
-        <include file="wgt:logo"/>
+        <include file="wgt:logo"/>        
+      </div>
+      <include file="wgt:userInfoBase" />
+      <div class="wgt-nav box-shadow">
+        <ul class="nav nav-list">
+          <li><a href="__APP__/author/1">Ta的作品集</a></li>
+          <li class="active" ><a href="__APP__/author/team">Ta的团队</a></li>
+          <li><a href="__APP__/author/message">给Ta的留言</a></li>
+        </ul>
       </div>
     </div>
     <div class="l-b-col l-main">
@@ -17,25 +25,20 @@
           <div class="wgt-breadcrumb">
             <a href="__APP__/">首页</a>
             /
-            <a href="__APP__/works_special/{$works_special['id']}">专题-那些年我们的看的前端的书</a>
-            /
-            <span>专题评论</span>
+            <span>他的团队</span>
           </div>
           <include file="wgt:topNav"/>
         </div>
         <div class="l-b-row row-fluid">
-          <div class="box-shadow span10">
-            <include file="wgt:message"/>
+          <div class="box-shadow">
+            <include file="wgt:teamList" />
           </div>          
-          <div class="wgt-zp-opts span2">
-            <a href="__APP__/works_special/{$works_special['id']}" class="btn-default">查看该专题</a>
-            <a href="__APP__/works_special/" class="btn-default">返回专题列表</a>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <include file="Public:footer"/>
+<script type="text/javascript" src="../Public/js/scrollpic.js"></script>
 </body>
 </html>
