@@ -547,4 +547,10 @@ class WorksAction extends CommonAction {
 		}
 	}
     // ------------------------------------------------------------------------
+
+	//查看作品
+    public function view()
+    {
+    	$this->display();
+    }
 }
