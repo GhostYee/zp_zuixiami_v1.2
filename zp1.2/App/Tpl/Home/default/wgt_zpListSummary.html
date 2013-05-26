@@ -27,7 +27,7 @@
             <span id="do_rank_{$val['id']}">{$val['rank']}</span>
             星)
             <span class="division" >|</span>
-            <a href="__APP__/author/{$val['author_id']}">{$val['author']}</a>
+            <a href="__APP__/author/{$val['userid']}">{$val['author']}</a>
             <span class="division" >|</span>
             来自
             <a href="__APP__/works/{$val['id']}">{$val['qunname']}</a>
@@ -40,7 +40,7 @@
                 <span id="do_good_{$val['id']}">{$val['good']}</span>
                 )
               </a>
-              <a href="#">评论(3)</a>
+              <a href="__APP__/works/message/{$val['id']}">评论(3)</a>
             </span>
             <a href="__APP__/works/{$val['id']}">进入详细>></a>
           </p>

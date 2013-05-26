@@ -9,10 +9,19 @@ return array(
 		//作品详情页
 		'/^works\/(\d+)$/'               => 'works/view?id=:1',
 		'/^works\/(\d+)\/(\w+)$/'               => 'works/view?id=:1&sort=:2',
-		//专题详情页
-	    '/^works_special\/message\/(\d+)$/'               => 'works_special/message?id=:1',
+		//专题页
+	    '/^works_special\/message\/(\d+)$/'            => 'works_special/message?id=:1',
+		'/^works_special\/time\/(\d+)$/'               => 'works_special/view?id=:1&sort=time',
+		'/^works_special\/good\/(\d+)$/'               => 'works_special/view?id=:1&sort=good',
+		'/^works_special\/rank\/(\d+)$/'               => 'works_special/view?id=:1&sort=rank',
 		'/^works_special\/(\d+)$/'               => 'works_special/view?id=:1',
 		'/^works_special\/(\d+)\/(\w+)$/'        => 'works_special/view?id=:1&sort=:2',
+		//tag页面	
+		'/^tag\/(\d+)$/'               => 'tag/view?id=:1',
+
+			
+			
+			
 		//作者列表
 		'/^author\/(\d+)\/nochecked$/'        		=> 'Author/index?id=:1&status=1',
 		'/^author\/(\d+)\/checkedn$/'        		=> 'Author/index?id=:1&status=3',

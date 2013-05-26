@@ -1,7 +1,7 @@
 <?php
 return array(
 	//'配置项'=>'配置值'
-	'LOAD_EXT_CONFIG' => 'route,db', //加载扩展配置
+	'LOAD_EXT_CONFIG' => 'route,db,auth', //加载扩展配置
 	'LOAD_EXT_FILE'	 => 'extend', //加载扩展函数库
 	
 	'URL_MODEL'	=>	2, // 如果你的环境不支持PATHINFO 请设置为3	
