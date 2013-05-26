@@ -20,9 +20,34 @@ class TagModel extends CommonModel {
 	 * @return  array
 	 */
 	public function getIndexTags($limit='10'){
-		$sql    = "SELECT * from ".C('DB_PREFIX')."tag order by hits desc limit $limit";
-		$tags  = $this->query($sql);
-		return $tags;
+		$this->ORDER("hits desc");
+		$this->limit($limit);
+		$tags=$this->select();
+		if(!empty($tags)){
+			return $tags;
+		}
+		return false;		
+	}
+	/**
+	 * 作品ID取得标签列表
+	 *
+	 * @access  public
+	 * @param int $worksid ID
+	 * @return  array
+	 */
+	public function getTagListByWorksID($worksid){
+		//表名
+		$this->table($this->getTableName().' '.$this->getSmallTableName());
+		$where['tag_relationship.workid']=$worksid;
+		$this->where($where);
+		$this->order("tag.id asc");
+		$this->join(C('DB_PREFIX')."tag_relationship tag_relationship on tag_relationship.tagid=tag.id");
+		$data=$this->select();
+		if($this->getDbError()){
+			echo $this->getLastSql()."<br><br>";
+			echo $this->getDbError()."<br>";
+		}
+		return $data;
 	}
 	
 }

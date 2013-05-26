@@ -115,3 +115,15 @@ UPDATE `xiami_pages` SET  `title` =  '关于我们' WHERE  `id` =14 LIMIT 1 ;
 --  增加标签点击量,确认热门标签 by wewe
 --
 ALTER TABLE  `xiami_tag` ADD  `hits` BIGINT NOT NULL COMMENT  '点击量' AFTER  `tagname` ;
+
+--
+--  首页作品排序 by wewe
+--
+UPDATE  `xiami_config` SET  `value` =  'works.is_top DESC,works.top_sid DESC,works.id DESC' WHERE  `xiami_config`.`id` =186 LIMIT 1 ;
+UPDATE  `xiami_config` SET  `value` =  'wewe' WHERE  `xiami_config`.`id` =113 LIMIT 1 ;
+
+--
+--  作品表增加地址字段,区分演示地址开源地址by wewe
+--
+ALTER TABLE  `xiami_works` CHANGE  `url`  `demourl` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT  '演示地址';
+ALTER TABLE  `xiami_works` ADD  `openurl` VARCHAR( 255 ) NOT NULL COMMENT  '开源地址' AFTER  `demourl` ;;

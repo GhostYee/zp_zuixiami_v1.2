@@ -17,14 +17,10 @@ class IndexAction extends CommonAction {
 
     //查询-作品
     public function search()
-    {
-    	$works_model=D("Works");
-        $works  = $works_model->getWorks($where,$orderby,$limit);     
-        $this->assign('works',$works);
-        $this->assign('keywords',$keywords);
-        
+    {    	
+    	$currPage="search";
         $this->assign('currPage',$currPage); 
-        $this->index();       
+        $this->index();      
     }
 
     //标签-作品
@@ -84,39 +80,47 @@ class IndexAction extends CommonAction {
     }
 
     //装载 作品 数据
-    private function load_works()
-    {
-        $keywords=trim($_POST['keywords']);
-        $keywords=!empty($keywords)?$keywords:'';
-        $status=empty($_REQUEST['status'])?'2':$_REQUEST['status'];
+    public function load_works()
+    {   
+    	$keywords=!empty($_POST['keywords'])?trim($_POST['keywords']):'';
+    	
+        $works_model=D('Works');
         
-        $works_model=D('works');
         //状态 默认通过审核
-        $where.=" AND w.`status`='$status' ";
-        //$where=' AND w.`status`=2 ';        
+        $where['works.status']=2;       
+		
+        //查找关键词作品名,作者,描述
         if(!empty($keywords)){
-            //查找作品名,作者,描述
-            $where.=" AND (w.`name` like '%$keywords%' or w.`author` like '%$keywords%' or w.`description` like '%$keywords%'  or qs.`name`='$keywords')";
-        }        
+        	$map['works.name'] = array('like', "%" . $keywords . "%");
+        	$map['works.author'] = array('like', "%" . $keywords . "%");
+        	$map['works.description'] = array('like', "%" . $keywords . "%");
+        	$map['qun_sort.name'] = array('like', "%" . $keywords . "%");
+        	$map['_logic'] = 'or';
+        	$where['_complex']=$map;
+        }
+            
         //判断排序
         $index_works_order=CFG('cfg_index_works_order');        
         if($index_works_order){
-            $orderby=" ORDER BY $index_works_order ";
+           $orderby=$index_works_order;
         }
         else{
             //排序推荐 降序，推荐排序降序，ID 升序
-            $orderby=" ORDER BY w.is_top DESC,w.top_sid DESC,w.id DESC ";
+            $orderby="works.is_top DESC,works.top_sid DESC,works.id DESC ";
         }        
         //判断显示条数
         $index_works_num=CFG('cfg_index_works_num');
         if($index_works_num){
-            $limit=" limit $index_works_num ";
+            $limit= $index_works_num;
         }
+        
         // 取出需要的数据
-        $works  = $works_model->getWorks($where,$orderby,$limit);     
+        $allinone['where']=$where;
+        $allinone['order']=$orderby;
+        $allinone['limit']=$limit;
+        $works  = $works_model->getWorksList($allinone);   
+        //dump($works);
         $this->assign('works',$works);
-        $this->assign('keywords',$keywords);
-        $this->assign('status',$status);
         
         //解决__info__ 为空显示__info__ bug
         $fromurl=__INFO__;

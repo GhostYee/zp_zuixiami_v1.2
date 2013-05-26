@@ -13,9 +13,9 @@
       <include file="wgt:userInfoBase" />
       <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
-          <li><a href="__APP__/author/1">Ta的作品集</a></li>
-          <li><a href="__APP__/author/team">Ta的团队</a></li>
-          <li><a href="__APP__/author/messsage">给Ta的留言</a></li>
+          <li><a href="__APP__/author/{$works['author_id']}">Ta的作品集</a></li>
+          <li><a href="__APP__/author/{$works['author_id']}/team">Ta的团队</a></li>
+          <li><a href="__APP__/author/{$works['author_id']}/messsage">给Ta的留言</a></li>
         </ul>
       </div>
     </div>
@@ -25,7 +25,7 @@
           <div class="wgt-breadcrumb">
             <a href="__APP__/">首页</a>
             /
-            <a href="__APP__/Author/">他的作品</a>
+            <a href="__APP__/author/{$works['author_id']}">他的作品</a>
             /
             <span>作品详细</span>
           </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="l-b-row row-fluid">
               <div class="wgt-detail box-shadow span10">
-                <h2>HoorayOS</h2>
+                <h2>{$works['name']}</h2>
                 <span class="wgt-star star-45"> <b></b> <b></b>
                   <b></b>
                   <b></b>
@@ -46,41 +46,42 @@
                 </span>
                 <div class="wgt-tags">
                   <ul>
+                    <foreach name="works_tag" item="val">
                     <li>
-                      <a href="index-tag.html">javascript</a>
+                      <a href="__APP__/index/tag/tagid/{$val['id']}">{$val['tagname']}</a>
                     </li>
-                    <li>
-                      <a href="index-tag.html">php</a>
-                    </li>
+                    </foreach>
                   </ul>
                 </div>
                 <div class="pic">
                   <img src="../Public/images/2012022922332451.jpg" alt=""></div>
                 <div class="intr">
                   <blockquote> <em class="dqm">“</em>
-                    HoorayOS是一套web桌面应用框架，你可以用它开发出类似与115应用中心、Q+web这类的桌面应用网站，也可以在它的基础上二次开发出适合项目的桌面式管理系统
+                    {$works['description']}
                   </blockquote>
                 </div>
                 <div class="info">
                   <p>
                     演示地址：
-                    <a href="http://www.baidu.com">http://www.baidu.com</a>
+                    <a href="{$works['demourl']}" target="_blank">{$works['demourl']}</a>
                   </p>
                   <p>
                     开源地址：
-                    <a href="http://www.baidu.com">http://www.baidu.com</a>
+                    <a href="{$works['openurl']}" target="_blank">{$works['openurl']}</a>
                   </p>
+                  <foreach name="works_special" item="val">
                   <p>
                     参加专题：
-                    <a href="#">第一季：那一年我们看到前端的书</a>
+                    <a href="__APP__/works_special/{$val[id]}">{$val[qishu]}：{$val[title]}</a>
                   </p>
-                  <p class="pubtime">发表于：一个星期以前</p>
+                  </foreach>
+                  <p class="pubtime">发表于：{$works['checktime']|inttodate_han}</p>
                 </div>
               </div>
               <div class="wgt-zp-opts span2">
-                <a href="#" class="btn-default">赞(3)</a>
-                <a href="#" class="btn-default">评论/评星</a>
-                <a href="#" class="btn-default">查看源地址</a>
+                <a href="#" class="btn-default">赞({$works['good']})</a>
+                <a href="#message" class="btn-default">评论/评星</a>
+                <a href="{$works['demourl']}" target="_blank" class="btn-default">查看源地址</a>
               </div>
               <include file="wgt:message" />
             </div>

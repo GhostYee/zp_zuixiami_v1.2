@@ -22,7 +22,7 @@ class WorksAction extends CommonAction {
 	}
 	// ------------------------------------------------------------------------
 	/**
-	 * 作品提交列表
+	 * 作品提交
 	 *
 	 * @access  public
 	 * @return  void
@@ -30,6 +30,7 @@ class WorksAction extends CommonAction {
 	public function submit(){
 		$qq=$this->_get('qq');
 		$url=$this->_get('url');
+		$step=$this->_get('step')?$this->_get('step'):'1';
 		
 		if(empty($qq)){
 			$qq=cookie('zuixiami_works_qq');
@@ -39,10 +40,15 @@ class WorksAction extends CommonAction {
 		$this->assign('works',$works);
 		
 		//替换模板SEO的值
-		$seo['title']='最蝦米*鬼懿IT*作品秀';
+		$seo['title']='提交作品'.'--'.CFG('cfg_webname');
 		$seo['keywords']=C("CFG_SEO_KEYWORDS");
 		$seo['description']=C("CFG_SEO_DESCRIPTION");
 		$this->assign('seo',$seo);
+		
+		
+		$this->assign('step',$step);
+		
+		header('Cache-control: private, must-revalidate');  //支持页面回跳表单历史
 		
 		$this->display();
 	}
@@ -163,23 +169,6 @@ class WorksAction extends CommonAction {
 			//失败提示
 			$this->error ('提交失败！请重试!',$dumpurl);
 		}
-	}
-	// ------------------------------------------------------------------------
-	/**
-	 * 首页作品提交操作
-	 *
-	 * @access  public
-	 * @return  void
-	 */
-	public function post_quick(){
-		$works=array(
-				'qq'=>$this->_post('qq'),
-				'url'=>$this->_post('url'),
-		);	
-		if(empty($works['qq'])) $this->error('请填写QQ号码');
-		if(empty($works['url'])) $this->error('请填写作品链接');
-		
-		$this->redirect('works/submit/?qq='.$works['qq'].'&url='.$works['url']);
 	}
 	// ------------------------------------------------------------------------
 	/**
@@ -551,6 +540,23 @@ class WorksAction extends CommonAction {
 	//查看作品
     public function view()
     {
+    	$works_id=$this->_get('id')?intval($this->_get('id')):'0';
+    	
+    	//取得 作品详情
+    	$model_works=D("Works");
+    	$works=$model_works->getWorksByID($works_id);
+    	$this->assign('works',$works);
+    	
+    	//取得作品tag列表
+    	$model_tag=D("Tag");
+    	$works_tag=$model_tag->getTagListByWorksID($works_id);
+    	$this->assign('works_tag',$works_tag);
+    	
+    	//取得专题列表
+    	$model_works_special=D("Works_special");
+    	$works_special=$model_works_special->getWorksSpecialListByWorksID($works_id);
+    	$this->assign('works_special',$works_special);
+    	
     	$this->display();
     }
 }
