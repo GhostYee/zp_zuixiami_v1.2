@@ -12,16 +12,18 @@ class TagModel extends CommonModel {
 			'foreign_key' => 'tagid',
 			)
 		);
-	public function getWorksByTagID($tagid){
-		$sql    = "SELECT w.*,IFNULL(author,qm.name) author,s.name sortname,qs.name qunname,qm.id".
-				" author_id FROM ".C('DB_PREFIX')."works w ".
-				" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
-				" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
-				" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
-				" LEFT JOIN ".C('DB_PREFIX')."tag_relationship tr on tr.workid=w.id ".
-				" WHERE w.status=2 AND tr.tagid=$tagid order by w.id desc ";
-		$works  = $this->query($sql);
-		return $works;
+	/**
+	 * 取得首页tag列表
+	 *
+	 * @access  public
+	 * @param int $limit 数量
+	 * @return  array
+	 */
+	public function getIndexTags($limit='10'){
+		$sql    = "SELECT * from ".C('DB_PREFIX')."tag order by hits desc limit $limit";
+		$tags  = $this->query($sql);
+		return $tags;
 	}
+	
 }
 ?>

@@ -18,7 +18,11 @@ class IndexAction extends CommonAction {
     //查询-作品
     public function search()
     {
-        $currPage="search";
+    	$works_model=D("Works");
+        $works  = $works_model->getWorks($where,$orderby,$limit);     
+        $this->assign('works',$works);
+        $this->assign('keywords',$keywords);
+        
         $this->assign('currPage',$currPage); 
         $this->index();       
     }
@@ -29,8 +33,9 @@ class IndexAction extends CommonAction {
         $this->load_thisBase();  
         $tagid=trim($_REQUEST['tagid']);    
         $tag=trim($_REQUEST['tag']);
-
-        $works_model=D('Tag');
+		
+        //标签作品列表
+        $works_model=D('Works');
         $works  = $works_model->getWorksByTagID($tagid); 
         $this->assign('works',$works);  
 
@@ -54,18 +59,16 @@ class IndexAction extends CommonAction {
     //装载 排行版 数据
     private function load_rankList()
     {
-        $works_model=M('works');
-        $sql    = "SELECT * FROM xiami_works order by good DESC LIMIT 5 ";
-        $works  = $works_model->query($sql); 
+        $works_model=D('Works');
+        $works  = $works_model->getWorksGoodRanking(5); 
         $this->assign('rankList',$works);          
     }
    
     //装载 tags 数据
     private function load_tags()
     {
-        $tag_model=M('tags');
-        $sql    = "SELECT * from xiami_tag ";
-        $tags  = $tag_model->query($sql);        
+        $tag_model=D('Tag');
+        $tags  = $tag_model->getIndexTags('10');
         $this->assign('tags',$tags);
     }
 
@@ -86,6 +89,7 @@ class IndexAction extends CommonAction {
         $keywords=trim($_POST['keywords']);
         $keywords=!empty($keywords)?$keywords:'';
         $status=empty($_REQUEST['status'])?'2':$_REQUEST['status'];
+        
         $works_model=D('works');
         //状态 默认通过审核
         $where.=" AND w.`status`='$status' ";
@@ -109,12 +113,7 @@ class IndexAction extends CommonAction {
             $limit=" limit $index_works_num ";
         }
         // 取出需要的数据
-        $sql    = "SELECT w.*,IFNULL(author,qm.name) author,s.name sortname,qs.name qunname,qm.id author_id FROM ".C('DB_PREFIX')."works w ".
-                " LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
-                " LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
-                " LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
-                " where 1 $where $orderby $limit";
-        $works  = $works_model->query($sql);        
+        $works  = $works_model->getWorks($where,$orderby,$limit);     
         $this->assign('works',$works);
         $this->assign('keywords',$keywords);
         $this->assign('status',$status);

@@ -102,7 +102,7 @@ INSERT INTO `xiami_team_work` VALUES (1, 150, 8);
 INSERT INTO `xiami_team_work` VALUES (2, 151, 8);
 
 --
---  增加单页管理
+--  增加单页管理 by wewe
 --
 INSERT INTO `xiami_pages` (`id`, `title`, `code`, `contents`, `adduser`, `addtime`) VALUES
 (15, '了解鬼群', 'qun', '', NULL, 0),
@@ -110,3 +110,8 @@ INSERT INTO `xiami_pages` (`id`, `title`, `code`, `contents`, `adduser`, `addtim
 (17, '捐助我们', 'offer', '', NULL, 0),
 (18, '联系我们', 'contact', '', NULL, 0);
 UPDATE `xiami_pages` SET  `title` =  '关于我们' WHERE  `id` =14 LIMIT 1 ;
+
+--
+--  增加标签点击量,确认热门标签 by wewe
+--
+ALTER TABLE  `xiami_tag` ADD  `hits` BIGINT NOT NULL COMMENT  '点击量' AFTER  `tagname` ;
