@@ -95,6 +95,8 @@ class WorksModel extends CommonModel {
 		$join=array(
 				//关联作品分类
 				C('DB_PREFIX')."works_sort works_sort ON works_sort.id=works.sortid",
+				//关联用户
+				C('DB_PREFIX')."user user ON user.id=works.userid",
 				//关联群分类
 				C('DB_PREFIX')."qun_sort qun_sort ON qun_sort.id=works.qun_sortid",
 				//关联群成员
@@ -143,7 +145,9 @@ class WorksModel extends CommonModel {
 		}
 		
 		//查询字段
-		$this->field("works.*,IFNULL(works.author,qun_member.name) author,works_sort.name sortname,qun_sort.name qunname,qun_member.id author_id,"
+		$this->field("works.*,user.auth_figureurl auth_figureurl,user.await await,"
+				."IF(user.is_open=1,user.nickname,user.auth_nickname) nickname,IFNULL(works.author,nickname) author,"
+				."works_sort.name sortname,qun_sort.name qunname,"
 				."ceil(works.rank_total/works.rank_count) as star,round(ceil(works.rank_total/works.rank_count)/10,1) rank "
 				.$field);
 		//join

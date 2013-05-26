@@ -13,9 +13,9 @@
       <include file="wgt:userInfoBase" />
       <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
-          <li><a href="__APP__/author/{$works['author_id']}">Ta的作品集</a></li>
-          <li><a href="__APP__/author/{$works['author_id']}/team">Ta的团队</a></li>
-          <li><a href="__APP__/author/{$works['author_id']}/messsage">给Ta的留言</a></li>
+          <li><a href="__APP__/author/{$works['userid']}">Ta的作品集</a></li>
+          <li><a href="__APP__/author/{$works['userid']}/team">Ta的团队</a></li>
+          <li><a href="__APP__/author/{$works['userid']}/messsage">给Ta的留言</a></li>
         </ul>
       </div>
     </div>
@@ -25,7 +25,7 @@
           <div class="wgt-breadcrumb">
             <a href="__APP__/">首页</a>
             /
-            <a href="__APP__/author/{$works['author_id']}">他的作品</a>
+            <a href="__APP__/author/{$works['userid']}">他的作品</a>
             /
             <span>作品详细</span>
           </div>
@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div class="wgt-zp-opts span2">
-                <a href="#" class="btn-default">赞({$works['good']})</a>
+                <a href="javascript:void(0)" onClick="do_good_await('Works','good',{$val['id']})" class="btn-default">赞({$works['good']})</a>
                 <a href="#message" class="btn-default">评论/评星</a>
                 <a href="{$works['demourl']}" target="_blank" class="btn-default">查看源地址</a>
               </div>
@@ -90,6 +90,7 @@
   </div>
 </div>
 <include file="Public:footer"/>
-<script type="text/javascript" src="../Public/js/scrollpic.js"></script>
+<include file="js:doGoodAwait"/>
+<include file="js:doRank"/>
 </body>
 </html>

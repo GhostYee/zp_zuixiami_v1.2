@@ -2,7 +2,7 @@
 //各平台登录配置
 
 //定义回调URL通用的URL
-define('URL_CALLBACK', 'http://zp.zuixiami.com/index.php?m=User&a=api_callback&type=');
+define('URL_CALLBACK', 'http://zp.zuixiami.com/index.php?m=User&a=auth_callback&type=');
 return array(
 	//'配置项'=>'配置值'
 	

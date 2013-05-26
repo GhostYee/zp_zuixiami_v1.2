@@ -261,7 +261,7 @@ class UserAction extends CommonAction {
 	 * @access  public
 	 * @return  void
 	 */
-	public function api_callback($type = null){
+	public function auth_login($type = null){
 		empty($type) && $this->error('参数错误');
 		
 		//加载ThinkOauth类并实例化一个对象
@@ -278,7 +278,7 @@ class UserAction extends CommonAction {
 	 * @access  public
 	 * @return  void
 	 */
-	public function api_callback($type = null, $code = null){
+	public function auth_callback($type = null, $code = null){
 		(empty($type) || empty($code)) && $this->error('参数错误');
 		
 		//加载ThinkOauth类并实例化一个对象

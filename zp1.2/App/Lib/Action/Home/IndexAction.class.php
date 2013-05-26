@@ -9,75 +9,24 @@ class IndexAction extends CommonAction {
 	 * @return  void
 	 */
     public function index()
-    {    
-        $this->load_thisBase();
-    	$this->load_works();    	
+    {   
+        //标签列表
+        $tag_model=D('Tag');
+        $tags  = $tag_model->getIndexTags('10');        
+        $this->assign('tags',$tags);
+        
+        //排行榜列表
+        $works_model=D('Works');
+        $works  = $works_model->getWorksGoodRanking(5); 
+        $this->assign('rankList',$works);
+        
+        //作品列表
+    	$this->load_works();
+    	
     	$this->display();
     }
 
-    //查询-作品
-    public function search()
-    {    	
-    	$currPage="search";
-        $this->assign('currPage',$currPage); 
-        $this->index();      
-    }
-
-    //标签-作品
-    public function tag()
-    {
-        $this->load_thisBase();  
-        $tagid=trim($_REQUEST['tagid']);    
-        $tag=trim($_REQUEST['tag']);
-		
-        //标签作品列表
-        $works_model=D('Works');
-        $works  = $works_model->getWorksByTagID($tagid); 
-        $this->assign('works',$works);  
-
-        $currPage="tag";
-        $this->assign('currPage',$currPage); 
-        $this->assign('tag',$tag); 
-        $this->display("Index:search");       
-    }
-
-
     // ------------------------------------------------------------------------
-
-    // 转载 首页 基本数据
-    private function load_thisBase()
-    {
-        $this->load_seo();
-        $this->load_tags();    
-        $this->load_rankList(); 
-    }
-
-    //装载 排行版 数据
-    private function load_rankList()
-    {
-        $works_model=D('Works');
-        $works  = $works_model->getWorksGoodRanking(5); 
-        $this->assign('rankList',$works);          
-    }
-   
-    //装载 tags 数据
-    private function load_tags()
-    {
-        $tag_model=D('Tag');
-        $tags  = $tag_model->getIndexTags('10');
-        $this->assign('tags',$tags);
-    }
-
-
-    //装载 SEO 数据
-    private function load_seo()
-    {
-        //替换模板SEO的值
-        $seo['title']='最蝦米*鬼懿IT*作品秀';
-        $seo['keywords']=C("CFG_SEO_KEYWORDS");
-        $seo['description']=C("CFG_SEO_DESCRIPTION");
-        $this->assign('seo',$seo);        
-    }
 
     //装载 作品 数据
     public function load_works()

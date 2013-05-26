@@ -126,4 +126,26 @@ UPDATE  `xiami_config` SET  `value` =  'wewe' WHERE  `xiami_config`.`id` =113 LI
 --  作品表增加地址字段,区分演示地址开源地址by wewe
 --
 ALTER TABLE  `xiami_works` CHANGE  `url`  `demourl` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT  '演示地址';
-ALTER TABLE  `xiami_works` ADD  `openurl` VARCHAR( 255 ) NOT NULL COMMENT  '开源地址' AFTER  `demourl` ;;
+ALTER TABLE  `xiami_works` ADD  `openurl` VARCHAR( 255 ) NOT NULL COMMENT  '开源地址' AFTER  `demourl` ;
+
+--
+--  增加用户表xiami_user,期待作者转到该表  by wewe
+--
+CREATE TABLE  `xiami_user` (
+`id` INT NOT NULL COMMENT  '自增ID',
+`auth_type` VARCHAR( 100 ) NOT NULL COMMENT  '第三方登录类型',
+`auth_openid` BIGINT NOT NULL COMMENT  '第三方返回开放ID',
+`auth_nickname` VARCHAR( 100 ) NOT NULL COMMENT  '第三方昵称',
+`auth_figureurl` VARCHAR( 255 ) NOT NULL COMMENT  '第三方头像地址',
+`nickname` VARCHAR( 100 ) NOT NULL COMMENT  '自定义昵称',
+`is_open` TINYINT( 1 ) NOT NULL COMMENT  '是否开启自定义昵称',
+`is_locked` TINYINT( 1 ) NOT NULL COMMENT  '是否停用用户',
+`await` bigint( 20 ) NOT NULL COMMENT  '期待作者',
+`addtime` INT( 10 ) NOT NULL COMMENT  '添加时间',
+PRIMARY KEY (  `id` )
+) ENGINE = MYISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
+--
+--  作品表增加用户ID userid  by wewe
+--
+ALTER TABLE  `xiami_works` ADD  `userid` INT NOT NULL COMMENT  '用户ID' AFTER  `id` ;
+update `xiami_works` set userid=1;

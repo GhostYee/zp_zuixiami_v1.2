@@ -11,7 +11,8 @@ class TagModel extends CommonModel {
 			'class_name'   =>'Tag_relationship',
 			'foreign_key' => 'tagid',
 			)
-		);
+	);
+	
 	/**
 	 * 取得首页tag列表
 	 *
@@ -27,6 +28,25 @@ class TagModel extends CommonModel {
 			return $tags;
 		}
 		return false;		
+	}
+	/**
+	 * tag ID取得标签信息
+	 *
+	 * @access  public
+	 * @param int $worksid ID
+	 * @return  array
+	 */
+	public function getTagByID($id){
+		//表名
+		//$this->table($this->getTableName().' '.$this->getSmallTableName());
+		$where['id']=$id;
+		$this->where($where);
+		$this->limit(1);
+		$data=$this->select();
+		if($data){
+			return $data[0];
+		}
+		return false;
 	}
 	/**
 	 * 作品ID取得标签列表
@@ -47,6 +67,19 @@ class TagModel extends CommonModel {
 			echo $this->getLastSql()."<br><br>";
 			echo $this->getDbError()."<br>";
 		}
+		return $data;
+	}
+	/**
+	 * 取得标签列表
+	 *
+	 * @access  public
+	 * @param int $worksid ID
+	 * @return  array
+	 */
+	public function getTagList($worksid){
+		$sql="SELECT tag.*,(SELECT COUNT(*) FROM ".C('DB_PREFIX')."tag_relationship tag_relationship WHERE tag_relationship.tagid=tag.id) as total"
+			 ." FROM ".C('DB_PREFIX')."tag tag order by hits desc ";
+		$data=$this->query($sql);
 		return $data;
 	}
 	
