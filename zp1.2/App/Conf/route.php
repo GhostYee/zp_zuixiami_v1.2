@@ -26,9 +26,11 @@ return array(
 		'/^author\/good\/(\d+)$/'               => 'author/index?id=:1&sort=good',
 		'/^author\/rank\/(\d+)$/'               => 'author/index?id=:1&sort=rank',
 		//团队
-		'/^team\/(\d+)$/'        					=> 'team/view?id=:1',
-		'/^team\/works\/(\d+)$/'            => 'team/works?id=:1',
-		'/^team\/user\/(\d+)$/'            => 'team/user?id=:1',
+		'/^team\/(\d+)$/'        			=> 'team/view?id=:1',
+		'/^team\/user\/(\d+)$/'             => 'team/user?id=:1',
+		'/^team\/user\/time\/(\d+)$/'       => 'team/user?id=:1&sort=time',
+		'/^team\/user\/hits\/(\d+)$/'       => 'team/user?id=:1&sort=hits',
+		'/^team\/user\/await\/(\d+)$/'      => 'team/user?id=:1&sort=await',
 		//作者作品列表
 		'/^user\/workslist\/nochecked$/'     => 'user/workslist?status=1',
 		'/^user\/workslist\/checkedn$/'      => 'user/workslist?status=3',

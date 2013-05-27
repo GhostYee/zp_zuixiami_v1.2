@@ -54,7 +54,7 @@ class WorksSpecialAction extends CommonAction {
     			$orderby=" works.addtime DESC ";
     			break;
     		case 'good':
-    			$orderby=" works.addtime DESC ";
+    			$orderby=" works.good DESC ";
     			break;
     		case 'rank':
     			$orderby=" star DESC ";

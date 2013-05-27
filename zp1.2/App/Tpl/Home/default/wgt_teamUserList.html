@@ -1,36 +1,17 @@
-<div class="wgt-team-member box-shadow span10">
-<h2 class="page-title">w3cplus 团队成员</h2>
-              <ul class="media-list">
-                <li class="media">
-                  <a class="pull-left" href="authorView.html">
-                    <img class="media-object" src="img/uheader.jpg"></a>
-                  <div class="media-body">
-                    <h4 class="media-heading">
-                      <a href="authorView.html">大漠</a>
-                    </h4>
-                    <p>
-                      来自：
-                      <a href="#">高级群</a>
-                    </p>
-                    <p>
-                      作品数：
-                      <a href="authorView.html">111</a>
-                      <span class="division" >|</span>
-                      期待数：
-                      <a href="#">111</a>
-                    </p>
-                    <p>
-                      Blog：
-                      <a href="#">http://www.baidu.com</a>
-                    </p>
-                    <p class="opts">
-                      <span>
-                        <a href="authorMessage.html" >留言</a>
-                      </span>
-                      <a href="authorView.html" class="btn-default" >查看作品</a>
-                    </p>
-                    <blockquote>提供丰富的资源</blockquote>
-                  </div>
-                </li>
-                </ul>
-                </div>
+<div class="wgt-team-member">
+  <h2 class="page-title">w3cplus 团队成员</h2>
+  <ul class="media-list">
+    <foreach name="userlist" item="val">
+    <li class="media"> <a class="pull-left" href="__APP__/author/{$val['id']}"> <img class="media-object" src="{$val['auth_figureurl']}"></a>
+      <div class="media-body">
+        <h4 class="media-heading"> <a href="__APP__/author/{$val['id']}">{$val['nickname']}</a> </h4>
+        <p> 来自： <a href="#">{$val['qunname']}</a> </p>
+        <p> 作品数： <a href="__APP__/author/{$val['id']}">{$val['total_user_works']}</a> <span class="division" >|</span> 期待数： <a href="javascript:void(0)" onClick="do_good_await('User','await',{$val['id']})"><span id="do_await_{$val['id']}">{$val['await']}</span></a> </p>
+        <p> Blog： <a href="{$val['userurl']}" target="_blank">{$val['userurl']}</a> </p>
+        <p class="opts"> <span> <a href="__APP__/author/message/{$val['id']}" >留言</a> </span> <a href="__APP__/author/{$val['id']}" class="btn-default" >查看作品</a> </p>
+        <blockquote>{$val['notice']}</blockquote>
+      </div>
+    </li>
+    </foreach>
+  </ul>
+</div>

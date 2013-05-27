@@ -18,13 +18,13 @@
           </if>
           <p>
             团队成员：
-            <a href="__APP__/team/user/{$val['id']}">{$val['total_user']}</a>
+            <a href="__APP__/team/user/{$val['id']}">{$val['total_team_user']}</a>
             <span class="division">|</span>
             团队作品：
-            <a href="__APP__/team/works/{$val['id']}">{$val['total_team']}</a>
+            <a href="__APP__/team/{$val['id']}">{$val['total_team_works']}</a>
           </p>
           <p class="opts">
-            <a href="__APP__/team/works/{$val['id']}" class="btn-default">查看作品</a>
+            <a href="__APP__/team/{$val['id']}" class="btn-default">查看作品</a>
           </p>
           <blockquote>{$val['notice']}</blockquote>
         </div>

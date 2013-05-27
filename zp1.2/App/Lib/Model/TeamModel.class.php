@@ -21,6 +21,10 @@ class TeamModel extends CommonModel {
     	$limit=1;
     	$allinone['where']=$map;
     	$allinone['limit']=$limit;
+    	$allinone['field']="IF(creatuser.is_open=1,creatuser.nickname,creatuser.auth_nickname) creatusername";
+    	$allinone['join']=array(
+    			C('DB_PREFIX')."user creatuser ON creatuser.id=team.creatuserid"
+    		);
     	$data=$this->getTeamList($allinone);
     	if($this->getDbError()){
     		echo $this->getLastSql()."<br><br>";
@@ -42,7 +46,7 @@ class TeamModel extends CommonModel {
     public function getTeamListByUserID($user_id){
     	$map['user.id']=$user_id;
     	$orderby="team.id desc";
-    	
+    	    	
 		$allinone['where']=$map;
     	$allinone['order']=$orderby;
     	$data=$this->getTeamList($allinone);
@@ -131,8 +135,8 @@ class TeamModel extends CommonModel {
 		
 		//查询字段
 		$this->field("team.*,"
-				."(SELECT count(*) FROM ".C('DB_PREFIX')."team_user allteam_user WHERE allteam_user.userid=user.id) total_user,"
-				."(SELECT count(*) FROM ".C('DB_PREFIX')."team_work allteam_work WHERE allteam_work.teamid=team.id) total_team "
+				."(SELECT count(*) FROM ".C('DB_PREFIX')."team_user allteam_user WHERE allteam_user.userid=user.id) total_team_user,"
+				."(SELECT count(*) FROM ".C('DB_PREFIX')."team_work allteam_work WHERE allteam_work.teamid=team.id) total_team_works "
 				.$field);
 		//join
 		$this->join($join);		

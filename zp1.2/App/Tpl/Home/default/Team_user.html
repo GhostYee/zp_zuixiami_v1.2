@@ -13,8 +13,8 @@
       <include file="wgt:teamInfoBase"/>
       <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
-          <li><a href="__APP__/author/{$works['userid']}">团队作品</a></li>
-          <li><a href="__APP__/author/team/{$works['userid']}">团队成员</a></li>
+          <li><a href="__APP__/team/{$team['id']}">团队作品</a></li>
+          <li class="active"><a href="__APP__/team/user/{$team['id']}">团队成员</a></li>
         </ul>
       </div>
     </div>
@@ -24,29 +24,31 @@
           <div class="wgt-breadcrumb">
             <a href="__APP__/">首页</a>
             /
-            <a href="__APP__/author/{$works['userid']}">他的作品</a>
+            <a href="__APP__/team">团队列表</a>
             /
-            <span>作品详细</span>
+            <span>团队成员</span>
           </div>
           <include file="wgt:topNav"/>
         </div>
         <div class="l-b-row row-fluid">
+              <div class="box-shadow span10">
               <include file="wgt:teamUserList"/>
+              </div>
               <div class="wgt-zp-opts span2">
-                <div class="btn-group">
+                <div class="btn-group open">
                   <a class="btn-default" href="javascript:;" data-toggle="dropdown">
                     默认排序
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="__APP__/works_special/time/{$works_special['id']}">按时间排序</a>
+                      <a href="__APP__/team/user/time/{$team['id']}">按时间排序</a>
                     </li>
                     <li>
-                      <a href="__APP__/works_special/good/{$works_special['id']}">按人气排序</a>
+                      <a href="__APP__/team/user/hits/{$team['id']}">按人气排序</a>
                     </li>
                     <li>
-                      <a href="__APP__/works_special/rank/{$works_special['id']}">按星级排序</a>
+                      <a href="__APP__/team/user/await/{$team['id']}">按期待排序</a>
                     </li>
                   </ul>
                 </div>
@@ -58,6 +60,5 @@
 </div>
 <include file="Public:footer"/>
 <include file="js:doGoodAwait"/>
-<include file="js:doRank"/>
 </body>
 </html>

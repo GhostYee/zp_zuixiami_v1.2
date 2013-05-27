@@ -60,19 +60,22 @@ class UserModel extends CommonModel {
 	 * @param int/string $teamid
 	 * @return  array/false
 	 */
-	public function getUserListByTeamID($teamid){
-		$map['team_user.id']=$teamid;
+	public function getUserListByTeamID($teamid,$allinone){
+		$map['team_user.teamid']=$teamid;
 	
-		$allinone['where']=$map;
-		$allinone['join']=array(
+		$all['where']=$map;
+		$all['join']=array(
 				C('DB_PREFIX')."team_user team_user ON team_user.userid=user.id"
 		);
-		$data=$this->getUserList($allinone);
+		if($allinone){
+			$all=array_merge($all,$allinone);
+		}
+		$data=$this->getUserList($all);
 		if($this->getDbError()){
 			echo $this->getLastSql()."<br><br>";
 			echo $this->getDbError()."<br>";
 		}
-		return $data[0];
+		return $data;
 	}
 	/**
 	 +----------------------------------------------------------
