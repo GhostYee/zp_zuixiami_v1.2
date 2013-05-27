@@ -30,6 +30,22 @@ class WorksModel extends CommonModel {
 		}
 		return false;
 	}
+	/**
+	 * 根据团队ID取得作品列表
+	 *
+	 * @access  public
+	 * @param int $team_id
+	 * @return  array
+	 */
+	public function getWorksListByTeamID($team_id,$allinone){
+		$where['team.id']=$team_id;
+		$all['where']=$where;
+		if($allinone){
+			$all=array_merge($all,$allinone);
+		}
+		$works  = $this->getWorksList($all);
+		return $works;
+	}
 	
 	/**
 	 * 根据TagID取得作品信息列表
