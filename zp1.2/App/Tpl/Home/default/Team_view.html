@@ -13,8 +13,8 @@
       <include file="wgt:teamInfoBase" />
       <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
-          <li class="active"><a href="__APP__/team/view">团队作品</a></li>  
-          <li><a href="__APP__/team/members">团队成员</a></li>  
+          <li class="active"><a href="__APP__/team/{$team['id']}">团队作品</a></li>  
+          <li><a href="__APP__/team/user/{$team['id']}">团队成员</a></li>  
         </ul>
       </div>
     </div>
@@ -30,12 +30,13 @@
         </div>
         <div class="l-b-row row-fluid">
           <include file="wgt:zpListSummary" />
-          <div class="wgt-zp-opts span2"> <a href="team-1.html" class="btn-default">创建</a> </div>
+          <div class="wgt-zp-opts span2"> <a href="__APP__/team/submit" class="btn-default">创建</a> </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
 </body>
 </html>
