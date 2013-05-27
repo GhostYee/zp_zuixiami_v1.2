@@ -446,6 +446,11 @@ class WorksAction extends CommonAction {
     	$works=$model_works->getWorksByID($works_id,$allinone);
     	$this->assign('works',$works);
     	
+    	//取得作者信息
+    	$user_model=D('User');
+    	$author=$user_model->getUserByWorksID($works_id);
+    	$this->assign('author',$author);
+    	
     	//取得作品tag列表
     	$model_tag=D("Tag");
     	$works_tag=$model_tag->getTagListByWorksID($works_id,$allinone);

@@ -18,14 +18,17 @@ return array(
 		'/^works_special\/(\d+)\/(\w+)$/'        => 'works_special/view?id=:1&sort=:2',
 		//tag页面	
 		'/^tag\/(\d+)$/'               => 'tag/view?id=:1',
-
-			
-			
-			
-		//作者列表
-		'/^author\/(\d+)\/nochecked$/'        		=> 'Author/index?id=:1&status=1',
-		'/^author\/(\d+)\/checkedn$/'        		=> 'Author/index?id=:1&status=3',
-		'/^author\/(\d+)$/'        					=> 'Author/index?id=:1&status=2',
+		//作者
+		'/^author\/(\d+)$/'        					=> 'author/index?id=:1',
+		'/^author\/message\/(\d+)$/'            => 'author/message?id=:1',
+		'/^author\/team\/(\d+)$/'            => 'author/team?id=:1',
+		'/^author\/time\/(\d+)$/'               => 'author/index?id=:1&sort=time',
+		'/^author\/good\/(\d+)$/'               => 'author/index?id=:1&sort=good',
+		'/^author\/rank\/(\d+)$/'               => 'author/index?id=:1&sort=rank',
+		//团队
+		'/^team\/(\d+)$/'        					=> 'team/view?id=:1',
+		'/^team\/works\/(\d+)$/'            => 'team/works?id=:1',
+		'/^team\/user\/(\d+)$/'            => 'team/user?id=:1',
 		//作者作品列表
 		'/^user\/workslist\/nochecked$/'     => 'user/workslist?status=1',
 		'/^user\/workslist\/checkedn$/'      => 'user/workslist?status=3',

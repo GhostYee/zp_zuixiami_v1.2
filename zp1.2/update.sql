@@ -137,6 +137,7 @@ CREATE TABLE  `xiami_user` (
 `auth_openid` BIGINT NOT NULL COMMENT  '第三方返回开放ID',
 `auth_nickname` VARCHAR( 100 ) NOT NULL COMMENT  '第三方昵称',
 `auth_figureurl` VARCHAR( 255 ) NOT NULL COMMENT  '第三方头像地址',
+`qq` VARCHAR( 20 ) NOT NULL COMMENT  'QQ号码',
 `nickname` VARCHAR( 100 ) NOT NULL COMMENT  '自定义昵称',
 `is_open` TINYINT( 1 ) NOT NULL COMMENT  '是否开启自定义昵称',
 `is_locked` TINYINT( 1 ) NOT NULL COMMENT  '是否停用用户',
@@ -149,3 +150,19 @@ PRIMARY KEY (  `id` )
 --
 ALTER TABLE  `xiami_works` ADD  `userid` INT NOT NULL COMMENT  '用户ID' AFTER  `id` ;
 update `xiami_works` set userid=1;
+
+--
+--  新团队成员表  by wewe
+--
+CREATE TABLE IF NOT EXISTS `xiami_team_user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '团队成员主键ID',
+  `teamid` int(10) NOT NULL COMMENT '团队ID',
+  `userid` int(11) NOT NULL COMMENT '用户ID关联user表',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='团队成员表';
+--
+--  团队表增加团队地址，团队头像  by wewe
+--
+ALTER TABLE  `xiami_team` ADD  `teamimg` VARCHAR( 200 ) NOT NULL COMMENT  '团队头像' AFTER  `teamname` ;
+ALTER TABLE  `xiami_team` ADD  `teamurl` VARCHAR( 200 ) NOT NULL COMMENT  '团队地址';
+ALTER TABLE  `xiami_team` ADD  `notice` VARCHAR( 255 ) NOT NULL COMMENT  '团队介绍'; 
