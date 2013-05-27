@@ -108,9 +108,9 @@ class UserModel extends CommonModel {
 	
 		$join=array(
 				//关联群成员
-			    C('DB_PREFIX')."qun_member qun_member ON qun_member.qq=user.qq",
+			    //C('DB_PREFIX')."qun_member qun_member ON qun_member.qq=user.qq",
 				//关联群分类
-				C('DB_PREFIX')."qun_sort qun_sort ON qun_sort.id=qun_member.qun_sort_id"
+				C('DB_PREFIX')."qun_sort qun_sort ON qun_sort.id=user.qun_sort_id"
 		);
 	
 		//条件
@@ -155,7 +155,7 @@ class UserModel extends CommonModel {
 		}
 	
 		//查询字段
-		$this->field("user.*,IF(user.is_open=1,user.nickname,user.auth_nickname) nickname,qun_sort.name qunname,"
+		$this->field("user.*,qun_sort.name qunname,"
 				."(SELECT count(*) FROM ".C('DB_PREFIX')."works works WHERE works.userid=user.id) total_user_works"
 				.$field);
 		//join

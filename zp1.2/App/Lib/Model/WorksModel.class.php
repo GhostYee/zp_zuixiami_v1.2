@@ -161,8 +161,8 @@ class WorksModel extends CommonModel {
 		}
 		
 		//查询字段
-		$this->field("works.*,user.auth_figureurl auth_figureurl,user.await await,"
-				."IF(user.is_open=1,user.nickname,user.auth_nickname) nickname,IFNULL(works.author,nickname) author,"
+		$this->field("works.*,user.figureurl figureurl,user.await await,"
+				."user.nickname nickname,IFNULL(works.author,nickname) author,"
 				."works_sort.name sortname,qun_sort.name qunname,"
 				."ceil(works.rank_total/works.rank_count) as star,round(ceil(works.rank_total/works.rank_count)/10,1) rank "
 				.$field);
