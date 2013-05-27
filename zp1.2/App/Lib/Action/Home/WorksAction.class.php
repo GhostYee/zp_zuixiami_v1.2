@@ -22,7 +22,7 @@ class WorksAction extends CommonAction {
 	}
 	// ------------------------------------------------------------------------
 	/**
-	 * 作品提交列表
+	 * 作品提交
 	 *
 	 * @access  public
 	 * @return  void
@@ -30,6 +30,8 @@ class WorksAction extends CommonAction {
 	public function submit(){
 		$qq=$this->_get('qq');
 		$url=$this->_get('url');
+		$step=$this->_get('step')?$this->_get('step'):'1';
+		$works_special_id=$this->_get('works_special_id')?$this->_get('works_special_id'):'1';
 		
 		if(empty($qq)){
 			$qq=cookie('zuixiami_works_qq');
@@ -39,10 +41,14 @@ class WorksAction extends CommonAction {
 		$this->assign('works',$works);
 		
 		//替换模板SEO的值
-		$seo['title']='最蝦米*鬼懿IT*作品秀';
+		$seo['title']='提交作品'.'--'.CFG('cfg_webname');
 		$seo['keywords']=C("CFG_SEO_KEYWORDS");
 		$seo['description']=C("CFG_SEO_DESCRIPTION");
-		$this->assign('seo',$seo);
+		$this->assign('seo',$seo);		
+		
+		$this->assign('step',$step);
+		
+		header('Cache-control: private, must-revalidate');  //支持页面回跳表单历史
 		
 		$this->display();
 	}
@@ -166,112 +172,28 @@ class WorksAction extends CommonAction {
 	}
 	// ------------------------------------------------------------------------
 	/**
-	 * 首页作品提交操作
-	 *
-	 * @access  public
-	 * @return  void
-	 */
-	public function post_quick(){
-		$works=array(
-				'qq'=>$this->_post('qq'),
-				'url'=>$this->_post('url'),
-		);	
-		if(empty($works['qq'])) $this->error('请填写QQ号码');
-		if(empty($works['url'])) $this->error('请填写作品链接');
-		
-		$this->redirect('works/submit/?qq='.$works['qq'].'&url='.$works['url']);
-	}
-	// ------------------------------------------------------------------------
-	/**
 	 * 搜索
 	 *
 	 * @access  public
 	 * @return  void
 	 */
 	public function search(){
-		$keywords=trim($_REQUEST['keywords']);
-    	$keywords=!empty($keywords)?$keywords:'';
-    	$status=empty($_REQUEST['status'])?'2':$_REQUEST['status'];
-    	$author=empty($_REQUEST['author'])?'':$_REQUEST['author'];
+		//加载作品列表
+    	$this->loadWorks();
     	
-    	//没有关键词跳转到首页
-    	if(empty($keywords)) redirect(__APP__);
+    	//标签列表
+    	$tag_model=D('Tag');
+    	$tags  = $tag_model->getIndexTags('10');
+    	$this->assign('tags',$tags);
+    	 
+    	//排行榜列表
+    	$works_model=D('Works');
+    	$rankList  = $works_model->getWorksGoodRanking(5);
+    	$this->assign('rankList',$rankList);
     	
-    	//取得当前登陆用户ID
-    	$userid=session('we_userid');
-    	
-    	if($status==2 && !empty($author) && $author==$userid){
-    		$this->_check_login();
-    	}
-    	//取得作者信息
-    	$qun_member_model=M('qun_member');
-    	$qun_member=$qun_member_model->getById($author);
-    	$this->assign('qun_member',$qun_member);
-    	
-    	$works_model=D('works');
-    	//状态 默认通过审核
-    	$where.=" AND w.`status`='$status' ";
-    	
-    	if($qun_member && !empty($author)){
-    		//作者
-    		$where.=" AND qm.`id`='$author' ";
-    	}
-
-    	if(!empty($keywords)){
-    		//查找作品名,作者,描述
-    		$where.=" AND (w.`name` like '%$keywords%' or w.`author` like '%$keywords%' or w.`description` like '%$keywords%'  or qs.`name`='$keywords')";
-    	}
-    	
-    	//判断排序
-    	$index_works_order=CFG('cfg_index_works_order');
-    	
-    	if($index_works_order){
-    		$orderby=" ORDER BY $index_works_order ";
-    	}
-    	else{
-    		//排序推荐 降序，推荐排序降序，ID 升序
-    		$orderby=" ORDER BY w.is_top DESC,w.top_sid DESC,w.id DESC ";
-    	}
-    	/*
-    	//判断显示条数
-    	$index_works_num=CFG('cfg_index_works_num');
-    	if($index_works_num){
-    		$limit=" limit $index_works_num ";
-    	}
-    	*/
-    	// 取出需要的数据
-    	$sql	= "SELECT w.*,IFNULL(author,qm.name) author,s.name sortname,qs.name qunname,qm.id author_id FROM ".C('DB_PREFIX')."works w ".
-    			" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
-    			" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
-    			" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
-    			" where 1 $where $orderby ";
-    	$works	= $works_model->query($sql);
-    	$this->assign('works',$works);
-    	
-    	//统计
-    	$total['nochecked']=$this->_get_user_works_count(1,$keywords);
-    	$total['checked']=$this->_get_user_works_count(2,$keywords);
-    	$total['checkedn']=$this->_get_user_works_count(3,$keywords);
-    	$total['total']=$this->_get_user_works_count('',$keywords);
-    	$total['search_total']=$total['total'];
-    	if($qun_member){
-    		$total['user_total']=$this->_get_user_works_count('',$keywords,$qun_member[id]);
-    		$total['search_total']=$this->_get_user_works_count('',$keywords,$qun_member[id]);
-    	}
-    	else if($userid){
-    		$total['user_total']=$this->_get_user_works_count('',$keywords,$userid);
-    	}
-    	if($qun_member && !empty($author)){
-    		$total['nochecked']=$this->_get_user_works_count(1,$keywords,$qun_member[id]);
-    		$total['checked']=$this->_get_user_works_count(2,$keywords,$qun_member[id]);
-    		$total['checkedn']=$this->_get_user_works_count(3,$keywords,$qun_member[id]);
-    	}
-    	$this->assign('total',$total);
-
-    	$this->assign('keywords',$keywords);
-    	$this->assign('status',$status);
-    	$this->assign('author',$qun_member[id]);
-    	$this->assign('userid',$userid);
+        //搜索词当前页标记
+    	$currPage="search";
+    	$this->assign('currPage',$currPage);
 		
 		$this->display();
 	}
@@ -365,43 +287,7 @@ class WorksAction extends CommonAction {
 		}
 	
 	}
-	// ------------------------------------------------------------------------
-	// ------------------------------------------------------------------------
-	// ------------------------------------------------------------------------
-	// ------------------------------------------------------------------------
-	/**
-	 * 取得用户作品状态总计
-	 *
-	 * @access  public
-	 * @return  void
-	 */
-	protected function _get_user_works_count($status='',$keywords='',$userid=''){
-		$where='';
-		if(!empty($userid)){
-			$where.=" AND qm.`id`='$userid' ";
-		}
-		if(!empty($status)){
-			$where.=" AND w.`status`='$status' ";
-		}
-		else{
-			$where.=" AND w.`status` !='4' ";
-		}
-		if(!empty($keywords)){
-			//查找作品名,作者,描述
-			$where.=" AND (w.`name` like '%$keywords%' or w.`author` like '%$keywords%' or w.`description` like '%$keywords%'  or qs.`name`='$keywords')";
-		}
-		$works_model=D('works');
-		//统计
-		$sql	= "SELECT count(*) num FROM ".C('DB_PREFIX')."works w ".
-				" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
-				" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
-				" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
-				" where 1 $where ";
-		$works=$works_model->query($sql);
-		if($works!==false){
-			return $works[0][num];
-		}
-	}
+	
 	/**
 	 * 赞/期待操作 
 	 * IP限制
@@ -422,6 +308,7 @@ class WorksAction extends CommonAction {
 		
 		$mtype_lan['Works']['good']='赞';
 		$mtype_lan['Qun_member']['await']='期待';
+		$mtype_lan['User']['await']='期待';
 		
 		//判断是否存在记录
 		$model=M('user_action');
@@ -547,4 +434,119 @@ class WorksAction extends CommonAction {
 		}
 	}
     // ------------------------------------------------------------------------
+
+	//查看作品
+    public function view()
+    {
+    	$works_id=$this->_get('id')?intval($this->_get('id')):'0';
+    	
+    	//取得 作品详情
+    	$model_works=D("Works");
+    	$allinone['field']="(SELECT count(*) FROM ".C('DB_PREFIX')."works WHERE works.userid=user.id) total_user_works";
+    	$works=$model_works->getWorksByID($works_id,$allinone);
+    	$this->assign('works',$works);
+    	
+    	//取得作品tag列表
+    	$model_tag=D("Tag");
+    	$works_tag=$model_tag->getTagListByWorksID($works_id,$allinone);
+    	$this->assign('works_tag',$works_tag);
+    	
+    	//取得专题列表
+    	$model_works_special=D("Works_special");
+    	$works_special=$model_works_special->getWorksSpecialListByWorksID($works_id);
+    	$this->assign('works_special',$works_special);
+    	
+    	$this->display();
+    }
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    /**
+     * 取得用户作品状态总计
+     *
+     * @access  public
+     * @return  void
+     */
+    protected function _get_user_works_count($status='',$keywords='',$userid=''){
+    	$where='';
+    	if(!empty($userid)){
+    		$where.=" AND qm.`id`='$userid' ";
+    	}
+    	if(!empty($status)){
+    		$where.=" AND w.`status`='$status' ";
+    	}
+    	else{
+    		$where.=" AND w.`status` !='4' ";
+    	}
+    	if(!empty($keywords)){
+    		//查找作品名,作者,描述
+    		$where.=" AND (w.`name` like '%$keywords%' or w.`author` like '%$keywords%' or w.`description` like '%$keywords%'  or qs.`name`='$keywords')";
+    	}
+    	$works_model=D('works');
+    	//统计
+    	$sql	= "SELECT count(*) num FROM ".C('DB_PREFIX')."works w ".
+    			" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
+    			" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
+    			" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
+    			" where 1 $where ";
+    	$works=$works_model->query($sql);
+    	if($works!==false){
+    		return $works[0][num];
+    	}
+    }
+    /**
+     * 加载作品列表
+     *
+     * @access  public
+     * @return  void
+     */
+    protected function loadWorks(){
+    	$keywords=!empty($_REQUEST['keywords'])?trim($_REQUEST['keywords']):'';
+    	$status=empty($_REQUEST['status'])?'2':$_REQUEST['status'];
+    	$author=empty($_REQUEST['author'])?'':$_REQUEST['author'];
+    	 
+    	//没有关键词跳转到首页
+    	if(empty($keywords)) redirect(__APP__);
+    	 
+    	 
+    	$works_model=D('Works');
+    	
+    	//状态 默认通过审核
+    	$where['works.status']=2;
+    	
+    	//查找关键词作品名,作者,描述
+    	if(!empty($keywords)){
+    		$map['works.name'] = array('like', "%" . $keywords . "%");
+    		$map['works.author'] = array('like', "%" . $keywords . "%");
+    		$map['works.description'] = array('like', "%" . $keywords . "%");
+    		$map['qun_sort.name'] = array('like', "%" . $keywords . "%");
+    		$map['_logic'] = 'or';
+    		$where['_complex']=$map;
+    	}
+    	
+    	//判断排序
+    	$index_works_order=CFG('cfg_index_works_order');
+    	if($index_works_order){
+    		$orderby=$index_works_order;
+    	}
+    	else{
+    		//排序推荐 降序，推荐排序降序，ID 升序
+    		$orderby="works.is_top DESC,works.top_sid DESC,works.id DESC ";
+    	}
+    	//判断显示条数
+    	$index_works_num=CFG('cfg_index_works_num');
+    	if($index_works_num){
+    		$limit= $index_works_num;
+    	}
+    	
+    	// 取出需要的数据
+    	$allinone['where']=$where;
+    	$allinone['order']=$orderby;
+    	$allinone['limit']=$limit;
+    	$works  = $works_model->getWorksList($allinone);
+    	//dump($works);
+    	$this->assign('works',$works);
+    	$this->assign('keywords',$keywords);
+    }
 }

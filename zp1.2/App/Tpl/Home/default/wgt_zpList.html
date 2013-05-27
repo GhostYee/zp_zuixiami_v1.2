@@ -1,10 +1,10 @@
 <div class="wgt-zpList row-fluid  ">
   <switch name="currPage">
     <case value="search">
-      <h2 class="page-title">搜索：<a href="#">{$keywords}</a><span>{$works|count}个作品</span></h2>
+      <h2 class="page-title">搜索：<a href="__APP__/works/search/keywords/{$keywords}">{$keywords}</a><span>{$works|count}个作品</span></h2>
     </case>
     <case value="tag">
-      <h2 class="page-title">标签：<a href="#">{$tag}</a><span>{$works|count}个作品</span></h2>
+      <h2 class="page-title">标签：<a href="__APP__/tag/{$tag['id']}">{$tag['tagname']}</a><span>{$works|count}个作品</span></h2>
     </case>
   </switch>
   <ul class="thumbnails">
@@ -18,13 +18,13 @@
               <blockquote>{$val['description']}</blockquote>
             </if>
           </div>
-          <a class="preview-mask" href="{$val['url']}" title="{$val['name']}" ></a>
+          <a class="preview-mask" href="__APP__/works/{$val['id']}" title="{$val['name']}" ></a>
           <h5>
-            <a href="{$val['url']}" title="{$val['name']}" >{$val['name']}</a>
+            <a href="__APP__/works/{$val['id']}" title="{$val['name']}" >{$val['name']}</a>
           </h5>
           <div class="info">
             <span class="author-info" >
-              <a href="__APP__/author/{$val['author_id']}" class="author-name" title="了解{$val['author']}" >{$val['author']}</a>
+              <a href="__APP__/author/{$val['userid']}" class="author-name" title="了解{$val['author']}" >{$val['author']}</a>
               In
               {$val['qunname']}
             </span>
@@ -32,7 +32,7 @@
               <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btn-like" title="喜欢+1" >
                 <span id="do_good_{$val['id']}">{$val['good']}</span>
               </a>
-              <a href="zpView.html" class="btn-message" title="评论" >5</a>
+              <a href="__APP__/works/{$val['id']}/message" class="btn-message" title="评论" >5</a>
             </span>
           </div>
         </div>

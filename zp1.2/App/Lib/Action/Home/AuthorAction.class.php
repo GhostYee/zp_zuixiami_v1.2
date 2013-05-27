@@ -8,7 +8,8 @@ class AuthorAction extends CommonAction {
 	 * @access  public
 	 * @return  void
 	 */
-    public function index(){
+    public function index()
+    {
     	$keywords=trim($_POST['keywords']);
     	$keywords=!empty($keywords)?$keywords:'';
     	$id=$_REQUEST['id'];
@@ -77,4 +78,14 @@ class AuthorAction extends CommonAction {
 		}
     }
     // ------------------------------------------------------------------------
+
+    public function team()
+    {
+    	$this->display();
+    }
+
+    public function message()
+    {
+    	$this->display();
+    }
 }

@@ -1,0 +1,24 @@
+<script language="javascript">
+
+//评星 by wewe
+function do_rank(mid,score){
+  if(score!='' && score!='')
+  {
+    $.ajax({
+      type: "POST",
+      url: "<?php echo __APP__;?>/works/user_action_rank",
+      data: "score="+score+"&mid="+mid,
+      dataType: "json",
+      success: function(data){
+        if(data.code=='ok'){
+            $("#do_rank_"+mid).html(data.msg);
+            $("#do_rank_class_"+mid).addClass("star-"+data.msg*10);
+        }
+        else if(data.code=='error'){
+          alert(data.msg);
+        }
+      }
+    });
+  }
+}
+</script>
