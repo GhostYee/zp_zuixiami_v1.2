@@ -133,12 +133,12 @@ ALTER TABLE  `xiami_works` ADD  `openurl` VARCHAR( 255 ) NOT NULL COMMENT  '开�
 --
 CREATE TABLE  `xiami_user` (
 `id` INT NOT NULL COMMENT  '自增ID',
-`auth_type` VARCHAR( 100 ) NOT NULL COMMENT  '第三方登录类型',
-`auth_openid` BIGINT NOT NULL COMMENT  '第三方返回开放ID',
-`auth_nickname` VARCHAR( 100 ) NOT NULL COMMENT  '第三方昵称',
-`auth_figureurl` VARCHAR( 255 ) NOT NULL COMMENT  '第三方头像地址',
+`qun_sort_id` INT NOT NULL COMMENT  '群分类ID',
+`type` VARCHAR( 100 ) NOT NULL COMMENT  '登录类型',
+`openid` BIGINT NOT NULL COMMENT  '返回开放ID',
+`nickname` VARCHAR( 100 ) NOT NULL COMMENT  '昵称',
+`figureurl` VARCHAR( 255 ) NOT NULL COMMENT  '头像地址',
 `qq` VARCHAR( 20 ) NOT NULL COMMENT  'QQ号码',
-`nickname` VARCHAR( 100 ) NOT NULL COMMENT  '自定义昵称',
 `userurl` VARCHAR( 200 ) NOT NULL COMMENT  '用户blog地址',
 `notice` VARCHAR( 255 ) NOT NULL COMMENT  '用户介绍',
 `is_open` TINYINT( 1 ) NOT NULL COMMENT  '是否开启自定义昵称',
@@ -154,19 +154,19 @@ PRIMARY KEY (  `id` )
 --
 INSERT INTO  `xiami_user` (
 `id` ,
-`auth_type` ,
-`auth_openid` ,
-`auth_nickname` ,
-`auth_figureurl` ,
-`qq` ,
+`qun_sort_id`,
+`type` ,
+`openid` ,
 `nickname` ,
+`figureurl` ,
+`qq` ,
 `is_open` ,
 `is_locked` ,
 `await` ,
 `addtime`
 )
 VALUES (
-'1',  'qq',  '',  'auth_nickname',  'auth_figureurl',  '304327508',  'nickname',  '',  '',  '',  ''
+'1','2',  'qq',  '',  'auth_nickname',  'auth_figureurl',  '304327508','',  '',  '',  ''
 );
 
 --

@@ -21,7 +21,7 @@ class TeamModel extends CommonModel {
     	$limit=1;
     	$allinone['where']=$map;
     	$allinone['limit']=$limit;
-    	$allinone['field']="IF(creatuser.is_open=1,creatuser.nickname,creatuser.auth_nickname) creatusername";
+    	$allinone['field']="creatuser.nickname creatusername";
     	$allinone['join']=array(
     			C('DB_PREFIX')."user creatuser ON creatuser.id=team.creatuserid"
     		);
