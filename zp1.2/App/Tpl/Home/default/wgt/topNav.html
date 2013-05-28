@@ -1,0 +1,11 @@
+<nav class="wgt-topNav">
+	<li>
+    	<?php 
+        	if(session('xiami_userid')!='') echo '<a href="__APP__/user">'.session("xiami_username").'</a>';
+            else echo '<a href="__APP__/user">登录/注册</a>';
+        ?>
+	</li>
+	<li>
+		<a href="__APP__/pages/tools">工具箱</a>
+	</li>
+</nav>

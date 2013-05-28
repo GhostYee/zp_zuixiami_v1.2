@@ -67,7 +67,6 @@ thinkphp核心修改以下兼容DWZ
 
 前台启用以下,后台默认无设置
 
->'TMPL_FILE_DEPR'=>'_', //配置模板间隔
 >
 'URL_CASE_INSENSITIVE' =>true //URL大小写
 >

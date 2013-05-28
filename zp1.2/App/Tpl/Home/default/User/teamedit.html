@@ -18,7 +18,7 @@
           <li><a href="__APP__/user/works">作品管理</a></li>
           <li class="active"><a href="__APP__/user/team">团队管理</a></li>
           <li><a href="__APP__/user/message">评论管理</a></li>
-          <li><a href="__APP__/user/logout">退出</a></li>  
+          <li><a href="__APP__/login/logout">退出</a></li>  
         </ul>
       </div>
     </div>
@@ -26,12 +26,29 @@
       <div class="l-inner">
         <div class="l-header" >
           <div class="wgt-breadcrumb">
-            <a href="__APP__/">首页</a>/<a href="__APP__/user">用户中心</a>/<span>个人信息编辑</span>
+            <a href="__APP__/">首页</a>/<a href="__APP__/user">用户中心</a>/<span>团队管理</span>
           </div>          
           <include file="wgt:topNav"/>
         </div>
         <div class="l-b-row row-fluid">
-          <include file="wgt:userEdit"/>
+          <include file="wgt:userTeamEdit"/>
+          <div class="wgt-zp-opts span2">
+              <a href="zp-submit-1.html" class="btn-submitZP btn-default" >
+                <em>+</em>提交作品
+              </a>
+              <a href="__APP__/user/team" class="btn-default" >
+                返回团队列表
+              </a>
+              <a href="__APP__/user/teamMessage" class="btn-default" >
+                管理团队评论
+              </a>
+              <a href="__APP__/user/works/team/{$team[id]}" class="btn-default" >
+                管理团队作品
+              </a>  
+              <a href="__APP__/user/teamUserList" class="btn-default" >
+                管理团队成员
+              </a>            
+            </div>
         </div>
       </div>
     </div>
