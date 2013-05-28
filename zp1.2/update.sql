@@ -141,26 +141,6 @@ PRIMARY KEY (  `id` )
 ) ENGINE = MYISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 --
---  用户表xiami_user测试数据  by wewe
---
-INSERT INTO  `xiami_user` (
-`id` ,
-`qun_sort_id`,
-`type` ,
-`openid` ,
-`nickname` ,
-`figureurl` ,
-`qq` ,
-`is_open` ,
-`is_locked` ,
-`await` ,
-`addtime`
-)
-VALUES (
-'1','2',  'qq',  '',  'auth_nickname',  'auth_figureurl',  '304327508','',  '',  '',  ''
-);
-
---
 --  作品表增加用户ID userid  by wewe
 --
 ALTER TABLE  `xiami_works` ADD  `userid` INT NOT NULL COMMENT  '用户ID' AFTER  `id` ;
@@ -175,18 +155,16 @@ CREATE TABLE IF NOT EXISTS `xiami_team_user` (
   `userid` int(11) NOT NULL COMMENT '用户ID关联user表',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='团队成员表';
+--
+--  新团队成员表测试数据  by wewe
+--
+INSERT INTO `xiami_team_user` (`id`, `teamid`, `userid`) VALUES (NULL, '8', '1');
 
 --
 --  新团队成员表测试数据  by wewe
 --
-INSERT INTO  `xiami_team_user` (
-`id` ,
-`teamid` ,
-`userid`
-)
-VALUES (
-NULL ,  '8',  '1'
-);
+INSERT INTO `xiami_user` (`id`, `qun_sort_id`, `type`, `openid`, `nickname`, `figureurl`, `qq`, `userurl`, `notice`, `is_open`, `is_locked`, `await`, `hits`, `addtime`) VALUES
+(1, 2, 'qq', 0, 'auth_nickname', 'auth_figureurl', '304327508', 'http://userurl123', 'notice123', 0, 0, 0, 0, 0);
 
 --
 --  团队表增加团队地址，团队头像,团队介绍,创建人  by wewe
