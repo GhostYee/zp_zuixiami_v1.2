@@ -5,6 +5,7 @@ body{background-color:#fff;}
 body,input,button,textarea{ font-family:Microsoft YaHei,"微软雅黑",Arial, Helvetica, sans-serif;font-size:14px;}
 blockquote{text-indent: 0;margin-bottom: 5px;}
 form{margin: 0;padding: 0;}
+.row-fluid .span10{margin-left: 0;}
 
 /*** 1= tools
 ****************************************/
@@ -130,11 +131,7 @@ form{margin: 0;padding: 0;}
 .wgt-zpRankList ul li blockquote{height:36px;overflow: hidden;display: none;color:#999;padding:5px 0 0;border:0;margin: 0;text-indent:2em }
 .wgt-zpRankList ul li blockquote a{color:#999;}
 .wgt-zpRankList ul li blockquote a:hover{text-decoration: none;color:#29a8e1;}
-.wgt-zpRankList ul:hover li:first-child blockquote{display: none;}
-.wgt-zpRankList ul li:first-child blockquote,
-.wgt-zpRankList ul li.active blockquote,
-.wgt-zpRankList ul li:hover blockquote,
-.wgt-zpRankList ul:hover li:first-child:hover blockquote{display: block;}
+.wgt-zpRankList ul li:first-child blockquote{display: block;}
 .wgt-zpRankList ul li em{display: inline-block; font-style: normal;width:18px;height:18px;line-height: 18px;color:#fff;text-align: center;vertical-align: top;margin-right: 3px;}
 .wgt-zpRankList ul li.rank-1 em{background-color: #e65100}
 .wgt-zpRankList ul li.rank-2 em{background-color: #e65100}
@@ -391,15 +388,17 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-submitFrom .imgRemove {color:#FFF}
 .wgt-submitFrom .span3{width:185px}
 .wgt-submitFrom .controls{position:relative;}
-.wgt-submitFrom.form-horizontal .form-actions{padding-left: 200px;}
-.wgt-submitFrom .form-actions .btn-default{padding:0 10px;margin-right: 5px;}
+.wgt-submitFrom.form-horizontal .form-actions{padding-left: 190px;}
+.wgt-submitFrom .form-actions .btn-default{padding:0 10px;margin-right: 5px;border:0;}
 .wgt-submitFrom .input-xlarge{width:403px;}
 .wgt-submitFrom select{border-radius: 0;width:417px;}
 .wgt-submitFrom .input-prepend .add-on:first-child{border-radius: 0}
 .wgt-submitFrom .input-prepend {margin-bottom: 0;}
 .wgt-submitFrom .tip-ok{text-align: center;padding:20px;font-size:18px;min-height: 200px;line-height: 200px}
 .wgt-submitFrom .help-block{color:#999;}
-.wgt-submitFrom .labelInfo{font-size:14px;padding:5px 0 0;line-height: 20px;margin: 0;}
+.wgt-submitFrom .labelInfo{font-size:12px;padding:5px 0 0;line-height: 22px;margin: 0;color:#ccc;}
+.wgt-submitFrom .labelInfo strong{font-size:16px;font-weight: 400}
+.wgt-submitFrom .labelInfo span{color:#999;margin:0 5px;}
 
 .span10 .wgt-submitFrom.form-horizontal .control-label{width:110px;}
 .span10 .wgt-submitFrom.form-horizontal .controls{margin-left: 120px;}

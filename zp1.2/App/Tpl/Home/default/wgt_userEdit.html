@@ -2,6 +2,27 @@
 			<form method="post" action="__APP__/user/update" enctype="multipart/form-data" >
             <fieldset class="wgt-submitFrom  form-horizontal">
             <legend class="page-title" >个人信息编辑</legend>
+             <div class="control-group">
+              <label class="control-label">统计信息：</label>
+              <div class="controls">                
+                <p class="labelInfo" >
+                  <span>
+                    上传 <a href="#"><strong>{$userinfo['total_all_user_works']}</strong></a> 件作品；
+                  </span>
+                  / 
+                  <span>
+                    审核通过 <a href="#"><strong>{$userinfo['total_user_works']}</strong></a> 件；
+                  </span>
+                  <span>
+                    加入 <a href="#"><strong>{$userinfo['total_user_team']}</strong></a> 个团队;
+                  </span>
+                  /
+                  <span>
+                    参加 <a href="#"><strong>{$userinfo['total_user_works_special']}</strong></a> 个专题;
+                  </span>
+                </p>
+              </div>
+            </div> 
             <div class="control-group">
               <label class="control-label">QQ号码：</label>
               <div class="controls">
@@ -41,17 +62,7 @@
               </div>
             </div>
 
-            <div class="control-group">
-              <label class="control-label">其他信息：</label>
-              <div class="controls">                
-                <p class="labelInfo" >
-                  上传 <a href="#"><strong>{$userinfo['total_all_user_works']}</strong></a> 件作品；<br/>
-                  审核通过 <a href="#"><strong>{$userinfo['total_user_works']}</strong></a> 件；<br/>
-                  加入 <a href="#"><strong>{$userinfo['total_user_team']}</strong></a> 个团队;<br/>
-                  参加 <a href="#"><strong>{$userinfo['total_user_works_special']}</strong></a> 个专题;<br/>
-                </p>
-              </div>
-            </div> 
+           
             <div class="control-group">
               <label class="control-label">自我简介：</label>
               <div class="controls">
