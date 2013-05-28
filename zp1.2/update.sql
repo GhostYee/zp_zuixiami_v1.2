@@ -53,15 +53,6 @@ CREATE TABLE IF NOT EXISTS `xiami_team` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='团队表' AUTO_INCREMENT=12 ;
 
---
--- 导出表中的数据 `xiami_team`
---
-
-INSERT INTO `xiami_team` VALUES (8, '团队1', 1368927890);
-INSERT INTO `xiami_team` VALUES (9, '团队2', 1368927897);
-INSERT INTO `xiami_team` VALUES (10, '团队3', 1368927908);
-INSERT INTO `xiami_team` VALUES (11, '团队4', 1368956179);
-
 -- --------------------------------------------------------
 
 --
@@ -204,6 +195,17 @@ ALTER TABLE  `xiami_team` ADD  `teamimg` VARCHAR( 200 ) NOT NULL COMMENT  '团�
 ALTER TABLE  `xiami_team` ADD  `teamurl` VARCHAR( 200 ) NOT NULL COMMENT  '团队地址' AFTER  `teamimg` ;
 ALTER TABLE  `xiami_team` ADD  `notice` VARCHAR( 255 ) NOT NULL COMMENT  '团队介绍' AFTER  `teamurl` ;
 ALTER TABLE  `xiami_team` ADD  `creatuserid` INT NOT NULL COMMENT  '创建人' AFTER  `notice` ;
+
+--
+-- 导出表中的数据 `xiami_team`
+--
+
+INSERT INTO `xiami_team` (`id`, `teamname`, `teamimg`, `teamurl`, `notice`, `creatuserid`, `creatime`) VALUES
+(8, '团队1', 'teamimg', 'http://www.baidu.com', 'notice', 1, 1368927890),
+(9, '团队2', 'teamimg', 'http://www.baidu.com', 'notice', 1, 1368927897),
+(10, '团队3', '', '', '', 0, 1368927908),
+(11, '团队4', '', '', '', 0, 1368956179);
+
 --
 --  团队表测试数据 by wewe
 --
