@@ -179,14 +179,8 @@ CREATE TABLE IF NOT EXISTS `xiami_team_user` (
 --
 --  新团队成员表测试数据  by wewe
 --
-INSERT INTO  `xiami_team_user` (
-`id` ,
-`teamid` ,
-`userid`
-)
-VALUES (
-NULL ,  '8',  '1'
-);
+INSERT INTO `xiami_user` (`id`, `qun_sort_id`, `type`, `openid`, `nickname`, `figureurl`, `qq`, `userurl`, `notice`, `is_open`, `is_locked`, `await`, `hits`, `addtime`) VALUES
+(1, 2, 'qq', 0, 'auth_nickname', 'auth_figureurl', '304327508', 'http://userurl123', 'notice123', 0, 0, 0, 0, 0);
 
 --
 --  团队表增加团队地址，团队头像,团队介绍,创建人  by wewe

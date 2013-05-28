@@ -77,11 +77,41 @@ class UserAction extends CommonAction {
     		$this->success ('保存成功！');
     	} else {
     		//失败提示
-    		$this->error ( $user_model->getError () );
-    		//$this->error ('提交失败！请重试!');
+    		$this->error ('提交失败！请重试!');
     	}
     	
     }
+    // ------------------------------------------------------------------------
+    /**
+     * 用户信息解除绑定
+     *
+     * @access  public
+     * @return  void
+     */
+    public function unbind(){
+    	//判断是否登陆
+    	$this->_check_login();
+    	$userid=session("xiami_userid");
+    	
+    	$user['id']=$userid;
+    	$user['is_open']=1;
+    	
+    	$user_model=D("User");
+
+    	if (false === $user_model->create ($user)) {
+    		$this->error ( $user_model->getError () );
+    	}
+    	$list=$user_model->save ($user);
+    	 
+    	if ($list!==false) { //保存成功
+    		$this->success ('解除绑定成功！');
+    	} else {
+    		//失败提示
+    		$this->error ('提交失败！请重试!');
+    	}
+    	
+    }
+    
     // ------------------------------------------------------------------------
     /**
      * 用户作品列表

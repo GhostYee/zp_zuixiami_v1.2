@@ -32,8 +32,10 @@
             <div class="control-group">
               <label class="control-label">昵称：</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" name="nickname" id="nickname" value="{$userinfo['nickname']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>> 
-                <span class="help-block" >默认显示绑定QQ的昵称；<a href="#">解除绑定</a></span>          
+                <input type="text" class="input-xlarge" name="nickname" id="nickname" value="{$userinfo['nickname']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>>
+                <if condition="$userinfo['is_open'] eq '0'">
+                <span class="help-block" >默认显示绑定QQ的昵称；<a href="__APP__/user/unbind">解除绑定</a></span>
+                </if>         
               </div>
             </div>
             
