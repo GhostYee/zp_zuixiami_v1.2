@@ -31,10 +31,11 @@ return array(
 		'/^team\/user\/time\/(\d+)$/'       => 'team/user?id=:1&sort=time',
 		'/^team\/user\/hits\/(\d+)$/'       => 'team/user?id=:1&sort=hits',
 		'/^team\/user\/await\/(\d+)$/'      => 'team/user?id=:1&sort=await',
-		//作者作品列表
-		'/^user\/workslist\/nochecked$/'     => 'user/workslist?status=1',
-		'/^user\/workslist\/checkedn$/'      => 'user/workslist?status=3',
-		'/^user\/workslist$/'        		=> 'user/workslist?status=2',
+		//用户中心
+		'/^user\/team\/time$/'     => 'user/team?sort=time',
+		'/^user\/team\/works$/'      => 'user/team?sort=works',
+		'/^user\/team\/user$/'      => 'user/team?sort=user',
+		
 	),
 );
 ?>

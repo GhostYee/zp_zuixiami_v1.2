@@ -7,18 +7,18 @@
               <div class="controls">                
                 <p class="labelInfo" >
                   <span>
-                    上传 <a href="#"><strong>{$userinfo['total_all_user_works']}</strong></a> 件作品；
+                    上传 <a href="__APP__/user/works"><strong>{$userinfo['total_all_user_works']}</strong></a> 件作品；
                   </span>
                   / 
                   <span>
-                    审核通过 <a href="#"><strong>{$userinfo['total_user_works']}</strong></a> 件；
+                    审核通过 <a href="__APP__/user/works"><strong>{$userinfo['total_user_works']}</strong></a> 件；
                   </span>
                   <span>
-                    加入 <a href="#"><strong>{$userinfo['total_user_team']}</strong></a> 个团队;
+                    加入 <a href="__APP__/user/team"><strong>{$userinfo['total_user_team']}</strong></a> 个团队;
                   </span>
                   /
                   <span>
-                    参加 <a href="#"><strong>{$userinfo['total_user_works_special']}</strong></a> 个专题;
+                    参加 <a href="__APP__/user/works_special"><strong>{$userinfo['total_user_works_special']}</strong></a> 个专题;
                   </span>
                 </p>
               </div>
@@ -32,8 +32,10 @@
             <div class="control-group">
               <label class="control-label">昵称：</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" name="nickname" id="nickname" value="{$userinfo['nickname']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>> 
-                <span class="help-block" >默认显示绑定QQ的昵称；<a href="#">解除绑定</a></span>          
+                <input type="text" class="input-xlarge" name="nickname" id="nickname" value="{$userinfo['nickname']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>>
+                <if condition="$userinfo['is_open'] eq '0'">
+                <span class="help-block" >默认显示绑定QQ的昵称；<a href="__APP__/user/unbind">解除绑定</a></span>
+                </if>         
               </div>
             </div>
             

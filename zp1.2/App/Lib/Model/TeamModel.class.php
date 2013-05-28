@@ -43,9 +43,8 @@ class TeamModel extends CommonModel {
      * @param int/string $user_id
      * @return  array/false
      */
-    public function getTeamListByUserID($user_id){
+    public function getTeamListByUserID($user_id,$orderby='team.id desc'){
     	$map['user.id']=$user_id;
-    	$orderby="team.id desc";
     	    	
 		$allinone['where']=$map;
     	$allinone['order']=$orderby;
