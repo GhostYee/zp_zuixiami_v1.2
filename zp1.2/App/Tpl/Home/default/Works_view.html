@@ -8,14 +8,20 @@
   <div class="l-b-row ta-c">
     <div class="l-b-col l-side">
       <div class="box-shadow">
-        <include file="wgt:logo"/>        
+        <include file="wgt:logo"/>
       </div>
       <include file="wgt:userInfoBase" />
       <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
-          <li><a href="__APP__/author/{$works['userid']}">Ta的作品集</a></li>
-          <li><a href="__APP__/author/team/{$works['userid']}">Ta的团队</a></li>
-          <li><a href="__APP__/author/messsage/{$works['userid']}">给Ta的留言</a></li>
+          <li>
+            <a href="__APP__/author/{$works['userid']}">Ta的作品集</a>
+          </li>
+          <li>
+            <a href="__APP__/author/team/{$works['userid']}">Ta的团队</a>
+          </li>
+          <li>
+            <a href="__APP__/author/messsage/{$works['userid']}">给Ta的留言</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -32,62 +38,68 @@
           <include file="wgt:topNav"/>
         </div>
         <div class="l-b-row row-fluid">
-              <div class="wgt-detail box-shadow span10">
-                <h2>{$works['name']}</h2>
-                <span class="wgt-star star-{$works['star']}"> <b></b> <b></b>
-                  <b></b>
-                  <b></b>
-                  <b></b>
-                  <b></b>
-                  <b></b>
-                  <b></b>
-                  <b></b>
-                  <b></b>
-                </span>
-                <div class="wgt-tags">
-                  <ul>
-                    <foreach name="works_tag" item="val">
-                    <li>
-                      <a href="__APP__/index/tag/tagid/{$val['id']}">{$val['tagname']}</a>
-                    </li>
-                    </foreach>
-                  </ul>
-                </div>
-                <div class="pic">
-                  <img src="../Public/images/2012022922332451.jpg" alt=""></div>
-                <div class="intr">
-                  <blockquote> <em class="dqm">“</em>
-                    {$works['description']}
-                  </blockquote>
-                </div>
-                <div class="info">
-                  <p>
-                    演示地址：
-                    <a href="{$works['demourl']}" target="_blank">{$works['demourl']}</a>
-                  </p>
-                  <if condition="$works['openurl'] neq ''">
-                  <p>
-                    开源地址：
-                    <a href="{$works['openurl']}" target="_blank">{$works['openurl']}</a>
-                  </p>
-                  </if>
-                  <foreach name="works_special" item="val">
-                  <p>
-                    参加专题：
-                    <a href="__APP__/works_special/{$val[id]}">{$val[qishu]}：{$val[title]}</a>
-                  </p>
-                  </foreach>
-                  <p class="pubtime">发表于：{$works['checktime']|inttodate_han}</p>
-                </div>
-              </div>
-              <div class="wgt-zp-opts span2">
-                <a href="javascript:void(0)" onClick="do_good_await('Works','good',{$works['id']})" class="btn-default">赞(<span id="do_good_{$works['id']}">{$works['good']}</span>})</a>
-                <a href="#gomessage" class="btn-default">评论/评星</a>
-                <a href="{$works['demourl']}" target="_blank" class="btn-default">查看源地址</a>
-              </div>
-              <a id="gomessage"></a>
-              <include file="wgt:message" />
+          <div class="wgt-detail box-shadow span10">
+            <h2>{$works['name']}</h2>
+            <span class="wgt-star star-{$works['star']}"> <b></b> <b></b>
+              <b></b>
+              <b></b>
+              <b></b>
+              <b></b>
+              <b></b>
+              <b></b>
+              <b></b>
+              <b></b>
+            </span>
+            <div class="wgt-tags">
+              <ul>
+                <foreach name="works_tag" item="val">
+                  <li>
+                    <a href="__APP__/index/tag/tagid/{$val['id']}">{$val['tagname']}</a>
+                  </li>
+                </foreach>
+              </ul>
             </div>
+            <div class="pic">
+              <img src="../Public/images/2012022922332451.jpg" alt=""></div>
+            <div class="intr">
+              <blockquote> <em class="dqm">“</em>
+                {$works['description']}
+              </blockquote>
+            </div>
+            <div class="info">
+              <p>
+                演示地址：
+                <a href="{$works['demourl']}" target="_blank">{$works['demourl']}</a>
+              </p>
+              <if condition="$works['openurl'] neq ''">
+                <p>
+                  开源地址：
+                  <a href="{$works['openurl']}" target="_blank">{$works['openurl']}</a>
+                </p>
+              </if>
+              <foreach name="works_special" item="val">
+                <p>
+                  参加专题：
+                  <a href="__APP__/works_special/{$val[id]}">{$val[qishu]}：{$val[title]}</a>
+                </p>
+              </foreach>
+              <p class="pubtime">发表于：{$works['checktime']|inttodate_han}</p>
+            </div>
+          </div>
+          <div class="wgt-zp-opts span2">
+            <a href="javascript:void(0)" onClick="do_good_await('Works','good',{$works['id']})" class="btn-default">
+              赞(
+              <span id="do_good_{$works['id']}">{$works['good']}</span>
+              )
+            </a>
+            <a href="#gomessage" class="btn-default">评论/评星</a>
+            <a href="{$works['demourl']}" target="_blank" class="btn-default">查看源地址</a>
+          </div>
+          <a id="gomessage"></a>
+          <div class="box-shadow span10">
+            <include file="wgt:message" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
