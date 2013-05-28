@@ -177,6 +177,32 @@ class WorksModel extends CommonModel {
 		
 		return $works;
 	}
-	
+	/**
+	 * 根据用户ID取得单用户作品总数
+	 *
+	 * @access  public
+	 * @param int $userid
+	 * @param int $works_status 作品状态
+	 * @return  array
+	 */
+	public function getTotalWorksByUserID($userid,$works_status=''){
+		$where['user.id']=$userid;
+		if($works_status) $where['works.status']=$works_status;
+		
+		$this->table($this->getTableName().' '.$this->getSmallTableName());
+		$this->where($where);
+		$this->field("count(*) total");
+		$this->join(C('DB_PREFIX')."user user on user.id=works.userid");
+		$data=$this->select();
+		
+		if($this->getDbError()){
+			echo $this->getLastSql()."<br><br>";
+			echo $this->getDbError()."<br>";
+		}
+		if(!empty($data)){
+			return $data['0']['total'];
+		}
+		return false;
+	}	
 }
 ?>

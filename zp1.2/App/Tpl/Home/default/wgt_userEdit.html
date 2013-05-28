@@ -1,22 +1,43 @@
-<div class="wgt-uc-info box-shadow">            
+<div class="wgt-uc-info box-shadow">
+			<form method="post" action="__APP__/user/update" enctype="multipart/form-data" >
             <fieldset class="wgt-submitFrom  form-horizontal">
-            <legend class="page-title" >个人信息编辑</legend>  
+            <legend class="page-title" >个人信息编辑</legend>
+            <div class="control-group">
+              <label class="control-label">QQ号码：</label>
+              <div class="controls">
+                <input type="text" class="input-xlarge" readonly="readonly" name="qq" id="qq" value="{$userinfo['qq']}">        
+              </div>
+            </div>
             <div class="control-group">
               <label class="control-label">昵称：</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" value=""> 
+                <input type="text" class="input-xlarge" name="nickname" id="nickname" value="{$userinfo['nickname']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>> 
                 <span class="help-block" >默认显示绑定QQ的昵称；<a href="#">解除绑定</a></span>          
               </div>
             </div>
-
+            
+            <div class="control-group">
+              <label class="control-label">头像：</label>
+              <div class="controls">
+                <input type="text" class="input-xlarge" name="figureurl" id="figureurl" value="{$userinfo['figureurl']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>>      
+              </div>
+            </div>
+			<if condition="$userinfo['qun_sort_id'] neq '0'">
             <div class="control-group">
               <label class="control-label">所属群：</label>
               <div class="controls">
-                <select name="" id=""  >
-                  <option value="">成长群</option>
-                  <option value="">高级群</option>
+                <select name="qun_sort_id" id="qun_sort_id" >
+                  <option value="1" <if condition="$userinfo['qun_sort_id'] eq '1'">selected="selected"</if>>成长群</option>
+                  <option value="2" <if condition="$userinfo['qun_sort_id'] eq '2'">selected="selected"</if>>高级群</option>
                 </select> 
                 <span class="help-block" >周期性更新，群员归属</span>
+              </div>
+            </div>
+			</if>
+            <div class="control-group">
+              <label class="control-label">BLOG：</label>
+              <div class="controls">
+                <input type="text" class="input-xlarge" name="userurl" id="userurl" value="{$userinfo['userurl']}">         
               </div>
             </div>
 
@@ -24,21 +45,23 @@
               <label class="control-label">其他信息：</label>
               <div class="controls">                
                 <p class="labelInfo" >
-                  上传 <a href="#"><strong>1111</strong></a> 件作品；<br/>
-                  审核通过 <a href="#"><strong>122</strong></a> 件；<br/>
-                  加入 <a href="#"><strong>3</strong></a> 个团队;<br/>
-                  参加 <a href="#"><strong>3</strong></a> 个专题;<br/>
+                  上传 <a href="#"><strong>{$userinfo['total_all_user_works']}</strong></a> 件作品；<br/>
+                  审核通过 <a href="#"><strong>{$userinfo['total_user_works']}</strong></a> 件；<br/>
+                  加入 <a href="#"><strong>{$userinfo['total_user_team']}</strong></a> 个团队;<br/>
+                  参加 <a href="#"><strong>{$userinfo['total_user_works_special']}</strong></a> 个专题;<br/>
                 </p>
               </div>
             </div> 
             <div class="control-group">
               <label class="control-label">自我简介：</label>
               <div class="controls">
-                <textarea name="description" class="input-xlarge" rows="3"></textarea>
+                <textarea name="notice" id="notice" class="input-xlarge" rows="3">{$userinfo['notice']}</textarea>
               </div>
             </div>
-            <div class="form-actions">              
-              <a href="#" class="btn-default" >保存</a>              
+            <div class="form-actions">
+              <input type="submit"  class="btn-default" value="保存"  />   
+              <!--<a href="#" class="btn-default" >保存</a>-->         
             </div>
             </fieldset>
+            </form>
           </div>

@@ -12,12 +12,15 @@ class UserModel extends CommonModel {
 	 * @param int/string $id
 	 * @return  array/false
 	 */
-	public function getUserByID($id){
+	public function getUserByID($id,$allinone){
 		$map['user.id']=$id;
 		$limit=1;
-		$allinone['where']=$map;
-		$allinone['limit']=$limit;
-		$data=$this->getUserList($allinone);
+		$all['where']=$map;
+		$all['limit']=$limit;
+		if($allinone){
+			$all=array_merge($all,$allinone);
+		}
+		$data=$this->getUserList($all);
 		if($this->getDbError()){
 			echo $this->getLastSql()."<br><br>";
 			echo $this->getDbError()."<br>";
@@ -156,7 +159,7 @@ class UserModel extends CommonModel {
 	
 		//查询字段
 		$this->field("user.*,qun_sort.name qunname,"
-				."(SELECT count(*) FROM ".C('DB_PREFIX')."works works WHERE works.userid=user.id) total_user_works"
+				."(SELECT count(*) FROM ".C('DB_PREFIX')."works works WHERE works.userid=user.id and works.status=2) total_user_works"
 				.$field);
 		//join
 		$this->join($join);

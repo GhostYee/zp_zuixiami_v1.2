@@ -15,8 +15,18 @@ class UserAction extends CommonAction {
     	
     	//用户信息
     	$user_model=D("User");
-    	$userinfo=$user_model->getUserByID();
+    	$userinfo=$user_model->getUserByID($userid); 	
+    	//全部作品统计
+    	$works_model=D("Works");
+    	$userinfo['total_all_user_works']=$works_model->getTotalWorksByUserID($userid);
+    	//团队统计
+    	$team_model=D("Team_user");
+    	$userinfo['total_user_team']=$team_model->getTotalTeamByUserID($userid);
+    	//专题统计
+    	$works_special_mid_model=D("Works_special_mid");
+    	$userinfo['total_user_works_special']=$works_special_mid_model->getTotalWorksSpecialByUserID($userid);
     	
+    	$this->assign('userinfo',$userinfo);
     	
     	//替换模板SEO的值
     	$seo['title']='用户中心'.'--'.CFG('cfg_webname');;
@@ -25,6 +35,52 @@ class UserAction extends CommonAction {
     	$this->assign('seo',$seo);
     	
     	$this->display();
+    }
+    // ------------------------------------------------------------------------
+    /**
+     * 更新用户信息
+     *
+     * @access  public
+     * @return  void
+     */
+    public function update(){
+    	//判断是否登陆
+    	$this->_check_login();
+    	$userid=session("xiami_userid");
+    	
+    	$user=array(
+    			'id'=>$userid,
+    			'nickname'=>$this->_post('nickname'),
+    			'figureurl'=>$this->_post('figureurl'),
+    			'userurl'=>$this->_post('userurl'),
+    			'notice'=>$this->_post('notice'),
+    	);
+    	
+    	//用户信息
+    	$user_model=D("User");
+    	$userinfo=$user_model->getUserByID($userid);
+    	
+    	//处理用户地址
+    	$user['userurl']=prep_url(trim($user['userurl']));
+    	$user['userurl']=str_replace(array(' ','　'),array('',''),$user['userurl']);
+    	
+    	if (false === $user_model->create ($user)) {
+    		$this->error ( $user_model->getError () );
+    	}
+    	if(empty($userinfo['is_open'])){
+    		unset($user['nickname']);
+    		unset($user['figureurl']);
+    	}
+    	$list=$user_model->save ($user);
+    	
+    	if ($list!==false) { //保存成功
+    		$this->success ('保存成功！');
+    	} else {
+    		//失败提示
+    		$this->error ( $user_model->getError () );
+    		//$this->error ('提交失败！请重试!');
+    	}
+    	
     }
     // ------------------------------------------------------------------------
     /**
