@@ -9,17 +9,113 @@ class UserAction extends CommonAction {
 	 * @return  void
 	 */
     public function index(){
-    	//跳转
-    	$this->redirect('user/workslist');
+    	//判断是否登陆
+    	$this->_check_login();
+    	$userid=session("xiami_userid");
+    	
+    	//用户信息
+    	$user_model=D("User");
+    	$userinfo=$user_model->getUserByID($userid); 	
+    	//全部作品统计
+    	$works_model=D("Works");
+    	$userinfo['total_all_user_works']=$works_model->getTotalWorksByUserID($userid);
+    	//团队统计
+    	$team_model=D("Team_user");
+    	$userinfo['total_user_team']=$team_model->getTotalTeamByUserID($userid);
+    	//专题统计
+    	$works_special_mid_model=D("Works_special_mid");
+    	$userinfo['total_user_works_special']=$works_special_mid_model->getTotalWorksSpecialByUserID($userid);
+    	
+    	$this->assign('userinfo',$userinfo);
     	
     	//替换模板SEO的值
-    	$seo['title']='最蝦米*鬼懿IT*作品秀';
+    	$seo['title']='用户中心'.'--'.CFG('cfg_webname');;
     	$seo['keywords']=C("CFG_SEO_KEYWORDS");
     	$seo['description']=C("CFG_SEO_DESCRIPTION");
     	$this->assign('seo',$seo);
     	
     	$this->display();
     }
+    // ------------------------------------------------------------------------
+    /**
+     * 更新用户信息
+     *
+     * @access  public
+     * @return  void
+     */
+    public function update(){
+    	//判断是否登陆
+    	$this->_check_login();
+    	$userid=session("xiami_userid");
+    	
+    	$user=array(
+    			'id'=>$userid,
+    			'nickname'=>$this->_post('nickname'),
+    			'figureurl'=>$this->_post('figureurl'),
+    			'userurl'=>$this->_post('userurl'),
+    			'notice'=>$this->_post('notice'),
+    	);
+    	
+    	//用户信息
+    	$user_model=D("User");
+    	$userinfo=$user_model->getUserByID($userid);
+    	
+    	//处理用户地址
+    	$user['userurl']=prep_url(trim($user['userurl']));
+    	$user['userurl']=str_replace(array(' ','　'),array('',''),$user['userurl']);
+    	
+    	if (false === $user_model->create ($user)) {
+    		$this->error ( $user_model->getError () );
+    	}
+    	if(empty($userinfo['is_open'])){
+    		unset($user['nickname']);
+    		unset($user['figureurl']);
+    	}
+    	$list=$user_model->save ($user);
+    	
+    	if ($list!==false) { //保存成功
+    		$this->success ('保存成功！');
+    	} else {
+    		//失败提示
+    		$this->error ( $user_model->getError () );
+    		//$this->error ('提交失败！请重试!');
+    	}
+    	
+    }
+    // ------------------------------------------------------------------------
+    /**
+     * 用户作品列表
+     *
+     * @access  public
+     * @return  void
+     */
+    public function works(){
+    	
+    	$this->display();
+    }
+    // ------------------------------------------------------------------------
+    /**
+     * 用户团队列表
+     *
+     * @access  public
+     * @return  void
+     */
+    public function team(){
+    	 
+    	$this->display();
+    }
+    // ------------------------------------------------------------------------
+    /**
+     * 用户留言列表
+     *
+     * @access  public
+     * @return  void
+     */
+    public function message(){
+    	 
+    	$this->display();
+    }
+    
     // ------------------------------------------------------------------------
     /**
      * 用户作品列表管理
@@ -34,7 +130,7 @@ class UserAction extends CommonAction {
     	 
     	//判断是否登陆
     	$this->_check_login();
-    	$id=session('we_userid');
+    	$id=session('xiami_userid');
     	 
     	//取得用户信息
     	$qun_member_model=M('qun_member');
@@ -159,7 +255,7 @@ class UserAction extends CommonAction {
     function worksdelete(){
     	$this->_check_login();
     	$id=$_REQUEST['id'];
-    	$userid=session('we_userid');
+    	$userid=session('xiami_userid');
     
     	$status_lang['1']='等待审核';
     	$status_lang['2']='通过审核';
@@ -200,6 +296,7 @@ class UserAction extends CommonAction {
 		$fromurl=$this->_get('fromurl');
 		$this->assign('fromurl',$fromurl);
 		
+		session('xiami_userid',1);
 		//替换模板SEO的值
 		$seo['title']='最蝦米*鬼懿IT*作品秀';
 		$seo['keywords']=C("CFG_SEO_KEYWORDS");
@@ -224,7 +321,7 @@ class UserAction extends CommonAction {
 		$map['qq']=$username;
 		$qun_member=$model->where($map)->find();
 		if($qun_member){
-			session('we_userid',$qun_member['id']);
+			session('xiami_userid',$qun_member['id']);
 			session('we_username',$username);
 			//存cookie一年
 			cookie("zuixiami_works_qq",$username,3600*24*365);
