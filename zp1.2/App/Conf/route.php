@@ -30,12 +30,7 @@ return array(
 		'/^team\/user\/(\d+)$/'             => 'team/user?id=:1',
 		'/^team\/user\/time\/(\d+)$/'       => 'team/user?id=:1&sort=time',
 		'/^team\/user\/hits\/(\d+)$/'       => 'team/user?id=:1&sort=hits',
-		'/^team\/user\/await\/(\d+)$/'      => 'team/user?id=:1&sort=await',
-		//用户中心
-		'/^user\/team\/time$/'     => 'user/team?sort=time',
-		'/^user\/team\/works$/'      => 'user/team?sort=works',
-		'/^user\/team\/user$/'      => 'user/team?sort=user',
-		
+		'/^team\/user\/await\/(\d+)$/'      => 'team/user?id=:1&sort=await',		
 	),
 );
 ?>
