@@ -1,0 +1,35 @@
+<div class="wgt-team">
+  <h2 class="page-title">团队列表</h2>
+  <div class="team-list">
+    <ul class="media-list">
+      <foreach name="teamlist" item="val">
+      <li class="media">
+        <a class="pull-left" href="__APP__/team/{$val['id']}">
+          <img class="media-object" data-src="holder.js/100x100" alt="100x100" style="width: 100px; height: 100px;" src="{$val['teamimg']}"></a>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <a href="__APP__/team/{$val['id']}">{$val['teamname']}</a>
+          </h4>
+          <if condition="$val['teamurl'] neq ''">
+          <p>
+            团队网站：
+            <a href="{$val['teamurl']}" target="_blank">{$val['teamurl']}</a>
+          </p>
+          </if>
+          <p>
+            团队成员：
+            <a href="__APP__/team/user/{$val['id']}">{$val['total_team_user']}</a>
+            <span class="division">|</span>
+            团队作品：
+            <a href="__APP__/team/{$val['id']}">{$val['total_team_works']}</a>
+          </p>
+          <p class="opts">
+            <a href="__APP__/team/{$val['id']}" class="btn-default">查看作品</a>
+          </p>
+          <blockquote>{$val['notice']}</blockquote>
+        </div>
+      </li>  
+      </foreach>    
+    </ul>
+  </div>
+</div>

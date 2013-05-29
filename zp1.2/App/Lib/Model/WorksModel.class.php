@@ -30,6 +30,22 @@ class WorksModel extends CommonModel {
 		}
 		return false;
 	}
+	/**
+	 * 根据团队ID取得作品列表
+	 *
+	 * @access  public
+	 * @param int $team_id
+	 * @return  array
+	 */
+	public function getWorksListByTeamID($team_id,$allinone){
+		$where['team.id']=$team_id;
+		$all['where']=$where;
+		if($allinone){
+			$all=array_merge($all,$allinone);
+		}
+		$works  = $this->getWorksList($all);
+		return $works;
+	}
 	
 	/**
 	 * 根据TagID取得作品信息列表
@@ -145,8 +161,8 @@ class WorksModel extends CommonModel {
 		}
 		
 		//查询字段
-		$this->field("works.*,user.auth_figureurl auth_figureurl,user.await await,"
-				."IF(user.is_open=1,user.nickname,user.auth_nickname) nickname,IFNULL(works.author,nickname) author,"
+		$this->field("works.*,user.figureurl figureurl,user.await await,"
+				."user.nickname nickname,IFNULL(works.author,nickname) author,"
 				."works_sort.name sortname,qun_sort.name qunname,"
 				."ceil(works.rank_total/works.rank_count) as star,round(ceil(works.rank_total/works.rank_count)/10,1) rank "
 				.$field);
@@ -161,6 +177,32 @@ class WorksModel extends CommonModel {
 		
 		return $works;
 	}
-	
+	/**
+	 * 根据用户ID取得单用户作品总数
+	 *
+	 * @access  public
+	 * @param int $userid
+	 * @param int $works_status 作品状态
+	 * @return  array
+	 */
+	public function getTotalWorksByUserID($userid,$works_status=''){
+		$where['user.id']=$userid;
+		if($works_status) $where['works.status']=$works_status;
+		
+		$this->table($this->getTableName().' '.$this->getSmallTableName());
+		$this->where($where);
+		$this->field("count(*) total");
+		$this->join(C('DB_PREFIX')."user user on user.id=works.userid");
+		$data=$this->select();
+		
+		if($this->getDbError()){
+			echo $this->getLastSql()."<br><br>";
+			echo $this->getDbError()."<br>";
+		}
+		if(!empty($data)){
+			return $data['0']['total'];
+		}
+		return false;
+	}	
 }
 ?>

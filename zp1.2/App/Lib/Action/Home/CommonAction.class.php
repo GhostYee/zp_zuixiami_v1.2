@@ -62,10 +62,9 @@ class CommonAction extends Action {
 	 */
 	public function _check_login(){
 		$fromurl=__INFO__;
-		$we_username=session('we_username');
-		if(empty($we_username)){
-			//$this->error('请登录用户！',__APP__.'/user/login/?fromurl='.base64_encode($fromurl));
-			$this->redirect('user/login/?fromurl='.base64_encode($fromurl));
+		$xiami_userid=session('xiami_userid');
+		if(empty($xiami_userid)){
+			$this->redirect('login/index/?fromurl='.base64_encode($fromurl));
 		}
 	}
 	// ------------------------------------------------------------------------

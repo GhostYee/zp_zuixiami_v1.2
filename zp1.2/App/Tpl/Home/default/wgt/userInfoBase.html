@@ -1,0 +1,24 @@
+<div class="wgt-userInfo-base box-shadow">
+	<div class="inner">
+		<a href="__APP__/author/{$author['id']}" class="user-header">
+			<img src="{$author['figureurl']}" alt="{$author['nickname']}"></a>
+		<div class="con">
+			<p>
+				<a href="__APP__/author/{$author['id']}" class="user-name">{$author['nickname']}</a>
+			</p>
+			<p>
+				来自
+				<a href="#" class="user-qqGroup">[{$author['qunname']}]</a>
+			</p>
+			<p>
+				已经有
+				<a href="__APP__/author/{$author['id']}" class="user-zpNum">{$author['total_user_works']}</a>
+				件作品
+			</p>
+			<p>
+				<a href="javascript:void(0)" onClick="do_good_await('User','await',{$author['id']})" class="user-link-num"><span id="do_await_{$author['id']}">{$author['await']}</span></a>
+				人期待他新作
+			</p>
+		</div>
+	</div>
+</div>

@@ -54,7 +54,7 @@ class WorksSpecialAction extends CommonAction {
     			$orderby=" works.addtime DESC ";
     			break;
     		case 'good':
-    			$orderby=" works.addtime DESC ";
+    			$orderby=" works.good DESC ";
     			break;
     		case 'rank':
     			$orderby=" star DESC ";
@@ -76,7 +76,7 @@ class WorksSpecialAction extends CommonAction {
     	//总作品数
     	$works_total=count($works);
 
-		$this->assign('works',$works);
+		$this->assign('workslist',$works);
 		$this->assign('works_total',$works_total);
 		
 		//替换模板SEO的值

@@ -10,82 +10,107 @@ class AuthorAction extends CommonAction {
 	 */
     public function index()
     {
-    	$keywords=trim($_POST['keywords']);
-    	$keywords=!empty($keywords)?$keywords:'';
-    	$id=$_REQUEST['id'];
-    	$status=empty($_REQUEST['status'])?'2':$_REQUEST['status'];
+    	$userid=$this->_get('id')?intval($this->_get('id')):'0';
+    	$sort=$this->_get('sort')?$this->_get('sort'):'time';//排序
     	
-    	//取得用户信息
-    	$qun_member_model=M('qun_member');
-    	$qun_member=$qun_member_model->where("`id`='$id'")->find();
-    	
-		if($qun_member){
-	    	$works_model=D('works');
-	    	//状态
-	    	$where.=" AND w.`status`='$status' ";
-	    	
-	    	//作者
-	    	$where.=" AND qm.`id`='$qun_member[id]' ";
-	    	
-	    	if(!empty($keywords)){
-	    		//查找作品名,作者,描述
-	    		$where.=" AND (w.`name` like '%$keywords%' or w.`author` like '%$keywords%' or w.`description` like '%$keywords%'  or qs.`name`='$keywords')";
-	    	}
-	    	
-	    	//判断排序
-	    	$index_works_order=CFG('cfg_index_works_order');
-	    	
-	    	if($index_works_order){
-	    		$orderby=" ORDER BY $index_works_order ";
-	    	}
-	    	else{
-	    		//排序推荐 降序，推荐排序降序，ID 升序
-	    		$orderby=" ORDER BY w.is_top DESC,w.top_sid DESC,w.id DESC ";
-	    	}
-	    	
-			/*
-	    	//判断显示条数
-	    	$index_works_num=CFG('cfg_index_works_num');
-	    	if($index_works_num){
-	    		$limit=" limit $index_works_num ";
-	    	}
-			*/
-	    	// 取出需要的数据
-	    	$sql	= "SELECT w.*,IFNULL(author,qm.name) author,s.name sortname,qs.name qunname,qm.id author_id FROM ".C('DB_PREFIX')."works w ".
-	    			" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
-	    			" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
-	    			" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
-	    			" where 1 $where $orderby $limit";
-	    	$works	= $works_model->query($sql);
-	    	
-	    	$this->assign('works',$works);
-	    	$this->assign('keywords',$keywords);
-	    	$this->assign('status',$status);
-	    	$this->assign('id',$qun_member['id']);
-	    	$this->assign('author',$qun_member['id']);
-	    	$this->assign('qun_member',$qun_member);
-	    	
+    	//取得作者信息
+    	$user_model=D('User');
+    	$author=$user_model->getUserByID($userid);
+    	$this->assign('author',$author);
+    	if(empty($author)){
+    		$this->error('未找到此作者信息');
+    	}		
+    		
+    		//取得作品列表
+    		$works_model=D('Works');
+    		$where['user.id']=$userid;
+    		
+    		//判断排序
+    		switch($sort){
+    			case 'time':
+    				$orderby=" works.addtime DESC ";
+    				break;
+    			case 'good':
+    				$orderby=" works.good DESC ";
+    				break;
+    			case 'rank':
+    				$orderby=" star DESC ";
+    				break;
+    			default:
+    				$orderby=" works.good DESC ";
+    				break;
+    		}
+    		 
+    		// 取出需要的数据
+    		$allinone['where']=$where;
+    		$allinone['order']=$orderby;
+    		$workslist  = $works_model->getWorksList($allinone);
+    		$this->assign('workslist',$workslist);
+			
 	    	//替换模板SEO的值
-	    	$seo['title']='最蝦米*鬼懿IT*作品秀';
+	    	$seo['title']=$author['nickname'].'的作品列表'.'--'.CFG('cfg_webname');
 	    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
 	    	$seo['description']=C("CFG_SEO_DESCRIPTION");
 	    	$this->assign('seo',$seo);
 	    	
 	    	$this->display();
-		}
-		else{
-			$this->error('未找到此作者信息');
-		}
     }
     // ------------------------------------------------------------------------
-
+    /**
+     * 作者团队列表
+     *
+     * @access  public
+     * @return  void
+     */
     public function team()
     {
+    	$userid=$this->_get('id')?intval($this->_get('id')):'0';//取得用户ID
+    	//取得作者信息
+    	$user_model=D('User');
+    	$author=$user_model->getUserByID($userid);
+    	$this->assign('author',$author);
+    	
+    	if(empty($author)){
+    		$this->error('未找到此作者信息');
+    	}	
+    	
+    	//团队列表
+    	$team_model=D("Team");
+    	$teamlist=$team_model->getTeamListByUserID($userid);
+    	$this->assign('teamlist',$teamlist);
+    	
+    	//替换模板SEO的值
+    	$seo['title']=$author['nickname'].'的团队列表'.'--'.CFG('cfg_webname');
+    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
+    	$seo['description']=C("CFG_SEO_DESCRIPTION");
+    	$this->assign('seo',$seo);
+    	
     	$this->display();
     }
-
+    /**
+     * 作者留言列表
+     *
+     * @access  public
+     * @return  void
+     */
     public function message()
     {
+    	$userid=$this->_get('id')?intval($this->_get('id')):'0';//取得用户ID
+    	//取得作者信息
+    	$user_model=D('User');
+    	$author=$user_model->getUserByID($userid);
+    	$this->assign('author',$author);
+    	if(empty($author)){
+    		$this->error('未找到此作者信息');
+    	}	
+    	
+    	//替换模板SEO的值
+    	$seo['title']=$author['nickname'].'的留言列表'.'--'.CFG('cfg_webname');
+    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
+    	$seo['description']=C("CFG_SEO_DESCRIPTION");
+    	$this->assign('seo',$seo);
+    	
     	$this->display();
-    }
+    }    
+    // ------------------------------------------------------------------------
 }

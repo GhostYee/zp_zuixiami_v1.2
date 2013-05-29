@@ -1,0 +1,33 @@
+<div class="wgt-teamInfo-base box-shadow ">
+	<span class="state-make isTeam">团</span>
+	<div class="inner l-b-row">
+		<a href="__APP__/team/{$team['id']}" class="team-header">
+			<img src="{$team['teamimg']}" alt=""></a>
+		<div class="info-1">
+			<p>
+				<a href="__APP__/team/{$team['id']}">{$team['teamname']}</a>
+			</p>
+			<p>
+				成员：
+				<a href="__APP__/team/user/{$team['id']}">{$team['total_team_user']}</a>
+			</p>
+			<p>
+				作品：
+				<a href="__APP__/team/{$team['id']}">{$team['total_team_works']}</a>
+			</p>
+		</div>
+		<div class="info-2">
+			创建：
+			<a href="__APP__/author/{$team['creatuserid']}">{$team['creatusername']}</a>
+            <if condition="$team['teamurl'] neq ''">
+			<span class="division">|</span>
+			Blog：
+			<a href="{$team['teamurl']}" target="_blank">点击进入</a>
+            </if>
+            <if condition="$team['notice'] neq ''">
+			<span class="division">|</span>
+			简介：{$team['notice']}
+            </if>
+		</div>
+	</div>
+</div>

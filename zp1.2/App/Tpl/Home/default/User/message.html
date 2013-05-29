@@ -1,0 +1,44 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <include file="wgt:rainbow"/>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <include file="wgt:logo"/>
+        <include file="wgt:searchBar" />      
+      </div>
+      
+      <div class="wgt-nav box-shadow">
+        <ul class="nav nav-list">
+          <li><a href="__APP__/user">个人信息管理</a></li>
+          <li><a href="__APP__/user/works">作品管理</a></li>
+          <li><a href="__APP__/user/team">团队管理</a></li>
+          <li class="active"><a href="__APP__/user/message">评论管理</a></li>
+          <li><a href="#">找回旧作品</a></li>
+          <li><a href="__APP__/login/logout">退出</a></li>  
+        </ul>
+      </div>
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb">
+            <a href="__APP__/">首页</a>/<a href="__APP__/user">用户中心</a>/<span>个人信息编辑</span>
+          </div>          
+          <include file="wgt:topNav"/>
+        </div>
+        <div class="l-b-row row-fluid">
+          <include file="wgt:userEdit"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
+</body>
+</html>
