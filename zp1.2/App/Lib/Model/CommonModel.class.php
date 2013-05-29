@@ -10,7 +10,7 @@ class CommonModel extends RelationModel {
 
    /**
      +----------------------------------------------------------
-     * 根据条件禁用表数据
+     * 根据条件禁用表数据status变0
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -31,7 +31,7 @@ class CommonModel extends RelationModel {
 
 	 /**
      +----------------------------------------------------------
-     * 根据条件批准表数据
+     * 根据条件批准表数据status变1
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -53,7 +53,7 @@ class CommonModel extends RelationModel {
 
     /**
      +----------------------------------------------------------
-     * 根据条件恢复表数据
+     * 根据条件恢复表数据status变1
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -73,7 +73,7 @@ class CommonModel extends RelationModel {
 
     /**
      +----------------------------------------------------------
-     * 根据条件恢复表数据
+     * 根据条件恢复表数据status变0
      +----------------------------------------------------------
      * @access public
      +----------------------------------------------------------
@@ -90,7 +90,7 @@ class CommonModel extends RelationModel {
             return True;
         }
     }
-
+	//is_recommend变1
     public function recommend($options,$field='is_recommend'){
         if(FALSE === $this->where($options)->setField($field,1)){
             $this->error =  L('_OPERATION_WRONG_');
@@ -99,7 +99,7 @@ class CommonModel extends RelationModel {
             return True;
         }
     }
-
+    //is_recommend变0
     public function unrecommend($options,$field='is_recommend'){
         if(FALSE === $this->where($options)->setField($field,0)){
             $this->error =  L('_OPERATION_WRONG_');
@@ -110,7 +110,7 @@ class CommonModel extends RelationModel {
     }
     
     /**
-     * 得到数据表名无前辍
+     * 得到数据表名无前辍,用于join时得到本表别名
      * @access public
      * @return string
      */

@@ -1,0 +1,140 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <include file="wgt:rainbow"/>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <include file="wgt:logo"/>
+        <include file="wgt:searchBar" />      
+      </div>
+      <include file="wgt:userNav" />
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb">
+            <a href="__APP__/">首页</a>/<a href="__APP__/user">用户中心</a>/<span>作品管理</span>
+          </div>          
+          <include file="wgt:topNav"/>
+        </div>
+        <div class="l-b-row row-fluid">
+          <div class="wgt-zpList-summary box-shadow span10">
+              <h2 class="page-title" >作品管理-全部</h2>
+              <div id="accordion2">
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse-1">零散作品({$personlist|count})</a>
+                  </div>
+                  <div id="collapse-1" class="accordion-body in collapse" style="height: auto;">
+                    <div class="accordion-inner">
+                      <ul class="media-list">
+                        <foreach name="personlist" item="val">
+                        <include file="wgt:userWorksListItem"/>
+                        </foreach>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse-2">专题一、那些年我们看的前端书(3)</a>
+                  </div>
+                  <div id="collapse-2" class="accordion-body in collapse" style="height: 0;">
+                    <div class="accordion-inner">
+                      <ul class="media-list">
+                        <foreach name="workslist" item="val">
+                        <include file="wgt:userWorksListItem"/>
+                        </foreach>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <foreach name="teamlist" item="teamitem">
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse-3">{$teamitem['teamname']}团队作品</a>
+                  </div>
+                  <div id="collapse-3" class="accordion-body in collapse" style="height: 0;">
+                    <div class="accordion-inner">
+                      <ul class="media-list">
+                        <foreach name="teamitem.workslist" item="val">
+                        <include file="wgt:userWorksListItem"/>
+                        </foreach>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                </foreach>
+                
+              </div>
+
+            </div>
+            <div class="wgt-zp-opts span2">
+              <a href="__APP__/works/submit" class="btn-default btn-submitZP" > <em>+</em>
+                提交作品
+              </a>
+              <div class="btn-group">
+                <a class="btn-default" href="javascript:;" data-toggle="dropdown">
+                  默认排序
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">按时间排序</a>
+                  </li>
+                  <li>
+                    <a href="#">按人气排序</a>
+                  </li>
+                  <li>
+                    <a href="#">按星级排序</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <a class="btn-default" href="javascript:;" data-toggle="dropdown">
+                  审核状态筛选
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">审核通过</a>
+                  </li>
+                  <li>
+                    <a href="#">未审核</a>
+                  </li>
+                  <li>
+                    <a href="#">审核不通过</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <a class="btn-default" href="javascript:;" data-toggle="dropdown">
+                  归属筛选
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">个人作品</a>
+                  </li>
+                  <li>
+                    <a href="#">团队作品</a>
+                  </li>
+                  <li>
+                    <a href="#">专题作品</a>
+                  </li>
+                </ul>
+              </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
+</body>
+</html>

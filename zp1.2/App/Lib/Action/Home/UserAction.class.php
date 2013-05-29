@@ -37,6 +37,9 @@ class UserAction extends CommonAction {
     	
     	$this->assign('userinfo',$userinfo);
     	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','userinfo');
+    	
     	//替换模板SEO的值
     	$seo['title']='用户中心'.'--'.CFG('cfg_webname');;
     	$seo['keywords']=C("CFG_SEO_KEYWORDS");
@@ -124,7 +127,37 @@ class UserAction extends CommonAction {
      * @access  public
      * @return  void
      */
-    public function works(){
+    public function worksList(){
+    	$userid=session("xiami_userid");
+    	$sort=$this->_get('sort')?$this->_get('sort'):'time';//排序
+    	$status=$this->_get('status')?intval($this->_get('status')):'0';//状态
+    	$whois=$this->_get('whois')?$this->_get('whois'):'0';//归属
+    	
+    	
+    	$works_model=D("Works");
+    	//个人作品
+    	$userlist=$works_model->getUserWorksListByUserID($userid,$status,$sort);
+    	
+    	//团队作品
+    	$team_model=D("Team");
+    	$teamlist=$team_model->getTeamListByUserID($userid);
+    	if(!empty($teamlist)){
+	    	foreach ($teamlist as $key=>$val){
+	    		$teamlist[$key]['workslist']=$works_model->getWorksListWhoisByTeamID($val['id'],$sort,$status);
+	    	}
+    	}
+    	
+    	
+    	//专题作品
+    	
+    	
+    	
+    	$this->assign('userlist',$userlist);
+    	$this->assign('teamlist',$teamlist);
+    	$this->assign('works_speciallist',works_speciallist);
+    	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','works');
     	
     	$this->display();
     }
@@ -135,7 +168,7 @@ class UserAction extends CommonAction {
      * @access  public
      * @return  void
      */
-    public function team(){
+    public function teamList(){
     	$userid=session("xiami_userid");
     	$sort=$this->_get('sort')?$this->_get('sort'):'time';//排序
     	
@@ -153,6 +186,9 @@ class UserAction extends CommonAction {
     	$team_model=D("Team");
     	$teamlist=$team_model->getTeamListByUserID($userid,$orderby);
     	$this->assign('teamlist',$teamlist);
+    	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','team');
     		
     	$this->display();
     }
@@ -165,30 +201,93 @@ class UserAction extends CommonAction {
      */
     public function teamEdit(){
     	$userid=session("xiami_userid");
-    
+    	$teamid=$this->_get('teamid')?intval($this->_get('teamid')):'0';
+    	if(empty($teamid)) $this->error("找不到ID");
+    	//团队信息
+    	$team_model=D("Team");
+    	$team=$team_model->getTeamByID($teamid);
+    	$this->assign('team',$team);
+    	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','team');
+    	
     	$this->display();
     }
     // ------------------------------------------------------------------------
     /**
-     * 用户团队编辑
-     *
-     * @access  public
-     * @return  void
-     */
-    public function teamUserList(){
-    	$userid=session("xiami_userid");
-    
-    	$this->display();
-    }
-    // ------------------------------------------------------------------------
-    /**
-     * 用户团队编辑
+     * 用户团队放入回收站
      *
      * @access  public
      * @return  void
      */
     public function teamDel(){
     	$userid=session("xiami_userid");
+    	$teamid=$this->_get('teamid')?intval($this->_get('teamid')):'0';
+    	if(empty($teamid)) $this->error("找不到ID");
+    	 
+    	$team_model=D("Team");
+    	$where['id']=$teamid;
+    	$list=$team_model->resume($where);
+    	if(FALSE!==$list){
+    		$this->success("删除成功");
+    	}
+    	else{
+    		$this->error("删除失败");
+    	}
+    	 
+    }
+    // ------------------------------------------------------------------------
+    /**
+     * 用户团队用户列表
+     *
+     * @access  public
+     * @return  void
+     */
+    public function teamUserList(){
+    	$userid=session("xiami_userid");
+    	$teamid=$this->_get('teamid')?intval($this->_get('teamid')):'0';
+    	if(empty($teamid)) $this->error("找不到ID");
+    	
+    	//团队信息
+    	$team_model=D("Team");
+    	$team=$team_model->getTeamByID($teamid);
+    	$this->assign('team',$team);
+    	
+    	//团队成员
+    	$user_model=D("User");
+    	$userlist=$user_model->getUserListByTeamID($teamid);
+    	$this->assign('userlist',$userlist);
+    	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','team');
+    	
+    	$this->display();
+    }
+    // ------------------------------------------------------------------------
+    /**
+     * 用户团队用户删除
+     *
+     * @access  public
+     * @return  void
+     */
+    public function teamUserDel(){
+    	$userid=session("xiami_userid");
+    	$teamid=$this->_get('teamid')?intval($this->_get('teamid')):'0';
+    	$uid=$this->_get('uid')?intval($this->_get('uid')):'0';//团队用户ID
+    	if(empty($teamid)) $this->error("找不到团队ID");
+    	if(empty($uid)) $this->error("找不到团队用户ID");
+    	 
+    	$team_user_model=D("Team_user");
+    	$where['teamid']=$teamid;
+    	$where['userid']=$uid;
+    	$list=$team_user_model->delete($where);
+    	if(FALSE!==$list){
+    		$this->success("删除成功");
+    	}
+    	else{
+    		$this->error("删除失败");
+    	}
+    	 
     }
     // ------------------------------------------------------------------------
     /**
@@ -198,85 +297,10 @@ class UserAction extends CommonAction {
      * @return  void
      */
     public function message(){
-    	 
+    	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','message');
     	$this->display();
-    }
-    
-    // ------------------------------------------------------------------------
-    /**
-     * 用户作品列表管理
-     *
-     * @access  public
-     * @return  void
-     */
-    public function workslist(){
-    	$keywords=trim($_POST['keywords']);
-    	$keywords=!empty($keywords)?$keywords:'';
-    	$status=empty($_REQUEST['status'])?'2':$_REQUEST['status'];
-    	 
-    	$id=session('xiami_userid');
-    	 
-    	//取得用户信息
-    	$qun_member_model=M('qun_member');
-    	$qun_member=$qun_member_model->where("`id`='$id'")->find();
-    	 
-    	if($qun_member){
-    		$works_model=D('works');
-    		//状态
-    		$where.=" AND w.`status`='$status' ";
-    
-    		//作者
-    		$where.=" AND qm.`id`='$qun_member[id]' ";    		
-    
-    		//判断排序
-    		$index_works_order=CFG('cfg_index_works_order');
-    
-    		if($index_works_order){
-    			$orderby=" ORDER BY $index_works_order ";
-    		}
-    		else{
-    			//排序推荐 降序，推荐排序降序，ID 升序
-    			$orderby=" ORDER BY w.is_top DESC,w.top_sid DESC,w.id DESC ";
-    		}
-    		/*
-    		 //判断显示条数
-    		$index_works_num=CFG('cfg_index_works_num');
-    		if($index_works_num){
-    		$limit=" limit $index_works_num ";
-    		}
-    		*/
-    		// 取出需要的数据
-    		$sql	= "SELECT w.*,IFNULL(author,qm.name) author,s.name sortname,qs.name qunname,qm.id author_id FROM ".C('DB_PREFIX')."works w ".
-    				" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
-    				" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
-    				" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
-    				" where 1 $where $orderby";
-    		$works	= $works_model->query($sql);
-    		
-    		//统计
-    		$total['nochecked']=$this->_get_user_works_count(1,$qun_member[id]);
-    		$total['checked']=$this->_get_user_works_count(2,$qun_member[id]);
-    		$total['checkedn']=$this->_get_user_works_count(3,$qun_member[id]);
-    		$this->assign('total',$total);
-    		
-    
-    		$this->assign('works',$works);
-    		$this->assign('keywords',$keywords);
-    		$this->assign('status',$status);
-    		$this->assign('id',$qun_member['id']);
-    		$this->assign('qun_member',$qun_member);
-    
-    		//替换模板SEO的值
-    		$seo['title']='最蝦米*鬼懿IT*作品秀';
-    		$seo['keywords']=C("CFG_SEO_KEYWORDS");
-    		$seo['description']=C("CFG_SEO_DESCRIPTION");
-    		$this->assign('seo',$seo);
-    
-    		$this->display();
-    	}
-    	else{
-    		$this->error('未找到此作者信息');
-    	}
     }
     // ------------------------------------------------------------------------
     /**
@@ -285,9 +309,12 @@ class UserAction extends CommonAction {
      * @access  public
      * @return  void
      */
-    function worksadd(){        
+    function worksAdd(){        
     	$works['qq']=session('we_username');
     	$this->assign('works',$works);
+    	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','works');
     	$this->display();
     }
     // ------------------------------------------------------------------------
@@ -312,6 +339,10 @@ class UserAction extends CommonAction {
     	$model=M("Works");
     	$works=$model->getById($id);
     	$this->assign('works',$works);
+    	
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','works');
+    	
     	$this->display();
     }
     // ------------------------------------------------------------------------
@@ -363,37 +394,6 @@ class UserAction extends CommonAction {
 	    }
 
     }
-
-	// ------------------------------------------------------------------------
-	// ------------------------------------------------------------------------
-	// ------------------------------------------------------------------------
-	// ------------------------------------------------------------------------
-	/**
-	 * 取得用户作品状态总计
-	 *
-	 * @access  public
-	 * @return  void
-	 */
-	protected function _get_user_works_count($status='',$userid=''){
-		$where='';
-		if($userid){
-			$where.=" AND qm.`id`='$userid' ";
-		}
-		if($status){
-			$where.=" AND w.`status`='$status' ";
-		}
-		$works_model=D('works');
-		//统计
-		$sql	= "SELECT count(*) num FROM ".C('DB_PREFIX')."works w ".
-				" LEFT JOIN ".C('DB_PREFIX')."works_sort s ON s.id=w.sortid ".
-				" LEFT JOIN ".C('DB_PREFIX')."qun_sort qs ON qs.id=w.qun_sortid ".
-				" LEFT JOIN ".C('DB_PREFIX')."qun_member qm ON qm.qq=w.qq ".
-				" where 1 $where ";
-		$works=$works_model->query($sql);
-		if($works!==false){
-			return $works[0][num];
-		}
-	}
     // ------------------------------------------------------------------------
 	
 }

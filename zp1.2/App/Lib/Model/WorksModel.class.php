@@ -31,6 +31,62 @@ class WorksModel extends CommonModel {
 		return false;
 	}
 	/**
+	 * 根据用户ID取得作品列表
+	 *
+	 * @access  public
+	 * @param int $userid
+	 * @return  array
+	 */
+	public function getWorksListByUserID($userid,$allinone){
+		$where['works.userid']=$userid;
+		$all['where']=$where;
+		if($allinone){
+			$all=array_merge($all,$allinone);
+		}
+		$works  = $this->getWorksList($all);
+		return $works;
+	}
+	/**
+	 * 根据用户ID及归属取得作品列表
+	 *
+	 * @access  public
+	 * @param int $userid 用户ID
+	 * @param int $status 状态
+	 * @param string $whois 归属 用户user/团队team
+	 * @param string $sort 排序time/good/rank
+	 * @return  array
+	 */
+	public function getUserWorksListByUserID($userid,$status='',$sort=''){
+		//状态
+		if(!empty($status)) $where['works.status']=$status;
+		//归属
+		$where['teamid']=array('eq','');
+		
+		//判断排序
+		switch($sort){
+			case 'time':
+    			$orderby=" works.addtime DESC ";
+    			break;
+    		case 'good':
+    			$orderby=" works.good DESC ";
+    			break;
+    		case 'rank':
+    			$orderby=" star DESC ";
+    			break;
+    		default:
+    			$orderby=" works.good DESC ";
+    			break;
+		}
+		$allinone['where']=$where;
+		$allinone['order']=$orderby;
+		$allinone['field']="team_work.teamid teamid";
+		$allinone['join']=array(
+				C('DB_PREFIX')."team_work team_work on team_work.workid=works.id",
+			);
+		$works  = $this->getWorksListByUserID($userid,$allinone);
+		return $works;
+	}
+	/**
 	 * 根据团队ID取得作品列表
 	 *
 	 * @access  public
@@ -44,6 +100,46 @@ class WorksModel extends CommonModel {
 			$all=array_merge($all,$allinone);
 		}
 		$works  = $this->getWorksList($all);
+		return $works;
+	}
+	/**
+	 * 根据用户ID及归属取得作品列表
+	 *
+	 * @access  public
+	 * @param int $userid 用户ID
+	 * @param int $status 状态
+	 * @param string $whois 归属 用户user/团队team
+	 * @param string $sort 排序time/good/rank
+	 * @return  array
+	 */
+	public function getWorksListWhoisByTeamID($teamid,$status='',$sort=''){
+		//状态
+		if(!empty($status)) $where['works.status']=$status;
+		//判断排序
+		switch($sort){
+			case 'time':
+				$orderby=" works.addtime DESC ";
+				break;
+			case 'good':
+				$orderby=" works.good DESC ";
+				break;
+			case 'rank':
+				$orderby=" star DESC ";
+				break;
+			default:
+				$orderby=" works.good DESC ";
+				break;
+		}
+		$allinone['where']=$where;
+		$allinone['order']=$orderby;
+		$allinone['join']=array(
+				C('DB_PREFIX')."team_work team_work on team_work.workid=works.id",
+		);
+		$works  = $this->getWorksListByTeamID($teamid,$allinone);
+		if($this->getDbError()){
+			echo $this->getLastSql()."<br><br>";
+			echo $this->getDbError()."<br>";
+		}
 		return $works;
 	}
 	
