@@ -189,3 +189,9 @@ INSERT INTO `xiami_team` (`id`, `teamname`, `teamimg`, `teamurl`, `notice`, `cre
 --
 UPDATE  `xiami_team` SET  `creatuserid` =  '1',`teamimg` =  'teamimg',`teamurl` =  'http://www.baidu.com',`notice` =  'notice' WHERE  `xiami_team`.`id` =8 LIMIT 1 ;
 UPDATE  `xiami_team` SET    `creatuserid` =  '1',`teamimg` =  'teamimg',`teamurl` =  'http://www.baidu.com',`notice` =  'notice'  WHERE  `xiami_team`.`id` =9 LIMIT 1 ;
+--
+--  团队表增加状态字段 by wewe
+--
+ALTER TABLE  `xiami_team` ADD  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态 1回收站 0正常使用' AFTER  `creatime` ;
+
+ALTER TABLE  `xiami_works` CHANGE  `status`  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态   1等待审核 2审核通过  3审核不通过  4回收站(用户删除)'

@@ -11,17 +11,7 @@
         <include file="wgt:logo"/>
         <include file="wgt:searchBar" />      
       </div>
-      
-      <div class="wgt-nav box-shadow">
-        <ul class="nav nav-list">
-          <li><a href="__APP__/user">个人信息管理</a></li>
-          <li><a href="__APP__/user/works">作品管理</a></li>
-          <li class="active"><a href="__APP__/user/team">团队管理</a></li>
-          <li><a href="__APP__/user/message">评论管理</a></li>
-          <li><a href="#">找回旧作品</a></li>
-          <li><a href="__APP__/login/logout">退出</a></li>  
-        </ul>
-      </div>
+      <include file="wgt:userNav" />
     </div>
     <div class="l-b-col l-main">
       <div class="l-inner">
@@ -38,9 +28,9 @@
             <div class="btn-group">
                 <a class="btn-default" href="javascript:;" data-toggle="dropdown">默认排序 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="__APP__/user/team/time">按创建时间</a></li>
-                  <li><a href="__APP__/user/team/works">按作品量</a></li>   
-                  <li><a href="__APP__/user/team/user">按成员数</a></li>               
+                  <li><a href="__APP__/user/teamList/sort/time">按创建时间</a></li>
+                  <li><a href="__APP__/user/teamList/sort/works">按作品量</a></li>   
+                  <li><a href="__APP__/user/teamList/sort/user">按成员数</a></li>               
                 </ul>
               </div>              
             </div>
