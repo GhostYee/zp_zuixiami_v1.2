@@ -1,0 +1,81 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <include file="wgt:rainbow"/>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <include file="wgt:logo"/>
+        <include file="wgt:searchBar" />
+      </div>
+
+      <div class="wgt-nav box-shadow">
+        <ul class="nav nav-list">
+          <li>
+            <a href="__APP__/user">个人信息管理</a>
+          </li>
+          <li class="active">
+            <a href="__APP__/user/works">作品管理</a>
+          </li>
+          <li>
+            <a href="__APP__/user/team">团队管理</a>
+          </li>
+          <li>
+            <a href="__APP__/user/message">评论管理</a>
+          </li>
+          <li>
+            <a href="#">找回旧作品</a>
+          </li>
+          <li>
+            <a href="__APP__/login/logout">退出</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header">
+          <div class="wgt-breadcrumb">
+            <a href="#">首页</a>
+            /
+            <a href="#">用户中心</a>
+            /
+            <span>团队管理</span>
+          </div>
+          <nav class="wgt-topNav">
+            <li>
+              <a href="#">TheWei</a>
+            </li>
+            <li>
+              <a href="#">工具箱</a>
+            </li>
+          </nav>
+        </div>
+        <div class="l-b-row row-fluid">
+          <div class="box-shadow wgt-oldZP">
+            <fieldset class="wgt-submitFrom form-horizontal">
+              <legend class="page-title" >找回旧作品</legend>
+              <div class="control-group">
+                <label class="control-label">QQ号码：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="">
+                  <span class="help-inline">你曾经提交过作品？输入QQ号码，帮你找回！！</span>
+                </div>
+              </div>
+              <div class="form-actions">
+                <a href="#" class="btn-default" >找回</a>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
+</body>
+</html>

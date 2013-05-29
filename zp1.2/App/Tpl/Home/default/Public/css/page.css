@@ -30,7 +30,8 @@ form{margin: 0;padding: 0;}
 .l-main{width:770px;padding-bottom: 20px;}
 .l-main>.l-inner{margin-left: 20px;vertical-align: top;font-size: 0;line-height: 0;text-align: left;position: relative;}
 .l-main>.l-inner>*{vertical-align: top;font-size: 12px;line-height: 1.1}
-.l-header{padding:10px 0;overflow: hidden;text-align: left}
+.l-header{padding:10px 0;text-align: left}
+.l-header:after{ visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 .l-footer{background-color: #fff; width: 100%;border-top:3px solid #53b20e ;padding:20px 0;}
 
 /*** 3= common
@@ -87,6 +88,18 @@ form{margin: 0;padding: 0;}
 .accordion-group{border-radius:0}
 .accordion-toggle{background-color: rgba(83, 178, 14, 0.05);color:#53b20e;font-size: 14px;font-weight: 700}
 .accordion-toggle:hover{text-decoration: none;}
+
+/*ico*/
+.ico-login{display: inline-block;width:32px;height:32px;font-size:0;line-height: 0;-webkit-background-size: cover;
+background-size: cover;}
+.ico-qq{background-image:url(../img/ico-qq.png);}
+.ico-baidu{background-image:url(../img/ico-baidu.png);}
+.ico-renren{background-image:url(../img/ico-renren.png);}
+.ico-douban{background-image:url(../img/ico-douban.png);}
+.ico-sina{background-image:url(../img/ico-sina.png);}
+.ico-google{background-image:url(../img/ico-google.png);}
+.ico-github{background-image:url(../img/ico-github.png);}
+.ico-sina{background-image:url(../img/ico-sina.png);}
 
 /*** 4= top wgt
 ****************************************/
@@ -238,8 +251,20 @@ form{margin: 0;padding: 0;}
 
 /*** 6= main wgt
 ****************************************/
-.wgt-topNav{float: right;margin: 0;padding: 0;}
-.wgt-topNav li{display:inline-block;margin:5px}
+.wgt-topNav{float: right;margin: 0;padding: 0;position: relative;}
+.wgt-topNav li{display:inline-block;margin:5px;}
+.wgt-topNav .btn-group{font-size:12px;border-radius: 0;position:absolute;right:50px;top:1px;}
+.wgt-topNav .btn-group > .btn{font-size:12px;background: none;border:0;box-shadow: none;text-shadow: none;border-radius: 0}
+.wgt-topNav .btn-group > .btn, .btn-group > .dropdown-menu{border-radius: 0}
+.wgt-topNav .btn-group li{margin: 0;display: block;}
+.wgt-topNav .dropdown-menu > li > a{padding:3px 10px;}
+.wgt-topNav .dropdown-menu > li > a:hover,
+.wgt-topNav .dropdown-menu > li > a:focus,
+.wgt-topNav .dropdown-submenu:hover > a,
+.wgt-topNav .dropdown-submenu:focus > a{background: none;background-color: #53b20e}
+.wgt-topNav .dropdown-menu > li,
+.wgt-topNav .dropdown-menu > li *{vertical-align: middle;font-size: 12px;line-height: 24px}
+.wgt-topNav .ico-login{width:24px;height:24px;margin-right: 5px;}
 
 .wgt-bannerList{background-color:#fff;position: relative;width:487px;display: inline-block;}
 .wgt-bannerList .box-show{height:150px;overflow: hidden;}
@@ -430,9 +455,22 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-userlist blockquote{text-indent: 2em}
 .wgt-userlist .media-heading{font-size: 16px}
 
+.wgt-login{position: relative;width:920px; margin:20px auto;min-height:500px;padding:20px;text-align: left;}
+.wgt-login .wgt-logo{position: absolute;top:0;left:0;width:120px;background-size:cover;height:60px;}
+.wgt-login .tip{font-size:16px;padding:50px 80px 30px;line-height:2;padding-left: 200px;}
+.wgt-login .wgt-submitFrom.form-horizontal .control-group{padding-left: 100px;}
+.wgt-login .form-horizontal .control-label{width:178px; }
+.wgt-login .wgt-submitFrom.form-horizontal .form-actions{padding-left: 280px;margin-top: 30px;}
+.wgt-login .login-types{font-size:14px;display: inline-block;vertical-align: top;}
+.wgt-login .login-types a{margin-right: 5px;vertical-align: top;}
+
+.wgt-oldZP{padding:20px;min-height: 500px}
+
 /* fileUpdateInput */
 .fileUpdateInput{position:relative;display:inline-block;overflow:hidden;}
 .fileUpdateInput .fileInput{position:absolute;right:0;top:0;*filter:alpha(opacity = 0);-moz-opacity:0;opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)";}
+
+
 
 /*** 7= footer wgt
 ****************************************/
