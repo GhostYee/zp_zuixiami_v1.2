@@ -20,6 +20,10 @@ class PagesAction extends CommonAction {
      * @return  void
      */
 	public function view(){
+        if(!empty($_POST['xuwm'])){
+           echo 'xuwenmin';
+           return;
+       }
 		$page=$this->_get('id')?$this->_get('id'):'about';
 		$model = D('Pages');
 		$pages=$model->getPagesByID($page);

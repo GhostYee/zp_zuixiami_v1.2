@@ -43,8 +43,15 @@
           </div>
           <include file="wgt:topNav"/>
         </div>
+          <form id="pagerForm" action="__URL__/{$pages['code']}" method="post">
+              <input type="hidden" name="id" value="{$pages['id']}"/>
+              <input type="hidden" name="title" value="{$pages['title']}"/>
+              <input type="hidden" name="code" value="{$pages['code']}"/>
+              <input type="button" id="editcontents" value="编辑"  />
+          </form>
         <div class="l-b-row row-fluid">
           <article class="wgt-simple-page box-shadow" >
+
             <h2>{$pages['title']}</h2>
             <div class="con">{$pages['contents']}</div>
           </article>
