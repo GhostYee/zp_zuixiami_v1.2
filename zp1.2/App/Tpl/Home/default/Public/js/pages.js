@@ -9,15 +9,26 @@
     var pages={};
     pages.action=(function(){
         var _save=function(){
+            //获取CK的html内容
+
+            var editor=CKEDITOR.instances["ckeditor1"];
+
+            var html=encodeURIComponent(editor.getData());
+            var data={
+                ajax:true,
+                id:$("#id").val(),
+                html:html
+            };
             $.ajax({
                 type:"post",
-                data:{xuwm:"1"},
-                url:"../pages/save",
+                data:data,
+                url:"../pages/ajax",
                 success:function(data){
-                    alert(data);
+                    //保存数据成功则，隐藏编辑器
+                    //alert(data);
+                    $("#pagecontent").html(data);
                 },
                 error:function(data){
-                   alert("1111");
                 }
             });
         };
@@ -28,8 +39,20 @@
         }
     })();
     $(function(){
+        //编辑内容
         $("#editcontents").click(function(){
+            $("#ckcontaines").show();
+            $("#savecontents").show();
+            $("#pagecontent").hide();
+            $("#editcontents").hide();
+        });
+        //保存内容
+        $("#savecontents").click(function(){
             pages.action.save();
+            $("#editcontents").show();
+            $("#pagecontent").show();
+            $("#savecontents").hide();
+            $("#ckcontaines").hide();
         });
     });
 })();

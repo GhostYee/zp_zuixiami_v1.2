@@ -20,17 +20,24 @@ class PagesAction extends CommonAction {
      * @return  void
      */
 	public function view(){
-        if(!empty($_POST['xuwm'])){
-           echo 'xuwenmin';
-           return;
-       }
-		$page=$this->_get('id')?$this->_get('id'):'about';
-		$model = D('Pages');
-		$pages=$model->getPagesByID($page);
-		
-		$this->assign('pages',$pages);
-		$this->assign('id',$page);
-		$this->display();
+       if(!empty($_POST['ajax'])){
+           //此处保存数据到后台.by feenan
+           $newcontent=urldecode($_POST['html']);
+           $model = D('Pages');
+           $pages=$model->getPagesByID($_POST['id']);
+           $model->contents=$newcontent;
+           $model->id=$pages["id"];
+           $model->save();
+           echo $model->id;
+       }else{
+            $page=$this->_get('id')?$this->_get('id'):'about';
+            $model = D('Pages');
+            $pages=$model->getPagesByID($page);
+
+            $this->assign('pages',$pages);
+            $this->assign('id',$page);
+            $this->display();
+        }
 	}
     // ------------------------------------------------------------------------
 }
