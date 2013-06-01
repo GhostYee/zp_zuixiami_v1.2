@@ -27,6 +27,7 @@ class PagesAction extends CommonAction {
            $pages=$model->getPagesByID($_POST['id']);
            $model->contents=$newcontent;
            $model->id=$pages["id"];
+           $model->addtime=time();
            $model->save();
            $this->ajaxReturn("ok",'添加成功',1);
        }else{
