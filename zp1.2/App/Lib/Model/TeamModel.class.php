@@ -18,6 +18,7 @@ class TeamModel extends CommonModel {
      */
     public function getTeamByID($id){
     	$map['team.id']=$id;
+    	$map['team.status']='0';
     	$limit=1;
     	$allinone['where']=$map;
     	$allinone['limit']=$limit;
@@ -35,6 +36,7 @@ class TeamModel extends CommonModel {
     	}
     	return false;
     }
+    
     // ------------------------------------------------------------------------
     /**
      * 根据用户ID取得团队列表
@@ -45,6 +47,7 @@ class TeamModel extends CommonModel {
      */
     public function getTeamListByUserID($user_id,$orderby='team.id desc'){
     	$map['user.id']=$user_id;
+    	$map['team.status']='0';
     	    	
 		$allinone['where']=$map;
     	$allinone['order']=$orderby;
