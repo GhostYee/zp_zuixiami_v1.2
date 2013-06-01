@@ -20,7 +20,7 @@ class PagesAction extends CommonAction {
      * @return  void
      */
 	public function view(){
-       if(!empty($_POST['ajax'])){
+       if(IS_AJAX){
            //此处保存数据到后台.by feenan
            $newcontent=urldecode($_POST['html']);
            $model = D('Pages');
@@ -28,7 +28,7 @@ class PagesAction extends CommonAction {
            $model->contents=$newcontent;
            $model->id=$pages["id"];
            $model->save();
-           echo $model->id;
+           $this->ajaxReturn("ok",'添加成功',1);
        }else{
             $page=$this->_get('id')?$this->_get('id'):'about';
             $model = D('Pages');

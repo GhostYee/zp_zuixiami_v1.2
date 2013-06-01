@@ -12,8 +12,8 @@
             //获取CK的html内容
 
             var editor=CKEDITOR.instances["ckeditor1"];
-
-            var html=encodeURIComponent(editor.getData());
+            var _html=editor.getData();
+            var html=encodeURIComponent(_html);
             var data={
                 ajax:true,
                 id:$("#id").val(),
@@ -25,8 +25,12 @@
                 url:"../pages/ajax",
                 success:function(data){
                     //保存数据成功则，隐藏编辑器
+                    //$("#pagecontent").html(data);
                     //alert(data);
-                    $("#pagecontent").html(data);
+                    if(data && data.data==='ok'){
+                        //说明保存成功！
+                        $("#pagecontent").html(_html);
+                    }
                 },
                 error:function(data){
                 }
