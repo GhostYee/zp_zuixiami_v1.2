@@ -193,7 +193,7 @@ background-size: cover;}
 .wgt-detail .info p{margin: 0;padding: 0;}
 .wgt-detail .info p.pubtime{color:#999;text-align: right}
 .wgt-detail .info p strong{font-size: 14px;color:#ff6000;margin:0 5px;}
-.wgt-detail .btn-show-hide{padding:0 5px;position: absolute;top:5px;right:5px;height:20px;line-height: 20px}
+.wgt-detail .btn-show-hide{padding:0 5px;position: absolute;top:5px;right:5px;height:20px;line-height: 13px}
 
 .wgt-zp-messsage{padding:10px;margin-bottom: 20px;margin-left: 0;}
 .wgt-zp-messsage.span10{margin-left: 0;}
@@ -245,7 +245,7 @@ background-size: cover;}
 .wgt-teamInfo-base .inner .team-header{width:75px;height:75px;}
 .wgt-teamInfo-base .inner .info-1{padding:1px 0 10px 10px;}
 .wgt-teamInfo-base .inner .info-1 p{margin:5px 0;}
-.wgt-teamInfo-base .inner .info-2{color:#999;line-height: 1.8}
+.wgt-teamInfo-base .inner .info-2{color:#999;line-height: 1.8;display: block;}
 .wgt-teamInfo-base .state-make{position: absolute;top:0;right:0;}
 .wgt-teamInfo-base .division{font-size: 10px;color:#aaa;margin:0 7px;}
 
@@ -307,7 +307,7 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-zpList li .group{display: block;line-height:1.8;color:#999; }
 .wgt-zpList li .group:hover{color:#005580;}
 
-.wgt-breadcrumb{float: left;display: inline-block;color:#999;line-height:20px;padding:5px 0;margin-left: -10px;}
+.wgt-breadcrumb{float: left;display: inline-block;color:#999;line-height:20px;padding:5px 0;margin-left: -10px; white-space: nowrap }
 .wgt-breadcrumb a,.wgt-breadcrumb span{padding: 0 10px;}
 
 .wgt-simple-page{padding:15px;min-height: 500px;margin-bottom: 15px;display: block;}

@@ -1,7 +1,25 @@
 $(document).ready(function() {	
 	theHomePageAni();
+	showHideDetail();
 });
 
+function showHideDetail(){
+	var obj=$(".wgt-detail");
+	var l=obj.length;
+	if(l<0){return;}
+	$(".btn-show-hide").click(function(){
+		   if(obj.height()<=50)
+		   {
+		   	   obj.css({overflow: "hidden", height: "auto" });
+		   	   $(this).text("︽");
+	   	   }
+	   	   else
+	   	   {
+	   	   	   obj.css({overflow: "hidden", height: "50px" });
+	   	       $(this).text("︾");
+	   	   }
+	});
+}
 
 /***** code by zmy *****/
 

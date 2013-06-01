@@ -1,0 +1,17 @@
+<div class="wgt-team-member box-shadow span10">
+              <h2 class="page-title">{$team['teamname']} 团队成员</h2>
+              <ul class="media-list">
+                <foreach name="userlist" item="val">
+                <li class="media"> <a class="pull-left" href="__APP__/author/{$val['id']}"> <img class="media-object" src="{$val['figureurl']}"></a>
+                  <div class="media-body">
+                    <h4 class="media-heading"> <a href="__APP__/author/{$val['id']}">{$val['nickname']}</a> </h4>
+                    <p> 来自： <a href="#">{$val['qunname']}</a> </p>
+                    <p> 作品数： <a href="__APP__/author/{$val['id']}">{$val['total_user_works']}</a> <span class="division" >|</span> 期待数： <a href="javascript:void(0)" onClick="do_good_await('User','await',{$val['id']})"><span id="do_await_{$val['id']}">{$val['await']}</span></a> </p>
+                    <p> Blog： <a href="{$val['userurl']}" target="_blank">{$val['userurl']}</a> </p>
+                    <p class="opts"> <span> <a href="__APP__/user/message/id/{$val['id']}" >留言</a> <a href="__APP__/author/{$val['id']}" >查看作品</a></span> <a href="__APP__/user/teamUserDel/teamid/{$team['id']}/uid/{$val['id']}" class="btn-default" >移除</a> </p>
+                    <blockquote>{$val['notice']}</blockquote>
+                  </div>
+                </li>
+                </foreach>
+              </ul>
+            </div>
