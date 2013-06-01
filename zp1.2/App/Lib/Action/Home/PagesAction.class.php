@@ -24,9 +24,8 @@ class PagesAction extends CommonAction {
            //此处保存数据到后台.by feenan
            $newcontent=urldecode($_POST['html']);
            $model = D('Pages');
-           $pages=$model->getPagesByID($_POST['id']);
            $model->contents=$newcontent;
-           $model->id=$pages["id"];
+           $model->id=$_POST['id'];
            $model->addtime=time();
            $model->save();
            $this->ajaxReturn("ok",'添加成功',1);
