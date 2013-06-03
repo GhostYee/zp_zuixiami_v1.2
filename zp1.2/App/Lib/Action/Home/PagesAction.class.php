@@ -20,13 +20,24 @@ class PagesAction extends CommonAction {
      * @return  void
      */
 	public function view(){
-		$page=$this->_get('id')?$this->_get('id'):'about';
-		$model = D('Pages');
-		$pages=$model->getPagesByID($page);
-		
-		$this->assign('pages',$pages);
-		$this->assign('id',$page);
-		$this->display();
+       if(IS_AJAX){
+           //此处保存数据到后台.by feenan
+           $newcontent=urldecode($_POST['html']);
+           $model = D('Pages');
+           $model->contents=$newcontent;
+           $model->id=$_POST['id'];
+           $model->addtime=time();
+           $model->save();
+           $this->ajaxReturn("ok",'添加成功',1);
+       }else{
+            $page=$this->_get('id')?$this->_get('id'):'about';
+            $model = D('Pages');
+            $pages=$model->getPagesByID($page);
+
+            $this->assign('pages',$pages);
+            $this->assign('id',$page);
+            $this->display();
+        }
 	}
     // ------------------------------------------------------------------------
 }
