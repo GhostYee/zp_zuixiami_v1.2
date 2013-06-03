@@ -43,6 +43,10 @@
         }
     })();
     $(function(){
+         //初始化的时候检查编辑按钮是否显示
+        if (!$("#code").val()){
+            $("#editcontents").hide();
+        }
         //编辑内容
         $("#editcontents").click(function(){
             $("#ckcontaines").show();
