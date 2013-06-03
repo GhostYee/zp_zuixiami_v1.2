@@ -36,8 +36,9 @@ form{margin: 0;padding: 0;}
 
 /*** 3= common
 ****************************************/
-.btn-default{background-color: #53b20e;height:30px;line-height: 30px;font-size:14px;color:#fff;text-align: center;box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);display: inline-block;}
+.btn-default{background-color: #53b20e;height:30px;line-height: 30px;font-size:14px;color:#fff;text-align: center;box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);display: inline-block;border:0;}
 .btn-default:hover{text-decoration: none;}
+
 
 .btn-min{padding:0 10px;font-size:12px;display: inline-block;}
 .btn-submitZP{color:#fff;float: right:0;border:0;background: none;line-height: 20px;font-size:14px;background-color: #e65100;padding:0 8px;height:25px;display: inline-block;box-shadow: 0 0 7px rgba(0, 0, 0, 0.10);}
@@ -89,6 +90,8 @@ form{margin: 0;padding: 0;}
 .accordion-toggle{background-color: rgba(83, 178, 14, 0.05);color:#53b20e;font-size: 14px;font-weight: 700}
 .accordion-toggle:hover{text-decoration: none;}
 
+.fileinput-button{position: relative;}
+.fileinput-button input[type="file"]{position: absolute;top:0;bottom:0;left:0;right:0;opacity: 0}
 /*ico*/
 .ico-login{display: inline-block;width:32px;height:32px;font-size:0;line-height: 0;-webkit-background-size: cover;
 background-size: cover;}
@@ -100,6 +103,17 @@ background-size: cover;}
 .ico-google{background-image:url(../img/ico-google.png);}
 .ico-github{background-image:url(../img/ico-github.png);}
 .ico-sina{background-image:url(../img/ico-sina.png);}
+
+.fileupload-buttonbar{vertical-align: middle;margin-top: 10px}
+.fileupload-buttonbar.row{margin-left: 0;}
+.fileupload-buttonbar *{vertical-align: middle;}
+.fileupload-buttonbar .btn-default{padding:0 10px;line-height:29px;}
+.fileupload-buttonbar button.btn-default{line-height: normal}
+.fileupload-buttonbar .progress{margin-bottom: 10px;}
+
+.fileupload-progress{}
+
+
 
 /*** 4= top wgt
 ****************************************/
@@ -186,6 +200,7 @@ background-size: cover;}
 .wgt-detail>h2{font-size:20px;padding:10px 120px 10px 10px;line-height: 1.6;margin: 0;}
 .wgt-detail .wgt-star{position: absolute;top:20px;right:10px;}
 .wgt-detail .pic{text-align: center;padding:0 10px 10px;}
+.wgt-detail .codeView{margin:0 10px 10px;}
 .wgt-detail .intr{font-size: 14px;color:#666;padding:10px;line-height: 1.6}
 .wgt-detail .intr em.dqm{font-size: 36px;font-weight:700;color:rgba(83, 178, 17, 0.5);font-style: normal;font-family: Helvetica;line-height:30px}
 .wgt-detail .intr blockquote{margin-bottom: 0;}

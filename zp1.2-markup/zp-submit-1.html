@@ -4,6 +4,19 @@
 <meta charset="utf-8">
 <title>最虾米-发现前端价值</title>
 <link href="css/style-1.css" media="screen" rel="stylesheet" type="text/css" />
+<style>
+  .artwlfeedback{position: fixed;right:50px;bottom: 40px;background-color: #CCC;border-radius: 5px;padding:5px;border: 1px solid #888;z-index: 10;}
+.artwlfeedback input{width:25px;height:25px;border:1px solid #fff;border-radius:4px;background:#ddd;}
+.artwlfeedback input:hover{border-color: #AAA;cursor: pointer;}
+.artwlfeedback #artwlfeedback_clear{background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEEUlEQVRIia2UW2gcZRTH//PN7OxsZm/d5tZtthuTbtfUpFpyQ9ki2nqjKNVqTUQ0ERHFB41QQcEnyYO3hOqDCimJaLHUPMUW8VJREgkaadKkQbJmN2LTbLrdbPY6l53ZGV9mdRojNDEH/nzfd2b4/75zmDMUjOh7giI0RXcwFmutLIvDr3yuhbEFQUobSifHdt/SdsofbOmtC9420ddJ9mwpwMY7mynCwOKuRZXH7rQ7XMe3FCDkUqP2MhbM4gjU1TB27PR39HWSyi0D6EV9ZH5udpivCKKoiHBaVbuFYZ79vwDKfOjvIOVeX+1kBa/USLKEeFpbXE0mAy336XdQFMKhLixuugIA6DmtJZYW/+hO5KDmBRmcTalpP+wdr206el4HQpupgF6b+PqSHj24V6ysDnBt+x+4Eze3P1xt5avxzbs/kF1zevhXYHkjAMZ8GB0ECCHPOCt9j+4MtMHprkJkfBYX3ruIYNT3SIaNNaJQCG4EcF2LQIFQNF1Ps8QTj8xh+LmziL06iQddAYisBbUdgd0TX2z/YGwI7hsFUOsl32pFr2eGer2JdUCpqECsoQqtPfWoaUgim7diKfJ7NLU8czTUhamNVWDE5Qlcc0g6LroIuNcaceRkO7wNLHStAKLNYtsOa125P/Tj2BAObaqC5wGGteGhF8/edfKmoO7WdDdUlQZNZSAJi8hmk1B0Hrq+T4rPf9WtFeXToa4NVPARoB77ECOgZUmSsoCWAKEEZFMJUBQNmmGgygKgT3PevZ2fMlb3y2NDGwAAAHSoBTG1JIoaFCUNOb8EG89AyOVREClYWAVqQYci/sT49j3dzzn8g6ODKLthQKgbkHLxaaXIIZtegZBfBc2oEPMKrLwbQlqExSpD02zIXD2HmqbHujy+AzNjn5AjY0P/+P4XgAHALccS44rCIp8ToUFDaiUBd9UupK/FwNkDENLLYG1FsLZKxCNnsM3bWmflq1+Aab7WTjILgAfgAOBKpiEcDHmfpIjGEEZGLq3BylNQ1WpQdA6KzENTo+A9+2Hh9mDul4HhgTOZp156GyIA3QwgAGwA7Ia5E4Ajchns3c15nz94eyC7MgULVw85vwC+vBGrS2Fs97VASBMImUxu9Px3vY8f1/om51A0PDUAWglAGwDOUFlJsavS8r0HKu+nQNM2B4tcSoWFpWFztSMVi6rz87Hv33x/4Y0Tp/CzrkMzbl40pJpbZDF6xxhAGgD9ZwyS33NFurXlnmZVIbC5GhGLTGemLvz2bf9A9ETvx8KXC1eQBFAwSTbWonnQGOPWnGnlAHCEgH2nB4cZGuyleUQ+O4ewKP9tJq2RYKgA/HuSiQFiDXPWEGM8M391qkklUAmqlV5a91dhgq0nmAxUY6+ZctfFX/BvnrJ8PstmAAAAAElFTkSuQmCC');}
+.artwlfeedback #artwlfeedback_save{background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADwElEQVRIie2VzWudRRTGf2feuR95b3pjYrwtaetHsBWV6MaC1IXLbupGNy7cCOLOjSIo4kKkKzGL7lRwJUWh2EUoRfxAN0L9QFxULaEaUNMY2zQmNzf3fd+Zc1zcj97k3sZ/wAPDzDDnPM88Z87MwP/2HyaDk5dOf3CqMVl/PnFuGhtY3T0eRgmXf195VuDsu688174lwRvvn9s6+fij6ZH9E3z1yzIPHpzi8PS+/roZmBlmhppiaqgZY6USp899tvzz0vLrAmcGSdwgQREtXbreZLNdcGX1H9a3c6JBMCjUyKOShch2UdDKcprbbTZb2wSNHJ2dnZmbPfSmGQ8MYvqdWju7E2BirELFJ92dG6qGqhJj7LcQlagRM9gIhitXZ4D6IKJjyGTXfABcu+Aaid25RgWMGEHVkF3hficUGIYBJ+bupD5WoiSCTwRLBDMHpVLHxwyzTlTJ+36c2R4EGKgq8xd+YL1VsH9iDOcEh+BcT10HOJphaqy3cvIQOH50BtuNPqzACNG4644JDpsxmVYQEZxIR7oIdHdudFKylRXkUQmxe357psggD8pjR2do1MfwycARCciAgp7Fbql+fPETWvklypV0LwIjC4Gp8SoTZRAxiqIYKR3Ae4/zjsAGM5PfI7cJ1fS7A4M+O6pIDdpFRLuAZkae52RZNrLFGGll17i8fIEjh+/mQGOcg9MHXp1fOHbvSAIzIysCqjcJiqK4JUE72+TK6nlItrBkFcqrNKYOPhSDnZpfODY9lCI1o513ahwSnHPUarWRKTKM366fJ2eNiXScdrxGrk2oFMzNnnjy16sX195eOPbaLgLIitg/xF6KVHWIIGrO0rXPqdemabYCvlwCFfJMaWUrPkn80xR85HcHhqj9B62nYJSZKY/c8wJFaLG4epbpxu1gLVb+/iO/sbFywjAV5KchAidQLH5DFv8iGds3CrtvdUDzbaJdxRoNimBkeTu8+MS3X/Z8PECpVKJSqbiSo3VoajxN00AljOOq6Wjkgf9BncNlnmhK0IBh1Ot11263Nc9zfJqmTkTKQHn9xtoZWHzm07VyNXWCuGxPBZ1UGUwKExZQi70/Iy2Xy7mZBanVah7wIlLtEnnAm5mjW8Zy8/67gYrqrbu3Pnz4vbn7Tx7faF1n6c8fmy8/9fV9ItIys7ZPkiSEENQ5F1TViYgTEc/NO+IGxn2yni/gtprxnUuLC19sF4Esi5uq2vTe50DY8TQlSUK1WiVJEtf5ZDoV5f1QLRBCQEQQke4j1+ljjJiZ9mL+Ba66WPkrFtGGAAAAAElFTkSuQmCC');
+}
+.artwlfeedback #artwlfeedback_cancel{background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADJElEQVRIid2TzWsTQRiHfzP7lZg0/bQmNR48FSxFQaEH0yZdtRe9iFU86UXix7/QLYIrnjwJ0uqlxat/grBtV/EkHgQvgp9oW6qidrP52N2Z8WDTNtldq0cdeGFhfvs878zLAP/tWigNnLMn8uWdcvZEvrx0LH8hbl+OhBcHrgwWema0lARboH/s0cebkfATeWOo1GsyX2BRiP6S9el2e0aKhI90zWR6ZFAAvVlNP6WobO7Nut0CP543ho52mYpGoSgE3bvViZOK6s6/dZ7GChaKA+XBw5nZjh4ZtTpDEHCoCkXfHk0/pals7o1j/4LvNYZGukxZo2h4DIHPkUhQdPepEydV1Z1/tyUhzQ+rODA5OJx6mN6toObxllNpMgGvAy+frU8DwNCRjEkTQCMQLbmEQlH7zvDqhXOxaC0/ALbNQJJIl+txoBKE7rrqAZpEcOBQ2gQAQTiqVRHKuR6HWw0gxDZu82P+rfP8TCbJVI3osgwIJlrKDziY4AgEh+fz0L5gApVvDKuvG1OlxeU7kTOYf+fYk527mKJCl6SwhG9UFNz9wbD23p8qLS7fih1yU3K2J8VkWeiUbkF/V1WH4/Mymxpvg0cKmpJzfWkmU6FTEt1xs+quwNc1MTW+FIYDMQ8NAGQCrVMCqh6DCM8TAEAI0Ekl/CDQ4jiRJ7BLOXN/NzeqAYPv8/jrCQQE5+jfheLpPZ107r2zGGoiBC/mzH3pwKhwBp/HtN62FEqQphI+VOQbxaWV67ECeyxn7k00DCcI4Le+tT+QAGlZxqe6dqNob0k2BQtj2Wu9qN31WAA/pnFOfo2MivBjBACVAIok4yuSV8ft1Vlg25AFyNp3j0AKolvnkgJfTU4DgOJVTcr8UKYOwJUJhEq/hE4AANZYrizV3HvEq7f8KBQFLNExrT9ZvQkAViFrSPWKSXyvNadqYMn0Zd1euR8pAABrNFcmrnOPNDYkigqezmzCN3OFrEEr6yY2JEJLQKQ6ruqPV2Yjr6BdYh1KCWs4KaxC1ojNFbKGNZwU1sGUsEZz13YEt0kmrUL20o65QvaSNZo7/1fwf2r9BFzgw70Gh6WRAAAAAElFTkSuQmCC');
+}
+#artwlfeedback_operate{display: inline-block;}
+#artwlfeedback_canvas,#artwlfeedback_pagecanvas{position: absolute;top:0;left: 0;cursor:crosshair;}
+#artwlfeedback_canvas{z-index: 5;opacity: .5;}  
+</style>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js" ></script>
 <![endif]-->
@@ -101,6 +114,11 @@
                   <input type="text" class="span2"  placeholder="开源地址" value="">                 
                 </div>
                 <span class="help-block" >推荐代码存放:<a href="#" >Gitub</a>、<a href="http://jsbin.com/">jsbin</a>、<a href="http://jsfiddle.net/">jsfiddle</a>. </span>
+                <!-- 如果是在线的直接预览 -->                
+                <div class="codeView">
+                    <iframe width="100%" height="300" name="codeFrame" id="codeFrame" src="http://jsfiddle.net/zmyfujian/q9bsE/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>                
+                </div>                
+                <a href="javascript:;" id="feedback" >截图</a>
               </div>
             </div>         
             <div class="control-group">
@@ -128,5 +146,25 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.transit.js"></script>
 <script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/html2canvas1.js"></script>
+<script type="text/javascript" src="js/html2canvas2.js"></script>
+<script type="text/javascript">
+  var feedback = document.getElementById("feedback");
+feedback.onclick = function(){
+    artwlfeedback.load();
+}
+function iFeedback(imgSrc){
+   console.log(imgSrc);
+    //...
+
+}
+/*
+$(document).bind('keydown', 'esc',function (evt){
+　　$("#artwlfeedback_cancel").click();
+　　return false; })
+*/
+
+
+</script>
 </body>
 </html>
