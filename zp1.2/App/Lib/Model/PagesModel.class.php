@@ -12,6 +12,7 @@ class PagesModel extends CommonModel {
 	 * @return  array/false
 	 */
 	public function getPagesByID($page_id){
+
 		if(is_numeric($page_id)){
 			$map['id']=$page_id;
 		}
