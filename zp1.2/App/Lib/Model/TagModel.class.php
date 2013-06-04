@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // 标签模型
 class TagModel extends CommonModel {
 	// 自动验证设置
