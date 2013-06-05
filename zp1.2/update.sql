@@ -99,7 +99,8 @@ INSERT INTO `xiami_pages` (`id`, `title`, `code`, `contents`, `adduser`, `addtim
 (15, '了解鬼群', 'qun', '', NULL, 0),
 (16, '加入最虾米', 'join', '', NULL, 0),
 (17, '捐助我们', 'offer', '', NULL, 0),
-(18, '联系我们', 'contact', '', NULL, 0);
+(18, '联系我们', 'contact', '', NULL, 0),
+(19, '工具箱', 'tools', '', NULL, 0);
 UPDATE `xiami_pages` SET  `title` =  '关于我们' WHERE  `id` =14 LIMIT 1 ;
 
 --
@@ -194,4 +195,7 @@ UPDATE  `xiami_team` SET    `creatuserid` =  '1',`teamimg` =  'teamimg',`teamurl
 --
 ALTER TABLE  `xiami_team` ADD  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态 1回收站 0正常使用' AFTER  `creatime` ;
 
-ALTER TABLE  `xiami_works` CHANGE  `status`  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态   1等待审核 2审核通过  3审核不通过  4回收站(用户删除)'
+ALTER TABLE  `xiami_works` CHANGE  `status`  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态   1等待审核 2审核通过  3审核不通过  4回收站(用户删除)';
+
+ALTER TABLE  `xiami_pages` ADD  `is_open_edit` TINYINT( 1 ) NOT NULL COMMENT  '是否允许前台编辑' AFTER  `addtime` ;
+UPDATE  `xiami_pages` SET  `is_open_edit` =  '1' WHERE  `id` =19 LIMIT 1 ;
