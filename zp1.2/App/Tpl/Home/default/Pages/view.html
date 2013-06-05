@@ -43,7 +43,7 @@
           </div>
           <include file="wgt:topNav"/>
         </div>
-          <if condition="$id eq 'tools'">
+          <if condition="$pages['is_open_edit'] eq '1'">
           <form id="pagerForm" action="__URL__/{$pages['code']}" method="post">
               <input type="hidden" name="id" id="id" value="{$pages['id']}"/>
               <input type="hidden" name="title" id="title" value="{$pages['title']}"/>

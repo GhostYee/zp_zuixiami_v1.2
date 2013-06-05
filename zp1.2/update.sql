@@ -195,4 +195,7 @@ UPDATE  `xiami_team` SET    `creatuserid` =  '1',`teamimg` =  'teamimg',`teamurl
 --
 ALTER TABLE  `xiami_team` ADD  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态 1回收站 0正常使用' AFTER  `creatime` ;
 
-ALTER TABLE  `xiami_works` CHANGE  `status`  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态   1等待审核 2审核通过  3审核不通过  4回收站(用户删除)'
+ALTER TABLE  `xiami_works` CHANGE  `status`  `status` TINYINT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '状态   1等待审核 2审核通过  3审核不通过  4回收站(用户删除)';
+
+ALTER TABLE  `xiami_pages` ADD  `is_open_edit` TINYINT( 1 ) NOT NULL COMMENT  '是否允许前台编辑' AFTER  `addtime` ;
+UPDATE  `xiami_pages` SET  `is_open_edit` =  '1' WHERE  `id` =19 LIMIT 1 ;
