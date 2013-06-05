@@ -1,7 +1,20 @@
 $(document).ready(function() {	
 	theHomePageAni();
 	showHideDetail();
+	scrollLoad();
 });
+
+function scrollLoad(){
+
+		$(".scrollLoading").scrollLoading({
+	    	container: $(".wgt-zpList .thumbnails"),
+	    	callback: function() {
+	    	console.log("AA");
+	    	//$(".newLoad").removeClass("newLoad");	        	
+    	}
+	});
+	
+}
 
 function showHideDetail(){
 	var obj=$(".wgt-detail");
