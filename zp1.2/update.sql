@@ -99,7 +99,8 @@ INSERT INTO `xiami_pages` (`id`, `title`, `code`, `contents`, `adduser`, `addtim
 (15, '了解鬼群', 'qun', '', NULL, 0),
 (16, '加入最虾米', 'join', '', NULL, 0),
 (17, '捐助我们', 'offer', '', NULL, 0),
-(18, '联系我们', 'contact', '', NULL, 0);
+(18, '联系我们', 'contact', '', NULL, 0),
+(19, '工具箱', 'tools', '', NULL, 0);
 UPDATE `xiami_pages` SET  `title` =  '关于我们' WHERE  `id` =14 LIMIT 1 ;
 
 --

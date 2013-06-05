@@ -43,6 +43,7 @@
           </div>
           <include file="wgt:topNav"/>
         </div>
+          <if condition="$id eq 'tools'">
           <form id="pagerForm" action="__URL__/{$pages['code']}" method="post">
               <input type="hidden" name="id" id="id" value="{$pages['id']}"/>
               <input type="hidden" name="title" id="title" value="{$pages['title']}"/>
@@ -50,6 +51,7 @@
               <input type="button" class="btn-submitZP" id="editcontents" name="editcontents" style="width:80px;height: 30px" value="编辑"  />
               <input type="button" class="btn-submitZP" id="savecontents" name="savecontents" style="width:80px;height: 30px;display: none" value="保存"  />
           </form>
+          </if>
         <div class="l-b-row row-fluid">
           <article class="wgt-simple-page box-shadow" >
             <h2>{$pages['title']}</h2>
