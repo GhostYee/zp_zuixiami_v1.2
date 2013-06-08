@@ -26,7 +26,7 @@ INSERT INTO xiami_tag_relationship(`tagid`,`workid`) VALUES('1','152');
 --
 -- 向node表里插入团队管理项. by Feenan add on 20130519
 --
-INSERT INTO  `zuixiami`.`xiami_node` (
+INSERT INTO  `xiami_node` (
 `name` ,
 `title` ,
 `status` ,
@@ -102,7 +102,7 @@ INSERT INTO `xiami_team_work` VALUES (1, 150, 8);
 INSERT INTO `xiami_team_work` VALUES (2, 151, 8);
 
 --
---  增加单页管理
+--  增加单页管理 by wewe
 --
 INSERT INTO `xiami_pages` (`id`, `title`, `code`, `contents`, `adduser`, `addtime`) VALUES
 (15, '了解鬼群', 'qun', '', NULL, 0),
@@ -110,3 +110,102 @@ INSERT INTO `xiami_pages` (`id`, `title`, `code`, `contents`, `adduser`, `addtim
 (17, '捐助我们', 'offer', '', NULL, 0),
 (18, '联系我们', 'contact', '', NULL, 0);
 UPDATE `xiami_pages` SET  `title` =  '关于我们' WHERE  `id` =14 LIMIT 1 ;
+
+--
+--  增加标签点击量,确认热门标签 by wewe
+--
+ALTER TABLE  `xiami_tag` ADD  `hits` BIGINT NOT NULL COMMENT  '点击量' AFTER  `tagname` ;
+
+--
+--  首页作品排序 by wewe
+--
+UPDATE  `xiami_config` SET  `value` =  'works.is_top DESC,works.top_sid DESC,works.id DESC' WHERE  `xiami_config`.`id` =186 LIMIT 1 ;
+UPDATE  `xiami_config` SET  `value` =  'wewe' WHERE  `xiami_config`.`id` =113 LIMIT 1 ;
+
+--
+--  作品表增加地址字段,区分演示地址开源地址by wewe
+--
+ALTER TABLE  `xiami_works` CHANGE  `url`  `demourl` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT  '演示地址';
+ALTER TABLE  `xiami_works` ADD  `openurl` VARCHAR( 255 ) NOT NULL COMMENT  '开源地址' AFTER  `demourl` ;
+
+--
+--  增加用户表xiami_user,期待作者转到该表  by wewe
+--
+CREATE TABLE  `xiami_user` (
+`id` INT NOT NULL COMMENT  '自增ID',
+`auth_type` VARCHAR( 100 ) NOT NULL COMMENT  '第三方登录类型',
+`auth_openid` BIGINT NOT NULL COMMENT  '第三方返回开放ID',
+`auth_nickname` VARCHAR( 100 ) NOT NULL COMMENT  '第三方昵称',
+`auth_figureurl` VARCHAR( 255 ) NOT NULL COMMENT  '第三方头像地址',
+`qq` VARCHAR( 20 ) NOT NULL COMMENT  'QQ号码',
+`nickname` VARCHAR( 100 ) NOT NULL COMMENT  '自定义昵称',
+`userurl` VARCHAR( 200 ) NOT NULL COMMENT  '用户blog地址',
+`notice` VARCHAR( 255 ) NOT NULL COMMENT  '用户介绍',
+`is_open` TINYINT( 1 ) NOT NULL COMMENT  '是否开启自定义昵称',
+`is_locked` TINYINT( 1 ) NOT NULL COMMENT  '是否停用用户',
+`await` bigint( 20 ) NOT NULL COMMENT  '期待作者',
+`hits` bigint( 20 ) NOT NULL COMMENT  '点击量',
+`addtime` INT( 10 ) NOT NULL COMMENT  '添加时间',
+PRIMARY KEY (  `id` )
+) ENGINE = MYISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+--
+--  用户表xiami_user测试数据  by wewe
+--
+INSERT INTO  `xiami_user` (
+`id` ,
+`auth_type` ,
+`auth_openid` ,
+`auth_nickname` ,
+`auth_figureurl` ,
+`qq` ,
+`nickname` ,
+`is_open` ,
+`is_locked` ,
+`await` ,
+`addtime`
+)
+VALUES (
+'1',  'qq',  '',  'auth_nickname',  'auth_figureurl',  '304327508',  'nickname',  '',  '',  '',  ''
+);
+
+--
+--  作品表增加用户ID userid  by wewe
+--
+ALTER TABLE  `xiami_works` ADD  `userid` INT NOT NULL COMMENT  '用户ID' AFTER  `id` ;
+update `xiami_works` set userid=1;
+
+--
+--  新团队成员表  by wewe
+--
+CREATE TABLE IF NOT EXISTS `xiami_team_user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '团队成员主键ID',
+  `teamid` int(10) NOT NULL COMMENT '团队ID',
+  `userid` int(11) NOT NULL COMMENT '用户ID关联user表',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='团队成员表';
+
+--
+--  新团队成员表测试数据  by wewe
+--
+INSERT INTO  `xiami_team_user` (
+`id` ,
+`teamid` ,
+`userid`
+)
+VALUES (
+NULL ,  '8',  '1'
+);
+
+--
+--  团队表增加团队地址，团队头像,团队介绍,创建人  by wewe
+--
+ALTER TABLE  `xiami_team` ADD  `teamimg` VARCHAR( 200 ) NOT NULL COMMENT  '团队头像' AFTER  `teamname` ;
+ALTER TABLE  `xiami_team` ADD  `teamurl` VARCHAR( 200 ) NOT NULL COMMENT  '团队地址' AFTER  `teamimg` ;
+ALTER TABLE  `xiami_team` ADD  `notice` VARCHAR( 255 ) NOT NULL COMMENT  '团队介绍' AFTER  `teamurl` ;
+ALTER TABLE  `xiami_team` ADD  `creatuserid` INT NOT NULL COMMENT  '创建人' AFTER  `notice` ;
+--
+--  团队表测试数据 by wewe
+--
+UPDATE  `xiami_team` SET  `creatuserid` =  '1',`teamimg` =  'teamimg',`teamurl` =  'http://www.baidu.com',`notice` =  'notice' WHERE  `xiami_team`.`id` =8 LIMIT 1 ;
+UPDATE  `xiami_team` SET    `creatuserid` =  '1',`teamimg` =  'teamimg',`teamurl` =  'http://www.baidu.com',`notice` =  'notice'  WHERE  `xiami_team`.`id` =9 LIMIT 1 ;

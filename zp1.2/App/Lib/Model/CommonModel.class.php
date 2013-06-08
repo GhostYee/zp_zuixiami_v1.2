@@ -2,7 +2,8 @@
 // 通用模型
 class CommonModel extends RelationModel {
 
-	// 获取当前用户的ID
+	// ------------------------------------------------------------------------
+	// 获取当前RBAC后台用户的ID
     public function getMemberId() {
         return isset($_SESSION[C('USER_AUTH_KEY')])?$_SESSION[C('USER_AUTH_KEY')]:0;
     }
