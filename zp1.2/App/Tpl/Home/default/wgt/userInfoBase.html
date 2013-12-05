@@ -1,7 +1,11 @@
 <div class="wgt-userInfo-base box-shadow">
 	<div class="inner">
 		<a href="__APP__/author/{$author['id']}" class="user-header">
-			<img src="{$author['figureurl']}" alt="{$author['nickname']}"></a>
+		    <if condition="$author['figureurl'] neq ''">
+				<img src="{$author['figureurl']}" alt="{$author['nickname']}" /></a>
+			<else />
+				<img src="__APP__/app/Tpl/Home/default/Public/images/uheader.jpg" alt="{$author['nickname']}" />
+			</if>
 		<div class="con">
 			<p>
 				<a href="__APP__/author/{$author['id']}" class="user-name">{$author['nickname']}</a>

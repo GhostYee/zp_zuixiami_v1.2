@@ -51,11 +51,13 @@ class IndexAction extends CommonAction {
         //判断排序
         $index_works_order=CFG('cfg_index_works_order');        
         if($index_works_order){
-           $orderby=$index_works_order;
+          // $orderby=$index_works_order;
+            $orderby="rand()";
         }
         else{
             //排序推荐 降序，推荐排序降序，ID 升序
             $orderby="works.is_top DESC,works.top_sid DESC,works.id DESC ";
+           // $orderby="rand()";
         }        
         //判断显示条数
         $index_works_num=CFG('cfg_index_works_num');

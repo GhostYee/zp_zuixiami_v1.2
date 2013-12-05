@@ -1,0 +1,41 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row"> <include file="wgt:rainbow"/> </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow"> <include file="wgt:logo"/> </div>
+      
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb"> <a href="__APP__/">首页</a>/<span>编辑作品</span> </div>
+          <include file="wgt:topNav"/> </div>
+        <div class="l-b-row row-fluid">
+          <div class="wgt-zp-edit box-shadow">
+            <fieldset class="wgt-submitFrom form-horizontal">
+              <div id="show_works_submit_step1">
+              <include file="wgt:worksSubmitStep1"/>
+              </div>
+              <div id="show_works_submit_step2" style="display:none">
+              <include file="wgt:worksSubmitStep2"/>
+              </div>
+              <div id="show_works_submit_step3" style="display:none">
+              <include file="wgt:worksSubmitStep3"/>
+              </div>
+              <div id="show_works_submit_step4" style="display:none">
+              <include file="wgt:worksSubmitStep4"/>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doWorksSubmitStep"/>
+</body>
+</html>

@@ -11,9 +11,9 @@ class LoginAction extends CommonAction {
     public function index(){
     	$fromurl=$this->_get('fromurl');
 		$this->assign('fromurl',$fromurl);
-		
-		session('xiami_userid',1);
-		session('xiami_username','用户名');
+		//session_destroy();
+		//session('xiami_userid',1);
+		//session('xiami_username','用户名');
 		//替换模板SEO的值
 		$seo['title']='最蝦米*鬼懿IT*作品秀';
 		$seo['keywords']=C("CFG_SEO_KEYWORDS");
@@ -41,7 +41,7 @@ class LoginAction extends CommonAction {
 			session('xiami_userid',$qun_member['id']);
 			session('we_username',$username);
 			//存cookie一年
-			cookie("zuixiami_works_qq",$username,3600*24*365);
+			cookie("zuixiami_works_qq",$username,3600*24*30);
 			if(!empty($fromurl)){
 				$jump_url=__APP__.base64_decode($fromurl);//进入最后浏览页
 			}
@@ -93,7 +93,7 @@ class LoginAction extends CommonAction {
 	 * @return  void
 	 */
 	public function auth_callback($type = null, $code = null){
-		(empty($type) || empty($code)) && $this->error('参数错误');
+		(empty($type) || empty($code)) && $this->error('参数错误');		
 		
 		//加载ThinkOauth类并实例化一个对象
 		import("ORG.ThinkSDK.ThinkOauth");
@@ -102,28 +102,81 @@ class LoginAction extends CommonAction {
 		//请妥善保管这里获取到的Token信息，方便以后API调用
 		//调用方法，实例化SDK对象的时候直接作为构造函数的第二个参数传入
 		//如： $qq = ThinkOauth::getInstance('qq', $token);
-		$token = $sns->getAccessToken($code , $extend);
+		$token = $sns->getAccessToken($code , null);
 		
 		//获取当前登录用户信息
+		$userInfo=null;
 		if(is_array($token)){
 			$qq   = ThinkOauth::getInstance('qq', $token);
 			$data = $qq->call('user/get_user_info');
-			
+			$userInfo["openid"]=$token["openid"];
 			if($data['ret'] == 0){
 				$userInfo['type'] = 'QQ';
-				$userInfo['name'] = $data['nickname'];
-				$userInfo['nick'] = $data['nickname'];
-				$userInfo['head'] = $data['figureurl_2'];
+				$userInfo['nickname'] = $data['nickname'];				
+				$userInfo['figureurl'] = $data['figureurl_qq_2'];				
 			} else {
 				throw_exception("获取腾讯QQ用户信息失败：{$data['msg']}");
-			}
-		
-			echo("<h1>恭喜！使用 {$type} 用户登录成功</h1><br>");
-			echo("授权信息为：<br>");
-			dump($token);
-			echo("当前登录用户信息为：<br>");
-			dump($user_info);
+				echo("获取腾讯QQ用户信息失败：{$data['msg']}");
+			}			
 		}
+		// 是否已经有该openid		
+		$model = D ('user');	
+		if(!empty($userInfo["openid"])){
+    		$have_openid=$model->where("openid='".$userInfo["openid"]."'")->find(); 
+
+    		if($have_openid)
+    		{
+    			if(!empty($have_openid["qq"]) || $have_openid["qq"]!='0' )
+    			{
+    				session('xiami_userid',$have_openid["id"]);
+					session('xiami_username',$have_openid['nickname']);
+					session('xiami_userqq',$have_openid['qq']);
+					redirect("../user/");    				
+    			}    			
+    		}
+    	}
+    	$this->assign('userInfo',$userInfo);    	
+    	$this->display('index');		
 	}
+
+	public function relogin() {	
+     	$this->display('login-select-type');     	
+    }
+
+
+
     // ------------------------------------------------------------------------
+
+     public function insert() {	
+     	
+     	$openid=$_POST['openid'];
+     	$type=$_POST['type'];
+     	$nickname=$_POST['nickname'];
+     	$figureurl=$_POST['figureurl'];
+     	$qq=$_POST['qq'];
+     	$id=0;
+     	
+    	$model = D ('user');
+    	$have_openid=$model->where("qq='".$qq."'")->find();    	
+    	if(count($have_openid))
+    	{    		
+    		$id=$have_openid["id"];
+			$sql="update xiami_user set openid='".$openid."',type='".$type."',nickname='".$nickname."',figureurl='".$figureurl."',qq='".$qq."' where id=".$have_openid["id"]." and (openid='0' || openid = '')";
+			$model->query($sql);    		
+    	}
+    	else
+    	{
+    		$sql="insert into xiami_user (openid,type,nickname,figureurl,qq) values ('".$openid."','".$type."','".$nickname."','".$figureurl."','".$qq."')";
+			$model->query($sql);
+			$id=mysql_insert_id();
+    	}
+    	$model=D('works');
+    	$sql="update xiami_works set userid='".$id."',type='".$type."',author='".$nickname."' where qq='".$qq."'";
+		$model->query($sql);    	
+    	session('xiami_userid',$id);
+		session('xiami_username',$nickname);
+		session('xiami_userqq',$qq);
+
+    	redirect("../user/");
+    }
 }

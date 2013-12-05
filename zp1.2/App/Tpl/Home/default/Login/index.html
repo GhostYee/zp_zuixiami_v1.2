@@ -5,24 +5,38 @@
   <div class="l-b-row">
     <include file="wgt:rainbow"/>
   </div>
-   <div class="l-b-row ta-c clearfix">    
+  <div class="l-b-row ta-c clearfix">
     <div class="wgt-login box-shadow">
-      <include file="wgt:logo"/>  
-      <fieldset class="wgt-submitFrom form-horizontal"> 
-            
-            <div class="tip">
-              选择您的登录方式
-            </div>
-            <div class="control-group">
-              <label class="control-label">入口：</label>
-              <div class="controls">
-                <span class="login-types" >
-                  <a href="__APP__/user/auth_login/type/qq">腾讯登录</a>
-                  <a href="#">新浪微博登录</a>                                             
-                </span>
-              </div>
-            </div>          
-            
+      <h1 class="wgt-logo">
+        <a href="#">最虾米-发现前端价值</a>
+      </h1>
+      <fieldset class="wgt-submitFrom form-horizontal">
+        <form  method = "post"   action ="__APP__/login/insert" >
+        <div class="tip">
+          最虾米欢迎你，正在使用帐号绑定登录！          
+        </div>
+        <div class="control-group">
+          <label class="control-label">绑定QQ号：</label>
+          <div class="controls">
+            <input type="text" id="qq" name="qq" class="input-xlarge" value="">
+            <input type="hidden" id="openid" name="openid" value="{$userInfo['openid']}">
+            <input type="hidden" id="type" name="type" value="{$userInfo['type']}">
+            <input type="hidden" id="nickname" name="nickname" value="{$userInfo['nickname']}">
+            <input type="hidden" id="figureurl" name="figureurl" value="{$userInfo['figureurl']}">
+            <span class="help-block">
+              输入你的QQ找回你的作品。
+              <br/>
+              (也可以在用户中心
+              <a href="team-1.html">找回作品</a>
+              )
+            </span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-default" >确定绑定</button>          
+        </div>
+        </form>
       </fieldset>
     </div>
   </div>

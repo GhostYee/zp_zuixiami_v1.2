@@ -60,7 +60,7 @@
               </ul>
             </div>
             <div class="pic">
-              <img src="../Public/images/2012022922332451.jpg" alt=""></div>
+              <img src="{$works['img']}" alt=""></div>
             <div class="intr">
               <blockquote> <em class="dqm">“</em>
                 {$works['description']}
@@ -91,14 +91,9 @@
               赞(
               <span id="do_good_{$works['id']}">{$works['good']}</span>
               )
-            </a>
-            <a href="#gomessage" class="btn-default">评论/评星</a>
+            </a>            
             <a href="{$works['demourl']}" target="_blank" class="btn-default">查看源地址</a>
-          </div>
-          <a id="gomessage"></a>
-          <div class="box-shadow span10">
-            <include file="wgt:message" />
-          </div>
+          </div> 
         </div>
       </div>
     </div>

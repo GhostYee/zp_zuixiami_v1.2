@@ -38,21 +38,7 @@
                       </ul>
                     </div>
                   </div>
-                </div>
-                <div class="accordion-group">
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse-2">专题一、那些年我们看的前端书(3)</a>
-                  </div>
-                  <div id="collapse-2" class="accordion-body in collapse" style="height: 0;">
-                    <div class="accordion-inner">
-                      <ul class="media-list">
-                        <foreach name="workslist" item="val">
-                        <include file="wgt:userWorksListItem"/>
-                        </foreach>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                </div>                
                 <foreach name="teamlist" item="teamitem">
                 <div class="accordion-group">
                   <div class="accordion-heading">
@@ -62,7 +48,7 @@
                     <div class="accordion-inner">
                       <ul class="media-list">
                         <foreach name="teamitem.workslist" item="val">
-                        <include file="wgt:userWorksListItem"/>
+                          <include file="wgt:userWorksListItem"/>
                         </foreach>
                       </ul>
                     </div>
@@ -74,7 +60,7 @@
 
             </div>
             <div class="wgt-zp-opts span2">
-              <a href="__APP__/works/submit" class="btn-default btn-submitZP" > <em>+</em>
+              <a href="__APP__/tempProject/page/zpSubmit-step-1.php" class="btn-default btn-submitZP" > <em>+</em>
                 提交作品
               </a>
               <div class="btn-group">

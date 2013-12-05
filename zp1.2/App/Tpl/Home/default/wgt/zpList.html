@@ -15,7 +15,7 @@
             <if condition="$val['img'] neq ''">
               <img src="{$val['img']}" alt="{$val['name']}">
               <else/>
-              <blockquote>{$val['description']}</blockquote>
+              <blockquote>{$val['description']|strip_tags|msubstr=0,200}</blockquote>
             </if>
           </div>
           <a class="preview-mask" href="__APP__/works/{$val['id']}" title="{$val['name']}" ></a>

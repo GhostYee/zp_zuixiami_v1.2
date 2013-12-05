@@ -20,18 +20,27 @@
               <b></b>
               <b></b>
             </span>
+            <if condition="$val['rank'] eq ''">
+            (0星)
+            <else/>
             ({$val['rank']}星)
-            <span class="division" >|</span>
-            审核未通过
+            </if>            
+            <span class="division" >|</span>           
+            <switch name="val['status']" >
+               <case value="1">等待审核</case>
+               <case value="2">审核通过</case>
+               <case value="3">审核不通过</case>              
+               <default />异常
+            </switch>
             <span class="division" >|</span>
             喜欢({$val['good']})
           </div>
           <blockquote>{$val['description']|strip_tags|msubstr=0,300,'utf-8',false}</blockquote>
           <p class="opts" >
             <span>
-              <a href="javascript:void(0)">编辑</a>
-              <a href="javascript:void(0)">删除</a>
-              <a href="__APP__/works/message/{$val['id']}">评论(3)</a>
+              <a href="__APP__/tempProject/page/zpEdit.php?wordid={$val['id']}">编辑</a>
+              <a href="__APP__/works/del/id/{$val['id']}">删除</a>
+              <a href="__APP__/works/message/id/{$val['id']}">评论(3)</a>
             </span>
           </p>
         </div>

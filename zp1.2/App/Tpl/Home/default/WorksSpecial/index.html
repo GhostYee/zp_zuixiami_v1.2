@@ -37,6 +37,7 @@
                       <a href="__APP__/works_special/{$val['id']}">{$val['title']}</a>
                     </h4>
                     <blockquote>{$val['description']}</blockquote>
+                    <!--
                     <p>
                       个人作品：
                       <a href="zt-1.html">111</a>
@@ -44,17 +45,20 @@
                       团队作品：
                       <a href="zt-1.html">111</a>
                     </p>
+                    -->
                     <if condition="$val['award'] neq ''">
                       <p>
                         本期奖励： <strong>{$val['award']}元</strong>
                       </p>
                     </if>
+                    <!--
                     <p class="opts">
                       <span>
                         <a href="__APP__/works_special/message/{$val['id']}">专题讨论区</a>
                       </span>
                       <a href="__APP__/works/submit/works_special_id/{$val['id']}" class="btn-default" >参加专题</a>
                     </p>
+                    -->
                   </div>
                 </li>
               </foreach>

@@ -61,7 +61,7 @@ class WorksModel extends CommonModel {
 		if(!empty($status)) $where['works.status']=$status;
 		//归属
 		$where['teamid']=array('eq','');
-		
+		$where['works.userid']=	$userid;	
 		//判断排序
 		switch($sort){
 			case 'time':

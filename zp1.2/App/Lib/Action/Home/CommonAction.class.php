@@ -64,7 +64,7 @@ class CommonAction extends Action {
 		$fromurl=__INFO__;
 		$xiami_userid=session('xiami_userid');
 		if(empty($xiami_userid)){
-			$this->redirect('login/index/?fromurl='.base64_encode($fromurl));
+			$this->redirect('login/relogin/?fromurl='.base64_encode($fromurl));
 		}
 	}
 	// ------------------------------------------------------------------------

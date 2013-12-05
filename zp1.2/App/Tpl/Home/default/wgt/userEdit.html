@@ -7,7 +7,7 @@
               <div class="controls">                
                 <p class="labelInfo" >
                   <span>
-                    上传 <a href="__APP__/user/works"><strong>{$userinfo['total_all_user_works']}</strong></a> 件作品；
+                    历史上传 <a href="__APP__/user/works"><strong>{$userinfo['total_all_user_works']}</strong></a> 件作品；
                   </span>
                   / 
                   <span>
@@ -26,7 +26,7 @@
             <div class="control-group">
               <label class="control-label">QQ号码：</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" readonly="readonly" name="qq" id="qq" value="{$userinfo['qq']}">        
+                <input type="text" class="input-xlarge" name="qq" id="qq" value="{$userinfo['qq']}">                     
               </div>
             </div>
             <div class="control-group">
@@ -34,7 +34,7 @@
               <div class="controls">
                 <input type="text" class="input-xlarge" name="nickname" id="nickname" value="{$userinfo['nickname']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>>
                 <if condition="$userinfo['is_open'] eq '0'">
-                <span class="help-block" >默认显示绑定QQ的昵称；<a href="__APP__/user/unbind">解除绑定</a></span>
+                <span class="help-block" >默认显示绑定QQ的昵称；<a href="__APP__/user/unbind">解除绑定</a></span>               
                 </if>         
               </div>
             </div>
@@ -42,7 +42,8 @@
             <div class="control-group">
               <label class="control-label">头像：</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" name="figureurl" id="figureurl" value="{$userinfo['figureurl']}" <if condition="$userinfo['is_open'] eq '0'">readonly="readonly"</if>>      
+                <img src="{$userinfo['figureurl']}" width="80" height="80"  />
+                <input type="hidden" class="input-xlarge" name="figureurl" id="figureurl" value="{$userinfo['figureurl']}" />      
               </div>
             </div>
 			<if condition="$userinfo['qun_sort_id'] neq '0'">

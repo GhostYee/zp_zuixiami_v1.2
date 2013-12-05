@@ -41,7 +41,7 @@ form{margin: 0;padding: 0;}
 
 
 .btn-min{padding:0 10px;font-size:12px;display: inline-block;}
-.btn-submitZP{color:#fff;float: right:0;border:0;background: none;line-height: 20px;font-size:14px;background-color: #e65100;padding:0 8px;height:25px;display: inline-block;box-shadow: 0 0 7px rgba(0, 0, 0, 0.10);}
+.btn-submitZP{color:#fff;float:left;margin-top: 5px;border:0;background: none;line-height: 20px;font-size:14px;background-color: #e65100;padding:0 8px;height:25px;display: inline-block;box-shadow: 0 0 7px rgba(0, 0, 0, 0.10);}
 .btn-submitZP em{font-size: 20px;font-style: normal;font-weight: 700;display: inline-block;line-height:22px }
 .btn-submitZP:hover{text-decoration: none;color:#fff;}
 
@@ -232,6 +232,7 @@ background-size: cover;}
 .wgt-zp-opts .btn-group + .btn-group{margin-left: 0;}
 .wgt-zp-opts .btn-group .caret{border-top-color: #fff;margin-top: 15px;}
 .wgt-zp-opts a.btn-default{display: block;margin-bottom: 10px;}
+.wgt-zp-opts .btn-submitZP{float:none;}
 .wgt-zp-opts a:hover,
 .wgt-zp-opts a:active,
 .wgt-zp-opts a:focus{text-decoration: none;color:#fff;}
@@ -242,7 +243,7 @@ background-size: cover;}
 .wgt-zp-opts .dropdown-submenu:focus > a{background: none;background-color: #53b20e}
 
 .wgt-zpList-summary{display: inline-block;padding:10px;margin-bottom: 20px;}
-.wgt-zpList-summary .pic{width:230px;max-height:150px;padding:5px;background-color: #f1f1f1}
+.wgt-zpList-summary .pic{width:230px;padding:5px;background-color: #f1f1f1}
 .wgt-zpList-summary blockquote{margin:5px 0;font-size: 12px;text-indent: 2em;line-height: 1.8}
 .wgt-zpList-summary h4 a{font-size: 14px;color:#333;font-weight: bold;}
 .wgt-zpList-summary h4 a:hover{color:#53b20e;}
@@ -268,9 +269,9 @@ background-size: cover;}
 ****************************************/
 .wgt-topNav{float: right;margin: 0;padding: 0;position: relative;}
 .wgt-topNav li{display:inline-block;margin:5px;}
-.wgt-topNav .btn-group{font-size:12px;border-radius: 0;position:absolute;right:50px;top:1px;}
+.wgt-topNav .btn-group{font-size:12px;border-radius: 0;position:absolute;right:0px;top:1px;}
 .wgt-topNav .btn-group > .btn{font-size:12px;background: none;border:0;box-shadow: none;text-shadow: none;border-radius: 0}
-.wgt-topNav .btn-group > .btn, .btn-group > .dropdown-menu{border-radius: 0}
+.wgt-topNav .btn-group > .btn, .btn-group > .dropdown-menu{border-radius: 0;left:auto;right:0;}
 .wgt-topNav .btn-group li{margin: 0;display: block;}
 .wgt-topNav .dropdown-menu > li > a{padding:3px 10px;}
 .wgt-topNav .dropdown-menu > li > a:hover,

@@ -463,6 +463,25 @@ class WorksAction extends CommonAction {
     	
     	$this->display();
     }
+
+
+    // ------------------------------------------------------------------------
+
+	//查看作品
+    public function del()
+    {
+    	$this->_check_login();
+    	$works_id=$this->_get('id')?intval($this->_get('id')):'0';
+    	$userid=session("xiami_userid");
+    	
+    	//取得 作品详情
+    	$model_works=D("Works");   
+    	$sql="update xiami_works set status=4 where userid=".$userid." and id=".$works_id; 	
+    	$model_works->query($sql);
+    	$this->redirect('/user/workslist');
+    	
+    }
+
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------
     // ------------------------------------------------------------------------

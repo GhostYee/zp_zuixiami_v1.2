@@ -65,7 +65,7 @@ class UserAction extends CommonAction {
     			'userurl'=>$this->_post('userurl'),
     			'notice'=>$this->_post('notice'),
     	);
-    	
+    	session('xiami_username',$user['nickname']);
     	//用户信息
     	$user_model=D("User");
     	$userinfo=$user_model->getUserByID($userid);
@@ -119,6 +119,9 @@ class UserAction extends CommonAction {
     	}
     	
     }
+
+
+
     
     // ------------------------------------------------------------------------
     /**
@@ -132,11 +135,25 @@ class UserAction extends CommonAction {
     	$sort=$this->_get('sort')?$this->_get('sort'):'time';//排序
     	$status=$this->_get('status')?intval($this->_get('status')):'0';//状态
     	$whois=$this->_get('whois')?$this->_get('whois'):'0';//归属
-    	
-    	
+    	switch($sort){
+            case 'time':
+                $orderby=" addtime DESC ";
+                break;
+            case 'good':
+                $orderby=" good DESC ";
+                break;
+            case 'rank':
+                $orderby=" star DESC ";
+                break;           
+            default:
+                $orderby=" addtime DESC ";
+                break;
+        }
+
     	$works_model=D("Works");
     	//个人作品
-    	$userlist=$works_model->getUserWorksListByUserID($userid,$status,$sort);
+        $sql="SELECT * FROM xiami_works WHERE userid=".$userid." and status!=4 order by ".$orderby;
+    	$userlist=$works_model->query($sql);
     	
     	//团队作品
     	$team_model=D("Team");
@@ -152,7 +169,7 @@ class UserAction extends CommonAction {
     	
     	
     	
-    	$this->assign('userlist',$userlist);
+    	$this->assign('personlist',$userlist);
     	$this->assign('teamlist',$teamlist);
     	$this->assign('works_speciallist',works_speciallist);
     	
@@ -161,6 +178,10 @@ class UserAction extends CommonAction {
     	
     	$this->display();
     }
+
+
+   
+
     // ------------------------------------------------------------------------
     /**
      * 用户团队列表
