@@ -43,24 +43,16 @@
                 已提交作品：
                 <a href="#">{$works_total}</a>
                 件
-              </p>
-              <if condition="$works_special['award'] neq ''">
-                <p>
-                  奖励说明：被评选为 <strong>5</strong>
-                  颗星，可以获得 <strong>{$works_special['award']}元</strong>
-                </p>
-              </if>
-              <p class="pubtime">开始于：{$works_special['addtime']|inttodate_han}</p>
+              </p>              
             </div>
             <a href="#" class="btn-default btn-show-hide" >︽</a>
           </div>
           <div class="wgt-zp-opts span2">
-            <a href="__APP__/works_special" class="btn-default" >返回专题列表</a>
-            <a href="__APP__/works_special/message/{$works_special['id']}" class="btn-default" >专题讨论区</a>
+            <a href="__APP__/works_special" class="btn-default" >返回专题列表</a>            
           </div>
           <include file="wgt:zpListSummary"/>
           <div class="wgt-zp-opts span2">
-            <a href="__APP__/works/submit" class="btn-default btn-submitZP"> <em>+</em>
+            <a href="__APP__/tempProject/page/zpSubmit-step-1.php" class="btn-default btn-submitZP"> <em>+</em>
               提交作品
             </a>
             <div class="btn-group">
@@ -71,13 +63,7 @@
               <ul class="dropdown-menu">
                 <li>
                   <a href="__APP__/works_special/time/{$works_special['id']}">按时间排序</a>
-                </li>
-                <li>
-                  <a href="__APP__/works_special/good/{$works_special['id']}">按人气排序</a>
-                </li>
-                <li>
-                  <a href="__APP__/works_special/rank/{$works_special['id']}">按星级排序</a>
-                </li>
+                </li>               
               </ul>
             </div>
           </div>
