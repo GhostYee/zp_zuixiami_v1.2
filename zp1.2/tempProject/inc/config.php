@@ -27,6 +27,19 @@ Function getRequest($key)
 	}
 } 
 
+function prep_url($str = '')
+	{
+		if ($str == 'http://' OR $str == '')
+		{
+			return '';
+		}
+		$url = parse_url($str);
 
+		if ( ! $url OR ! isset($url['scheme']))
+		{
+			$str = 'http://'.$str;
+		}
 
+		return $str;
+	}
 ?>

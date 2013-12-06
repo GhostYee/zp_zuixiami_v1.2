@@ -24,15 +24,16 @@
           </h5>
           <div class="info">
             <span class="author-info" >
-              <a href="__APP__/author/{$val['userid']}" class="author-name" title="了解{$val['author']}" >{$val['author']}</a>
-              In
+              <a href="__APP__/author/{$val['userid']}" class="author-name" title="了解{$val['nickname']}" >{$val['nickname']}</a>              
+              <if condition="$val['qunname'] neq ''">
+              In             
               {$val['qunname']}
+              </if>
             </span>
             <span class="opts" >
               <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btn-like" title="喜欢+1" >
                 <span id="do_good_{$val['id']}">{$val['good']}</span>
-              </a>
-              <a href="__APP__/works/{$val['id']}/message" class="btn-message" title="评论" >5</a>
+              </a>              
             </span>
           </div>
         </div>

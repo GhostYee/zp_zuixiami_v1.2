@@ -8,12 +8,20 @@
 			</if>
 		<div class="con">
 			<p>
-				<a href="__APP__/author/{$author['id']}" class="user-name">{$author['nickname']}</a>
+				<if condition="$author['nickname'] neq ''">
+				 <a href="__APP__/author/{$author['id']}" class="user-name"> {$author['nickname']} </a>
+				<else/>
+				这是你的作品吗？
+				 <a href="__APP__/login/type/qq" class="user-name" >认领</a>
+				</if>
 			</p>
 			<p>
+				<if condition="$author['qunname'] neq ''">
 				来自
-				<a href="#" class="user-qqGroup">[{$author['qunname']}]</a>
+				<a href="__APP__/tempProject/page/zuixiami-qun.php" class="user-qqGroup">[{$author['qunname']}]</a>
+				</if>
 			</p>
+			<if condition="$author['id'] neq ''">
 			<p>
 				已经有
 				<a href="__APP__/author/{$author['id']}" class="user-zpNum">{$author['total_user_works']}</a>
@@ -23,6 +31,7 @@
 				<a href="javascript:void(0)" onClick="do_good_await('User','await',{$author['id']})" class="user-link-num"><span id="do_await_{$author['id']}">{$author['await']}</span></a>
 				人期待他新作
 			</p>
+			</if>
 		</div>
 	</div>
 </div>

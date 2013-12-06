@@ -3,10 +3,10 @@
 <?php	
 	$userQQ=getRequest("userQQ");
 	$zpName=getRequest("zpName");
-	$openUrl=getRequest("openUrl");
-	$demoUrl=getRequest("demoUrl");
+	$openUrl=prep_url(getRequest("openUrl"));
+	$demoUrl=prep_url(getRequest("demoUrl"));
 	$description=getRequest("description");
-	$imgUrl=getRequest("imgUrl");
+	$imgUrl=prep_url(getRequest("imgUrl"));
 	$zpID=getRequest("zpID");
 	$author=getRequest("author");
 

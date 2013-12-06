@@ -69,12 +69,12 @@
             <div class="info">
               <p>
                 演示地址：
-                <a href="http://{$works['demourl']}" target="_blank">http://{$works['demourl']}</a>
+                <a href="{$works['demourl']|prep_url}" target="_blank">{$works['demourl']|prep_url}</a>
               </p>
-              <if condition="$works['openurl'] neq ''">
+              <if condition="$works['openurl'] neq '0'">
                 <p>
                   开源地址：
-                  <a href="http://{$works['openurl']}" target="_blank">http://{$works['openurl']}</a>
+                  <a href="{$works['openurl']|prep_url}" target="_blank">{$works['openurl']|prep_url}</a>
                 </p>
               </if>
               <foreach name="works_special" item="val">
@@ -92,7 +92,7 @@
               <span id="do_good_{$works['id']}">{$works['good']}</span>
               )
             </a>            
-            <a href="http://{$works['demourl']}" target="_blank" class="btn-default">查看源地址</a>
+            <a href="{$works['demourl']|prep_url}" target="_blank" class="btn-default">查看源地址</a>
           </div> 
         </div>
       </div>

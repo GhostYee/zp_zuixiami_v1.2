@@ -72,18 +72,14 @@
                     </div>
                     <div class="control-group">
                       <label class="control-label" >演示地址：</label>
-                      <div class="controls">
-                        <div class="input-prepend">
-                          <span class="add-on">http://</span>
-                          <input type="text" class="span2" id="inputDemoUrl"  placeholder="演示地址" value=""></div>
+                      <div class="controls">                                                  
+                          <input type="text" class="input-xlarge" id="inputDemoUrl"  placeholder="演示地址" value="">
                       </div>
                     </div>
                     <div class="control-group">
                       <label class="control-label" >开源地址：</label>
                       <div class="controls">
-                        <div class="input-prepend">
-                          <span class="add-on">http://</span>
-                          <input type="text" class="span2" id="inputOpenUrl"   placeholder="开源地址" value=""></div>
+                          <input type="text" class="input-xlarge" id="inputOpenUrl"   placeholder="开源地址" value="">
                         <span class="help-block" >
                           推荐代码存放:
                           <a href="#" >Gitub</a>
