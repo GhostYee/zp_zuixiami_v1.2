@@ -1,6 +1,6 @@
 <div class="page">
 	<div class="pageContent">
-	
+
 	<form method="post" action="__URL__/insert/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
 		<div class="pageFormContent" layoutH="58">
 
@@ -8,28 +8,28 @@
 				<label>用户名：</label>
 				<input type="text" class="required alphanumeric" size="30" maxlength="20" name="account" value="{$vo.account}" />
 			</div>
-                    <div class="unit">
-	<label>姓名：</label>
-	<input type="text" class="required" size="30" name="nickname" value="">
-</div>
+			<div class="unit">
+				<label>姓名：</label>
+				<input type="text" class="required" size="30" name="nickname" value="">
+			</div>
 			<div class="unit">
 				<label>密 码：</label>
-				<input type="text" name="password" size="30" maxlength="20" class="required alphanumeric"/>
+				<input type="text" name="password" size="30" maxlength="32" class="required"/>
 			</div>
 
-                    	<div class="unit">
+			<div class="unit">
 				<label>权限组：</label>
 				<select name="roleId">
-				    <option value="0" selected >无分组</option>
-	              		<volist name="list" id="list">
+					<option value="0" selected >无分组</option>
+						<volist name="list" id="list">
 						<option value="{$list.id}" >{$list.name}</option>
-                                                <volist name="list['_child']" id="sub">
-                                                    <option value="{$sub.id}" >&nbsp;&nbsp;&nbsp;&nbsp;{$sub.name}</option>
-                                                        <volist name="sub['_child']" id="threetree">
-                                                            <option value="{$threetree.id}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$threetree.name}</option>
-                                                        </volist>
-                                                </volist>
-                                                </volist>
+							<volist name="list['_child']" id="sub">
+								<option value="{$sub.id}" >&nbsp;&nbsp;&nbsp;&nbsp;{$sub.name}</option>
+									<volist name="sub['_child']" id="threetree">
+										<option value="{$threetree.id}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$threetree.name}</option>
+									</volist>
+							</volist>
+						</volist>
 				</select>
 			</div>
 			<div class="unit">
@@ -39,12 +39,12 @@
 					<option value="0">禁用</option>
 				</select>
 			</div>
-			
+
 			<div class="unit">
 				<label>备注：</label>
 				<textarea name="remark" rows="3" cols="57"></textarea>
 			</div>
-			
+
 		</div>
 		<div class="formBar">
 			<ul>
@@ -53,8 +53,6 @@
 			</ul>
 		</div>
 	</form>
-	
+
 	</div>
 </div>
-
-
