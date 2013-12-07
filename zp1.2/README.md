@@ -8,13 +8,12 @@ php框架thinkphp 3.1.2  http://www.thinkphp.cn
 需要开启伪静态
 
 #### 二:数据库文件 ####
-zuixiami.sql 
+在MySQL命令行执行zuixiami.init.sql文件创建数据库和表
 
-默认mysql数据库名zuixiami 用户名root 密码空
-
-配置数据库名位置
+配置数据库连接
 
 App/Conf/db.php
+(先将App/Conf/目录下的db.sample.php文件改名为db.php)
 
 >'DB_TYPE'	=>	'mysql',
 >'DB_HOST'	=>	'localhost',
@@ -36,7 +35,7 @@ App/Conf/db.php
 
 用户:zuixiami
 
-密码:123456
+密码:Zp.Zuixiami.com~^_^~2013
 
 如不能访问请开启下伪静态
 
