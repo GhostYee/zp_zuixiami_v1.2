@@ -33,19 +33,27 @@
 			</div>
             <div class="unit">
 				<label>名称：</label>
-                <input name="name" type="text" id="name" value="{$vo[name]}"/>
+                <input name="name" type="text" id="name" class="required bigsize" value="{$vo[name]}"/>
             </div>
             <div class="unit">
 				<label>作者：</label>
-                <input name="author" type="text" id="author" value="{$vo[author]}"/>
+                <input name="author" type="text" id="author" class="required bigsize" value="{$vo[author]}"/>
             </div>
             <div class="unit">
-				<label>作品地址：</label>
-                <input name="url" type="text" class="required" id="url" value="{$vo[url]}"/>
+				<label>作品地址：(旧版用)</label>
+                <input name="url" type="text" class="required bigsize" id="url" value="{$vo[url]}"/>
+            </div>
+            <div class="unit">
+				<label>演示地址：</label>
+                <input name="demourl" type="text" class="required bigsize" id="demourl" value="{$vo[demourl]}"/>
+            </div>
+            <div class="unit">
+				<label>开源地址：</label>
+                <input name="openurl" type="text" class="required bigsize" id="openurl" value="{$vo[openurl]}"/>
             </div>
             <div class="unit">
 				<label>图片：</label>
-                <input name="img" type="text" id="name" value="{$vo[img]}"/>网络图片可直接输入
+                <input name="img" type="text" id="name" class="bigsize" value="{$vo[img]}"/>网络图片可直接输入
             </div>
             <div class="unit">
 				<label>&nbsp;</label>

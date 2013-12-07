@@ -328,6 +328,7 @@ table.list a {color:#3C7FB1; font-size:11px; line-height:20px;}
 table.list a:hover {text-decoration:underline; line-height:20px;}
 table.list td span.error {z-index:-1}
 table.nowrap tbody tr {border-bottom:solid 1px #ededed;}
+table.list tbody tr {border-top:solid 1px #888;}
 
 /* Taskbar */
 #taskbar { overflow:hidden; height:29px; border-style:solid; border-width: 0; border-color:#0f3255; background-color:#112746; background-repeat:repeat-x; position:absolute; z-index:30;}
@@ -500,6 +501,7 @@ body { overflow:hidden;}
 .pageFormContent label { float:left; width:120px; padding:0 5px; line-height:21px;}
 .pageFormContent label.radioButton { float:left; width:auto; padding:0 10px 0 0; line-height:21px;}
 .pageFormContent .textInput { float:left;}
+.pageFormContent .textInput.bigsize { width:440px;}
 .pageFormContent select { float:left;}
 .pageFormContent .inputInfo { padding:0 5px; line-height:21px;}
 .pageFormContent span.unit, .pageFormContent a.unit { padding:0 5px; line-height:21px;}
@@ -570,7 +572,7 @@ h3.contentTitle{margin-bottom:5px; line-height:25px; font-size:13px; border-bott
 #calendar .close{width:16px;height:16px; font-size:16px; display:block;cursor:pointer;border:1px solid #CCC;text-align:center; }
 #calendar .clearBut, #calendar .okBut { background-color: #CFEBEE; border: 1px solid #38B1B9; color: #08575B; width: 40px; }
 #calendar .time{border-collapse:collapse;float:left;background-color:#fff;display:none;}
-#calendar .time td{border:1px solid #61CAD0; line-height:16px; vertical-align:center;}
+#calendar .time td{border:1px solid #61CAD0; line-height:16px; vertical-align:middle;}
 #calendar .time .hh, #calendar .time .mm, #calendar .time .ss{width:18px; height:16px; border: none}
 #calendar .time ul {list-style:none}
 #calendar .time .up, #calendar .time .down {font-size:8px;height:8px;line-height:100%;border:1px solid #BEE9F0;cursor:pointer;}
@@ -614,3 +616,11 @@ a.btnAttach{background-position: -183px 0}
 
 .sortDragPlaceholder {border:1px dashed #ccc;}
 #printBox {display:none}
+.flag-img {
+display: inline-block;
+width: 16px;
+height: 16px;
+margin-right: 4px;
+vertical-align: text-bottom;
+background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmElEQVQ4T2NkoBAwAvX/p8QMqhoAMowUAHY5sgsIGdAAVF8PxI1ADGLjNSAAqEAAiBcgOQk5rOAWY3MBSON5IFYAYkcgPgA1hGgXwBSC9H0AYkMgfoAlcLB6AWTrfTTFF6AuARkGct18IA7EFQYg59pjsW0DUGwiEK+HGoIzDIhNVLQzAIvrcQphBCIpmuFqqZIXyLIZpgkAb14sAynerUcAAAAASUVORK5CYII=');
+}

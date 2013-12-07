@@ -125,7 +125,7 @@ class WorksAction extends CommonAction {
     			if(!is_array($file_info)){
     				$this->error($file_info);
     			}
-    			$data['img']=CFG('cfg_weburl').$file_info[0]['fileurl'];
+    			$data['img']='/'.$file_info[0]['fileurl']; //CFG('cfg_weburl')
     			$model->where("id='$list'")->save($data);
     		}
     		//作品日志
@@ -194,7 +194,7 @@ class WorksAction extends CommonAction {
     		if(!is_array($file_info)){
     			$this->error($file_info);
     		}
-    		$model->img=CFG('cfg_weburl').$file_info[0][fileurl];
+    		$model->img='/'.$file_info[0][fileurl]; //CFG('cfg_weburl')
     	}
     	// 更新数据
     	$list=$model->save ();

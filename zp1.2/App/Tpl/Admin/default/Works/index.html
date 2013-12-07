@@ -82,9 +82,9 @@
 				<tr target="sid_user" rel="{$vo['id']}">
 				  <td width="25"><input name="ids" value="{$vo['id']}" type="checkbox" /></td>
 					<td>{$vo['id']}</td>
-					<td><if condition="$vo['img'] neq ''">img</if>{$vo['name']}<br>
+					<td><if condition="$vo['img'] neq ''"><b class="flag-img"></b></if>{$vo['name']}<br>
                         {$vo['qq']}<br>
-                        <a href="{$vo['url']}" target="_blank">{$vo['url']}</a></td>
+                        <a href="{$vo['demourl']}" target="_blank">{$vo['demourl']}</a></td>
 					<td>{$vo['qunname']}</td>
 					<td>{$vo['sortname']}</td>
 					<td>{$vo['author']}</td>

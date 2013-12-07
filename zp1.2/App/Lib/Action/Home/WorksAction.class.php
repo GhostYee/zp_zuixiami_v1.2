@@ -81,8 +81,8 @@ class WorksAction extends CommonAction {
         } else {
             $info = $upload->getUploadFileInfo();
             $responce['status'] = 1;
-            $responce['img'] = CFG('cfg_weburl').'Uploads/Userimg/'.$info[0]['savename'];
-            $responce['thumb'] = CFG('cfg_weburl').'Uploads/Userthumb/m_'.$info[0]['savename'];
+            $responce['img'] = '/'.'Uploads/Userimg/'.$info[0]['savename']; //CFG('cfg_weburl')
+            $responce['thumb'] = '/'.'Uploads/Userthumb/m_'.$info[0]['savename']; //CFG('cfg_weburl')
         }
         echo json_encode($responce);
 	}
