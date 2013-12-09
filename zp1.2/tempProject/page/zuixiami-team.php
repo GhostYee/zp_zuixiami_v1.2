@@ -39,11 +39,11 @@
             <article class="wgt-simple-page box-shadow" >
               <h2>最虾米团队</h2>
               <div class="wgt-itemIntro" >
-                <div class="tip">加入我们？加QQ群：256732638；验证：最虾米</div>
+                <div class="tip">加入我们？加QQ群：256732638；验证：最虾米。（以下是按加入时间排序）</div>
                 <h6>视觉设计组</h6>
                 <dl>
                   <dt>@Thewei</dt>
-                  <dd>——十八般武艺样样精通，超人。负责项目原型设计，视觉设计</dd>
+                  <dd>——十八般武艺样样精通，超人。负责项目原型设计，视觉设计，十项全能</dd>
                 </dl>
                 <dl>
                   <dt>@AB</dt>
@@ -65,6 +65,10 @@
                 <dl>
                   <dt>@水聚云合</dt>
                   <dd>——前端爱好者，具有后端开发经验。负责项目部分后端功能开发</dd>
+                </dl>
+                 <dl>
+                  <dt>@240(Igin)</dt>
+                  <dd>——html5游戏开发达人 <a href="http://zp.zuixiami.com/author/500">进入游戏专辑</a>，高级全端人才，膜拜吧</dd>
                 </dl>
                 <h6>前端开发组</h6>
                 <dl>

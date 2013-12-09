@@ -254,6 +254,7 @@ background-size: cover;}
 .wgt-zpList-summary .wgt-star{margin-top: 5px;}
 .wgt-zpList-summary.span10{margin-left: 0;}
 .wgt-zpList-summary .rank{position: absolute;left:0;right:0;height:16px;width:16px;line-height: 16px;color:#fff;background-color: #e65100;text-align: center;font-style: normal;}
+.wgt-zpList-summary .rank+.media-body{padding-left: 20px;}
 .wgt-zpList-summary .info{color:#999;}
 
 .wgt-teamInfo-base{padding:10px;margin-top: 20px;position: relative;}

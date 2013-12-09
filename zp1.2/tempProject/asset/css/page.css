@@ -492,8 +492,8 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 
 .wgt-itemIntro{}
 .wgt-itemIntro h6{background-color: #f1f1f1;font-size: 14px;padding:3px;}
-.wgt-itemIntro dl{padding-left: 20px;}
-.wgt-itemIntro dt{font-size:14px;}
+.wgt-itemIntro dl{padding-left: 20px;font-size: 14px}
+.wgt-itemIntro dt{font-size:16px;}
 .wgt-itemIntro p{text-indent: 2em;font-size: 14px;line-height: 1.6;padding-top: 5px;}
 .wgt-itemIntro .tip{color:#999;}
 
