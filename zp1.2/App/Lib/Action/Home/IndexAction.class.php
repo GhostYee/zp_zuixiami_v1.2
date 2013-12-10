@@ -20,12 +20,17 @@ class IndexAction extends CommonAction {
         $works  = $works_model->getWorksGoodRanking(5); 
         $this->assign('rankList',$works);
         
-        //作品列表
-    	$this->load_works();
-    	
+        //作品列表    	     
+    	//$this->load_works_top();
+        $this->load_works();
+
     	$this->display();
     }
 
+    public function load_works_top()
+    {
+        
+    }
     // ------------------------------------------------------------------------
 
     //装载 作品 数据

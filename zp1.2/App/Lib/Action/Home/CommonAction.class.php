@@ -22,6 +22,14 @@ class CommonAction extends Action {
 		$seo['keywords']=C("CFG_SEO_KEYWORDS");
 		$seo['description']=C("CFG_SEO_DESCRIPTION");
 		$this->assign('seo',$seo);
+
+		//临时
+		//替换模板SEO的值
+        $seo['title']='最虾米-发现前端价值';
+        $seo['keywords']=C("CFG_SEO_KEYWORDS");
+        $seo['description']=C("CFG_SEO_DESCRIPTION");
+        $this->assign('seo',$seo);
+
 		
     }
 	/**

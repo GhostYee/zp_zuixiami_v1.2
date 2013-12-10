@@ -204,6 +204,7 @@ function upload($module='',$mid='',$title='',$allow_type='all',$remove_origin=FA
  */
 	function prep_url($str = '')
 	{
+
 		if ($str == 'http://' OR $str == '')
 		{
 			return '';
@@ -213,9 +214,9 @@ function upload($module='',$mid='',$title='',$allow_type='all',$remove_origin=FA
 
 		if ( ! $url OR ! isset($url['scheme']))
 		{
-			$str = 'http://'.$str;
-		}
 
+			$str = 'http://'.$str;
+		}		
 		return $str;
 	}
 // ------------------------------------------------------------------------

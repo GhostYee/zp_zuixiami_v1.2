@@ -7,7 +7,39 @@
       <h2 class="page-title">标签：<a href="__APP__/tag/{$tag['id']}">{$tag['tagname']}</a><span>{$works|count}个作品</span></h2>
     </case>
   </switch>
-  <ul class="thumbnails">
+  <ul class="thumbnails"> 
+    <foreach name="topworkList" item="val">
+
+       <li class="span4" >
+        <div class="inner">
+          <div class="preview-box">
+            <if condition="$val['img'] neq ''">
+              <img src="{$val['img']}" alt="{$val['name']}">
+              <else/>
+              <blockquote>{$val['description']|strip_tags|msubstr=0,200}</blockquote>
+            </if>
+          </div>
+          <a class="preview-mask" href="__APP__/works/{$val['id']}" title="{$val['name']}" ></a>
+          <h5>
+            <a href="__APP__/works/{$val['id']}" title="{$val['name']}" >{$val['name']}</a>
+          </h5>
+          <div class="info">
+            <span class="author-info" >
+              <a href="__APP__/author/{$val['userid']}" class="author-name" title="了解{$val['nickname']}" >{$val['nickname']}</a>              
+              <if condition="$val['qunname'] neq ''">
+              In             
+              {$val['qunname']}
+              </if>
+            </span>
+            <span class="opts" >
+              <a href="javascript:void(0)" onclick="do_good_await('Works','good',{$val['id']})" class="btn-like" title="喜欢+1" >
+                <span id="do_good_{$val['id']}">{$val['good']}</span>
+              </a>              
+            </span>
+          </div>
+        </div>
+      </li>
+    </foreach>
     <foreach name="works" item="val">
       <li class="span4" >
         <div class="inner">

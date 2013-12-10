@@ -171,7 +171,7 @@ class WorksModel extends CommonModel {
 	 * @return  array
 	 */
 	public function getWorksGoodRanking($limit='5'){
-		$sql    = "SELECT * FROM ".C('DB_PREFIX')."works order by good DESC LIMIT $limit ";
+		$sql    = "SELECT * FROM ".C('DB_PREFIX')."works where status=2 order by addtime DESC LIMIT $limit ";
 		$works  =$this->query($sql);
 		return $works;
 	}

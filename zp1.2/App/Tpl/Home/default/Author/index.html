@@ -29,15 +29,7 @@
         </div>
         <div class="l-b-row row-fluid">
           <include file="wgt:zpListSummary" />
-          <div class="wgt-zp-opts span2"> 
-            <div class="btn-group">
-                <a class="btn-default" href="javascript:;" data-toggle="dropdown">默认排序 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="__APP__/author/time/{$author['id']}">按时间排序</a></li>
-                  <li><a href="__APP__/author/good/{$author['id']}">按人气排序</a></li>   
-                  <li><a href="__APP__/author/rank/{$author['id']}">按星级排序</a></li>               
-                </ul>
-            </div>
+          <div class="wgt-zp-opts span2">            
             <a href="javascript:void(0)" onClick="do_good_await('User','await',{$author['id']})" class="btn-default">期待新作(<span id="do_await_{$author['id']}">{$author['await']}</span>)</a> </div>
         </div>
       </div>

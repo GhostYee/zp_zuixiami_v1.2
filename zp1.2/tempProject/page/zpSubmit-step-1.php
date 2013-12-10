@@ -126,10 +126,20 @@
                     </ul>
                   </div>
                   <div>
-                    <span class="btn-default fileinput-button">                      
-                      <span>添加图片</span>
+                    <div class="control-group">
+                      <label class="control-label" >作品图片链接(外链)：</label>
+                      <div class="controls">
+                        <input type="text" class="input-xlarge" value=""  id="imgUrl" ></div>
+                    </div>  
+                    <div class="control-group">
+                      <label class="control-label" >(或者)</label>
+                      <div class="controls">
+                        <span class="btn-default fileinput-button ">                      
+                      <span>上传图片</span>
                       <!-- The file input field used as target for the file upload widget -->
-                      <input id="fileupload" type="file" name="files[]"></span>
+                      <input id="fileupload" type="file" name="files[]"></span></div>
+                    </div>  
+                   
                     <!-- The global progress bar -->
                     <div id="progress" class="progress">
                       <div class="progress-bar progress-bar-success"></div>
@@ -138,7 +148,7 @@
                     <div id="files" class="files"></div>
                   </div>
                   <div class="form-actions ta-c">
-                    <input type="hidden" value="" id="imgUrl">
+                    
                     <a class="btn-default btn-submit-to-1" href="javascript:;">上一步</a>
                     <a href="javascript:;" class="btn-default btn-submit-to-3 btn-submit-save" >提交保存</a>                  
                   </div>
