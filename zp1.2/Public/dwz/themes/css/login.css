@@ -48,3 +48,20 @@ body { margin:0; text-align:center; background:#FFF url(../default/images/login_
 .login_inner p { margin:10px 0; line-height:150%; font-size:14px; color:#666;}
 
 #login_footer { clear:both; display:block; margin-bottom:20px; padding:10px; border-top:solid 1px #e2e5e8; color:#666; text-align:center;}
+
+/* new login ui */
+html,body{height:100%;margin:0;padding:0;}
+body{min-height:600px;background-image:none;background-color:#e0e0e0;}
+#login2 {width:753px; height:600px; position:absolute; left:50%; top:50%; margin-left:-376px; margin-top:-300px;}
+#login2 .login_splash {
+-moz-box-shadow: 0 0 12px #000000;
+-webkit-box-shadow: 0 0 12px #000000;
+box-shadow: 0 0 12px #000000;
+}
+#login2 input {position:absolute; width:180px;height:30px; line-height:28px; border:solid 1px #697729; color:#aaa; background-color: rgba(0,153,0,0.08);left:433px;background-repeat:no-repeat; background-image:url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEHAAEALAAAAAABAAEAAAICTAEAOw==');}
+#login2 .login_account {top:423px;padding-left:5px;font-size:16px;}
+#login2 .login_password {top:467px;padding-left:5px;font-size:16px;}
+#login2 .login_submit {top:513px; width:96px; font-size:16px; font-family:'Microsoft YaHei', 'STSong'; cursor:pointer; }
+#login2 input:focus { color:white; }
+#login2 .login_submit:hover, #login2 .login_submit:focus { color:white; background-color:rgba(0,153,0,0.28);}
+#login2 .login_logo {position:absolute; width:250px;height:56px; left:18px; top:15px; background-image:url('../default/images/login_logo_zuixiami.png');}
