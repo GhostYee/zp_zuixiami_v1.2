@@ -15,13 +15,7 @@
         <ul class="nav nav-list">
           <li>
             <a href="__APP__/author/{$works['userid']}">Ta的作品集</a>
-          </li>
-          <li>
-            <a href="__APP__/author/team/{$works['userid']}">Ta的团队</a>
-          </li>
-          <li>
-            <a href="__APP__/author/messsage/{$works['userid']}">给Ta的留言</a>
-          </li>
+          </li>          
         </ul>
       </div>
     </div>
@@ -60,7 +54,7 @@
               </ul>
             </div>
             <div class="pic">
-              <img src="{$works['img']}" alt=""></div>
+              <a href="{$works['demourl']|prep_url}" target="_blank" ><img src="{$works['img']}" alt=""></a></div>
             <div class="intr">
               <blockquote> <em class="dqm">“</em>
                 {$works['description']}

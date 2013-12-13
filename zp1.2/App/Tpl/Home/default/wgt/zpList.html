@@ -9,14 +9,13 @@
   </switch>
   <ul class="thumbnails"> 
     <foreach name="topworkList" item="val">
-
        <li class="span4" >
         <div class="inner">
           <div class="preview-box">
             <if condition="$val['img'] neq ''">
               <img src="{$val['img']}" alt="{$val['name']}">
               <else/>
-              <blockquote>{$val['description']|strip_tags|msubstr=0,200}</blockquote>
+              <blockquote>{$val['description']|strip_tags|msubstr=0,150}</blockquote>
             </if>
           </div>
           <a class="preview-mask" href="__APP__/works/{$val['id']}" title="{$val['name']}" ></a>
@@ -25,10 +24,9 @@
           </h5>
           <div class="info">
             <span class="author-info" >
-              <a href="__APP__/author/{$val['userid']}" class="author-name" title="了解{$val['nickname']}" >{$val['nickname']}</a>              
+              <a href="__APP__/author/{$val['userid']}" class="author-name" title="{$val['nickname']}" >{$val['nickname']}</a>              
               <if condition="$val['qunname'] neq ''">
-              In             
-              {$val['qunname']}
+              [{$val['qunname']}]
               </if>
             </span>
             <span class="opts" >
@@ -47,7 +45,7 @@
             <if condition="$val['img'] neq ''">
               <img src="{$val['img']}" alt="{$val['name']}">
               <else/>
-              <blockquote>{$val['description']|strip_tags|msubstr=0,200}</blockquote>
+              <blockquote>{$val['description']|strip_tags|msubstr=0,150}</blockquote>
             </if>
           </div>
           <a class="preview-mask" href="__APP__/works/{$val['id']}" title="{$val['name']}" ></a>
@@ -56,10 +54,9 @@
           </h5>
           <div class="info">
             <span class="author-info" >
-              <a href="__APP__/author/{$val['userid']}" class="author-name" title="了解{$val['nickname']}" >{$val['nickname']}</a>              
-              <if condition="$val['qunname'] neq ''">
-              In             
-              {$val['qunname']}
+              <a href="__APP__/author/{$val['userid']}" class="author-name" title="{$val['nickname']}" >{$val['nickname']}</a>              
+              <if condition="$val['qunname'] neq ''">                          
+              [{$val['qunname']}]
               </if>
             </span>
             <span class="opts" >

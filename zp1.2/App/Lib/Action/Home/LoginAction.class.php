@@ -107,17 +107,38 @@ class LoginAction extends CommonAction {
 		//获取当前登录用户信息
 		$userInfo=null;
 		if(is_array($token)){
-			$qq   = ThinkOauth::getInstance('qq', $token);
-			$data = $qq->call('user/get_user_info');
-			$userInfo["openid"]=$token["openid"];
-			if($data['ret'] == 0){
-				$userInfo['type'] = 'QQ';
-				$userInfo['nickname'] = $data['nickname'];				
-				$userInfo['figureurl'] = $data['figureurl_qq_2'];				
-			} else {
-				throw_exception("获取腾讯QQ用户信息失败：{$data['msg']}");
-				echo("获取腾讯QQ用户信息失败：{$data['msg']}");
-			}			
+			switch ($type) {
+				case 'qq':
+					$qq   = ThinkOauth::getInstance('qq', $token);
+					$data = $qq->call('user/get_user_info');
+					$userInfo["openid"]=$token["openid"];
+					if($data['ret'] == 0){
+						$userInfo['type'] = 'QQ';
+						$userInfo['nickname'] = $data['nickname'];				
+						$userInfo['figureurl'] = $data['figureurl_qq_2'];				
+					} else {
+						throw_exception("获取腾讯QQ用户信息失败：{$data['msg']}");
+						echo("获取腾讯QQ用户信息失败：{$data['msg']}");
+					}			
+				break;	
+				case 'sina':
+				    $token['uid']=$token['openid'];
+					$sina   = ThinkOauth::getInstance('sina', $token);									
+					$data = $sina->call('users/show','uid='.$token['uid'].'&access_token='.$token['access_token']);					
+					$userInfo["openid"]=$token["openid"];
+					if($data['ret'] == 0){
+						$userInfo['type'] = $type;
+						$userInfo['nickname'] = $data['name'];				
+						$userInfo['figureurl'] = $data['profile_image_url'];				
+					} else {
+						throw_exception("获取新浪用户信息失败：{$data['msg']}");
+						echo("获取新浪用户信息失败：{$data['msg']}");
+					}							
+				default:
+					# code...
+					break;
+			}
+			
 		}
 		// 是否已经有该openid		
 		$model = D ('user');	
@@ -157,11 +178,11 @@ class LoginAction extends CommonAction {
      	$id=0;
      	
     	$model = D ('user');
-    	$have_openid=$model->where("qq='".$qq."'")->find();    	
+    	$have_openid=$model->where("qq='".$qq."'")->find();     	  	
     	if(count($have_openid))
     	{    		
     		$id=$have_openid["id"];
-			$sql="update xiami_user set openid='".$openid."',type='".$type."',nickname='".$nickname."',figureurl='".$figureurl."',qq='".$qq."' where id=".$have_openid["id"]." and (openid='0' || openid = '')";
+			$sql="update xiami_user set openid='".$openid."',type='".$type."',nickname='".$nickname."',figureurl='".$figureurl."',qq='".$qq."' where id=".$have_openid["id"]." and ((openid='0' || openid = '') or type!='".$type."')";
 			$model->query($sql);    		
     	}
     	else

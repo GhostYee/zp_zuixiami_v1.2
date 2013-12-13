@@ -1,7 +1,7 @@
 <?php
 return array(
 	//'配置项'=>'配置值'
-	'SHOW_PAGE_TRACE'	=>	0,
+	'SHOW_PAGE_TRACE'	=>	1,
 	
 	'VAR_PAGE' => 'pageNum',
 	//RBAC配置

@@ -20,8 +20,8 @@ return array(
 	),
 	//新浪微博配置
 	'THINK_SDK_SINA' => array(
-		'APP_KEY'    => '', //应用注册成功后分配的 APP ID
-		'APP_SECRET' => '', //应用注册成功后分配的KEY
+		'APP_KEY'    => '314051678', //应用注册成功后分配的 APP ID
+		'APP_SECRET' => 'a9d619840d1e4423f0660b35d048ac7d', //应用注册成功后分配的KEY
 		'CALLBACK'   => URL_CALLBACK . 'sina',
 	),
 	//网易微博配置

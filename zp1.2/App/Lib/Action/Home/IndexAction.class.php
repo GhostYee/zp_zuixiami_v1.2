@@ -17,11 +17,11 @@ class IndexAction extends CommonAction {
         
         //排行榜列表
         $works_model=D('Works');
-        $works  = $works_model->getWorksGoodRanking(5); 
+        $works  = $works_model->query("SELECT * FROM xiami_works WHERE STATUS =2 ORDER BY addtime DESC , is_top LIMIT 5"); 
         $this->assign('rankList',$works);
         
         //作品列表    	     
-    	//$this->load_works_top();
+    	$this->load_works_top();
         $this->load_works();
 
     	$this->display();
@@ -29,7 +29,9 @@ class IndexAction extends CommonAction {
 
     public function load_works_top()
     {
-        
+        $works_model=D('Works');
+        $works  = $works_model->query("SELECT * FROM xiami_works WHERE STATUS =2 and is_top=1 order by addtime desc limit 6"); 
+        $this->assign('topworkList',$works);
     }
     // ------------------------------------------------------------------------
 

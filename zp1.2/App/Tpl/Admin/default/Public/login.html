@@ -11,15 +11,47 @@
 <link href="__PUBLIC__/dwz/themes/css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<div id="login">
+	<div id="login_header">
+		<h1 class="login_logo">
+			<a href="#"><img src="__PUBLIC__/dwz/themes/default/images/login_logo.gif" /></a>
+		</h1>
+		<div class="login_headerContent">
+			<div class="navList">
+				
+			</div>
+			<h2 class="login_title"><img src="__PUBLIC__/dwz/themes/default/images/login_title.png" /></h2>
+		</div>
+	</div>
 
-<div id="login2">
-	<div class="login_splash"><img src="__PUBLIC__/dwz/themes/default/images/login_splash.jpg" width="753" height="600" /></div>
-	<div class="login_logo"></div>
-	<form id="signupForm" method="post" action="__URL__/checkLogin/"  >
-		<input type="text" name="account" placeholder="帐号" class="login_account" />
-		<input type="password" name="password" placeholder="密码" class="login_password" />
-		<input type="submit" value="登 录" class="login_submit" />
-	</form>
+	
+	<div id="login_content">
+		<div class="loginForm">
+	
+			<form id="signupForm" method="post" action="__URL__/checkLogin/"  >
+				<p>
+					<label>帐号：</label>
+					<input type="text" name="account" size="20" class="login_input" />
+				</p>
+				<p>
+					<label>密码：</label>
+					<input type="password" name="password" size="20" class="login_input" />
+				</p>
+				
+				<div class="login_bar">
+					<input class="sub" type="submit" value=" " />
+				</div>
+			</form>
+		</div>
+		<div class="login_banner"><img src="__PUBLIC__/dwz/themes/default/images/login_banner.jpg" /></div>
+		<div class="login_main">
+			<div class="login_inner">
+			</div>
+		</div>
+	</div>
+	<div id="login_footer">
+		<include file="Public:footer" />
+	</div>
 </div>
 
 </body>
