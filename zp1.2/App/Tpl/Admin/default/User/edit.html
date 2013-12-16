@@ -1,0 +1,84 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+    	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
+		<div class="pageFormContent" layoutH="58">
+			<div class="unit">
+				<label>群分类：</label>
+				<select name="qun_sort_id" id="qun_sort_id">
+                <option value="0">请选择群分类</option>
+                <?php
+                    foreach ((array) $qun_sort_list as $id => $item) {
+                    ?>
+                <option value="<?=$item['id']?>" <?php if($vo['qun_sort_id'] == $item['id']){?>selected="selected"<?php }?>>
+                <?=$item['name']?></option>
+                <?php
+                    }
+                ?>
+                </select>
+			</div>
+			<div class="unit">
+				<label>登录类型：</label>
+				<input name="type" type="text"  id="type" value="{$vo['type']}"/>
+			</div>
+            <div class="unit">
+				<label>OpenID：</label>
+				<input name="openid" type="text"  id="openid" value="{$vo['openid']}"/>
+			</div>
+            <div class="unit">
+				<label>QQ号码：</label>
+				<input name="qq" type="text"  id="qq" value="{$vo['qq']}"/>
+			</div>
+            <div class="unit">
+				<label>昵称：</label>
+				<input name="nickname" type="text"  id="nickname" value="{$vo['nickname']}"/>
+			</div>
+            <div class="unit">
+				<label>头像地址：</label>
+				<input name="figureurl" type="text"  id="figureurl" value="{$vo['figureurl']}"/>
+			</div>
+            <div class="unit">
+				<label>用户BLOG地址：</label>
+				<input name="userurl" type="text"  id="userurl" value="{$vo['userurl']}"/>
+			</div>
+            <div class="unit">
+				<label>用户介绍：</label>
+				<input name="notice" type="text" id="notice" value="{$vo['notice']}"/>
+			</div>
+            <div class="unit">
+				<label>是否开启自定义昵称：</label>
+				<input type="radio" name="is_open" value="0" <if condition="($vo['is_open'] eq 0) or (ACTION_NAME eq 'add')">checked="checked"</if> />不开启
+                <input type="radio" name="is_open" value="1" <if condition="$vo['is_open'] eq 1">checked="checked"</if>/>开启
+			</div>
+			<div class="unit">
+				<label>是否停用用户：</label>
+				<input type="radio" name="is_locked" value="0" <if condition="($vo['is_locked'] eq 0) or (ACTION_NAME eq 'add')">checked="checked"</if> />不停用
+                <input type="radio" name="is_locked" value="1" <if condition="$vo['is_locked'] eq 1">checked="checked"</if>/>停用
+			</div>
+            <div class="unit">
+				<label>期待作者：</label>
+                <input name="await" type="text" id="await" value="{$vo[await]}"/>
+            </div>
+             <div class="unit">
+				<label>点击量：</label>
+                <input name="hits" type="text" id="hits" value="{$vo[hits]}"/>
+            </div>
+             <div class="unit">
+				<label>添加时间：</label>
+                {$vo[addtime]|inttodate}
+            </div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+
