@@ -265,6 +265,64 @@ class WorksAction extends CommonAction {
     }
     /**
      +----------------------------------------------------------
+     * 选中批量推荐操作
+     +----------------------------------------------------------
+     */
+    public function selectedTop() {
+    	//审核指定记录
+    	$name = $this->getActionName();
+    	$model = D($name);
+    	if (!empty($model)) {
+    		$pk = $model->getPk();
+    		$id = $_REQUEST ['ids'];
+    		if (isset($id)) {
+    			$condition = array($pk => array('in', explode(',', $id)));
+    			$works['is_top']='1';
+    			if (false !== $model->where($condition)->save($works)) {
+    				//echo $model->getlastsql();
+    				//作品日志
+    				$this->works_log($id,ACTION_NAME);
+    				$this->success('全部推荐成功！');
+    			} else {
+    				$this->error('推荐失败！');
+    			}
+    		} else {
+    			$this->error('非法操作');
+    		}
+    	}
+    	$this->forward();
+    }
+    /**
+     +----------------------------------------------------------
+     * 选中批量不推荐操作
+     +----------------------------------------------------------
+     */
+    public function selectedNottop() {
+    	//审核指定记录
+    	$name = $this->getActionName();
+    	$model = D($name);
+    	if (!empty($model)) {
+    		$pk = $model->getPk();
+    		$id = $_REQUEST ['ids'];
+    		if (isset($id)) {
+    			$condition = array($pk => array('in', explode(',', $id)));
+    			$works['is_top']='0';
+    			if (false !== $model->where($condition)->save($works)) {
+    				//echo $model->getlastsql();
+    				//作品日志
+    				$this->works_log($id,ACTION_NAME);
+    				$this->success('全部不推荐成功！');
+    			} else {
+    				$this->error('推荐失败！');
+    			}
+    		} else {
+    			$this->error('非法操作');
+    		}
+    	}
+    	$this->forward();
+    }
+    /**
+     +----------------------------------------------------------
      * 作品操作日志列表
      +----------------------------------------------------------
      */
