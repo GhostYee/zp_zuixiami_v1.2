@@ -2,7 +2,7 @@
 <div class="page">
 	<div class="pageContent">
 
-	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return validateCallback(this, dialogAjaxDone)">
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
     	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
 		<div class="pageFormContent" layoutH="58">			
 			<div class="unit">

@@ -42,6 +42,7 @@ class BannerAction extends CommonAction {
 			//上传图片
 			if(!empty($_FILES['fileimg']['name'])){
 				$file_info=upload(MODULE_NAME,$list,'','image');
+				//dump($file_info);exit;
 				if(!is_array($file_info)){
 					$this->error($file_info);
 				}
