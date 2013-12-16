@@ -7,7 +7,7 @@ $db_host='127.0.0.1';
 $db_port='3306';
 $db_user='root';
 $db_pwd='';
-$db_db='zuixiamiZP';
+$db_db='zuixiami';
 
 //基本配置
 //首页
