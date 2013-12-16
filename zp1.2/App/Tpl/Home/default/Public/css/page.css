@@ -166,9 +166,9 @@ background-size: cover;}
 .wgt-zpRankList ul li.rank-4 em{background-color: #f1a400}
 .wgt-zpRankList ul li.rank-5 em{background-color: #f1a400}
 .wgt-zpRankList ul li .con{width:180px;display: inline-block;}
-.wgt-zpRankList ul li h5{margin: 0;font-weight: 400}
+.wgt-zpRankList ul li h5{margin: 0;font-weight:400}
 .wgt-zpRankList ul li h5 a{color:#666;}
-.wgt-zpRankList ul li h5 a:hover{color:#29a8e1;}
+.wgt-zpRankList ul li h5 a:hover{color:#29a8e1}
 
 .wgt-searchBar{text-align:center;vertical-align: middle;position: relative;margin:10px auto 0;padding-bottom: 10px;}
 .wgt-searchBar input[type="text"]{margin-bottom:0;border-radius: 0;}
@@ -270,8 +270,9 @@ background-size: cover;}
 ****************************************/
 .wgt-topNav{float: right;margin: 0;padding: 0;position: relative;}
 .wgt-topNav li{display:inline-block;margin:5px;}
-.wgt-topNav .btn-group{font-size:12px;border-radius: 0;position:absolute;right:0px;top:1px;}
-.wgt-topNav .btn-group > .btn{font-size:12px;background: none;border:0;box-shadow: none;text-shadow: none;border-radius: 0}
+.wgt-topNav>li>a{font-size: 14px;display: inline-block;position: relative;top:3px;}
+.wgt-topNav .btn-group{font-size:14px;border-radius: 0;}
+.wgt-topNav .btn-group > .btn{font-size:14px;background: none;border:0;box-shadow: none;text-shadow: none;border-radius: 0}
 .wgt-topNav .btn-group > .btn, .btn-group > .dropdown-menu{border-radius: 0;left:auto;right:0;}
 .wgt-topNav .btn-group li{margin: 0;display: block;}
 .wgt-topNav .dropdown-menu > li > a{padding:3px 10px;}
@@ -280,7 +281,7 @@ background-size: cover;}
 .wgt-topNav .dropdown-submenu:hover > a,
 .wgt-topNav .dropdown-submenu:focus > a{background: none;background-color: #53b20e}
 .wgt-topNav .dropdown-menu > li,
-.wgt-topNav .dropdown-menu > li *{vertical-align: middle;font-size: 12px;line-height: 24px}
+.wgt-topNav .dropdown-menu > li *{vertical-align: middle;font-size: 14px;line-height: 24px}
 .wgt-topNav .ico-login{width:24px;height:24px;margin-right: 5px;}
 
 .wgt-bannerList{background-color:#fff;position: relative;width:487px;display: inline-block;}

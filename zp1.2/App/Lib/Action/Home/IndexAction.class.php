@@ -30,7 +30,7 @@ class IndexAction extends CommonAction {
     public function load_works_top()
     {
         $works_model=D('Works');
-        $works  = $works_model->query("SELECT * FROM xiami_works WHERE STATUS =2 and is_top=1 order by addtime desc limit 6"); 
+        $works  = $works_model->query("SELECT w.*,u.nickname FROM xiami_works as w left join xiami_user as u on u.id=w.userid  WHERE w.STATUS =2 and w.is_top=1 ORDER BY rand()"); 
         $this->assign('topworkList',$works);
     }
     // ------------------------------------------------------------------------
@@ -44,15 +44,17 @@ class IndexAction extends CommonAction {
         
         //状态 默认通过审核
         $where['works.status']=2;       
-		
+		$where['works.is_top']=0;
         //查找关键词作品名,作者,描述
         if(!empty($keywords)){
         	$map['works.name'] = array('like', "%" . $keywords . "%");
         	$map['works.author'] = array('like', "%" . $keywords . "%");
         	$map['works.description'] = array('like', "%" . $keywords . "%");
+            $map['works.is_top'] = array('neq', "1");
         	$map['qun_sort.name'] = array('like', "%" . $keywords . "%");
         	$map['_logic'] = 'or';
         	$where['_complex']=$map;
+
         }
             
         //判断排序
