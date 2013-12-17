@@ -442,7 +442,7 @@ INSERT INTO `xiami_config` (`id`, `pid`, `textname`, `code`, `type`, `store_rang
 (181, 5, '服务接收邮箱', 'cfg_mail_service_address', 'text', '', '', 'wei5634@126.com', '', '', 28),
 (182, 1, '后台目录', 'cfg_backend_access_point', 'text', '', '', 'wewe', '', '', 1),
 (183, 1, '前台特别说明', 'cfg_notice_info', 'textarea', '', '', '鬼群高级群QQ群号：19046753（聚合前端业界人才，建立良好技术讨论氛围）<br/>\r\n      鬼群成长群QQ群号：181368696 （通过成长群筛选进入高级群，提交作品或者blog）', '', '', 29),
-(184, 1, '统计代码', 'cfg_tongji', 'textarea', '', '', '<script type="text/javascript">\r\nvar _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");\r\ndocument.write(unescape("%3Cscript src=''" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd82d94085def6e342e036d021e453a4f'' type=''text/javascript''%3E%3C/script%3E"));\r\n</script>', '', '统计代码', 30),
+(184, 1, '统计代码', 'cfg_tongji', 'textarea', '', '', '<script src="//hm.baidu.com/h.js?d82d94085def6e342e036d021e453a4f"></script>', '', '统计代码', 30),
 (185, 2, '首页作品显示数', 'cfg_index_works_num', 'text', '', '', '27', '', '', 31),
 (186, 2, '首页作品排序', 'cfg_index_works_order', 'text', '', '', 'works.is_top DESC,works.top_sid DESC,works.id DESC', '', '<br>排序sql<br>\r\nw.is_top 是否推荐 1,0<br>\r\nw.top_sid 推荐排序<br>\r\nw.id  ID排序<br>\r\n默认w.is_top DESC,w.top_sid DESC,w.id DESC<br>\r\n推荐 倒序，推荐排序倒序，ID 倒序', 32),
 (3, 0, '文件管理', 'cfg_file', 'group', '', '', '', '', '', 3),
