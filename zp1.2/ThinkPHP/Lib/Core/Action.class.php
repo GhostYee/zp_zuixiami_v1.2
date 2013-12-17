@@ -33,13 +33,6 @@ abstract class Action {
     private   $name     =  '';
 
     /**
-     * 模板变量
-     * @var tVar
-     * @access protected
-     */      
-    protected $tVar     =   array();
-
-    /**
      * 控制器参数
      * @var config
      * @access protected
@@ -52,6 +45,8 @@ abstract class Action {
      */
     public function __construct() {
         tag('action_begin',$this->config);
+        //实例化视图类
+        $this->view     = Think::instance('View');           
         //控制器初始化
         if(method_exists($this,'_initialize'))
             $this->_initialize();
@@ -97,7 +92,6 @@ abstract class Action {
      * @return void
      */
     protected function display($templateFile='',$charset='',$contentType='',$content='',$prefix='') {
-        $this->initView();
         $this->view->display($templateFile,$charset,$contentType,$content,$prefix);
     }
 
@@ -111,7 +105,6 @@ abstract class Action {
      * @return mixed
      */
     protected function show($content,$charset='',$contentType='',$prefix='') {
-        $this->initView();       
         $this->view->display('',$charset,$contentType,$content,$prefix);
     }
 
@@ -126,22 +119,9 @@ abstract class Action {
      * @return string
      */
     protected function fetch($templateFile='',$content='',$prefix='') {
-        $this->initView();
         return $this->view->fetch($templateFile,$content,$prefix);
     }
 
-    /**
-     * 初始化视图
-     * @access private
-     * @return void
-     */
-    private function initView(){
-        //实例化视图类
-        if(!$this->view)    $this->view     = Think::instance('View');
-        // 模板变量传值
-        if($this->tVar)     $this->view->assign($this->tVar);           
-    }
-    
     /**
      *  创建静态页面
      * @access protected
@@ -164,18 +144,26 @@ abstract class Action {
     }
 
     /**
+     * 模板主题设置
+     * @access protected
+     * @param string $theme 模版主题
+     * @return Action
+     */
+    protected function theme($theme){
+        $this->view->theme($theme);
+        return $this;
+    }
+
+    /**
      * 模板变量赋值
      * @access protected
      * @param mixed $name 要显示的模板变量
      * @param mixed $value 变量的值
-     * @return void
+     * @return Action
      */
     protected function assign($name,$value='') {
-        if(is_array($name)) {
-            $this->tVar   =  array_merge($this->tVar,$name);
-        }else {
-            $this->tVar[$name] = $value;
-        }        
+        $this->view->assign($name,$value);
+        return $this;
     }
 
     public function __set($name,$value) {
@@ -189,10 +177,7 @@ abstract class Action {
      * @return mixed
      */
     public function get($name='') {
-        if('' === $name) {
-            return $this->tVar;
-        }
-        return isset($this->tVar[$name])?$this->tVar[$name]:false;        
+        return $this->view->get($name);      
     }
 
     public function __get($name) {
@@ -206,7 +191,7 @@ abstract class Action {
      * @return boolean
      */
     public function __isset($name) {
-        return isset($this->tVar[$name]);
+        return $this->get($name);
     }
 
     /**
@@ -221,7 +206,7 @@ abstract class Action {
             if(method_exists($this,'_empty')) {
                 // 如果定义了_empty操作 则调用
                 $this->_empty($method,$args);
-            }elseif(file_exists_case(C('TEMPLATE_NAME'))){
+            }elseif(file_exists_case($this->view->parseTemplate())){
                 // 检查是否存在默认模版 如果有直接输出模版
                 $this->display();
             }elseif(function_exists('__hack_action')) {
@@ -254,9 +239,8 @@ abstract class Action {
                         default:
                             $input  =  $_GET;
                     }
-                    if(C('VAR_URL_PARAMS')){
-                        $params = $_GET[C('VAR_URL_PARAMS')];
-                        $input  =   array_merge($input,$params);
+                    if(C('VAR_URL_PARAMS') && isset($_GET[C('VAR_URL_PARAMS')])){
+                        $input  =   array_merge($input,$_GET[C('VAR_URL_PARAMS')]);
                     }
                     break;
                 case '_request' :   $input =& $_REQUEST;   break;
@@ -283,6 +267,7 @@ abstract class Action {
             }else{ // 变量默认值
                 $data       =	 isset($args[2])?$args[2]:NULL;
             }
+            Log::record('建议使用I方法替代'.$method,Log::NOTICE);
             return $data;
         }
     }
@@ -295,7 +280,7 @@ abstract class Action {
      * @param mixed $ajax 是否为Ajax方式 当数字时指定跳转时间
      * @return void
      */
-    protected function error($message,$jumpUrl='',$ajax=false) {
+    protected function error($message='',$jumpUrl='',$ajax=false) {
         $this->dispatchJump($message,0,$jumpUrl,$ajax);
     }
 
@@ -307,7 +292,7 @@ abstract class Action {
      * @param mixed $ajax 是否为Ajax方式 当数字时指定跳转时间
      * @return void
      */
-    protected function success($message,$jumpUrl='',$ajax=false) {
+    protected function success($message='',$jumpUrl='',$ajax=false) {
         $this->dispatchJump($message,1,$jumpUrl,$ajax);
     }
 
@@ -322,25 +307,12 @@ abstract class Action {
         if(func_num_args()>2) {// 兼容3.0之前用法
             $args           =   func_get_args();
             array_shift($args);
-			$we_info	=array_shift($args);// by wewe
-			$we_status	=array_shift($args);// by wewe
-			$we_type	=array_shift($args);// by wewe
             $info           =   array();
             $info['data']   =   $data;
-            //$info['info']   =   array_shift($args);
-            //$info['status'] =   array_shift($args);
-			$info['info']   =   $we_info;
-            $info['status'] =   $we_status;
-			$info['statusCode']  	=  $we_status;	// by wewe
-			$info['navTabId']  		=  $_REQUEST['navTabId'];	// by wewe
-			$info['rel']  			=  $_REQUEST['rel'];	// by wewe
-			$info['callbackType']  	=  $_REQUEST['callbackType'];	// by wewe
-			$info['forwardUrl']  	=  $_REQUEST['forwardUrl'];	// by wewe
-			$info['confirmMsg']  	=  $_REQUEST['confirmMsg'];	// by wewe
-			$info['message'] 		=  $we_info; // by wewe
+            $info['info']   =   array_shift($args);
+            $info['status'] =   array_shift($args);
             $data           =   $info;
-            //$type           =   $args?array_shift($args):'';
-			$type           =   $args?$we_type:'';// by wewe
+            $type           =   $args?array_shift($args):'';
         }
         if(empty($type)) $type  =   C('DEFAULT_AJAX_RETURN');
         switch (strtoupper($type)){
@@ -398,8 +370,7 @@ abstract class Action {
             $data['info']   =   $message;
             $data['status'] =   $status;
             $data['url']    =   $jumpUrl;
-            //$this->ajaxReturn($data);
-			$this->ajaxReturn($data,$message,$status); //by wewe
+            $this->ajaxReturn($data);
         }
         if(is_int($ajax)) $this->assign('waitSecond',$ajax);
         if(!empty($jumpUrl)) $this->assign('jumpUrl',$jumpUrl);
@@ -434,8 +405,6 @@ abstract class Action {
      * @access public
      */
     public function __destruct() {
-        // 保存日志
-        if(C('LOG_RECORD')) Log::save();
         // 执行后续操作
         tag('action_end');
     }

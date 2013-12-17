@@ -60,7 +60,7 @@ class Model {
     // 是否批处理验证
     protected $patchValidate    =   false;
     // 链操作方法列表
-    protected $methods          =   array('table','order','alias','having','group','lock','distinct','auto','filter','validate');
+    protected $methods          =   array('table','order','alias','having','group','lock','distinct','auto','filter','validate','result','bind','token');
 
     /**
      * 架构函数
@@ -112,7 +112,7 @@ class Model {
                 $db   =  $this->dbName?$this->dbName:C('DB_NAME');
                 $fields = F('_fields/'.strtolower($db.'.'.$this->name));
                 if($fields) {
-                    $version    =   C('DB_FIELD_VERISON');
+                    $version    =   C('DB_FIELD_VERSION');
                     if(empty($version) || $fields['_version']== $version) {
                         $this->fields   =   $fields;
                         return ;
@@ -148,7 +148,7 @@ class Model {
         }
         // 记录字段类型信息
         $this->fields['_type'] =  $type;
-        if(C('DB_FIELD_VERISON')) $this->fields['_version'] =   C('DB_FIELD_VERISON');
+        if(C('DB_FIELD_VERSION')) $this->fields['_version'] =   C('DB_FIELD_VERSION');
 
         // 2008-3-7 增加缓存开关控制
         if(C('DB_FIELDS_CACHE')){
@@ -521,7 +521,7 @@ class Model {
 
     /**
      * 分析表达式
-     * @access proteced
+     * @access protected
      * @param array $options 表达式参数
      * @return array
      */
@@ -546,7 +546,7 @@ class Model {
         $options['model']       =   $this->name;
 
         // 字段类型验证
-        if(isset($options['where']) && is_array($options['where']) && !empty($fields)) {
+        if(isset($options['where']) && is_array($options['where']) && !empty($fields) && !isset($options['join'])) {
             // 对数组查询条件进行字段类型检查
             foreach ($options['where'] as $key=>$val){
                 $key            =   trim($key);
@@ -554,7 +554,7 @@ class Model {
                     if(is_scalar($val)) {
                         $this->_parseType($options['where'],$key);
                     }
-                }elseif('_' != substr($key,0,1) && false === strpos($key,'.') && false === strpos($key,'|') && false === strpos($key,'&')){
+                }elseif(!is_numeric($key) && '_' != substr($key,0,1) && false === strpos($key,'.') && false === strpos($key,'(') && false === strpos($key,'|') && false === strpos($key,'&')){
                     unset($options['where'][$key]);
                 }
             }
@@ -575,13 +575,15 @@ class Model {
      * @return void
      */
     protected function _parseType(&$data,$key) {
-        $fieldType = strtolower($this->fields['_type'][$key]);
-        if(false === strpos($fieldType,'bigint') && false !== strpos($fieldType,'int')) {
-            $data[$key]   =  intval($data[$key]);
-        }elseif(false !== strpos($fieldType,'float') || false !== strpos($fieldType,'double')){
-            $data[$key]   =  floatval($data[$key]);
-        }elseif(false !== strpos($fieldType,'bool')){
-            $data[$key]   =  (bool)$data[$key];
+        if(empty($this->options['bind'][':'.$key])){
+            $fieldType = strtolower($this->fields['_type'][$key]);
+            if(false === strpos($fieldType,'bigint') && false !== strpos($fieldType,'int')) {
+                $data[$key]   =  intval($data[$key]);
+            }elseif(false !== strpos($fieldType,'float') || false !== strpos($fieldType,'double')){
+                $data[$key]   =  floatval($data[$key]);
+            }elseif(false !== strpos($fieldType,'bool')){
+                $data[$key]   =  (bool)$data[$key];
+            }
         }
     }
 
@@ -610,10 +612,28 @@ class Model {
         }
         $this->data         =   $resultSet[0];
         $this->_after_find($this->data,$options);
+        if(!empty($this->options['result'])) {
+            return $this->returnResult($this->data,$this->options['result']);
+        }
         return $this->data;
     }
     // 查询成功的回调方法
     protected function _after_find(&$result,$options) {}
+
+    protected function returnResult($data,$type=''){
+        if ($type){
+            if(is_callable($type)){
+                return call_user_func($type,$data);
+            }
+            switch (strtolower($type)){
+                case 'json':
+                    return json_encode($data);
+                case 'xml':
+                    return xml_encode($data);
+            }
+        }
+        return $data;
+    }
 
     /**
      * 处理字段映射
@@ -783,7 +803,7 @@ class Model {
         if(!$this->autoValidation($data,$type)) return false;
 
         // 表单令牌验证
-        if(C('TOKEN_ON') && !$this->autoCheckToken($data)) {
+        if(!$this->autoCheckToken($data)) {
             $this->error = L('_TOKEN_ERROR_');
             return false;
         }
@@ -811,6 +831,8 @@ class Model {
     // 自动表单令牌验证
     // TODO  ajax无刷新多次提交暂不能满足
     public function autoCheckToken($data) {
+        // 支持使用token(false) 关闭令牌验证
+        if(isset($this->options['token']) && !$this->options['token']) return true;
         if(C('TOKEN_ON')){
             $name   = C('TOKEN_NAME');
             if(!isset($data[$name]) || !isset($_SESSION[$name])) { // 令牌数据无效
