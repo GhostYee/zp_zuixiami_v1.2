@@ -307,12 +307,25 @@ abstract class Action {
         if(func_num_args()>2) {// 兼容3.0之前用法
             $args           =   func_get_args();
             array_shift($args);
+			$we_info	=array_shift($args);// by wewe
+			$we_status	=array_shift($args);// by wewe
+			$we_type	=array_shift($args);// by wewe
             $info           =   array();
             $info['data']   =   $data;
-            $info['info']   =   array_shift($args);
-            $info['status'] =   array_shift($args);
+            //$info['info']   =   array_shift($args);
+            //$info['status'] =   array_shift($args);
+			$info['info']   =   $we_info;
+            $info['status'] =   $we_status;
+			$info['statusCode']  	=  $we_status;	// by wewe
+			$info['navTabId']  		=  $_REQUEST['navTabId'];	// by wewe
+			$info['rel']  			=  $_REQUEST['rel'];	// by wewe
+			$info['callbackType']  	=  $_REQUEST['callbackType'];	// by wewe
+			$info['forwardUrl']  	=  $_REQUEST['forwardUrl'];	// by wewe
+			$info['confirmMsg']  	=  $_REQUEST['confirmMsg'];	// by wewe
+			$info['message'] 		=  $we_info; // by wewe
             $data           =   $info;
-            $type           =   $args?array_shift($args):'';
+            //$type           =   $args?array_shift($args):'';
+			$type           =   $args?$we_type:'';// by wewe
         }
         if(empty($type)) $type  =   C('DEFAULT_AJAX_RETURN');
         switch (strtoupper($type)){
@@ -370,7 +383,8 @@ abstract class Action {
             $data['info']   =   $message;
             $data['status'] =   $status;
             $data['url']    =   $jumpUrl;
-            $this->ajaxReturn($data);
+            //$this->ajaxReturn($data);
+			$this->ajaxReturn($data,$message,$status); //by wewe
         }
         if(is_int($ajax)) $this->assign('waitSecond',$ajax);
         if(!empty($jumpUrl)) $this->assign('jumpUrl',$jumpUrl);
