@@ -72,3 +72,5 @@ CREATE TABLE IF NOT EXISTS `xiami_message` (
   KEY `module` (`module`),
   KEY `mid` (`mid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论留言表';
+
+ALTER TABLE  `xiami_message` CHANGE  `is_show`  `status` TINYINT( 1 ) NOT NULL COMMENT  '状态   1显示 2用户隐藏  3管理员隐藏 4回收站(用户删除)';

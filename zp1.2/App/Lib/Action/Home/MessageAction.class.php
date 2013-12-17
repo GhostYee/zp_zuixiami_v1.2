@@ -64,7 +64,7 @@ class MessageAction extends CommonAction {
 		$model=M('user_action');
 		$map['module']=$module;
 		$map['mid']=$mid;
-		$map['mtype']=$mtype;
+		//$map['mtype']=$mtype;
 		$map['ip']=$ip;
 		if(!empty($user_id)){
 			$map['user_id']=$user_id;
@@ -74,7 +74,7 @@ class MessageAction extends CommonAction {
 		
 		//取得 最近一条记录,用于限制时间
 		$map2['module']=$module;
-		$map2['mtype']=$mtype;
+		//$map2['mtype']=$mtype;
 		$map2['ip']=$ip;
 		if(!empty($user_id)){
 			$map2['user_id']=$user_id;

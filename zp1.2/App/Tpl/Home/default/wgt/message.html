@@ -1,7 +1,7 @@
 <div class="wgt-zp-messsage">
   <h2 class="page-title" >
     针对专题的评论
-    <span class="message-total" >评论（15）</span>
+    <span class="message-total" >评论（{$message|count}）</span>
   </h2>
   <div class="pub-message">
     <div class="pub-input">
@@ -13,64 +13,30 @@
   </div>
   <div class="message-list">
     <ul class="media-list">
+      <foreach name="message" item="val">
       <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABN0lEQVR4Xu2YQQ6EIAxFdeXFODZnYu9qJk5C0sGiUiAx8FyKVPr76VPWEMJnmfhaEQAHsAXoARP3wIUmCAWgABSAAlBgYgXAIBgEg2AQDE4MAX6GwCAYBINgEAyCwYkVAIO1GPTe//nHOXfyU3xGG9PM1yNmzuRVDpCJ5ZKUyTwRoEfMqx3eTIBcJbdtW/Z9/w2XCtAqZncB5Atkkkc1NQFileVYFCi1fypcLqa1jzd1QM6+2va4EycKWRLTIkI3AY7FPKmmVmF5LxXvLmapCF0FiItp5QCZXClZulBAq/IVBtN9rvUAa8zSysfnqxxgfemb5iFA7Zfgm6ppWQsOwAEciXEkxpGYpXuOMgcKQAEoAAWgwCgd3ZIHFIACUAAKQAFL9xxlDhSAAlAACkCBUTq6JY/pKfAFwO6XkLwNdToAAAAASUVORK5CYII="></a>
+        <a class="pull-left" href="__APP__/author/{$val['from_user_id']}">
+          <img class="media-object" alt="{$val['from_user_nickname']}" style="width: 64px; height: 64px;" src="{$val['from_user_figureurl']}"></a>
         <div class="media-body">
           <h4 class="media-heading">
-            <a href="#">鬼懿</a>
-            说：
-          </h4>
-          HoorayOS是一套web桌面应用框架，你可以用它开发出类似与115应用中心、Q+web这类的桌面应用网站，也可以在它的基础上二次开发出适合项目的桌面式管理系统
-          <span class="opts">
-            <a href="#">回复</a>
-            <a href="#">删除</a>
-            <a href="#">隐藏/显示</a>
-            <a href="#">支持(3)</a>
-            <a href="#">反对(4)</a>
-          </span>
-          <span class="pubtime">发表于：1分钟之前</span>
-        </div>
-      </li>
-      <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABN0lEQVR4Xu2YQQ6EIAxFdeXFODZnYu9qJk5C0sGiUiAx8FyKVPr76VPWEMJnmfhaEQAHsAXoARP3wIUmCAWgABSAAlBgYgXAIBgEg2AQDE4MAX6GwCAYBINgEAyCwYkVAIO1GPTe//nHOXfyU3xGG9PM1yNmzuRVDpCJ5ZKUyTwRoEfMqx3eTIBcJbdtW/Z9/w2XCtAqZncB5Atkkkc1NQFileVYFCi1fypcLqa1jzd1QM6+2va4EycKWRLTIkI3AY7FPKmmVmF5LxXvLmapCF0FiItp5QCZXClZulBAq/IVBtN9rvUAa8zSysfnqxxgfemb5iFA7Zfgm6ppWQsOwAEciXEkxpGYpXuOMgcKQAEoAAWgwCgd3ZIHFIACUAAKQAFL9xxlDhSAAlAACkCBUTq6JY/pKfAFwO6XkLwNdToAAAAASUVORK5CYII="></a>
-        <div class="media-body">
-          <h4 class="media-heading">
-            <a href="#">theWei</a>
-            说：
-          </h4>
-          HoorayOS是一套web桌面应用框架，你可以用它开发出类似与115应用中心、Q+web这类的桌面应用网站，也可以在它的基础上二次开发出适合项目的桌面式管理系统
-          <span class="opts">
-            <a href="#">回复</a>
-            <a href="#">删除</a>
-            <a href="#">隐藏/显示</a>
-            <a href="#">支持(3)</a>
-            <a href="#">反对(4)</a>
-          </span>
-          <span class="pubtime">发表于：1分钟之前</span>
-        </div>
-      </li>
-      <li class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABN0lEQVR4Xu2YQQ6EIAxFdeXFODZnYu9qJk5C0sGiUiAx8FyKVPr76VPWEMJnmfhaEQAHsAXoARP3wIUmCAWgABSAAlBgYgXAIBgEg2AQDE4MAX6GwCAYBINgEAyCwYkVAIO1GPTe//nHOXfyU3xGG9PM1yNmzuRVDpCJ5ZKUyTwRoEfMqx3eTIBcJbdtW/Z9/w2XCtAqZncB5Atkkkc1NQFileVYFCi1fypcLqa1jzd1QM6+2va4EycKWRLTIkI3AY7FPKmmVmF5LxXvLmapCF0FiItp5QCZXClZulBAq/IVBtN9rvUAa8zSysfnqxxgfemb5iFA7Zfgm6ppWQsOwAEciXEkxpGYpXuOMgcKQAEoAAWgwCgd3ZIHFIACUAAKQAFL9xxlDhSAAlAACkCBUTq6JY/pKfAFwO6XkLwNdToAAAAASUVORK5CYII="></a>
-        <div class="media-body">
-          <h4 class="media-heading">
-            <a href="#">thweasd</a>
+            <a href="__APP__/author/{$val['from_user_id']}">{$val['from_user_nickname']}</a><if condition="$val['to_user_id'] eq '0'">说：</if>
+            <if condition="$val['to_user_id'] neq '0'">
             <a href="#" class="opts-Mark" >回复</a>
-            <a href="#">hooray</a>
+            <a href="__APP__/author/{$val['to_user_id']}">{$val['to_user_nickname']}</a>
+            </if>
           </h4>
-          HoorayOS是一套web桌面应用框架，你可以用它开发出类似与115应用中心、Q+web这类的桌面应用网站，也可以在它的基础上二次开发出适合项目的桌面式管理系统
+          {$val['contents']}
           <span class="opts">
             <a href="#">回复</a>
-            <a href="#">删除</a>
-            <a href="#">隐藏/显示</a>
-            <a href="#">支持(3)</a>
-            <a href="#">反对(4)</a>
+            <!--<a href="#">删除</a>-->
+            <!--<a href="#">隐藏/显示</a>-->
+            <a href="javascript:void(0)" onClick="do_message_action('support',{$val['id']})">支持(<span id="do_message_action_support_{$val['id']}">{$val['support']}</span>)</a>
+            <a href="javascript:void(0)" onClick="do_message_action('oppose',{$val['id']})">反对(<span id="do_message_action_oppose_{$val['id']}">{$val['oppose']}</span>)</a>
           </span>
-          <span class="pubtime">发表于：1分钟之前</span>
+          <span class="pubtime">发表于：{$val['addtime']|inttodate_han}</span>
         </div>
       </li>
+      </foreach>
     </ul>
   </div>
 </div>

@@ -454,6 +454,12 @@ class WorksAction extends CommonAction {
     	$model_works_special=D("Works_special");
     	$works_special=$model_works_special->getWorksSpecialListByWorksID($works_id);
     	$this->assign('works_special',$works_special);
+
+    	//取得评论列表
+    	$model_message=D("Message");
+    	$allinone_m['where']="message.status=1 and message.module='".MODULE_NAME."' and from_user_id!='0'";
+    	$message=$model_message->getList($allinone_m);
+    	$this->assign('message',$message);
 		
 		//替换模板SEO的值
 		$this->seo($works['name'].' 作品详情'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));	
