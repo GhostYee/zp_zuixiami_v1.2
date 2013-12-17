@@ -25,6 +25,11 @@ class App {
      * @return void
      */
     static public function init() {
+        // 页面压缩输出支持
+        if(C('OUTPUT_ENCODE')){
+            $zlib = ini_get('zlib.output_compression');
+            if(empty($zlib)) ob_start('ob_gzhandler');
+        }
         // 设置系统时区
         date_default_timezone_set(C('DEFAULT_TIMEZONE'));
         // 加载动态项目公共文件和配置
@@ -43,11 +48,6 @@ class App {
 
         // URL调度结束标签
         tag('url_dispatch');         
-        // 页面压缩输出支持
-        if(C('OUTPUT_ENCODE')){
-            $zlib = ini_get('zlib.output_compression');
-            if(empty($zlib)) ob_start('ob_gzhandler');
-        }
         // 系统变量安全过滤
         if(C('VAR_FILTERS')) {
             $filters    =   explode(',',C('VAR_FILTERS'));
@@ -58,32 +58,8 @@ class App {
             }
         }
 
-        /* 获取模板主题名称 */
-        $templateSet =  C('DEFAULT_THEME');
-        if(C('TMPL_DETECT_THEME')) {// 自动侦测模板主题
-            $t = C('VAR_TEMPLATE');
-            if (isset($_GET[$t])){
-                $templateSet = $_GET[$t];
-            }elseif(cookie('think_template')){
-                $templateSet = cookie('think_template');
-            }
-            if(!in_array($templateSet,explode(',',C('THEME_LIST')))){
-                $templateSet =  C('DEFAULT_THEME');
-            }
-            cookie('think_template',$templateSet,864000);
-        }
-        /* 模板相关目录常量 */
-        define('THEME_NAME',   $templateSet);                  // 当前模板主题名称
-        $group   =  defined('GROUP_NAME')?GROUP_NAME.'/':'';
-        if(1==C('APP_GROUP_MODE')){ // 独立分组模式
-            define('THEME_PATH',   BASE_LIB_PATH.basename(TMPL_PATH).'/'.(THEME_NAME?THEME_NAME.'/':''));
-            define('APP_TMPL_PATH',__ROOT__.'/'.APP_NAME.(APP_NAME?'/':'').C('APP_GROUP_PATH').'/'.$group.basename(TMPL_PATH).'/'.(THEME_NAME?THEME_NAME.'/':''));
-        }else{ 
-            define('THEME_PATH',   TMPL_PATH.$group.(THEME_NAME?THEME_NAME.'/':''));
-            define('APP_TMPL_PATH',__ROOT__.'/'.APP_NAME.(APP_NAME?'/':'').basename(TMPL_PATH).'/'.$group.(THEME_NAME?THEME_NAME.'/':''));
-        }        
-
-        C('CACHE_PATH',CACHE_PATH.$group);
+        C('CACHE_PATH',CACHE_PATH.GROUP_NAME.'/');
+        C('LOG_PATH',realpath(LOG_PATH).'/');
         //动态配置 TMPL_EXCEPTION_FILE,改为绝对地址
         C('TMPL_EXCEPTION_FILE',realpath(C('TMPL_EXCEPTION_FILE')));
         return ;
@@ -125,7 +101,6 @@ class App {
         }
         // 获取当前操作名 支持动态路由
         $action = C('ACTION_NAME')?C('ACTION_NAME'):ACTION_NAME;
-        C('TEMPLATE_NAME',THEME_PATH.MODULE_NAME.C('TMPL_FILE_DEPR').$action.C('TMPL_TEMPLATE_SUFFIX'));
         $action .=  C('ACTION_SUFFIX');
         try{
             if(!preg_match('/^[A-Za-z](\w)*$/',$action)){
@@ -147,7 +122,7 @@ class App {
                 if(C('URL_PARAMS_BIND') && $method->getNumberOfParameters()>0){
                     switch($_SERVER['REQUEST_METHOD']) {
                         case 'POST':
-                            $vars    =  $_POST;
+                            $vars    =  array_merge($_GET,$_POST);
                             break;
                         case 'PUT':
                             parse_str(file_get_contents('php://input'), $vars);
@@ -207,8 +182,6 @@ class App {
         App::exec();
         // 项目结束标签
         tag('app_end');
-        // 保存日志记录
-        if(C('LOG_RECORD')) Log::save();
         return ;
     }
 

@@ -7,4 +7,11 @@ CREATE TABLE IF NOT EXISTS `xiami_banner` (
   PRIMARY KEY (`id`),
   KEY `img` (`img`),
   KEY `url` (`url`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='首页banner管理'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='首页banner管理';
+
+CREATE TABLE IF NOT EXISTS `xiami_session` (
+  `session_id` varchar(255) NOT NULL,
+  `session_expire` int(11) NOT NULL COMMENT '过期时间',
+  `session_data` blob,
+  UNIQUE KEY `session_id` (`session_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='session表';

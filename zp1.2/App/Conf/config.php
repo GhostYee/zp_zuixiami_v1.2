@@ -10,6 +10,15 @@ return array(
 	'OUTPUT_ENCODE' => false, //关闭 页面压缩输出
 	
 	'SESSION_AUTO_START'        =>  true,//开启session
+	'SESSION_OPTIONS'=>array(
+		'expire'=>'1800',
+	),
+	//启用session数据库保存
+	'SESSION_TYPE' => 'db', //保存方式
+	'SESSION_TABLE' =>'xiami_session',//session表
+	'SESSION_EXPIRE'=>'1800',//过期时间
+	
+	
 	'APP_AUTOLOAD_PATH'=>'@.TagLib',
 	
 	//开启模板主题切换

@@ -49,6 +49,30 @@ function xheditor($name,$content='',$rows='10',$cols="100"){
 }
 // ------------------------------------------------------------------------
 /**
+ * editor编辑器
+ *
+ * @access  public
+ * @param string $name 名称
+ * @param string $content 内容
+ * @param string $width 宽
+ * @param string $height 高
+ * @param string $editors 编辑器类型
+ * @param string $id textarea ID
+ * @return  void
+ */
+function editor($name,$content='',$width="600px",$height="300px",$editors='kindeditor',$id=''){
+	if($id){
+		$editor=array('id'=>$id,'name'=>$name,'value'=>$content,'minWidth'=>$width,'height'=>$height);
+	}
+	else{
+		$editor=array('id'=>$name,'name'=>$name,'value'=>$content,'minWidth'=>$width,'height'=>$height);
+	}
+	import('Editors');
+	$e=new Editors();
+	return $e->getedit($editor,$editors);
+}
+// ------------------------------------------------------------------------
+/*
  * 文件上传入附件库
  *
  * @access  public
@@ -186,7 +210,129 @@ function upload($module='',$mid='',$title='',$allow_type='all',$remove_origin=FA
 			}
 			return $uploadList;
         }
+}
        
+// ------------------------------------------------------------------------
+/**
+ * 加密解密函数
+ *
+ * @access  public
+ * @param string $string 模块名
+ * @param string $operation DECODE表示解密,其它表示加密
+ * @param string $key 密匙
+ * @param string $expiry 密文有效期
+ * @example authcode($str, 'ENCODE'); //加密
+ * @example authcode($str, 'DECODE'); //解密
+ * @return  array/error string
+ */
+function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) {
+	global $CFG;
+	// 动态密匙长度，相同的明文会生成不同密文就是依靠动态密匙 取值 0-32;
+	$ckey_length = 4;
+
+	// 密匙
+	$key = md5($key ? $key : $CFG[api_crypt]);
+
+	// 密匙a会参与加解密
+	$keya = md5(substr($key, 0, 16));
+	// 密匙b会用来做数据完整性验证
+	$keyb = md5(substr($key, 16, 16));
+	// 密匙c用于变化生成的密文
+	$keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length): substr(md5(microtime()), -$ckey_length)) : '';
+	// 参与运算的密匙
+	$cryptkey = $keya.md5($keya.$keyc);
+	$key_length = strlen($cryptkey);
+	// 明文，前10位用来保存时间戳，解密时验证数据有效性，10到26位用来保存$keyb(密匙b)，解密时会通过这个密匙验证数据完整性
+	// 如果是解码的话，会从第$ckey_length位开始，因为密文前$ckey_length位保存 动态密匙，以保证解密正确
+	$string = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : sprintf('%010d', $expiry ? $expiry + time() : 0).substr(md5($string.$keyb), 0, 16).$string;
+	$string_length = strlen($string);
+	$result = '';
+	$box = range(0, 255);
+	$rndkey = array();
+	// 产生密匙簿
+	for($i = 0; $i <= 255; $i++) {
+		$rndkey[$i] = ord($cryptkey[$i % $key_length]);
+	}
+	// 用固定的算法，打乱密匙簿，增加随机性，好像很复杂，实际上对并不会增加密文的强度
+	for($j = $i = 0; $i < 256; $i++) {
+		$j = ($j + $box[$i] + $rndkey[$i]) % 256;
+		$tmp = $box[$i];
+		$box[$i] = $box[$j];
+		$box[$j] = $tmp;
+	}
+	// 核心加解密部分
+	for($a = $j = $i = 0; $i < $string_length; $i++) {
+		$a = ($a + 1) % 256;
+		$j = ($j + $box[$a]) % 256;
+		$tmp = $box[$a];
+		$box[$a] = $box[$j];
+		$box[$j] = $tmp;
+		// 从密匙簿得出密匙进行异或，再转成字符
+		$result .= chr(ord($string[$i]) ^ ($box[($box[$a] + $box[$j]) % 256]));
+	}
+	if($operation == 'DECODE') {
+		// substr($result, 0, 10) == 0 验证数据有效性
+		// substr($result, 0, 10) - time() > 0 验证数据有效性
+		// substr($result, 10, 16) == substr(md5(substr($result, 26).$keyb), 0, 16) 验证数据完整性
+		// 验证数据有效性，请看未加密明文的格式
+		if((substr($result, 0, 10) == 0 || substr($result, 0, 10) - time() > 0) && substr($result, 10, 16) == substr(md5(substr($result, 26).$keyb), 0, 16)) {
+			return substr($result, 26);
+		} else {
+			return '';
+		}
+	} else {
+		// 把动态密匙保存在密文里，这也是为什么同样的明文，生产不同密文后能解密的原因
+		// 因为加密后的密文可能是一些特殊字符，复制过程可能会丢失，所以用base64编码
+		return $keyc.str_replace('=', '', base64_encode($result));
+	}
+}
+// ------------------------------------------------------------------------
+/**
+ * 多维对像转多维数组
+ *
+ * @access  public
+ * @return string
+ */
+function objectToArray($d) {
+	if (is_object($d)) {
+		// Gets the properties of the given object
+		// with get_object_vars function
+		$d = get_object_vars($d); //将第一层对象转换为数组
+	}
+
+	if (is_array($d)) {
+		/*
+		 * Return array converted to object
+		* Using __FUNCTION__ (Magic constant)
+		* for recursive call
+		*/
+		return array_map(__FUNCTION__, $d);//如果是数组使用array_map递归调用自身处理数组元素
+	}
+	else {
+		// Return array
+		return $d;
+	}
+}
+// ------------------------------------------------------------------------
+/**
+ * 多维数组转多维对像
+ *
+ * @access  public
+ * @return string
+ */
+function arrayToObject($d) {
+	if (is_array($d)) {
+		/*
+		 * Return array converted to object
+		* Using __FUNCTION__ (Magic constant)
+		* for recursive call
+		*/
+		return (object) array_map(__FUNCTION__, $d);
+	}
+	else {
+		// Return object
+		return $d;
+	}
 }
 
 // ------------------------------------------------------------------------
@@ -245,5 +391,70 @@ function upload($module='',$mid='',$title='',$allow_type='all',$remove_origin=FA
     	}
     	return $times;
     }
+	/**
+ * 递归方式的对变量中的特殊字符进行转义
+ *
+ * @access  public
+ * @param   mix     $value
+ *
+ * @return  mix
+ */
+function addslashes_deep($value)
+{
+    if (empty($value))
+    {
+        return $value;
+    }
+    else
+    {
+        return is_array($value) ? array_map('addslashes_deep', $value) : addslashes($value);
+    }
+}
+
+/**
+ * 将对象成员变量或者数组的特殊字符进行转义
+ *
+ * @access   public
+ * @param    mix        $obj      对象或者数组
+ * @author   Xuan Yan
+ *
+ * @return   mix                  对象或者数组
+ */
+function addslashes_deep_obj($obj)
+{
+    if (is_object($obj) == true)
+    {
+        foreach ($obj AS $key => $val)
+        {
+            $obj->$key = addslashes_deep($val);
+        }
+    }
+    else
+    {
+        $obj = addslashes_deep($obj);
+    }
+
+    return $obj;
+}
+
+/**
+ * 递归方式的对变量中的特殊字符去除转义
+ *
+ * @access  public
+ * @param   mix     $value
+ *
+ * @return  mix
+ */
+function stripslashes_deep($value)
+{
+    if (empty($value))
+    {
+        return $value;
+    }
+    else
+    {
+        return is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
+    }
+}
 // ------------------------------------------------------------------------
 ?>
