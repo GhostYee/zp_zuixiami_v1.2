@@ -24,6 +24,7 @@ class IndexAction extends CommonAction {
     	$this->load_works_top();
         $this->load_works();
 
+        $this->load_banner();
         //
 
     	$this->display();
