@@ -13,14 +13,15 @@
       <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
           <li <if condition="$id eq 'about'">class="active"</if> >
-            <a href="__APP__/pages/about">关于我们</a>
+            <a href="__APP__/pages/about">关于最虾米</a>
           </li>
           <li <if condition="$id eq 'qun'">class="active"</if>  >
             <a href="__APP__/pages/qun">了解鬼群</a>
           </li>
           <li <if condition="$id eq 'join'">class="active"</if> >
-            <a href="__APP__/pages/join">加入最虾米</a>
+            <a href="__APP__/pages/team">我们的团队</a>
           </li>
+          <!--
           <li <if condition="$id eq 'offer'">class="active"</if> >
             <a href="__APP__/pages/offer">捐助我们</a>
           </li>
@@ -30,6 +31,7 @@
           <li <if condition="$id eq 'tools'">class="active"</if> >
             <a href="__APP__/pages/tools">工具箱</a>
           </li>
+          -->
         </ul>
       </div>      
     </div>
@@ -55,11 +57,7 @@
         <div class="l-b-row row-fluid">
           <article class="wgt-simple-page box-shadow" >
             <h2>{$pages['title']}</h2>
-              <div id="ckcontaines" style="display: none">
-             <textarea class="ckeditor" cols="80" id="ckeditor1" rows="10" tabindex="1">
-                 {$pages['contents']}
-             </textarea> </div>
-            <div class="con" id="pagecontent">{$pages['contents']}</div>
+            <div class="wgt-itemIntro">{$pages['contents']}</div>
           </article>
         </div>
       </div>
@@ -67,6 +65,5 @@
   </div>
 </div>
 <include file="Public:footer"/>
-<include file="Public:pagesfooter"/>
 </body>
 </html>

@@ -13,6 +13,9 @@ class TagAction extends CommonAction {
     	$tag_model=D("Tag");
     	$tags=$tag_model->getTagList();
     	$this->assign("list",$tags);
+		
+		//替换模板SEO的值
+		$this->seo('Tag标签'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
     	$this->display();
     }
     // ------------------------------------------------------------------------
@@ -47,6 +50,9 @@ class TagAction extends CommonAction {
     	//搜索词当前页标记
     	$currPage="tag";
     	$this->assign('currPage',$currPage);
+		
+		//替换模板SEO的值
+		$this->seo($tag['tagname'].' Tag标签'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
     	
     	$this->display();
     }

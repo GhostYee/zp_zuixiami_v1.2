@@ -1,5 +1,5 @@
 <?php
-//网站更新日志
+//意见和建议
 class MessageAction extends CommonAction {
 	// ------------------------------------------------------------------------
 	/**
@@ -12,10 +12,7 @@ class MessageAction extends CommonAction {
     	//$this->_check_login();
     	
     	//替换模板SEO的值
-    	$seo['title']='最蝦米*鬼懿IT*作品秀';
-    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
-    	$seo['description']=C("CFG_SEO_DESCRIPTION");
-    	$this->assign('seo',$seo);
+		$this->seo('意见和建议'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
     	
     	$this->display();
     }

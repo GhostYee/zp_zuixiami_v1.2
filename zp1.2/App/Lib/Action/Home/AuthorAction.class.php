@@ -47,11 +47,8 @@ class AuthorAction extends CommonAction {
     		$workslist  = $works_model->getWorksList($allinone);
     		$this->assign('workslist',$workslist);
 			
-	    	//替换模板SEO的值
-	    	$seo['title']=$author['nickname'].'的作品列表'.'--'.CFG('cfg_webname');
-	    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
-	    	$seo['description']=C("CFG_SEO_DESCRIPTION");
-	    	$this->assign('seo',$seo);
+			//替换模板SEO的值
+			$this->seo($author['nickname'].'的作品列表'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
 	    	
 	    	$this->display();
     }
@@ -79,12 +76,9 @@ class AuthorAction extends CommonAction {
     	$teamlist=$team_model->getTeamListByUserID($userid);
     	$this->assign('teamlist',$teamlist);
     	
-    	//替换模板SEO的值
-    	$seo['title']=$author['nickname'].'的团队列表'.'--'.CFG('cfg_webname');
-    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
-    	$seo['description']=C("CFG_SEO_DESCRIPTION");
-    	$this->assign('seo',$seo);
-    	
+		//替换模板SEO的值
+		$this->seo($author['nickname'].'的团队列表'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
+		    	
     	$this->display();
     }
     /**
@@ -104,11 +98,8 @@ class AuthorAction extends CommonAction {
     		$this->error('未找到此作者信息');
     	}	
     	
-    	//替换模板SEO的值
-    	$seo['title']=$author['nickname'].'的留言列表'.'--'.CFG('cfg_webname');
-    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
-    	$seo['description']=C("CFG_SEO_DESCRIPTION");
-    	$this->assign('seo',$seo);
+		//替换模板SEO的值
+		$this->seo($author['nickname'].'的留言列表'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
     	
     	$this->display();
     }    

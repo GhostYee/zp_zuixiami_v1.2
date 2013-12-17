@@ -36,8 +36,12 @@ class PagesAction extends CommonAction {
 
             $this->assign('pages',$pages);
             $this->assign('id',$page);
+			
+			//替换模板SEO的值
+			$this->seo($pages['title'].'--'.CFG("cfg_webname"),$pages['keywords'],$pages['description']);
+			
             $this->display();
-        }
+        }		
 	}
     // ------------------------------------------------------------------------
 }

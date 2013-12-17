@@ -13,10 +13,7 @@ class WorksAction extends CommonAction {
 		$this->redirect('works/submit');
 		
 		//替换模板SEO的值
-		$seo['title']='最蝦米*鬼懿IT*作品秀';
-		$seo['keywords']=C("CFG_SEO_KEYWORDS");
-		$seo['description']=C("CFG_SEO_DESCRIPTION");
-		$this->assign('seo',$seo);
+		$this->seo('最蝦米*鬼懿IT*作品秀'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
 		
 		$this->display();
 	}
@@ -41,10 +38,7 @@ class WorksAction extends CommonAction {
 		$this->assign('works',$works);
 		
 		//替换模板SEO的值
-		$seo['title']='提交作品'.'--'.CFG('cfg_webname');
-		$seo['keywords']=C("CFG_SEO_KEYWORDS");
-		$seo['description']=C("CFG_SEO_DESCRIPTION");
-		$this->assign('seo',$seo);		
+		$this->seo('提交作品'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));	
 		
 		$this->assign('step',$step);
 		
@@ -460,6 +454,9 @@ class WorksAction extends CommonAction {
     	$model_works_special=D("Works_special");
     	$works_special=$model_works_special->getWorksSpecialListByWorksID($works_id);
     	$this->assign('works_special',$works_special);
+		
+		//替换模板SEO的值
+		$this->seo($works['name'].' 作品详情'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));	
     	
     	$this->display();
     }

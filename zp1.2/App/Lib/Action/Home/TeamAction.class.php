@@ -14,12 +14,9 @@ class TeamAction extends CommonAction {
     	$allinone['order']="team.id desc";
     	$teamlist=$team_model->getTeamList($allinone);
     	$this->assign('teamlist',$teamlist);
-    	
-    	//替换模板SEO的值
-    	$seo['title']='团队列表'.'--'.CFG('cfg_webname');
-    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
-    	$seo['description']=C("CFG_SEO_DESCRIPTION");
-    	$this->assign('seo',$seo);
+		
+		//替换模板SEO的值
+		$this->seo('团队列表'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
     	
     	$this->display();		
     }
@@ -59,13 +56,9 @@ class TeamAction extends CommonAction {
     	$userlist=$user_model->getUserListByTeamID($teamid,$allinone);
     	$this->assign('userlist',$userlist);
 
-    	 
     	//替换模板SEO的值
-    	$seo['title']=$team['teamname'].'团队成员'.'--'.CFG('cfg_webname');
-    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
-    	$seo['description']=C("CFG_SEO_DESCRIPTION");
-    	$this->assign('seo',$seo);
-    	 
+		$this->seo($team['teamname'].'团队成员'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
+
     	$this->display();
     }
     // ------------------------------------------------------------------------
@@ -110,11 +103,8 @@ class TeamAction extends CommonAction {
     	$workslist  = $works_model->getWorksListByTeamID($teamid,$allinone);
     	$this->assign('workslist',$workslist);
     	
-    	//替换模板SEO的值
-    	$seo['title']=$team['teamname'].'团队作品'.'--'.CFG('cfg_webname');
-    	$seo['keywords']=C("CFG_SEO_KEYWORDS");
-    	$seo['description']=C("CFG_SEO_DESCRIPTION");
-    	$this->assign('seo',$seo);
+		//替换模板SEO的值
+		$this->seo($team['teamname'].'团队作品'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
     	
     	$this->display();		
     }
