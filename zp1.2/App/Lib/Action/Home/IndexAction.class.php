@@ -24,7 +24,16 @@ class IndexAction extends CommonAction {
     	$this->load_works_top();
         $this->load_works();
 
+        //
+
     	$this->display();
+    }
+
+    public function load_banner()
+    {
+        $banner_model=D("Banner");
+        $banner=$banner_model->query("select * from xiami_banner order by sid ");
+        $this->assign("banner",$banner);
     }
 
     public function load_works_top()
