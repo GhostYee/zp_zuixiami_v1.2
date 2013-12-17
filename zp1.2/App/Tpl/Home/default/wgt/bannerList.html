@@ -1,26 +1,13 @@
 <div class="wgt-bannerList box-shadow span8">
 	<div class="box-show">
 		<ul id="page-banner">
+		<foreach name="banner" item="val">
 			<li>
-				<a href="__APP__/works_special/3">
-					<img src="../Public/images/banner-1.jpg" alt=""></a>
+				<a href="{$val['url']}">
+				    <img src="{$val['img']}" alt="{$val['title']}" />					
+				</a>
 			</li>
-			<li>
-				<a href="__APP__/works_special/4">
-					<img src="../Public/images/banner-2.jpg" alt=""></a>
-			</li>
-			<li>
-				<a href="__APP__/works_special/3">
-					<img src="../Public/images/banner-3.jpg" alt=""></a>
-			</li>
-			<li>
-				<a href="__APP__/works_special/2">
-					<img src="../Public/images/banner-4.jpg" alt=""></a>
-			</li>
-			<li>
-				<a href="__APP__/works_special/1">
-					<img src="../Public/images/banner-5.jpg" alt=""></a>
-			</li>
+		</foreach>			
 		</ul>
 	</div>
 	<div class="box-ctrl">
