@@ -138,6 +138,10 @@ class CommonAction extends Action {
 
             $voList = $model->where($map)->order("`" . $order . "` " . $sort)->limit($p->firstRow . ',' . $p->listRows)->select();
             //echo $model->getlastsql();
+            //定义_fill_list方法用于对列表重新赋值
+            if (method_exists ( $this, '_fill_list' )) {
+            	$this->_fill_list ( $voList );
+            }
             //分页跳转的时候保证查询条件
             foreach ($map as $key => $val) {
                 if (!is_array($val)) {
@@ -345,7 +349,9 @@ class CommonAction extends Action {
       +----------------------------------------------------------
      */
 	public function add() {
-		$this->display ();
+		//form默认提交操作insert
+		$this->assign('acturl','insert');
+		$this->display ('edit');
 	}
 	
 	/**
@@ -367,6 +373,10 @@ class CommonAction extends Action {
 		$model = D ($name);
 		if (false === $model->create ()) {
 			$this->error ( $model->getError () );
+		}
+		//定义_fill_insert方法用于对插入重新赋值
+		if (method_exists ( $this, '_fill_insert' )) {
+			$this->_fill_insert ( $model );
 		}
 		//保存当前数据对象
 		$list=$model->add ();
@@ -414,7 +424,14 @@ class CommonAction extends Action {
 		$model = M ( $name );
 		$id = $_REQUEST [$model->getPk ()];
 		$vo = $model->getById ( $id );
+		//定义_fill_edit方法用于对编辑页显示重新赋值
+		if (method_exists ( $this, '_fill_edit' )) {
+			$this->_fill_edit ( $vo );
+		}
 		$this->assign ( 'vo', $vo );
+		
+		//form默认提交操作insert
+		$this->assign('acturl','update');
 		$this->display ();
 	}
 	/**
@@ -435,6 +452,10 @@ class CommonAction extends Action {
 		$model = D ( $name );
 		if (false === $model->create ()) {
 			$this->error ( $model->getError () );
+		}
+		//定义_fill_update方法用于对编辑操作重新赋值
+		if (method_exists ( $this, '_fill_update' )) {
+			$this->_fill_update ( $model );
 		}
 		// 更新数据
 		$list=$model->save ();
@@ -517,7 +538,6 @@ class CommonAction extends Action {
 				$this->error ( '非法操作' );
 			}
 		}
-		$this->forward ();
 	}
 	
 	/**
@@ -552,7 +572,6 @@ class CommonAction extends Action {
 				$this->error ( '非法操作' );
 			}
 		}
-		$this->forward ();
 	}
 	/**
       +----------------------------------------------------------
@@ -613,7 +632,6 @@ class CommonAction extends Action {
 				$this->error ( L ( '_DELETE_FAIL_' ) );
 			}
 		}
-		$this->forward ();
 	}
 	/**
      +----------------------------------------------------------
