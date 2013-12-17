@@ -50,3 +50,25 @@ INSERT INTO `xiami_config` (`id`, `pid`, `textname`, `code`, `type`, `store_rang
 (212, 1, '首页SEO关键词', 'cfg_seo_keywords', 'textarea', '', '', '', '', '', 32),
 (213, 1, '首页SEO描述', 'cfg_seo_description', 'textarea', '', '', '', '', '', 32);
 
+-- --------------------------------------------------------
+--
+-- 评论留言表 by wewe 20131217
+--
+DROP TABLE  `xiami_message`;
+CREATE TABLE IF NOT EXISTS `xiami_message` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `module` varchar(50) NOT NULL COMMENT '模块',
+  `mid` int(11) NOT NULL COMMENT '模块ID',
+  `from_user_id` int(11) NOT NULL COMMENT '发送者用户ID',
+  `to_user_id` int(11) NOT NULL COMMENT '接收者用户ID',
+  `title` varchar(255) NOT NULL COMMENT '标题',
+  `contents` text NOT NULL COMMENT '内容',
+  `ip` varchar(50) NOT NULL COMMENT '当前IP',
+  `support` bigint(20) NOT NULL COMMENT '支持',
+  `oppose` bigint(20) NOT NULL COMMENT '反对',
+  `is_show` tinyint(1) NOT NULL COMMENT '是否显示',
+  `addtime` int(10) NOT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`),
+  KEY `module` (`module`),
+  KEY `mid` (`mid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论留言表';
