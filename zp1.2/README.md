@@ -1,7 +1,7 @@
 #### 一: 环境 ####
 php5.2.0 + mysql5
 
-php框架thinkphp 3.1.2  http://www.thinkphp.cn
+php框架thinkphp 3.1.3  http://www.thinkphp.cn
 
 后台模板DWZ 1.45 http://www.j-ui.com
 

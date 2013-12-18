@@ -18,19 +18,7 @@ class CommonAction extends Action {
 		$this->assign("CFG",CFG(NULL,sysconfig));
 		
 		//替换模板SEO的值
-		$seo['title']=C("CFG_SEO_TITLE");
-		$seo['keywords']=C("CFG_SEO_KEYWORDS");
-		$seo['description']=C("CFG_SEO_DESCRIPTION");
-		$this->assign('seo',$seo);
-
-		//临时
-		//替换模板SEO的值
-        $seo['title']='最虾米-发现前端价值';
-        $seo['keywords']=C("CFG_SEO_KEYWORDS");
-        $seo['description']=C("CFG_SEO_DESCRIPTION");
-        $this->assign('seo',$seo);
-
-		
+		$this->seo(CFG("cfg_seo_title"),CFG("cfg_seo_keywords"),CFG("cfg_seo_description"));
     }
 	/**
       +----------------------------------------------------------
@@ -75,6 +63,20 @@ class CommonAction extends Action {
 			$this->redirect('login/relogin/?fromurl='.base64_encode($fromurl));
 		}
 	}
+	// ------------------------------------------------------------------------
+    /**
+     * 网站SEO
+     *
+     * @access  public
+     * @return  void
+     */
+    public function seo($title='',$keyworks='',$description=''){
+    	//替换模板SEO的值
+	    $seo['title']=$title;
+	    $seo['keywords']=$keyworks;
+	    $seo['description']=$description;
+	    $this->assign('seo',$seo);
+    }
 	// ------------------------------------------------------------------------
 	/**
 	 * 404

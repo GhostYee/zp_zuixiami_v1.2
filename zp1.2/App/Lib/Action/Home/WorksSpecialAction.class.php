@@ -15,10 +15,7 @@ class WorksSpecialAction extends CommonAction {
 		$this->assign('list',$works_special);
 		
 		//替换模板SEO的值
-		$seo['title']='专题列表'.'--'.CFG('cfg_webname');
-		$seo['keywords']=C("CFG_SEO_KEYWORDS");
-		$seo['description']=C("CFG_SEO_DESCRIPTION");
-		$this->assign('seo',$seo);
+		$this->seo('专题列表'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));	
 		
 		$this->display();
 	}
@@ -80,10 +77,7 @@ class WorksSpecialAction extends CommonAction {
 		$this->assign('works_total',$works_total);
 		
 		//替换模板SEO的值
-		$seo['title']=$works_special['title'].'--'.CFG('cfg_webname');
-		$seo['keywords']=$works_special['title'];
-		$seo['description']=msubstr(strip_tags($works_special['title']),0,255,'','');
-		$this->assign('seo',$seo);
+		$this->seo($works_special['title'].'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
 		
 		$this->display();
 	}

@@ -384,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `xiami_admin` (
 --
 
 INSERT INTO `xiami_admin` (`id`, `account`, `nickname`, `password`, `bind_account`, `last_login_time`, `last_login_ip`, `login_count`, `verify`, `email`, `remark`, `create_time`, `update_time`, `status`, `type_id`, `info`, `customerid`) VALUES
-(1, 'zuixiami', 'zuixiami', 'e43e4cebfa924e04ce29eadbf7737b71', '', 1385636375, '127.0.0.1', 0, '8888', '', '备注信息', 1222907803, 1222907803, 1, 0, '', 0),
+(1, 'zuixiami', 'zuixiami', 'e43e4cebfa924e04ce29eadbf7737b71', '', 1385636375, '127.0.0.1', 0, '8888', '', '备注信息', 1222907803, 1222907803, 1, 0, '', 0);
 
 -- --------------------------------------------------------
 
