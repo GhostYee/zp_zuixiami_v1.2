@@ -150,12 +150,12 @@ background-size: cover;}
 .wgt-tags.all{font-size:14px;text-align:left;margin:0 0 15px 0}
 .wgt-tags.all ul{margin: 0;padding: 15px;}
 .wgt-tags.all h2{padding-left: 15px;}
-.wgt-tags.all li a  b{font-weight: 400}
+.wgt-tags.all li a b{font-weight: 400}
 
 .wgt-zpRankList{margin-top:20px;padding:0 10px 10px;font-size: 14px}
 .wgt-zpRankList ul{margin: 0;padding:5px 0 0;}
 .wgt-zpRankList ul li{list-style-type:none;padding: 0;margin: 0; text-align: left;overflow: hidden;padding:5px 0;}
-.wgt-zpRankList ul li blockquote{height:36px;overflow: hidden;display: none;color:#999;padding:5px 0 0;border:0;margin: 0;text-indent:2em;line-height: 1.5;font-size: 12px; }
+.wgt-zpRankList ul li blockquote{max-height:36px;overflow: hidden;display: none;color:#999;padding:5px 0 0;border:0;margin: 0;text-indent:2em;line-height: 1.5;font-size: 12px; }
 .wgt-zpRankList ul li blockquote a{color:#999;}
 .wgt-zpRankList ul li blockquote a:hover{text-decoration: none;color:#29a8e1;}
 .wgt-zpRankList ul li:first-child blockquote{display: block;}
@@ -485,9 +485,9 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-oldZP{padding:20px;min-height: 500px}
 
 .wgt-itemIntro{}
-.wgt-itemIntro h6{background-color: #f1f1f1;font-size: 14px;padding:3px;}
-.wgt-itemIntro dl{padding-left: 20px;}
-.wgt-itemIntro dt{font-size:14px;}
+.wgt-itemIntro h6{background-color: #f1f1f1;font-size: 16px;padding:3px;}
+.wgt-itemIntro dl{padding-left: 20px;font-size: 14px}
+.wgt-itemIntro dt{font-size:16px;}
 .wgt-itemIntro p{text-indent: 2em;font-size: 14px;line-height: 1.6;padding-top: 5px;}
 .wgt-itemIntro .tip{color:#999;}
 
