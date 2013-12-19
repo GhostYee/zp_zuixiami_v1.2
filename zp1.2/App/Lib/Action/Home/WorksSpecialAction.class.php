@@ -89,6 +89,18 @@ class WorksSpecialAction extends CommonAction {
 	 * @return  void
 	 */
 	public function message(){
+		$special_id=$this->_get('id')?$this->_get('id'):'';//专题ID
+		//取得评论列表
+    	$model_message=D("Message");
+    	$allinone_m['where']="message.status=1 and message.module='".MODULE_NAME."' and mid='".$special_id."' ";
+    	$allinone_m['order']="message.id desc";
+    	$message=$model_message->getList($allinone_m);
+    	$this->assign('message',$message);
+		
+		//当前页标记
+    	$currPage=MODULE_NAME;
+    	$this->assign('currPage',$currPage);
+    	$this->assign('currId',$special_id);
 		$this->display();
 	}
     // ------------------------------------------------------------------------

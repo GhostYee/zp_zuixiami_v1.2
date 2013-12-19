@@ -457,9 +457,15 @@ class WorksAction extends CommonAction {
 
     	//取得评论列表
     	$model_message=D("Message");
-    	$allinone_m['where']="message.status=1 and message.module='".MODULE_NAME."' and from_user_id!='0'";
+    	$allinone_m['where']="message.status=1 and message.module='".MODULE_NAME."' and mid='".$works_id."' ";
+    	$allinone_m['order']="message.id desc";
     	$message=$model_message->getList($allinone_m);
     	$this->assign('message',$message);
+		
+		//当前页标记
+    	$currPage=MODULE_NAME;
+    	$this->assign('currPage',$currPage);
+    	$this->assign('currId',$works_id);
 		
 		//替换模板SEO的值
 		$this->seo($works['name'].' 作品详情'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));	

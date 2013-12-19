@@ -1,0 +1,52 @@
+<script language="javascript">
+//评论支持/反对 by wewe
+function do_message_action(mtype,mid){
+  if(mtype!='' && mid!='')
+  {
+    $.ajax({
+      type: "POST",
+      url: "<?php echo __APP__;?>/message/user_action",
+      data: "module=Message&mtype="+mtype+"&mid="+mid,
+      dataType: "json",
+      success: function(data){
+        if(data.code=='ok'){          
+          $("#do_message_action_"+mtype+"_"+mid).html(data.msg); 
+        }
+        else if(data.code=='error'){
+          //alert(data.msg);
+        }
+      }
+    });
+  }
+}
+//提交留言 by wewe
+$(document).ready(function() {
+	$("#message_submit").click(function(){
+		var module="<?php echo $currPage;?>";
+		var mid="<?php echo $currId;?>";
+		var to_user_id=$("#message_to_user_id").val();
+		var contents=$("#message_contents").val();
+		$.ajax({
+		  type: "POST",
+		  url: "<?php echo __APP__;?>/message/post",
+		  data: "module="+module+"&mid="+mid+"&to_user_id="+to_user_id+"&contents="+contents,
+		  dataType: "json",
+		  success: function(data){
+			if(data.code=='ok'){
+			  $("#message_contents").val("");
+			  $("#message_li_list").html(data.msg); 
+			}
+			else if(data.code=='error'){
+			  alert(data.msg);
+			}
+		  }
+		});
+	});
+	
+});
+//回复留言 
+function do_message_reply(to_user_id,from_user_name){
+	$("#message_to_user_id").val(to_user_id);
+	$("#message_from_user_name").html("回复:"+from_user_name+":");
+}
+</script>

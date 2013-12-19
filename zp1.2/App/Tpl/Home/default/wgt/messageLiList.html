@@ -1,0 +1,24 @@
+      <foreach name="message" item="val">
+      <li class="media">
+        <a class="pull-left" href="__APP__/author/{$val['from_user_id']}">
+          <img class="media-object" alt="{$val['from_user_nickname']}" style="width: 64px; height: 64px;" src="{$val['from_user_figureurl']}"></a>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <a href="__APP__/author/{$val['from_user_id']}">{$val['from_user_nickname']}</a><if condition="$val['to_user_id'] eq '0'">说：</if>
+            <if condition="$val['to_user_id'] neq '0'">
+            <a href="#" class="opts-Mark" >回复</a>
+            <a href="__APP__/author/{$val['to_user_id']}">{$val['to_user_nickname']}</a>
+            </if>
+          </h4>
+          {$val['contents']}
+          <span class="opts">
+            <a href="javascript:void(0)" onClick="do_message_reply({$val['from_user_id']},'{$val[from_user_nickname]}')">回复</a>
+            <!--<a href="#">删除</a>-->
+            <!--<a href="#">隐藏/显示</a>-->
+            <a href="javascript:void(0)" onClick="do_message_action('support',{$val['id']})">支持(<span id="do_message_action_support_{$val['id']}">{$val['support']}</span>)</a>
+            <a href="javascript:void(0)" onClick="do_message_action('oppose',{$val['id']})">反对(<span id="do_message_action_oppose_{$val['id']}">{$val['oppose']}</span>)</a>
+          </span>
+          <span class="pubtime">发表于：{$val['addtime']|inttodate_han}</span>
+        </div>
+      </li>
+      </foreach>

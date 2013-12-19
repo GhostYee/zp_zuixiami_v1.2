@@ -7,12 +7,29 @@
 	<div class="pageHeader">
 		<form onsubmit="return navTabSearch(this);" action="__URL__" method="post">
 		<div class="searchBar">
-			<ul class="searchContent">
-				<li>
-					<label>关键字：</label>
-					<input type="text" name="keyword" value="{$_REQUEST.keyword}" />
-				</li>
-			</ul>
+            <table class="searchContent">
+                <tr>
+                    <td>
+                        关键字：<input type="text" name="keyword" />
+                    </td>
+                    <td>
+                       <select class="combox" name="message_module">
+                            <option value="">模块类别</option>
+                            <foreach name='module_list' item='vo' >
+                            <option value="{$key}" <if condition="$key eq $search['message_module']">selected="selected"</if>>{$vo}</option>
+                            </foreach>
+                        </select>
+                    </td>
+                    <td>
+                    	<select class="combox" name="message_status">
+                            <option value="">状态</option>
+                            <foreach name='module_list' item='vo' >
+                            <option value="{$key}" <if condition="$search['message_status'] eq $key">selected="selected"</if>>{$vo}</option>
+                            </foreach>
+                        </select>
+                    </td>
+                </tr>
+			</table>
 			<div class="subBar">
 				<ul>
 					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
@@ -31,11 +48,15 @@
 		  <thead>
 			<tr>
 			  <th width="30"><input type="checkbox" group="ids" class="checkboxCtrl" /></th>
-				<th width="5%">id</th>
-				<th width="10%">qq</th>
-				<th width="55%">内容</th>
-				<th width="10%">添加时间</th>
-				<th width="30%">操作</th>
+			  <th>id</th>
+				<th>模块 /模块ID</th>
+				<th>发送者</th>
+				<th>接收者</th>
+				<th>标题/内容</th>
+				<th>支持/反对</th>
+				<th>添加时间/IP</th>
+				<th>状态</th>
+				<th>操作</th>
 			</tr>
 		  </thead>
 		  <tbody>
@@ -43,10 +64,19 @@
 				<tr target="sid_user" rel="{$vo['id']}">
 				  <td width="30"><input name="ids" value="{$vo['id']}" type="checkbox" /></td>
 					<td>{$vo['id']}</td>
-					<td>{$vo['qq']}</td>
-					<td>{$vo['content']}</td>
-					<td>{$vo['addtime']|inttodate}</td>
+					<td>{$module_list[$vo['module']]}<br />
+				    {$vo['mid']}</td>
+					<td>{$vo['from_user_name']}</td>
+					<td>{$vo['to_user_name']}</td>
+					<td>{$vo['title']}<br />
+{$vo['contents']}</td>
+					<td>{$vo['support']}<br />
+			      {$vo['oppose']}</td>
+					<td>{$vo['addtime']|inttodate}<br />
+				    {$vo['ip']}</td>
+				  <td>{$status_list[$vo['status']]}</td>
 					<td>
+                    	<a class="edit" href="__URL__/edit/id/{$vo['id']}/navTabId/__MODULE__" target="navTab" rel="Works_edit"><span>编辑</span></a>
                         <a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a>
                     </td>
 				</tr>
