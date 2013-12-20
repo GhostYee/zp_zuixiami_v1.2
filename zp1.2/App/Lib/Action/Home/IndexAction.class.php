@@ -11,10 +11,17 @@ class IndexAction extends CommonAction {
     public function index()
     {   
         //标签列表
-        $tag_model=D('Tag');
-        $tags  = $tag_model->getIndexTags('10');        
-        $this->assign('tags',$tags);
+        //
+        //$tag_model=D('Tag');
+        //$tags  = $tag_model->getIndexTags('10');        
+        //$this->assign('tags',$tags);
         
+        $zpClass_model=D();
+        $zpClass=$zpClass_model->query("SELECT COUNT( * ) AS num, s.name, s.id FROM xiami_works AS w LEFT JOIN xiami_works_sort AS s ON s.id = w.sortid WHERE s.id IS NOT NULL GROUP BY sortid ");
+        $this->assign('tags',$zpClass);
+
+
+
         //排行榜列表
         $works_model=D('Works');
         $works  = $works_model->query("SELECT * FROM xiami_works WHERE STATUS =2 ORDER BY addtime DESC , is_top LIMIT 5"); 

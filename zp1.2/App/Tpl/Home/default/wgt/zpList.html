@@ -6,6 +6,9 @@
     <case value="tag">
       <h2 class="page-title">标签：<a href="__APP__/tag/{$tag['id']}">{$tag['tagname']}</a><span>{$works|count}个作品</span></h2>
     </case>
+    <case value="sort">
+      <h2 class="page-title">类别：<a href="__APP__/sort/{$sort['id']}">{$sort['name']}</a><span>{$works|count}个作品</span></h2>
+    </case>
   </switch>
   <ul class="thumbnails"> 
     <foreach name="topworkList" item="val">

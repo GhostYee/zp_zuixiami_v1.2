@@ -2,7 +2,7 @@
 	<ul>
 		<foreach name="tags" item="val">
 			<li>
-				<a href="__APP__/tag/{$val['id']}">{$val['tagname']}</a>
+				<a href="__APP__/sort/{$val['id']}" title="({$val['num']})件作品" >{$val['name']}</a>
 			</li>
 		</foreach>
 	</ul>

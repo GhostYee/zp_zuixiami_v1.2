@@ -24,7 +24,7 @@ form{margin: 0;padding: 0;}
 /* box */
 .box-shadow{box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);background-color: #fff;display: block;}
 
-.l-container{font-size:0;line-height: 0;text-align: center;background:url(../img/bg.gif);}
+.l-container{font-size:0;line-height: 0;text-align: center;background:url(../img/bg.gif);min-height:650px}
 .l-top{width:100%;height:3px;background-color:#222}
 .l-side{width:230px;position: relative;z-index: 2;margin-bottom:20px;}
 .l-main{width:770px;padding-bottom: 20px;}
@@ -136,10 +136,11 @@ background-size: cover;}
 .wgt-logo{background:url(../img/logo.png);height:117px;font-size:0;line-height: 0;margin: 0;padding: 0;}
 .wgt-logo a{display: block;height:117px;}
 
-.wgt-tags{text-align: right;margin:0 10px;border-top:1px dotted #dbdbdb;padding:3px 0;}
+.wgt-tags{text-align: right;margin:0 9px;padding:0 0 3px;}
 .wgt-tags ul{margin: 0;padding: 0 0 10px;}
 .wgt-tags li{display: inline-block;margin:5px 0 0 5px;background: #e9e9e9;padding:0 7px;border:1px solid #e9e9e9; }
-.wgt-tags li a{text-decoration:none;color:#666666;}
+.wgt-tags li a{text-decoration:none;color:#666666;font-size: 14px;}
+.wgt-tags li a>b{font-size: 12px;font-weight: 400}
 .wgt-tags li input{vertical-align: top;}
 .wgt-tags li a:hover{text-decoration: none}
 .wgt-tags li:hover,
@@ -170,8 +171,8 @@ background-size: cover;}
 .wgt-zpRankList ul li h5 a{color:#666;}
 .wgt-zpRankList ul li h5 a:hover{color:#29a8e1}
 
-.wgt-searchBar{text-align:center;vertical-align: middle;position: relative;margin:10px auto 0;padding-bottom: 10px;}
-.wgt-searchBar input[type="text"]{margin-bottom:0;border-radius: 0;}
+.wgt-searchBar{text-align:center;vertical-align: middle;position: relative;margin:10px auto 0;padding-bottom: 8px;}
+.wgt-searchBar input[type="text"]{margin-bottom:0;border-radius: 0;width:87%;}
 .wgt-searchBar .btn-search{position: absolute;top:2px;right:12px;background-color: #fff;padding-bottom: 2px;}
 .wgt-searchBar *{vertical-align: middle;}
 
@@ -306,8 +307,8 @@ background-size: cover;}
 .wgt-zpList ul>li:hover{outline:3px solid #4eba00 }
 .wgt-zpList li{margin:17px 0  0 0 ;height:230px;display:inline-block;color:#fff;text-align: center;}
 .wgt-zpList li>.inner{position:relative;line-height:1;}
-.wgt-zpList li .preview-box{padding:5px;height:140px;overflow: hidden;background-color: #f2f2f2;vertical-align: middle;line-height: 140px;font-size: 14px}
-.wgt-zpList li .preview-box blockquote{line-height:1.8;font-size: 14px;overflow: hidden; text-align: left;margin:0;padding:10px;color:#666;border:0;text-indent:2em }
+.wgt-zpList li .preview-box{padding:5px;height:140px;overflow: hidden;vertical-align: middle;line-height: 140px;font-size: 14px}
+.wgt-zpList li .preview-box blockquote{line-height:1.8;font-size: 14px;overflow: hidden; text-align: left;margin:0;padding:10px;color:#666;border:0;text-indent:2em;height:114px; }
 .wgt-zpList li .preview-box img{max-width: 223px;max-height: 140px}
 .wgt-zpList li .preview-mask{height:150px;position: absolute;top:0;left:0;right:0;cursor: pointer;}
 .wgt-zpList li .preview-mask:hover{background:url(../img/btn-view.png) 50% 50% no-repeat rgba(0, 0, 0, 0.3)}

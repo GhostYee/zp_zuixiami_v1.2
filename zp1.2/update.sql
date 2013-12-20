@@ -1,4 +1,4 @@
---
+﻿--
 -- 新建首页banner表 by wewe 20131216
 --
 CREATE TABLE IF NOT EXISTS `xiami_banner` (
@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `xiami_session` (
 --
 -- 插入节点管理 by wewe 20131217
 --
-INSERT INTO `xiami_node` (`id`, `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES (300, 'User', '用户管理', 1, '', 0, 1, 2, 0, 14),
-(301, 'Banner', '首页Banner管理', 1, '', 0, 1, 2, 0, 14);
+INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES ('User', '用户管理', 1, '', 0, 1, 2, 0, 14),
+( 'Banner', '首页Banner管理', 1, '', 0, 1, 2, 0, 14);
 
 -- --------------------------------------------------------
 --

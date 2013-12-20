@@ -26,7 +26,7 @@ class TagAction extends CommonAction {
      * @return  void
      */
     public function view()
-    {
+    {        
     	$tagid=$this->_get('id')?intval($this->_get('id')):'0';
     	
     	//标签作品列表
