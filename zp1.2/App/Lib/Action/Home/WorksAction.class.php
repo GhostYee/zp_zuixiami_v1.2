@@ -176,9 +176,10 @@ class WorksAction extends CommonAction {
     	$this->loadWorks();
     	
     	//标签列表
-    	$tag_model=D('Tag');
-    	$tags  = $tag_model->getIndexTags('10');
-    	$this->assign('tags',$tags);
+    	$zpClass_model=D();
+        $zpClass=$zpClass_model->query("SELECT COUNT( * ) AS num, s.name, s.id FROM xiami_works AS w LEFT JOIN xiami_works_sort AS s ON s.id = w.sortid WHERE s.id IS NOT NULL GROUP BY sortid ");
+        $this->assign('tags',$zpClass);
+
     	 
     	//排行榜列表
     	$works_model=D('Works');
@@ -452,7 +453,7 @@ class WorksAction extends CommonAction {
     	
     	//取得专题列表
     	$model_works_special=D("Works_special");
-    	$works_special=$model_works_special->getWorksSpecialListByWorksID($works_id);
+    	$works_special=$model_works_special->getWorksSpecialListByWorksID($works_id);    	
     	$this->assign('works_special',$works_special);
 
     	//取得评论列表

@@ -74,7 +74,7 @@
               <foreach name="works_special" item="val">
                 <p>
                   参加专题：
-                  <a href="__APP__/works_special/{$val[id]}">{$val[qishu]}：{$val[title]}</a>
+                  <a href="__APP__/works_special/{$val[special_id]}">{$val[qishu]}：{$val[title]}</a>
                 </p>
               </foreach>
               <p class="pubtime">发表于：{$works['checktime']|inttodate_han}</p>

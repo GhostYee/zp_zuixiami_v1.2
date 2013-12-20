@@ -2,10 +2,11 @@
 	<div class="inner">
 		<a href="__APP__/author/{$author['id']}" class="user-header">
 		    <if condition="$author['figureurl'] neq ''">
-				<img src="{$author['figureurl']}" alt="{$author['nickname']}" /></a>
+				<img src="{$author['figureurl']}" alt="{$author['nickname']}" />
 			<else />
 				<img src="__APP__/app/Tpl/Home/default/Public/images/uheader.jpg" alt="{$author['nickname']}" />
 			</if>
+		</a>
 		<div class="con">
 			<p>
 				<if condition="$author['nickname'] neq ''">
@@ -18,7 +19,7 @@
 			<p>
 				<if condition="$author['qunname'] neq ''">
 				来自
-				<a href="__APP__/tempProject/page/zuixiami-qun.php" class="user-qqGroup">[{$author['qunname']}]</a>
+				<a href="__APP__/pages/qun" class="user-qqGroup">[{$author['qunname']}]</a>
 				</if>
 			</p>
 			<if condition="$author['id'] neq ''">
