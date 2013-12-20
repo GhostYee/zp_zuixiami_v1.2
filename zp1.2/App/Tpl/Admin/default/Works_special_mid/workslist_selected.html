@@ -40,7 +40,7 @@
 				<tr target="sid_user" rel="{$vo['id']}">
 				  <td width="40"><input name="orgId" value='{$vo[json]}' type="checkbox" /></td>
 					<td>{$vo['id']}</td>
-					<td>{$vo['name']}</td>
+					<td><a href="__APP__/works/{$vo['id']}" target="_blank" >{$vo['name']}</a></td>
 					<td><a class="btnSelect" href='javascript:$.bringBack({$vo[json]})' title="查找带回">选择</a></td>
 				</tr>
 			</volist>
