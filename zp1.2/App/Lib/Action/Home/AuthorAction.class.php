@@ -98,6 +98,17 @@ class AuthorAction extends CommonAction {
     		$this->error('未找到此作者信息');
     	}	
     	
+    	//取得评论列表
+    	$model_message=D("Message");
+    	$allinone_m['where']="message.status=1 and message.module='Author' and mid='".$userid."' ";
+    	$allinone_m['order']="message.id desc";
+    	$message=$model_message->getList($allinone_m);
+    	$this->assign('message',$message);
+    	
+    	//当前页标记
+    	$this->assign('currPage','Author');
+    	$this->assign('currId',$userid);
+    	
 		//替换模板SEO的值
 		$this->seo($author['nickname'].'的留言列表'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));
     	

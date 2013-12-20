@@ -24,21 +24,35 @@ class MessageAction extends CommonAction {
      * @return  void
      */
     public function post(){    	
-    	$model = D ('Message');
-		if (false === $model->create ()) {
-			$this->error ( $model->getError () );
-		}
-		$model->ip=get_client_ip();
-		$model->addtime=time();
-		//保存当前数据对象
-		$list=$model->add ();
-		if ($list!==false) { //保存成功
-			$this->success ('新增成功!');
-		} else {
-			//失败提示
-			$this->error ('新增失败!');
-		}
+    	//判断是否登陆
+    	//$this->_check_login();
+    	
+    	//if(IS_POST){
+    		$userid=session("xiami_userid");
+    		
+    		$model=D("Message");
+	    	$data=array(
+		    	'module'=>$this->_post('module'), //模块
+		    	'mid'=>$this->_post('mid'), //模块ID
+		    	'from_user_id'=>$userid, //发送者用户ID
+		    	'to_user_id'=>$this->_post('to_user_id'), //接收者用户ID
+		    	'contents'=>$this->_post('contents'), //内容
+		    	'ip'=>get_client_ip(), //IP
+	    		'status'=>'1', //状态 1显示 2用户隐藏 3管理员隐藏 4回收站(用户删除)
+		    	'addtime'=>time(),
+			);
+			//保存当前数据对象
+			$list=$model->add ($data);
+			if ($list!==false) { //保存成功
+				$msg=$this->_getMessageLiList($data['module'],$data['mid']);
+				echo json_encode(array('code'=>'ok','msg'=>$msg));exit;
+			} else {
+				//失败提示
+				echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;
+			}
+    	//}
     }
+    
 	/**
 	 * 用户操作支持/反对 
 	 * IP限制及用户ID
@@ -113,6 +127,22 @@ class MessageAction extends CommonAction {
 				echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;
 			}
 		}
+	}
+	// ------------------------------------------------------------------------
+	/**
+	 * 取得留言列表
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	public function _getMessageLiList($module,$mid){
+		//取得评论列表
+		$model_message=D("Message");
+		$allinone_m['where']="message.status=1 and message.module='".$module."' and mid='".$mid."' ";
+		$allinone_m['order']="message.id desc";
+		$message=$model_message->getList($allinone_m);
+		$this->assign('message',$message);
+		return $this->fetch("wgt:messageLiList");
 	}
     // ------------------------------------------------------------------------
 }
