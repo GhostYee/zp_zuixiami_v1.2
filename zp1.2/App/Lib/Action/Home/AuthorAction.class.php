@@ -106,8 +106,9 @@ class AuthorAction extends CommonAction {
     	$this->assign('message',$message);
     	
     	//当前页标记
-    	$this->assign('currPage','Author');
+    	$this->assign('currPage','User');
     	$this->assign('currId',$userid);
+    	$this->assign('fromurl',__INFO__);
     	
 		//替换模板SEO的值
 		$this->seo($author['nickname'].'的留言列表'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));

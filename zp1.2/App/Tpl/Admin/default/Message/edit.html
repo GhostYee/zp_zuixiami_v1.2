@@ -1,4 +1,3 @@
-
 <div class="page">
 	<div class="pageContent">
 
@@ -6,65 +5,49 @@
     	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
 		<div class="pageFormContent" layoutH="58">
 			<div class="unit">
-				<label>群分类：</label>
-				<select name="qun_sort_id" id="qun_sort_id">
-                <option value="0">请选择群分类</option>
-                <?php
-                    foreach ((array) $qun_sort_list as $id => $item) {
-                    ?>
-                <option value="<?=$item['id']?>" <?php if($vo['qun_sort_id'] == $item['id']){?>selected="selected"<?php }?>>
-                <?=$item['name']?></option>
-                <?php
-                    }
-                ?>
-                </select>
+				<label>模块：</label>
+                 <foreach name='module_list' item='item' >
+				<input type="radio" name="module" value="{$key}" <if condition="($vo['module'] eq $key)">checked="checked"</if> />{$item}
+                </foreach>
 			</div>
 			<div class="unit">
-				<label>登录类型：</label>
-				<input name="type" type="text"  id="type" value="{$vo['type']}"/>
+				<label>模块ID：</label>
+				<input name="mid" type="text"  id="mid" value="{$vo['mid']}"/>{$vo['module_title']}
 			</div>
             <div class="unit">
-				<label>OpenID：</label>
-				<input name="openid" type="text"  id="openid" value="{$vo['openid']}"/>
+				<label>发送者用户ID：</label>
+				<input name="from_user_id" type="text"  id="from_user_id" value="{$vo['from_user_id']}"/>
+			{$vo['from_user_nickname']}			</div>
+            <div class="unit">
+			  <label>接受者用户ID：</label>
+				<input name="to_user_id" type="text"  id="to_user_id" value="{$vo['to_user_id']}"/>
+			{$vo['to_user_nickname']}			</div>
+            <div class="unit">
+				<label>标题：</label>
+				<input name="title" type="text"  id="title" value="{$vo['title']}"/>
 			</div>
             <div class="unit">
-				<label>QQ号码：</label>
-				<input name="qq" type="text"  id="qq" value="{$vo['qq']}"/>
+				<label>内容：</label>
+                <textarea name="contents" cols="60" rows="12" id="contents">{$vo['contents']}</textarea>
 			</div>
             <div class="unit">
-				<label>昵称：</label>
-				<input name="nickname" type="text"  id="nickname" value="{$vo['nickname']}"/>
+				<label>IP地址：</label>
+				<input name="ip" type="text"  id="ip" value="{$vo['ip']}"/>
 			</div>
             <div class="unit">
-				<label>头像地址：</label>
-				<input name="figureurl" type="text"  id="figureurl" value="{$vo['figureurl']}"/>
+				<label>支持：</label>
+				<input name="support" type="text" id="support" value="{$vo['support']}"/>
 			</div>
             <div class="unit">
-				<label>用户BLOG地址：</label>
-				<input name="userurl" type="text"  id="userurl" value="{$vo['userurl']}"/>
+				<label>反对：</label>
+			  <input name="oppose" type="text" id="oppose" value="{$vo['oppose']}"/>
 			</div>
-            <div class="unit">
-				<label>用户介绍：</label>
-				<input name="notice" type="text" id="notice" value="{$vo['notice']}"/>
-			</div>
-            <div class="unit">
-				<label>是否开启自定义昵称：</label>
-				<input type="radio" name="is_open" value="0" <if condition="($vo['is_open'] eq 0) or (ACTION_NAME eq 'add')">checked="checked"</if> />不开启
-                <input type="radio" name="is_open" value="1" <if condition="$vo['is_open'] eq 1">checked="checked"</if>/>开启
-			</div>
-			<div class="unit">
-				<label>是否停用用户：</label>
-				<input type="radio" name="is_locked" value="0" <if condition="($vo['is_locked'] eq 0) or (ACTION_NAME eq 'add')">checked="checked"</if> />不停用
-                <input type="radio" name="is_locked" value="1" <if condition="$vo['is_locked'] eq 1">checked="checked"</if>/>停用
-			</div>
-            <div class="unit">
-				<label>期待作者：</label>
-                <input name="await" type="text" id="await" value="{$vo[await]}"/>
-            </div>
-             <div class="unit">
-				<label>点击量：</label>
-                <input name="hits" type="text" id="hits" value="{$vo[hits]}"/>
-            </div>
+          <div class="unit">
+				<label>状态：</label>
+                <foreach name='status_list' item='item' >
+				<input type="radio" name="status" value="{$key}" <if condition="($vo['status'] eq $key) or ((ACTION_NAME eq 'add') and ($key eq '0'))">checked="checked"</if> />{$item}
+                </foreach>
+		  </div>
              <div class="unit">
 				<label>添加时间：</label>
                 {$vo[addtime]|inttodate}

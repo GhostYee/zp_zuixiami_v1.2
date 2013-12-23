@@ -101,6 +101,7 @@ class WorksSpecialAction extends CommonAction {
     	$currPage=MODULE_NAME;
     	$this->assign('currPage',$currPage);
     	$this->assign('currId',$special_id);
+    	$this->assign('fromurl',__INFO__);
 		$this->display();
 	}
     // ------------------------------------------------------------------------

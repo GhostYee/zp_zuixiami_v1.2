@@ -464,9 +464,11 @@ class WorksAction extends CommonAction {
     	$this->assign('message',$message);
 		
 		//当前页标记
+    	
     	$currPage=MODULE_NAME;
     	$this->assign('currPage',$currPage);
     	$this->assign('currId',$works_id);
+    	$this->assign('fromurl',__INFO__);
 		
 		//替换模板SEO的值
 		$this->seo($works['name'].' 作品详情'.'--'.CFG('cfg_webname'),CFG('cfg_seo_keywords'),CFG('cfg_seo_description'));	

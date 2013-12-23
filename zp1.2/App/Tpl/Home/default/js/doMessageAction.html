@@ -1,3 +1,4 @@
+<script type="text/javascript" src="../Public/js/jquery.base64.min.js"></script>
 <script language="javascript">
 //评论支持/反对 by wewe
 function do_message_action(mtype,mid){
@@ -26,6 +27,7 @@ $(document).ready(function() {
 		var mid="<?php echo $currId;?>";
 		var to_user_id=$("#message_to_user_id").val();
 		var contents=$("#message_contents").val();
+		var fromurl="<?php echo $fromurl;?>";
 		$.ajax({
 		  type: "POST",
 		  url: "<?php echo __APP__;?>/message/post",
@@ -36,6 +38,9 @@ $(document).ready(function() {
 			  $("#message_contents").val("");
 			  $("#message_li_list").html(data.msg); 
 			}
+			else if(data.code=='jump'){
+                location.href='<?php echo __APP__;?>/user/login/?fromurl='+$.base64.encode(fromurl);
+            }
 			else if(data.code=='error'){
 			  alert(data.msg);
 			}

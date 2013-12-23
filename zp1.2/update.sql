@@ -74,3 +74,11 @@ CREATE TABLE IF NOT EXISTS `xiami_message` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='评论留言表';
 
 ALTER TABLE  `xiami_message` CHANGE  `is_show`  `status` TINYINT( 1 ) NOT NULL COMMENT  '状态   1显示 2用户隐藏  3管理员隐藏 4回收站(用户删除)';
+
+-- --------------------------------------------------------
+--
+-- 系统配置，增加留言是否需要审核 by wewe 20131223
+--
+
+INSERT INTO `xiami_config` (`id`, `pid`, `textname`, `code`, `type`, `store_range`, `store_dir`, `value`, `range_desc`, `cfg_desc`, `sid`) VALUES
+(214, 2, '留言审核', 'cfg_message_check', 'select', '1,0', '', '1', '需要审核,不需要审核', '', 32);
