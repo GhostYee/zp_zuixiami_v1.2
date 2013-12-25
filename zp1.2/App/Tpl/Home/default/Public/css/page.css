@@ -36,7 +36,7 @@ form{margin: 0;padding: 0;}
 
 /*** 3= common
 ****************************************/
-.btn-default{background-color: #53b20e;height:30px;line-height: 30px;font-size:14px;color:#fff;text-align: center;box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);display: inline-block;border:0;}
+.btn-default{display: inline-block;cursor:pointer;background-color: #53b20e;height:30px;line-height: 30px;font-size:14px;color:#fff;text-align: center;box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);display: inline-block;border:0;}
 .btn-default:hover{text-decoration: none;}
 
 
@@ -480,23 +480,28 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-login .wgt-submitFrom.form-horizontal .control-group{padding-left: 100px;}
 .wgt-login .form-horizontal .control-label{width:178px; }
 .wgt-login .wgt-submitFrom.form-horizontal .form-actions{padding-left: 280px;margin-top: 30px;}
-.wgt-login .login-types{font-size:14px;display: inline-block;vertical-align: top;}
-.wgt-login .login-types a{margin-right: 5px;vertical-align: top;}
+.wgt-login .login-types{font-size:14px;display: inline-block;vertical-align:top}
+.wgt-login .login-types a{margin-right: 5px;vertical-align:top}
 
-.wgt-oldZP{padding:20px;min-height: 500px}
+.wgt-login-select-type{display:block;vertical-align:middle}
+.wgt-login-select-type li{list-style:none;display:inline-block;vertical-align: middle;margin:0 10px}
+.wgt-login-select-type li *{vertical-align: middle;margin-right: 5px;font-size: 14px}
 
-.wgt-itemIntro{}
+.wgt-oldZP{padding:20px;min-height:500px}
+
 .wgt-itemIntro h6{background-color: #f1f1f1;font-size: 16px;padding:3px;}
 .wgt-itemIntro dl{padding-left: 20px;font-size: 14px}
 .wgt-itemIntro dt{font-size:16px;}
 .wgt-itemIntro p{text-indent: 2em;font-size: 14px;line-height: 1.6;padding-top: 5px;}
 .wgt-itemIntro .tip{color:#999;}
 
+.wgt-stage.modal{width:900px;height:500px;margin-left: -450px;display: none;}
+.wgt-stage.modal .modal-body{overflow: hidden;
+}
+
 /* fileUpdateInput */
 .fileUpdateInput{position:relative;display:inline-block;overflow:hidden;}
 .fileUpdateInput .fileInput{position:absolute;right:0;top:0;*filter:alpha(opacity = 0);-moz-opacity:0;opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)";}
-
-
 
 /*** 7= footer wgt
 ****************************************/

@@ -1,7 +1,24 @@
 $(document).ready(function() {	
 	theHomePageAni();
 	showHideDetail();
+	showStageDialog();
 });
+
+function showStageDialog(){
+
+	$('.stageLink').click(function(){ 
+	    var frameSrc=$(this).attr("src");
+	    var title=$(this).attr("aria-labelledby");
+	    var zpid=$(this).attr("zpid");	   
+		$('#myModal').on('show', function (){
+            $('#myModal iframe').attr("src",frameSrc);    
+            $('#myModalLabel').text(title);
+            $('#myModal .btn-toView').click(function(){            	
+            	window.location.href='http://zp.zuixiami.com/works/'+zpid;
+            });      
+        });     
+        $('#myModal').modal({show:true})});
+}
 
 function showHideDetail(){
 	var obj=$(".wgt-detail");
@@ -26,8 +43,8 @@ function showHideDetail(){
 function theHomePageAni() {
 	if(getCookie("rainbow-ani")=="")
 	{
-		$(".wgt-rainbow").parent().addClass("rainbow-ani");
-		setCookie("rainbow-ani","yet");
+		//$(".wgt-rainbow").parent().addClass("rainbow-ani");
+		//setCookie("rainbow-ani","yet");
 	}
 }
 

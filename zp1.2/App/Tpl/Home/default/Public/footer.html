@@ -2,12 +2,37 @@
     <nav class="wgt-footerNav" > <a href="__APP__/pages/about">关于最虾米</a></nav>
     <div class="wgt-copyright"> Copyright ©2013 www.zuixiami.com, All Rights Reserved </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade wgt-stage" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <iframe height="400" src="" frameBorder="0" width="870" scrolling="no" ></iframe> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn-default btn-toView">去吐槽</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="hide">
+{$CFG['cfg_tongji']}
+</div>
+
 <script src="../Public/js/jquery.min.js"></script>
 <script src="../Public/js/jquery.base64.min.js"></script>
 <script src="../Public/js/bootstrap.min.js"></script>
 <script src="../Public/js/jquery.transit.js"></script>
 <script src="../Public/js/page.js"></script>
 
-<div class="hide">
-{$CFG['cfg_tongji']}
-</div>
+
+
+
+
