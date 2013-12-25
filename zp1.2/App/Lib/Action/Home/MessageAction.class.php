@@ -29,7 +29,7 @@ class MessageAction extends CommonAction {
     		$userid=session("xiami_userid");
     		
     		//判断是否登陆
-    		//if(empty($userid)) {echo json_encode(array('code'=>'jump'));exit;}
+    		if(empty($userid)) {echo json_encode(array('code'=>'jump'));exit;}
     		
     		$model=D("Message");
 	    	$data=array(
@@ -45,6 +45,7 @@ class MessageAction extends CommonAction {
 	    	//判断系统配置是否需要审核
 	    	if(CFG('cfg_message_check')=='1') $data['status']=0; 
 	    	
+			if($data['from_user_id']==$data['to_user_id']) { echo json_encode(array('code'=>'error','msg'=>'亲,自己不能回复自己哦!'));exit; }
 	    	
 	    	//最后申请记录
 	    	$map['module']=$data['module'];
@@ -62,8 +63,9 @@ class MessageAction extends CommonAction {
 				//保存当前数据对象
 				$list=$model->add ($data);
 				if ($list!==false) { //保存成功
-					$msg=$this->_getMessageLiList($data['module'],$data['mid']);
-					echo json_encode(array('code'=>'ok','msg'=>$msg));exit;
+					$return_html=$this->_getMessageLiList($data['module'],$data['mid']);
+					if(CFG('cfg_message_check')=='1') $msg='亲,留言需要审核,请耐心等待管理员审核！';
+					echo json_encode(array('code'=>'ok','msg'=>$msg,'html'=>$return_html));exit;
 				} else {
 					//失败提示
 					echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;

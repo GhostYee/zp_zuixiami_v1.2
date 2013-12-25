@@ -22,6 +22,7 @@ class MessageAction extends CommonAction {
 		$this->assign('module_list',$module_list);
 		
 		$status_list=array(
+				'0'=>'未审核',
 				'1'=>'显示',
 				'2'=>'用户隐藏',
 				'3'=>'管理员隐藏',

@@ -35,8 +35,9 @@ $(document).ready(function() {
 		  dataType: "json",
 		  success: function(data){
 			if(data.code=='ok'){
-			  $("#message_contents").val("");
-			  $("#message_li_list").html(data.msg); 
+				if(data.msg!='')  {alert(data.msg);}
+			    $("#message_contents").val("");
+			    $("#message_li_list").html(data.html);
 			}
 			else if(data.code=='jump'){
                 location.href='<?php echo __APP__;?>/user/login/?fromurl='+$.base64.encode(fromurl);

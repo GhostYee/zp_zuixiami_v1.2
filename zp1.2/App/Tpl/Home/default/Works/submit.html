@@ -6,6 +6,7 @@
   <div class="l-b-row ta-c">
     <div class="l-b-col l-side">
       <div class="box-shadow"> <include file="wgt:logo"/> </div>
+      <include file="wgt:adshow1"/>
     </div>
     <div class="l-b-col l-main">
       <div class="l-inner">
@@ -35,6 +36,67 @@
   </div>
 </div>
 <include file="Public:footer"/>
-<include file="js:doWorksSubmitStep"/>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="../Public/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="../Public/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="../Public/js/jquery.fileupload.js"></script>
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+<!--[if (gte IE 8)&(lt IE 10)]>
+<script src="../Public/js/cors/jquery.xdr-transport.js"></script>
+<![endif]-->
+<script type="text/javascript">
+  $(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = window.location.hostname === 'blueimp.github.io' ?
+                '//jquery-file-upload.appspot.com/' : 'server/php/';
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',        
+        acceptFileTypes:/(\.|\/)(gif|jpe?g|png)$/i,
+        maxNumberOfFiles:1,
+        done: function (e, data) {         
+            $.each(data.result.files, function (index, file) {
+                console.log(file);
+                $('<p/>').html("<img src=\""+file.url+"\" /><button class=\"btn-img btn-default\"  data-type=\""+file.deleteType+"\" data-url=\""+file.deleteUrl+"\">删除</button>").appendTo('#files');
+                var imgUrl=$("#imgUrl");
+                var imgUrlValue=$("#imgUrl").val();                
+                $("#imgUrl").val(file.url);                
+            }); 
+        },
+        progressall: function (e, data) {
+            var obj=$('#progress .progress-bar');
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            obj.css(
+                'width',
+                progress + '%'
+            );
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    $(".btn-img").live("click",function(){
+      var obj=$(this);
+      var url=obj.attr("data-url");
+      $.ajax({
+        type: "DELETE",
+        url: url,
+        success:function(data){           
+          obj.parent().hide("fast",function(){
+            $(this).remove();
+            if($("#files>p").length<=0){
+              var obj=$('#progress .progress-bar');
+              obj.css('width','0%');
+              $("#imgUrl").val("");
+            }
+          })
+        }        
+      });      
+    });
+});
+
+</script>
+<script src="../Public/js/sea.js"  data-config="config" data-main="page" ></script>
 </body>
 </html>

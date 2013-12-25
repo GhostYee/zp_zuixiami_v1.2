@@ -12,7 +12,9 @@
           </h4>
           {$val['contents']}
           <span class="opts">
+            <if condition="$Think.session.xiami_userid neq $val['from_user_id']">
             <a href="javascript:void(0)" onClick="do_message_reply({$val['from_user_id']},'{$val[from_user_nickname]}')">回复</a>
+            </if>
             <!--<a href="#">删除</a>-->
             <!--<a href="#">隐藏/显示</a>-->
             <a href="javascript:void(0)" onClick="do_message_action('support',{$val['id']})">支持(<span id="do_message_action_support_{$val['id']}">{$val['support']}</span>)</a>

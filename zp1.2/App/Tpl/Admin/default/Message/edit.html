@@ -7,7 +7,7 @@
 			<div class="unit">
 				<label>模块：</label>
                  <foreach name='module_list' item='item' >
-				<input type="radio" name="module" value="{$key}" <if condition="($vo['module'] eq $key)">checked="checked"</if> />{$item}
+				<input type="radio" name="module" id="module" value="{$key}" <if condition="($vo['module'] eq $key)">checked="checked"</if> />{$item}
                 </foreach>
 			</div>
 			<div class="unit">
@@ -44,8 +44,8 @@
 			</div>
           <div class="unit">
 				<label>状态：</label>
-                <foreach name='status_list' item='item' >
-				<input type="radio" name="status" value="{$key}" <if condition="($vo['status'] eq $key) or ((ACTION_NAME eq 'add') and ($key eq '0'))">checked="checked"</if> />{$item}
+                <foreach name='status_list' item='item' key='k'>
+				<input type="radio" name="status" id="status" value="{$k}" <if condition="($vo['status'] eq $k) or ((ACTION_NAME eq 'add') and ($k eq '0'))">checked="checked"</if> />{$item}
                 </foreach>
 		  </div>
              <div class="unit">
