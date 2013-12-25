@@ -82,3 +82,25 @@ ALTER TABLE  `xiami_message` CHANGE  `is_show`  `status` TINYINT( 1 ) NOT NULL C
 
 INSERT INTO `xiami_config` (`id`, `pid`, `textname`, `code`, `type`, `store_range`, `store_dir`, `value`, `range_desc`, `cfg_desc`, `sid`) VALUES
 (214, 2, '留言审核', 'cfg_message_check', 'select', '1,0', '', '1', '需要审核,不需要审核', '', 32);
+
+-- --------------------------------------------------------
+--
+-- 节点管理，增加Tag管理 by wewe 20131225
+--
+INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES
+( 'Tag', 'Tag管理', 1, '', 0, 1, 2, 0, 14);
+
+-- --------------------------------------------------------
+--
+-- 附件管理表更改 by wewe 20131225
+--
+ALTER TABLE  `xiami_uploads` CHANGE  `id`  `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT  '自增ID';
+ALTER TABLE  `xiami_uploads` CHANGE  `thumburl_0`  `thumburl_0` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '缩略图1 1.2后弃用',
+CHANGE  `thumburl_1`  `thumburl_1` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT  '缩略图2 1.2后弃用';
+ALTER TABLE  `xiami_uploads` ADD  `filename` VARCHAR( 255 ) NOT NULL COMMENT  '文件名' AFTER  `title` ;
+ALTER TABLE  `xiami_uploads` ADD  `thumbpath` VARCHAR( 255 ) NOT NULL COMMENT  '缩略图目录' AFTER  `extension` ;
+ALTER TABLE  `xiami_uploads` ADD  `adduser` VARCHAR( 100 ) NOT NULL COMMENT  '添加人' AFTER  `thumburl_1` ;
+ALTER TABLE  `xiami_uploads` ADD  `filepath` VARCHAR( 255 ) NOT NULL COMMENT  '文件地址' AFTER  `url` ;
+ALTER TABLE  `xiami_uploads` ADD  `is_thumb` TINYINT( 1 ) NOT NULL COMMENT  '是否缩略图' AFTER  `thumburl_1` ;
+ALTER TABLE  `xiami_uploads` ADD  `userid` INT NOT NULL COMMENT  '用户ID 关联user表' AFTER  `is_thumb` ;
+ALTER TABLE  `xiami_uploads` ADD  `status` TINYINT NOT NULL COMMENT  '状态 预留' AFTER  `hit` ;
