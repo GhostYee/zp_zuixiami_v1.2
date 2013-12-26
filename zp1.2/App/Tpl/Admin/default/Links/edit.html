@@ -7,25 +7,25 @@
         <input name="uploads_id" type="hidden" id="uploads_id" value="<?=$vo[uploads_id]?>" />
 		<div class="pageFormContent" layoutH="58">			
 			<div class="unit">
-				<label>标题：</label>
-				<input name="title" type="text" id="title" value="{$vo['title']}"/>
+				<label>网站名：</label>
+				<input name="webname" type="text" id="webname" value="{$vo['webname']}"/>
 			</div>
             <div class="unit">
 				<label>地址：</label>
 				<input name="url" type="text" id="url" value="{$vo['url']}"/>
 			</div>
             <div class="unit">
-				<label>图片：</label>
-                <input name="img" type="text" id="name" class="bigsize" value="{$vo[img]}"/>网络图片可直接输入
+				<label>Logo图片：</label>
+                <input name="logo" type="text" id="name" class="bigsize" value="{$vo[logo]}"/>网络图片可直接输入
             </div>
             <div class="unit">
 				<label>&nbsp;</label>
                 <input id="fileimg" type="file" name="fileimg"/>本地上传优先
             </div>
-            <if condition="(ACTION_NAME eq 'edit') and ($vo[img] neq '')">
+            <if condition="(ACTION_NAME eq 'edit') and ($vo[logo] neq '')">
             <div class="unit">
             	<label>&nbsp;</label>
-				<a href="__ROOT__/{$vo[img]}" target="_blank"><img src="__ROOT__/{$vo[img]}" height="180"/></a>
+				<a href="__ROOT__/{$vo[logo]}" target="_blank"><img src="__ROOT__/{$vo[logo]}" height="180"/></a>
             </div>
             </if>
             <div class="unit">

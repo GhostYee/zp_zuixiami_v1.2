@@ -1,13 +1,27 @@
 <?php
 /**
- * 首页banner管理
+ * 友情链接管理
  */
-class BannerAction extends CommonAction {
-	
+class LinksAction extends CommonAction {
+	/**
+	 +----------------------------------------------------------
+	 * 初始化action
+	 +----------------------------------------------------------
+	 * @access public
+	 +----------------------------------------------------------
+	 * @throws ThinkExecption
+	 +----------------------------------------------------------
+	 */
+	function _initialize() {
+		//继承
+		parent::_initialize();
+		
+	}
 	public function _filter(&$map) {
-		if(!empty($_POST['keyword'])){
-			$map['title'] = array('like', "%" . $_POST['keyword'] . "%");
-			$map['_logic'] = 'or';
+		if(!empty($_POST['keywords'])){
+			$where['webname'] = array('like', "%" . $_POST['keywords'] . "%");
+			$where['url'] = array('like', "%" . $_POST['keywords'] . "%");			
+			$where['_logic'] = 'or';
 		}
 	}
 	/**
@@ -22,19 +36,19 @@ class BannerAction extends CommonAction {
 		if (false === $model->create ()) {
 			$this->error ( $model->getError () );
 		}
-		 
+			
 		//替换URL空格
 		$model->url=str_replace(array(' ','　'),array('',''),$model->url);
 		//处理URL
 		$model->url=prep_url($model->url);
-		 
+			
 		//保存当前数据对象
 		$list=$model->add();
 		if ($list!==false) { //保存成功
 			//上传图片
 			if(!empty($_FILES['fileimg']['name'])){
 				//导入上传类
-				import('@.ORG.WeUploadFile');				
+				import('@.ORG.WeUploadFile');
 				$upload = new WeUploadFile();
 				//只允许图片上传
 				$upload->allow_type='image';
@@ -48,9 +62,9 @@ class BannerAction extends CommonAction {
 				//dump($file_info);exit;
 				//赋值当前表图片地址
 				$data['uploads_id']=$file_info[0]['id'];
-				$data['img']=$file_info[0]['fileurl'];
+				$data['logo']=$file_info[0]['fileurl'];
 				$model->where("id='$list'")->save($data);
-			}	
+			}
 			$this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
 			$this->success ('新增成功!');
 		} else {
@@ -58,25 +72,17 @@ class BannerAction extends CommonAction {
 			$this->error ('新增失败!');
 		}
 	}
+	
 	/**
 	 +----------------------------------------------------------
-	 * 编辑操作
+	 * 赋值添加操作数据
+	 +----------------------------------------------------------
+	 * @access public
 	 +----------------------------------------------------------
 	 */
-	public function update() {
-		$id = $_REQUEST ['id'];
-		$name=$this->getActionName();
-		$model = D ($name);
-		if (false === $model->create ()) {
-			$this->error ( $model->getError () );
-		}
-		//替换URL空格
-		$model->url=str_replace(array(' ','　'),array('',''),$model->url);
-		//处理URL
-		$model->url=prep_url($model->url);
-
-		//上传图片
-		if(!empty($_FILES['fileimg']['name'])){			
+	function _fill_update(&$model){
+	//上传图片
+		if(!empty($_FILES['fileimg']['name'])){
 			//导入上传类
 			import('@.ORG.WeUploadFile');
 			$upload = new WeUploadFile();
@@ -96,17 +102,7 @@ class BannerAction extends CommonAction {
 			}
 			//赋值当前表图片地址
 			$model->uploads_id=$file_info[0]['id'];
-			$model->img=$file_info[0]['fileurl'];
-		}
-		// 更新数据
-		$list=$model->save ();
-		if (false !== $list) {
-			//成功提示
-			$this->assign ( 'jumpUrl', Cookie::get ( '_currentUrl_' ) );
-			$this->success ('编辑成功!');
-		} else {
-			//错误提示
-			$this->error ('编辑失败!');
+			$model->logo=$file_info[0]['fileurl'];
 		}
 	}
 	/**

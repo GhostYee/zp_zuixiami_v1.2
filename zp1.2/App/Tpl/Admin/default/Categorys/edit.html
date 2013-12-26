@@ -1,0 +1,54 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
+        <input name="uploads_id" type="hidden" id="uploads_id" value="<?=$vo[uploads_id]?>" />
+		<div class="pageFormContent" layoutH="58">			
+			<div class="unit">
+				<label>类别：</label>
+                <select name="module" id="module">
+                  <foreach name="mtype_list" item="item" key="key">
+                  <option value="{$key}" <if condition="($vo['module'] eq $key) OR ((ACTION_NAME eq 'add') AND ($_GET['module'] eq $key))">selected="selected"</if>>{$item}</option>
+                  </foreach>
+                </select>
+			</div>
+            <div class="unit">
+				<label>上级：</label>
+				<select name="pid" id="pid">
+                  <option value="0">根目录</option>
+                  <foreach name="alllist" item="item">
+                  <option value="{$item['id']}" <if condition="($vo['pid'] eq $item['id']) OR ((ACTION_NAME eq 'add') AND ($_GET['pid'] eq $item['id']))">selected="selected"</if>><?=implode('' , array_fill(1, $item['level'], '　'))?>├ {$item['title']}</option>
+                  </foreach>
+                </select>
+			</div>
+            <div class="unit">
+				<label>标题：</label>
+                <input name="title" type="text" id="title" value="{$vo[title]}" class="input-xlarge"/>
+            </div>
+            <div class="unit">
+				<label>关键词</label>
+                <textarea name="keywords" cols="60" rows="6" id="keywords" style="width:300px;">{$vo[keywords]}</textarea>
+            </div>
+            <div class="unit">
+				<label>描述</label>
+                <textarea name="description" cols="60" rows="6" id="description" style="width:300px;">{$vo[description ]}</textarea>
+            </div>
+            <div class="unit">
+				<label>排序：</label>
+                <input name="sid" type="text" id="sid" value="{$vo['sid']}"/>
+            </div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

@@ -121,11 +121,22 @@ class WorksAction extends CommonAction {
     	if ($list!==false) { //保存成功
     		//上传图片
     		if(!empty($_FILES['fileimg']['name'])){
-    			$file_info=upload(MODULE_NAME,$list,'','image');
-    			if(!is_array($file_info)){
-    				$this->error($file_info);
+    			//导入上传类
+    			import('@.ORG.WeUploadFile');
+    			$upload = new WeUploadFile();
+    			//只允许图片上传
+    			$upload->allow_type='image';
+    			if (!$upload->upload()) {
+    				//捕获上传异常
+    				$this->error($upload->getErrorMsg());
+    			} else {
+    				//取得成功上传的文件信息
+    				$file_info = $upload->getUploadFileInfo();
     			}
-    			$data['img']='/'.$file_info[0]['fileurl']; //CFG('cfg_weburl')
+    			//dump($file_info);exit;
+    			//赋值当前表图片地址
+    			$data['uploads_id']=$file_info[0]['id'];
+    			$data['img']=$file_info[0]['fileurl'];
     			$model->where("id='$list'")->save($data);
     		}
     		//作品日志
@@ -188,14 +199,28 @@ class WorksAction extends CommonAction {
     		$model->checktime=time();
     	}
     	//上传图片
-    	if(!empty($_FILES['fileimg']['name'])){
-    		R('Admin/Uploads/delete_mid_file',array(MODULE_NAME,intval($id)));	
-    		$file_info=upload(MODULE_NAME,$id,'','image');
-    		if(!is_array($file_info)){
-    			$this->error($file_info);
-    		}
-    		$model->img='/'.$file_info[0][fileurl]; //CFG('cfg_weburl')
-    	}
+		if(!empty($_FILES['fileimg']['name'])){			
+			//导入上传类
+			import('@.ORG.WeUploadFile');
+			$upload = new WeUploadFile();
+			//只允许图片上传
+			$upload->allow_type='image';
+			if (!$upload->upload()) {
+				//捕获上传异常
+				$this->error($upload->getErrorMsg());
+			} else {
+				//取得成功上传的文件信息
+				$file_info = $upload->getUploadFileInfo();
+			}
+			//删除修改前文件
+			if($model->uploads_id){
+				$model_uploads = D('Uploads');
+				$model_uploads->deleteByID($model->uploads_id);
+			}
+			//赋值当前表图片地址
+			$model->uploads_id=$file_info[0]['id'];
+			$model->img=$file_info[0]['fileurl'];
+		}
     	// 更新数据
     	$list=$model->save ();
     	if (false !== $list) {
@@ -207,6 +232,24 @@ class WorksAction extends CommonAction {
     	} else {
     		//错误提示
     		$this->error ('编辑失败!');
+    	}
+    }
+    /**
+     +----------------------------------------------------------
+     * 前置删除
+     +----------------------------------------------------------
+     * @access public
+     +----------------------------------------------------------
+     */
+    public function _before_foreverdelete(){
+    	//删除附件表上传图片
+    	$name=$this->getActionName();
+    	$model = D ($name);
+    	$id=$_REQUEST['id'];
+    	$data=$model->getByid($id);
+    	if($data['uploads_id']){
+    		$model_uploads=D('Uploads');
+    		$model_uploads->deleteByID($data['uploads_id']);
     	}
     }
     /**

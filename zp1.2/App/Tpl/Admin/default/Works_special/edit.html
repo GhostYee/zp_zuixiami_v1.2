@@ -2,8 +2,9 @@
 <div class="page">
 	<div class="pageContent">
 
-	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
     	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
+        <input name="uploads_id" type="hidden" id="uploads_id" value="<?=$vo[uploads_id]?>" />
 		<div class="pageFormContent" layoutH="58">	
         	<div class="unit">
 				<label>期数：</label>
@@ -24,7 +25,7 @@
             <if condition="(ACTION_NAME eq 'edit') and ($vo[img] neq '')">
             <div class="unit">
             	<label>&nbsp;</label>
-				<a href="{$vo[img]}" target="_blank"><img src="{$vo[img]}" height="180"/></a>
+				<a href="__ROOT__/{$vo[img]}" target="_blank"><img src="__ROOT__/{$vo[img]}" height="180"/></a>
             </div>
             </if>
             <div class="unit">

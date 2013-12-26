@@ -1,0 +1,97 @@
+
+<div class="page">
+	<div class="pageContent">
+
+	<form method="post" action="__URL__/{$acturl}/callbackType/closeCurrent/navTabId/__MODULE__" class="pageForm required-validate" enctype="multipart/form-data" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+    	<input name="id" type="hidden" id="id" value="<?=$vo[id]?>" />
+        <input name="uploads_id" type="hidden" id="uploads_id" value="<?=$vo[uploads_id]?>" />
+		<div class="pageFormContent" layoutH="58">			
+			<div class="unit">
+				<label>标题：</label>
+				<input name="title" type="text" id="title" value="{$vo[title]}"/>
+			</div>
+            <div class="unit">
+				<label>分类：</label>
+				<select name="catid" id="catid">
+                  <option value="0">根目录</option>
+                  <foreach name="catelist" item="item">
+                  <option value="{$item['id']}" <if condition="($vo['catid'] eq $item['id']) OR ((ACTION_NAME eq 'add') AND ($_GET['catid'] eq $item['id']))">selected="selected"</if>><?=implode('' , array_fill(1, $item['level'], '　'))?>├ {$item['title']}</option>
+                  </foreach>
+                </select>
+			</div>
+            <div class="unit">
+				<label>跳转地址：</label>
+                <input name="url" type="text" id="url" value="{$vo[url]}" size="60"/>
+            </div>
+            <div class="unit">
+				<label>缩略图：</label>
+                <input name="img" type="text" id="img" class="bigsize" value="{$vo[img]}"/>网络图片可直接输入
+            </div>
+            <div class="unit">
+				<label>&nbsp;</label>
+                <input id="fileimg" type="file" name="fileimg"/>本地上传优先
+            </div>
+            <if condition="(ACTION_NAME eq 'edit') and ($vo[img] neq '')">
+            <div class="unit">
+            	<label>&nbsp;</label>
+				<a href="__ROOT__/{$vo[img]}" target="_blank"><img src="__ROOT__/{$vo[img]}" height="180"/></a>
+            </div>
+            </if>
+             <div class="unit">
+				<label>关键词：</label>
+                <input name="keywords" type="text" id="keywords" value="{$vo[keywords]}" size="60"/>
+            </div>
+             <div class="unit">
+				<label>描述：</label>
+                <textarea name="description" cols="60" rows="4" id="description" style="width:400px;">{$vo[description]}</textarea>
+            </div>
+             <div class="unit">
+				<label>内容：</label>
+                 {$vo['contents']|xheditor=contents,###,22,60}
+            </div>
+            <!--
+             <div class="unit">
+				<label>模板名：</label>
+                <input name="tplname" type="text" id="tplname" value="{$vo[tplname]}" />
+  	      不填默认News_view.html模板，如果新模板名为News_view2.html，则填view2
+            </div>
+            -->
+             <div class="unit">
+				<label>点击量：</label>
+                <input name="hit" type="text" id="hit" value="{$vo[hit]}" />
+            </div>
+             <div class="unit">
+				<label>是否隐藏：</label>
+                <label class="radio inline"><input name="is_hide" id="is_hide" type="radio" value="1" <if condition="$vo['is_hide'] eq '1'">checked="checked"</if> />隐藏 </label>
+      <label class="radio inline"><input name="is_hide" id="is_hide2" type="radio" value="0" <if condition="($vo['is_hide'] eq '0') or (ACTION_NAME eq 'add')">checked="checked"</if> />显示</label>
+            </div>
+             <div class="unit">
+				<label>是否推荐：</label>
+                <label class="radio inline"><input name="is_top" id="is_top" type="radio" value="1" <if condition="$vo['is_top'] eq '1'">checked="checked"</if> />推荐 </label>
+      <label class="radio inline"><input name="is_top" id="is_top2" type="radio" value="0" <if condition="($vo['is_top'] eq '0') or (ACTION_NAME eq 'add')">checked="checked"</if> />不推荐</label>
+            </div>
+            <div class="unit">
+				<label>推荐排序：</label>
+                <input name="sid" type="text" id="sid" value="{$vo['sid']}" />
+            </div>
+            <div class="unit">
+				<label>添加人：</label>
+                <input name="adduser" type="hidden" value="{$vo[adduser]}" />{$vo[adduser]}
+            </div>
+            <div class="unit">
+				<label>添加时间：</label>
+                {$vo[addtime]|inttodate}
+            </div>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+	</div>
+</div>
+

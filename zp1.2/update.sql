@@ -95,6 +95,8 @@ INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `
 -- 附件管理表更改 by wewe 20131225
 --
 ALTER TABLE  `xiami_uploads` CHANGE  `id`  `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT  '自增ID';
+ALTER TABLE  `xiami_uploads` CHANGE  `module`  `module` VARCHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '模块 1.2后弃用',
+CHANGE  `mid`  `mid` INT( 11 ) NOT NULL DEFAULT  '0' COMMENT  '模块ID 1.2后弃用';
 ALTER TABLE  `xiami_uploads` CHANGE  `thumburl_0`  `thumburl_0` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '缩略图1 1.2后弃用',
 CHANGE  `thumburl_1`  `thumburl_1` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT  '缩略图2 1.2后弃用';
 ALTER TABLE  `xiami_uploads` ADD  `filename` VARCHAR( 255 ) NOT NULL COMMENT  '文件名' AFTER  `title` ;
@@ -104,3 +106,93 @@ ALTER TABLE  `xiami_uploads` ADD  `filepath` VARCHAR( 255 ) NOT NULL COMMENT  '�
 ALTER TABLE  `xiami_uploads` ADD  `is_thumb` TINYINT( 1 ) NOT NULL COMMENT  '是否缩略图' AFTER  `thumburl_1` ;
 ALTER TABLE  `xiami_uploads` ADD  `userid` INT NOT NULL COMMENT  '用户ID 关联user表' AFTER  `is_thumb` ;
 ALTER TABLE  `xiami_uploads` ADD  `status` TINYINT NOT NULL COMMENT  '状态 预留' AFTER  `hit` ;
+ALTER TABLE  `xiami_uploads` CHANGE  `filepath`  `fileurl` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文件地址';
+
+ALTER TABLE  `xiami_banner` ADD  `uploads_id` BIGINT NOT NULL COMMENT  '附件上传ID' AFTER  `id` ;
+ALTER TABLE  `xiami_works_special` ADD  `uploads_id` BIGINT NOT NULL COMMENT  '附件上传ID' AFTER  `id`;
+ALTER TABLE  `xiami_works` ADD  `uploads_id` BIGINT NOT NULL COMMENT  '附件上传ID' AFTER  `id`; 
+
+-- --------------------------------------------------------
+--
+-- 新建分类表 by wewe 20131226
+--
+CREATE TABLE IF NOT EXISTS `xiami_categorys` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `pid` int(11) NOT NULL COMMENT '父ID',
+  `module` varchar(100) NOT NULL COMMENT '模块',
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `keywords` varchar(100) NOT NULL COMMENT '关键词',
+  `description` varchar(255) NOT NULL COMMENT '描述',
+  `sid` int(11) NOT NULL COMMENT '排序',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='分类';
+
+-- --------------------------------------------------------
+--
+-- 新建友情链接表 by wewe 20131226
+--
+CREATE TABLE IF NOT EXISTS `xiami_links` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `uploads_id` bigint(20) NOT NULL COMMENT '附件上传ID',
+  `webname` varchar(30) NOT NULL COMMENT '网站名',
+  `url` varchar(100) NOT NULL COMMENT '地址',
+  `sid` mediumint(6) NOT NULL COMMENT '排序',
+  `logo` varchar(50) NOT NULL COMMENT 'LOGO图片',
+  PRIMARY KEY (`id`),
+  KEY `webname` (`webname`),
+  KEY `url` (`url`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接管理';
+
+-- --------------------------------------------------------
+--
+-- 新建通用日志表 by wewe 20131226
+--
+CREATE TABLE IF NOT EXISTS `xiami_logs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `module` varchar(100) NOT NULL COMMENT '模块',
+  `mid` int(11) NOT NULL COMMENT '模块ID',
+  `status` varchar(100) NOT NULL COMMENT '状态',
+  `notice` text NOT NULL COMMENT '备注',
+  `adduser` varchar(30) NOT NULL COMMENT '操作人',
+  `addtime` int(10) NOT NULL COMMENT '操作时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='通用日志记录' ;
+
+-- --------------------------------------------------------
+--
+-- 新建新闻表 by wewe 20131226
+--
+CREATE TABLE IF NOT EXISTS `xiami_news` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `catid` int(11) NOT NULL COMMENT '分类ID',
+  `uploads_id` bigint(20) NOT NULL COMMENT '附件上传ID 缩略图地址',
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `keywords` varchar(100) NOT NULL COMMENT '关键词',
+  `description` varchar(255) NOT NULL COMMENT '描述',
+  `contents` text NOT NULL COMMENT '内容',
+  `img` varchar(255) NOT NULL COMMENT '缩略图',
+  `adduser` varchar(100) NOT NULL COMMENT '添加人',
+  `addtime` int(11) NOT NULL COMMENT '添加时间',
+  `tplname` varchar(50) NOT NULL COMMENT '模板名',
+  `url` varchar(100) NOT NULL COMMENT 'URL跳转地址',
+  `hit` int(11) NOT NULL DEFAULT '50' COMMENT '点击量',
+  `sid` smallint(5) NOT NULL DEFAULT '0' COMMENT '排序',
+  `is_hide` tinyint(1) unsigned NOT NULL COMMENT '是否隐藏',
+  `is_top` tinyint(1) unsigned NOT NULL COMMENT '是否推荐',
+  PRIMARY KEY (`id`),
+  KEY `title` (`title`),
+  KEY `is_show` (`is_hide`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='新闻表';
+
+-- --------------------------------------------------------
+--
+-- 节点管理，增加 by wewe 20131225
+--
+INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES
+( 'Categorys', '分类管理', 1, '', 0, 1, 2, 0, 14);
+INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES
+( 'Logs', '日志管理', 1, '', 0, 1, 2, 0, 14);
+INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES
+( 'News', '新闻管理', 1, '', 0, 1, 2, 0, 14);
+INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES
+( 'Links', '友情连接管理', 1, '', 0, 1, 2, 0, 14);

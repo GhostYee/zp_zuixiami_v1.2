@@ -21,7 +21,7 @@ class CommonAction extends Action {
             import("@.ORG.Util.RBAC");//by wewe
             if (!RBAC::AccessDecision(GROUP_NAME)) {
                 //检查认证识别号
-                if (!$_SESSION [C('USER_AUTH_KEY')]) {
+                if (!session(C('USER_AUTH_KEY'))) {
 					if ($this->isAjax()){ // by wewe
 						$this->ajaxReturn(true, "", 301);
 					} else {
@@ -812,7 +812,39 @@ class CommonAction extends Action {
 	
 	/**
      +----------------------------------------------------------
-	 * 日志入库
+	 * 通用日志入库
+	 *
+     +----------------------------------------------------------
+	 * @access public
+     +----------------------------------------------------------
+	 * @return string
+     +----------------------------------------------------------
+	 * @throws FcsException
+     +----------------------------------------------------------
+	 */
+
+    public function logs($module='',$mid='',$status='',$notice='') {
+    	if(is_array($module)){
+    		$mid=$module['mid'];
+    		$status=$module['status'];
+    		$notice=$module['notice'];
+    		$module=$module['module'];
+    	}
+        $model_logs = D("Logs");
+        $data = array();
+        $ip = get_client_ip();
+        $data['module'] = empty($module)?MODULE_NAME:$module;
+        $data['mid'] = $mid;
+        $data['status'] = $status;
+        $data['notice'] = $notice;
+        $data['adduser'] = session('loginUserName');
+        $data['addtime'] = time();
+        $result = $model_logs->add($data);
+    }
+	
+	/**
+     +----------------------------------------------------------
+	 * 后台系统日志入库
 	 *
      +----------------------------------------------------------
 	 * @access public
@@ -831,8 +863,8 @@ class CommonAction extends Action {
         $data['actionname'] = $this->_getNodeTitle(MODULE_NAME,2);
         $data['opname'] = $this->_getNodeTitle(ACTION_NAME,3);
         $data['message'] = $message;
-        $data['username'] = $_SESSION['loginUserName'] . "(" . $_SESSION['login_account'] . ")";
-        $data['userid'] = $_SESSION[C('USER_AUTH_KEY')];
+        $data['username'] = session('loginUserName') . "(" . session('login_account') . ")";
+        $data['userid'] = session(C('USER_AUTH_KEY'));
         $data['userip'] = $ip;
         $data['create_time'] = time();
         $result = $syslogs->add($data);
