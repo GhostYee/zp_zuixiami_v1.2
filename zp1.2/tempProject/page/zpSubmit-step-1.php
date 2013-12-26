@@ -19,10 +19,8 @@
       <div class="box-shadow">
         <?php include '../inc/wgt-logo.php'; ?>
       </div>
-      <a class="box-shadow adshow-1" href="zuixiami-about.php">
-        了解 <strong>最虾米</strong>
-        ,了解 <strong>鬼群</strong>
-        这是个传说。。。。。。
+      <a class="box-shadow adshow-1" href="http://zp.zuixiami.com/pages/about">
+       “这是什么！？”
       </a>
     </div>
     <div class="l-b-col l-main">
