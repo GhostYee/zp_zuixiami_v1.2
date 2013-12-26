@@ -67,13 +67,13 @@ function editor($name,$content='',$width="600px",$height="300px",$editors='kinde
 	else{
 		$editor=array('id'=>$name,'name'=>$name,'value'=>$content,'minWidth'=>$width,'height'=>$height);
 	}
-	import('Editors');
+	import('@.ORG.Editors');
 	$e=new Editors();
 	return $e->getedit($editor,$editors);
 }
 // ------------------------------------------------------------------------
 /*
- * 文件上传入附件库
+ * 文件上传入附件库 1.2后弃用
  *
  * @access  public
  * @param string $module 模块名
@@ -211,148 +211,6 @@ function upload($module='',$mid='',$title='',$allow_type='all',$remove_origin=FA
 			return $uploadList;
         }
 }
-// ------------------------------------------------------------------------
-/**
- * 文件上传入附件库
- *
- * @access  public
- * @param string $module 模块名
- * @param string $mid 模块ID
- * @param string $allow_type 上传类型 image/flash/media/other/all 默认all
- * @param string $title 标题
- * @param bool 	 $remove_origin 强制删除原图，优先于系统配置
- * @param bool 	 $not_thumb 强制不生成缩略图 优先于系统配置
- * @return  array/error string
- */
-function file_upload($module='',$mid='',$allow_type='all',$title='',$remove_origin=FALSE,$not_thumb=FALSE){
-	//文件后辍类型
-	$allow_exts=array();
-	switch(strtolower($allow_type)){
-		case 'image':
-			if(CFG('cfg_file_upimg_ext'))
-				$allow_exts=explode(',',CFG('cfg_file_upimg_ext'));
-			$save_mid_path='images';
-			break;
-		case 'flash':
-			if(CFG('cfg_file_upflash_ext'))
-				$allow_exts=explode(',',CFG('cfg_file_upflash_ext'));
-			$save_mid_path='flash';
-			break;
-		case 'media':
-			if(CFG('cfg_file_upmedia_ext'))
-				$allow_exts=explode(',',CFG('cfg_file_upmedia_ext'));
-			$save_mid_path='media';
-			break;
-		case 'other':
-			if(CFG('cfg_file_uplink_ext'))
-				$allow_exts=explode(',',CFG('cfg_file_uplink_ext'));
-			$save_mid_path='other';
-			break;
-		case 'all':
-			if(CFG('cfg_file_upimg_ext')) $cfg_file_upimg_ext=explode(',',CFG('cfg_file_upimg_ext'));
-			if(CFG('cfg_file_upflash_ext')) $cfg_file_upflash_ext=explode(',',CFG('cfg_file_upflash_ext'));
-			if(CFG('cfg_file_upmedia_ext')) $cfg_file_upmedia_ext=explode(',',CFG('cfg_file_upmedia_ext'));
-			if(CFG('cfg_file_uplink_ext')) $cfg_file_uplink_ext=explode(',',CFG('cfg_file_uplink_ext'));
-
-			$allow_exts=array_merge($cfg_file_upimg_ext,$cfg_file_upflash_ext,$cfg_file_upmedia_ext,$cfg_file_uplink_ext);
-			$save_mid_path='all';
-			break;
-	}
-	//
-	import('@.ORG.Net.UploadFile');
-	//导入上传类
-	$upload = new UploadFile();
-	//设置上传文件大小
-	$upload->maxSize            = CFG('cfg_file_maxsize')*1024;
-	//设置上传文件类型
-	$upload->allowExts          = $allow_exts;
-	//设置附件上传目录
-	$upload->savePath           = CFG('cfg_file_save_path').'/'.$save_mid_path.'/';
-	//设置需要生成缩略图，仅对图像文件有效
-	if($not_thumb===TRUE){
-		$upload->thumbRemoveOrigin  = FALSE;
-	}
-	else if(CFG('cfg_file_is_thumb')==1){
-		$upload->thumb              = true;
-	}
-	else if(CFG('cfg_file_is_thumb')==0){
-		$upload->thumb              = FALSE;
-	}
-	// 设置引用图片类库包路径
-	$upload->imageClassPath     = '@.ORG.Util.Image';
-	//设置缩略图保存目录
-	$upload->thumbPath        = CFG('cfg_file_save_path').'/'.$save_mid_path.'_'.CFG('cfg_file_thumb_save_path').'/';
-	//设置需要生成缩略图的文件后缀
-	$upload->thumbPrefix        = CFG('cfg_file_thumb_prefix');  //生成2张缩略图
-	//设置缩略图最大宽度
-	$upload->thumbMaxWidth      = CFG('cfg_file_thumb_max_width');
-	//设置缩略图最大高度
-	$upload->thumbMaxHeight     = CFG('cfg_file_thumb_max_height');
-
-	//设置上传文件规则
-	$upload->saveRule           = 'uniqid';
-	//删除原图
-	if($remove_origin===true){
-		$upload->thumbRemoveOrigin  = true;
-	}
-	else if(CFG('cfg_file_thumb_remove_origin')=='1'){
-		$upload->thumbRemoveOrigin  = true;
-	}
-	//是否使用子目录保存上传文件
-	$upload->autoSub			=true;
-	//子目录创建方式，默认为hash，可以设置为hash或者date
-	$upload->subType			='date';
-	if (!$upload->upload()) {
-		//捕获上传异常
-		return $upload->getErrorMsg();
-	} else {
-		//取得成功上传的文件信息
-		$uploadList = $upload->getUploadFileInfo();
-
-		$thumb=@explode(',', CFG('cfg_file_thumb_prefix'));
-		$num=count($thumb);
-		$ids=array();
-		foreach($uploadList as $key=>$val){
-			$uploads_arr=array();$res='';
-			$uploadList[$key]['fileurl']=$val['savepath'].$val['savename'];
-			$model=D('Uploads');
-			$uploads_arr['title']=empty($title)?$uploadList[$key]['name']:$title;
-			$uploads_arr['filename']=$val['filename'];
-			$uploads_arr['filepath']=$uploadList[$key]['fileurl'];
-			$uploads_arr['mediatype']=$uploadList[$key]['type'];
-			$uploads_arr['filesize']=$uploadList[$key]['size'];
-			$uploads_arr['extension']=$uploadList[$key]['extension'];
-			$uploads_arr['thumbpath']=$upload->thumbPath.date("Ymd").'/';
-			$uploads_arr['addtime']=time();
-			$res=$model->add($uploads_arr);
-			array_push($ids,$res);//ID组合
-			$uploads_arr['id']=$res;
-			//$uploadList[$key]=$uploads_arr;
-			$uploadList[$key]=array_merge($val,$uploads_arr);//合并数据库及原文件信息
-		}
-		if(isset($ids)) $ids=implode(",",$ids);
-		$uploadList['ids']=$ids;//ID集合，逗号分开
-
-		//判断是否开启水印
-		if(CFG('cfg_water_open')=='1'){
-			import('@.ORG.Util.Image');
-			foreach($uploadList as $key=>$val){
-				//原图片加水印
-				if(CFG('cfg_file_thumb_remove_origin')!='1'){
-					$kk=Image::water($val['url'],CFG('cfg_water_image_url'),null,CFG('cfg_water_image_alpha'));
-				}
-				//给缩略图添加水印,
-				if($num>0){
-					for($i=0;$i<$num;$i++){
-						Image::water($val['thumbpath'].$thumb[$i].$val['filename'], CFG('cfg_water_image_url'),null,CFG('cfg_water_image_alpha'));
-					}
-				}
-			}
-		}
-		return $uploadList;
-	}
-
-}  
 // ------------------------------------------------------------------------
 /**
  * 加密解密函数

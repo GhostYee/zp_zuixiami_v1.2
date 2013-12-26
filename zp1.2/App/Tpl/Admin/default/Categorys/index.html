@@ -1,0 +1,55 @@
+<div class="pageContent">
+  <div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="add" href="__URL__/add" target="dialog" mask="true" width="700" height="550"><span>新增</span></a></li>				
+			</ul>
+  </div>
+  <form enctype="multipart/form-data" method="post" action="__URL__/post" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone)">
+  <div class="tabs" currentIndex="0" eventType="click">
+    <div class="tabsHeader">
+      <div class="tabsHeaderContent">
+        <ul>
+          <foreach name="mtype_list" item="val">
+          <li><a href="javascript:;"><span>{$val}</span></a></li>
+          </foreach>
+        </ul>
+      </div>
+    </div>    
+    <div class="tabsContent pageFormContent">
+      <volist id="v" name="list">
+      <div>
+        <table class="list" width="100%" layoutH="116">
+			<thead>
+								  <tr>
+
+								      <th>ID</th>
+                                      <th>标题</th>
+                                      <th>关键词</th>
+                                      <th>描述</th>
+									  <th>排序</th>
+                                      <th>操作</th>                             
+								  </tr>
+							  </thead>   
+							  <tbody>
+                                <foreach name="v" item="val">
+								<tr>
+                                	<td>{$val['id']}</td>
+                                    <td><?php echo str_repeat('　' , $val['level']);?>├ {$val['title']}</td>
+                                    <td>{$val['keywords']}</td>
+                                    <td>{$val['description']}</td>
+									<td class="center">{$val['sid']}</td>
+                                    <td><a class="edit" href="__URL__/edit/id/{$val['id']}/navTabId/__MODULE__" target="dialog" mask="true" width="700" height="550"><span>编辑</span></a>
+                        <a class="delete" href="__URL__/foreverdelete/id/{$val['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a></td>                
+								</tr>
+                                </foreach>                        
+							  </tbody>
+		</table>
+      </div>
+      </volist>
+    </div>
+    <div class="tabsFooter">
+      <div class="tabsFooterContent"></div>
+    </div>
+  </div>
+  </form>
+</div>

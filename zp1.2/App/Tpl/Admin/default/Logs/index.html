@@ -1,0 +1,66 @@
+<form id="pagerForm" action="__URL__" method="post">
+	<input type="hidden" name="pageNum" value="1"/>
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="__URL__" method="post" rel="pagerForm">
+		<div class="searchBar">
+			<table class="searchContent">
+                <tr>
+                    <td>
+                        关键字：<input type="text" name="keyword" />
+                    </td>
+                </tr>
+			</table>
+			<div class="subBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查询</button></div></div></li>
+				</ul>
+			</div>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<li><a title="确实要删除这些记录吗?" target="selectedTodo" rel="ids" postType="string"  href="__URL__/selectedDelete" class="delete"><span>批量删除</span></a></li>				
+			</ul>
+		</div>
+
+		<table class="list" width="100%" layoutH="116">
+			<thead>
+			<tr>
+			  <th>ID</th>
+			  <th>模块</th>
+			  <th>模块ID</th>
+				<th>状态</th>
+				<th>备注</th>
+                <th>操作人</th>
+                <th>操作时间</th>
+			  </tr>
+			</thead>
+			<tbody>
+			<foreach name="list" item="vo" >
+				<tr >
+				  <td>{$vo['id']}</td>
+				  <td>{$vo['module']}</td>
+				  <td>{$vo['mid']}</td>
+					<td>{$vo['status']}</td>
+					<td>{$vo['notice']}</td>
+                    <td>{$vo['adduser']}</td>
+                    <td>{$vo['addtime']|inttodate}</td>
+				</tr>
+			</foreach>
+			</tbody>
+		</table>
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$totalCount}条</span>
+		  </div>
+			<div class="pagination" targetType="navTab" totalCount="{$totalCount}" numPerPage="{$numPerPage}" pageNumShown="10" currentPage="{$currentPage}"></div>
+	  </div>
+
+	</div>
+	
+</div>

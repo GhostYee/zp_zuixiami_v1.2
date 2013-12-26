@@ -4,7 +4,8 @@
  */
 class IndexAction extends CommonAction {
     public function index() {
-        if (isset($_SESSION [C('USER_AUTH_KEY')])) {
+    	$session_user_auth_key=session(C('USER_AUTH_KEY'));
+        if (isset($session_user_auth_key)) {
             //显示菜单项
             $menu = array();
 
@@ -16,15 +17,16 @@ class IndexAction extends CommonAction {
             $where ['pid'] = $id;
             $list = $node->where($where)->field('id,name,group_id,title')->order('sort asc')->select();
             //dump($list);
-            if(isset($_SESSION [C('_ACCESS_LIST')])) {
-            	$accessList = $_SESSION [C('_ACCESS_LIST')];
+            $session__access_list=session(C('_ACCESS_LIST'));
+            if(isset($session__access_list)) {
+            	$accessList = session(C('_ACCESS_LIST'));
             }else{
             	import('@.ORG.Util.RBAC');
-            	$accessList =   RBAC::getAccessList($_SESSION[C('USER_AUTH_KEY')]);
+            	$accessList =   RBAC::getAccessList(session(C('USER_AUTH_KEY')));
             }
             //dump($accessList);
             foreach ($list as $key => $module) {
-                if (isset($accessList [strtoupper(GROUP_NAME)] [strtoupper($module ['name'])]) || $_SESSION[C('ADMIN_AUTH_KEY')]) {
+                if (isset($accessList [strtoupper(GROUP_NAME)] [strtoupper($module ['name'])]) || session(C('ADMIN_AUTH_KEY'))) {
                     //设置模块访问权限
                     $module ['access'] = 1;
                     $menu [$key] = $module;
@@ -39,7 +41,6 @@ class IndexAction extends CommonAction {
         }
         C('SHOW_RUN_TIME', false); // 运行时间显示
         //C('SHOW_PAGE_TRACE', false);
-		//dump($_SESSION);
         $this->display();
     }
 

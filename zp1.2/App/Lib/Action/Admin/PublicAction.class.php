@@ -7,7 +7,8 @@ class PublicAction extends Action {
 	// 检查用户是否登录
 
 	protected function checkUser() {
-		if (!isset($_SESSION[C('USER_AUTH_KEY')])) {
+		$session_user_auth_key=session(C('USER_AUTH_KEY'));
+		if (!isset($session_user_auth_key)) {
 			$this->assign('jumpUrl', 'Public/login');
 			$this->error('没有登录');
 		}
@@ -31,7 +32,8 @@ class PublicAction extends Action {
 	// 菜单页面
 	public function menu() {
 		$this->checkUser();
-		if (isset($_SESSION[C('USER_AUTH_KEY')])) {
+		$session_user_auth_key=session(C('USER_AUTH_KEY'));
+		if (isset($session_user_auth_key)) {
 			//显示菜单项
 			$menu = array();
 
@@ -42,14 +44,15 @@ class PublicAction extends Action {
 			$where['status'] = 1;
 			$where['pid'] = $id;
 			$list = $node->where($where)->field('id,name,group_id,title')->order('sort asc')->select();
-			if(isset($_SESSION [C('_ACCESS_LIST')])) {
-                $accessList = $_SESSION [C('_ACCESS_LIST')];
+			$session__access_list=session(C('_ACCESS_LIST'));
+			if(isset($session__access_list)) {
+                $accessList = session(C('_ACCESS_LIST'));
             }else{
                	import("@.ORG.Util.RBAC");//by wewe
-                $accessList =   RBAC::getAccessList($_SESSION[C('USER_AUTH_KEY')]);
+                $accessList =   RBAC::getAccessList(session(C('USER_AUTH_KEY')));
             }
 			foreach ($list as $key => $module) {
-				if (isset($accessList[strtoupper(GROUP_NAME)][strtoupper($module['name'])]) || $_SESSION[C('ADMIN_AUTH_KEY')]) {
+				if (isset($accessList[strtoupper(GROUP_NAME)][strtoupper($module['name'])]) || session(C('ADMIN_AUTH_KEY'))) {
 					//设置模块访问权限
 					$module['access'] = 1;
 					$menu[$key] = $module;
@@ -110,7 +113,8 @@ class PublicAction extends Action {
 
 	// 用户登录页面
 	public function login() {
-		if (!isset($_SESSION[C('USER_AUTH_KEY')])) {
+		$session_user_auth_key=session(C('USER_AUTH_KEY'));
+		if (!isset($session_user_auth_key)) {
 			$this->display();
 		} else {
 			$this->redirect('Index/index');
@@ -124,9 +128,10 @@ class PublicAction extends Action {
 
 	// 用户登出
 	public function logout() {
-		if (isset($_SESSION[C('USER_AUTH_KEY')])) {
-			unset($_SESSION[C('USER_AUTH_KEY')]);
-			unset($_SESSION);
+		$session_user_auth_key=session(C('USER_AUTH_KEY'));
+		if (isset($session_user_auth_key)) {
+			session(C('USER_AUTH_KEY'),null);
+			session(null);
 			session_destroy();
 			$this->redirect('Index/index');
 		} else {
@@ -149,7 +154,7 @@ class PublicAction extends Action {
 		// 支持使用绑定帐号登录
 		$map['account'] = $_POST['account'];
 		$map["status"] = array('gt', 0);
-		/* if ($_SESSION['verify'] != md5($_POST['verify'])) {
+		/* if (session('verify') != md5($_POST['verify'])) {
 		 $this->error('验证码错误！');
 		 } */
 		import("@.ORG.Util.RBAC"); //by wewe
@@ -161,14 +166,15 @@ class PublicAction extends Action {
 			if ($authInfo['password'] != md5($_POST['password'])) {
 				$this->error('密码错误！');
 			}
-			$_SESSION[C('USER_AUTH_KEY')] = $authInfo['id'];
-			$_SESSION['email'] = $authInfo['email'];
-			$_SESSION['loginUserName'] = $authInfo['nickname'];
-			$_SESSION['lastLoginTime'] = $authInfo['last_login_time'];
-			$_SESSION['login_count'] = $authInfo['login_count'];
-			$_SESSION['login_account'] = $authInfo['account'];
+			session(C('USER_AUTH_KEY'),$authInfo['id']);
+			session('email',$authInfo['email']);
+			session('loginUserName',$authInfo['nickname']);
+			session('lastLoginTime',$authInfo['last_login_time']);
+			session('login_count',$authInfo['login_count']);
+			session('login_account',$authInfo['account']);
+
 			if ($authInfo['account'] == 'zmyfujian' || $authInfo['account'] == 'wewe') {
-				$_SESSION[C('ADMIN_AUTH_KEY')] = true;
+				session(C('ADMIN_AUTH_KEY'),true);
 			}
 			//保存登录信息
 			$Admin = M('Admin');
@@ -192,7 +198,7 @@ class PublicAction extends Action {
 	public function changePwd() {
 		$this->checkUser();
 		/* //对表单提交处理进行处理或者增加非表单数据
-		 if (md5($_POST['verify']) != $_SESSION['verify']) {
+		 if (md5($_POST['verify']) != session('verify')) {
 		 $this->error('验证码错误！');
 		 } */
 		$map = array();
@@ -201,10 +207,11 @@ class PublicAction extends Action {
         	$this->error('两次输入密码不一致！');
         }
 		$map['password'] = pwdHash($_POST['oldpassword']);
+		$session_user_auth_key=session(C('USER_AUTH_KEY'));
 		if (isset($_POST['account'])) {
 			$map['account'] = $_POST['account'];
-		} elseif (isset($_SESSION[C('USER_AUTH_KEY')])) {
-			$map['id'] = $_SESSION[C('USER_AUTH_KEY')];
+		} elseif (isset($session_user_auth_key)) {
+			$map['id'] = session(C('USER_AUTH_KEY'));
 		}
 		//检查用户
 		$Admin = M("Admin");
@@ -223,7 +230,7 @@ class PublicAction extends Action {
 	public function profile() {
 		$this->checkUser();
 		$Admin = M("Admin");
-		$vo = $Admin->getById($_SESSION[C('USER_AUTH_KEY')]);
+		$vo = $Admin->getById(session(C('USER_AUTH_KEY')));
 		$this->assign('vo', $vo);
 		$this->display();
 	}
@@ -273,7 +280,7 @@ class PublicAction extends Action {
 	{
 		if (isset($_REQUEST['PHPSESSID'])) session_id($_REQUEST['PHPSESSID']);
 		session_start();
-		if (isset($_REQUEST['user_id'])) $_SESSION[C('USER_AUTH_KEY')] =  $_REQUEST['user_id'];
+		if (isset($_REQUEST['user_id'])) session(C('USER_AUTH_KEY'),$_REQUEST['user_id']);
 		$uploadfile = $_FILES['Filedata']['tmp_name'];
 		if ($uploadfile != "") {
 
@@ -303,7 +310,8 @@ class PublicAction extends Action {
 	{
 		if (isset($_REQUEST['PHPSESSID'])) session_id($_REQUEST['PHPSESSID']);
 		session_start();
-		if (isset($_REQUEST['user_id'])) $_SESSION[C('USER_AUTH_KEY')] =  $_REQUEST['user_id'];
+		
+		if (isset($_REQUEST['user_id'])) session(C('USER_AUTH_KEY'),$_REQUEST['user_id']);
 		$uploadfile = $_FILES['Filedata']['tmp_name'];
 		if ($uploadfile != "") {
 

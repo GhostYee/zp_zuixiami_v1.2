@@ -6,6 +6,7 @@
 
 
     	<input name="id" type="hidden" id="id" value="{$vo['id']}" />
+        <input name="uploads_id" type="hidden" id="uploads_id" value="<?=$vo[uploads_id]?>" />
 		<div class="pageFormContent" layoutH="58">
 			<div class="unit">
 				<label>成员分类：</label>
@@ -41,7 +42,7 @@
             </div>
             <div class="unit">
 				<label>作品地址：(旧版用)</label>
-                <input name="url" type="text" class="required bigsize" id="url" value="{$vo[url]}"/>
+                <input name="url" type="text" class="bigsize" id="url" value="{$vo[url]}"/>
             </div>
             <div class="unit">
 				<label>演示地址：</label>
@@ -49,7 +50,7 @@
             </div>
             <div class="unit">
 				<label>开源地址：</label>
-                <input name="openurl" type="text" class="required bigsize" id="openurl" value="{$vo[openurl]}"/>
+                <input name="openurl" type="text" class="bigsize" id="openurl" value="{$vo[openurl]}"/>
             </div>
             <div class="unit">
 				<label>图片：</label>
@@ -62,7 +63,7 @@
             <if condition="(ACTION_NAME eq 'edit') and ($vo[img] neq '')">
             <div class="unit">
             	<label>&nbsp;</label>
-				<a href="{$vo[img]}" target="_blank"><img src="{$vo[img]}" height="180"/></a>
+				<a href="__ROOT__/{$vo[img]}" target="_blank"><img src="__ROOT__/{$vo[img]}" height="180"/></a>
             </div>
             </if>
             <div class="unit">

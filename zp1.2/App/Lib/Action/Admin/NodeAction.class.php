@@ -19,7 +19,7 @@ class NodeAction extends CommonAction {
         if ($_REQUEST['pid'] != '') {
             $map['pid'] = $_REQUEST['pid'];
         }
-        $_SESSION['currentNodeId'] = $map['pid'];
+        session('currentNodeId',$map['pid']);
         //获取上级节点
         $node = M("Node");
         if (isset($map['pid'])) {
@@ -47,7 +47,7 @@ class NodeAction extends CommonAction {
         $list = $model->where('status=1')->select();
         $this->assign('list', $list);
         $node = M("Node");
-        $node->getById($_SESSION['currentNodeId']);
+        $node->getById(session('currentNodeId'));
         $this->assign('pid', $node->id);
         $this->assign('level', $node->level + 1);
     }
@@ -57,7 +57,7 @@ class NodeAction extends CommonAction {
         $list = $model->where('status=1')->select();
         $this->assign('list', $list);
         $node = M("Node");
-        $node->getById($_SESSION['currentNodeId']);
+        $node->getById(session('currentNodeId'));
         $this->assign('pid', $node->id);
         $this->assign('level', $node->level + 1);
     }
@@ -88,7 +88,7 @@ class NodeAction extends CommonAction {
             if (!empty($_GET['pid'])) {
                 $pid = $_GET['pid'];
             } else {
-                $pid = $_SESSION['currentNodeId'];
+                $pid = session('currentNodeId');
             }
             if ($node->getById($pid)) {
                 $level = $node->level + 1;

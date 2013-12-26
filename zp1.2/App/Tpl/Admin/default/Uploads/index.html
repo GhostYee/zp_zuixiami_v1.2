@@ -58,12 +58,12 @@
 			<tr>
 			  <th width="25"><input type="checkbox" group="ids" class="checkboxCtrl" /></th>
 				<th class="desc">id</th>
-				<th>名称/qq/地址</th>
-				<th>模块</th>
-				<th>模块ID</th>
-				<th>文件大小</th>
-				<th>后缀/媒体类型</th>
-				<th>添加时间</th>
+				<th>地址</th>
+				<th>模块/模块ID</th>
+				<th>标题/缩略图地址</th>
+				<th>是否缩略图/点击量/状态</th>
+				<th>文件大小/后缀/媒体类型</th>
+				<th>添加时间/添加用户/添加人</th>
 				<th>操作</th>
 			</tr>
 			</thead>
@@ -72,14 +72,21 @@
 				<tr target="sid_user" rel="{$vo['id']}">
 				  <td width="25"><input name="ids" value="{$vo['id']}" type="checkbox" /></td>
 					<td>{$vo['id']}</td>
-					<td><if condition="($vo['thumburl_0'] neq '') or ($vo['thumburl_1'] neq '')"><a href="__APP__/{$vo['url']}" target="_blank"><img src="__APP__/{$vo['thumburl_0']}" width="120" height="120"/></a></if></td>
-					<td>{$vo['module']}</td>
-					<td>{$vo['mid']}</td>
-					<td>{$vo['filesize']}</td>
+					<td><if condition="($vo['fileurl'] neq '')"><a href="__ROOT__/{$vo['fileurl']}" target="_blank"><img src="__ROOT__/{$vo['fileurl']}" width="120" height="120"/></a></if></td>
+					<td>{$vo['module']}<br />
+				    {$vo['mid']}</td>
+					<td>{$vo['title']}<br />
+				    {$vo['thumbpath']}</td>
+					<td>{$vo['is_thumb']}<br />
+				    {$vo['hit']}<br />
+				    {$vo['status']}</td>
 					<td>
+					  {$vo['filesize']}<br />
 					  {$vo['extension']}<br />
 {$vo['mediatype']}</td>
-					<td>{$vo['addtime']|inttodate}<br>					  <br>
+					<td>{$vo['addtime']|inttodate}<br />
+					  {$vo['userid']}<br />
+					  {$vo['adduser']} <br>					  <br>
                     </td>
 					<td class="center">
                     	<a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a></td>
