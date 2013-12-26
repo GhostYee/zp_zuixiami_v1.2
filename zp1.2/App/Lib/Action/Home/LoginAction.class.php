@@ -150,6 +150,8 @@ class LoginAction extends CommonAction {
     				session('xiami_userid',$have_openid["id"]);
 					session('xiami_username',$have_openid['nickname']);
 					session('xiami_userqq',$have_openid['qq']);
+					//找回原先自己的作品
+					$model->query("UPDATE xiami_works SET userid =".$have_openid["id"]." where qq='".$have_openid['qq']."'" );
 					redirect("../user/");    				
     			}    			
     		}
