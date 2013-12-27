@@ -34,16 +34,21 @@
         <div class="l-b-row row-fluid">
           <div class="wgt-detail box-shadow span10">
             <h2>{$works['name']}</h2>
-            <span class="wgt-star star-{$works['star']}"> <b></b> <b></b>
-              <b></b>
-              <b></b>
-              <b></b>
-              <b></b>
-              <b></b>
-              <b></b>
-              <b></b>
-              <b></b>
+            <span class="wgt-star star-{$works['star']}" id="do_rank_class_{$works['id']}" >
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'10')" title="0.5星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'20')" title="1星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'30')" title="1.5星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'40')" title="2星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'50')" title="2.5星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'60')" title="3星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'70')" title="3.5星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'80')" title="4星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'90')" title="4.5星"></a>
+                        <a href="javascript:void(0)" onClick="do_rank({$works['id']},'100')" title="5星"></a>
             </span>
+            <!--
+            (<span id="do_rank_{$works['id']}">{$works['rank']}</span>星)
+            -->
             <div class="wgt-tags">
               <ul>
                 <foreach name="works_tag" item="val">

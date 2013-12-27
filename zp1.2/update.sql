@@ -207,4 +207,4 @@ ALTER TABLE  `xiami_banner` ADD  `status` TINYINT NOT NULL DEFAULT  '0' COMMENT 
 -- 作品管理，增加审核不通过原因 by wewe 20131227
 --
 ALTER TABLE  `xiami_works` ADD  `not_pass_reason` VARCHAR( 255 ) NOT NULL COMMENT  '审核不通过原因' AFTER  `rank_count` ;
-ALTER TABLE  `xiami_works` CHANGE  `not_pass_reason`  `not_pass_reason` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT  '0' COMMENT  '审核不通过原因'
+ALTER TABLE  `xiami_works` CHANGE  `not_pass_reason`  `not_pass_reason` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT  '0' COMMENT  '审核不通过原因';

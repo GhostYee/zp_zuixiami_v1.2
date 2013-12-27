@@ -12,7 +12,7 @@ function do_rank(mid,score){
       success: function(data){
         if(data.code=='ok'){
             $("#do_rank_"+mid).html(data.msg);
-            $("#do_rank_class_"+mid).addClass("star-"+data.msg*10);
+            $("#do_rank_class_"+mid).addClass("star-"+data.msg);
         }
         else if(data.code=='error'){
           alert(data.msg);
