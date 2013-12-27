@@ -555,8 +555,9 @@ class WorksAction extends CommonAction {
     	if(!empty($keywords)){
     		$map['works.name'] = array('like', "%" . $keywords . "%");
     		$map['works.author'] = array('like', "%" . $keywords . "%");
-    		$map['works.description'] = array('like', "%" . $keywords . "%");
+    		//$map['works.description'] = array('like', "%" . $keywords . "%");
     		$map['qun_sort.name'] = array('like', "%" . $keywords . "%");
+    		$map['user.nickname'] = array('like', "%" . $keywords . "%");    		
     		$map['_logic'] = 'or';
     		$where['_complex']=$map;
     	}

@@ -29,7 +29,8 @@
 			$userID=$xiami_user['id'];
 			
 		}
-		mysql_query("INSERT INTO xiami_works (name,userid,author, demourl, openurl,img,qq,description,addtime,status) VALUES ('".$zpName."',".$userID.", '".$author."', '".$demoUrl."','".$openUrl."','".$imgUrl."','".$userQQ."','".$description."','".time()."','1')");
+		$sql="INSERT INTO xiami_works (name,userid,author, demourl, openurl,img,qq,description,addtime,status) VALUES ('".$zpName."',".$userID.", '".$author."', '".$demoUrl."','".$openUrl."','".$imgUrl."','".$userQQ."','".$description."','".time()."','1')";
+		mysql_query($sql);		
 		echo mysql_insert_id();
 	}
 	else
