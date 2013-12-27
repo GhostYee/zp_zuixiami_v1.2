@@ -2,8 +2,8 @@
 // 作品模型
 class WorksModel extends CommonModel {
 	public $_validate	=	array(
-		array('qq','require','QQ号码必须'),
-		array('url','require','作品地址必须'),
+		//array('qq','require','QQ号码必须'),
+		//array('url','require','作品地址必须'),
 	);
 	public $_auto		=	array(
 			array('addtime','time',self::MODEL_INSERT,'function'),
@@ -260,7 +260,7 @@ class WorksModel extends CommonModel {
 		$this->field("works.*,user.figureurl figureurl,user.await await,"
 				."user.nickname nickname,IFNULL(works.author,nickname) author,"
 				."works_sort.name sortname,qun_sort.name qunname,"
-				."ceil(works.rank_total/works.rank_count) as star,round(ceil(works.rank_total/works.rank_count)/10,1) rank "
+				."floor(works.rank_total/works.rank_count/2/5)*5 as star,round(floor(works.rank_total/works.rank_count/2/5)*5/10,1) rank "
 				.$field);
 		//join
 		$this->join($join);

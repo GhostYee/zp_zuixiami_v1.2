@@ -49,7 +49,9 @@
 					<td>{$vo['id']}</td>
 					<td>{$vo['title']}<br />
 				    {$vo['url']}<br />
-				    <a href="{$vo['img']}" target="_blank"><img src="{$vo['img']}"  height="80"/></a></td>
+                    <if condition="$vo[img] neq ''">
+				    <a href="{$vo['img']}" target="_blank"><img src="{$vo['img']}"  height="80"/></a>
+                    </if></td>
 					<td>{$vo['sid']}</td>
 					<td>{$vo['status']|getStatus}</td>
 					<td>

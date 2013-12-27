@@ -411,13 +411,13 @@ class WorksAction extends CommonAction {
 			if($result!==false){
 				//取得作品星级总评分/星级评分总次数 并进行更新操作
 				$model_update=M($module);
-				$num=$model_update->where("id='$mid'")->getField("rank_total,rank_count");
-				$rank_total_update=$num[0]+$score;
-				$rank_count_update=$num[1]+1;
+				$num=$model_update->getByid($mid);
+				$rank_total_update=$num['rank_total']+$score;
+				$rank_count_update=$num['rank_count']+1;				
 				$rank_data=array('rank_total'=>$rank_total_update,'rank_count'=>$rank_count_update);
 				$rs=$model_update->where("id='$mid'")->setField($rank_data);
 				if($rs!==false){
-					echo json_encode(array('code'=>'ok','msg'=>round($rank_total_update/$rank_count_update/10),1));exit;
+					echo json_encode(array('code'=>'ok','msg'=>round(floor($rank_total_update/$rank_count_update/2/5)*5/10,1)));exit;
 				}
 				else{
 					echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;
