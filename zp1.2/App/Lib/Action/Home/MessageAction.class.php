@@ -73,6 +73,99 @@ class MessageAction extends CommonAction {
 		    }
     	}
     }
+    // ------------------------------------------------------------------------
+    /**
+     * 留言用户显示/隐藏
+     *
+     * @access  public
+     * @return  void
+     */
+    public function ajax_show(){
+    	 
+    	if(IS_POST && IS_AJAX){
+    		$userid=session("xiami_userid");
+    		$id=$this->_post('id');
+    		$mtype=$this->_post('mtype');
+    
+    		//判断是否登陆
+    		if(empty($userid)) {echo json_encode(array('code'=>'jump'));exit;}
+    		if(empty($id)) {echo json_encode(array('code'=>'error','msg'=>'亲,参数不完整!'));exit;}
+    		if(empty($mtype)) {echo json_encode(array('code'=>'error','msg'=>'亲,参数不完整!'));exit;}
+    
+    		$model=D("Message");
+    		$message=$model->getByid($id);
+    		if(empty($message)) {echo json_encode(array('code'=>'error','msg'=>'亲,找不到这条评论信息!'));exit;}
+    		
+    		//判断模块内是否存在用户ID
+    		if(!empty($message['module']) && !empty($message['mid'])){
+	    		$model_module=D($message['module']);
+	    		$module_userid=$model_module->getFieldByid($message['mid'],'userid');
+	    		if($module_userid!=$userid) {echo json_encode(array('code'=>'error','msg'=>'亲,这不是给您的留言,您不能更改状态!'));exit;}
+	    		
+	    		$data['status']=$mtype;
+	    		$data['id']=$id;
+	    		$list=$model->save($data);
+	    		if ($list!==false) { //保存成功
+	    			$return_html=$this->_getMessageLiList($message['module'],$message['mid']);
+	    			echo json_encode(array('code'=>'ok','msg'=>'操作成功','html'=>$return_html));exit;
+	    		}
+	    		else {
+	    			//失败提示
+	    			echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;
+	    		}
+    		}
+    		else {
+    			//失败提示
+    			echo json_encode(array('code'=>'error','msg'=>'亲,数据出错了哦!'));exit;
+    		}
+    	}
+    }
+    // ------------------------------------------------------------------------
+    /**
+     * 留言用户删除
+     *
+     * @access  public
+     * @return  void
+     */
+    public function ajax_del(){
+    	 
+    	if(IS_POST && IS_AJAX){
+    	$userid=session("xiami_userid");
+    		$id=$this->_post('id');
+    		$mtype=$this->_post('mtype');
+    
+    		//判断是否登陆
+    		if(empty($userid)) {echo json_encode(array('code'=>'jump'));exit;}
+    		if(empty($id)) {echo json_encode(array('code'=>'error','msg'=>'亲,参数不完整!'));exit;}
+    
+    		$model=D("Message");
+    		$message=$model->getByid($id);
+    		if(empty($message)) {echo json_encode(array('code'=>'error','msg'=>'亲,找不到这条评论信息!'));exit;}
+    		
+    		//判断模块内是否存在用户ID
+    		if(!empty($message['module']) && !empty($message['mid'])){
+	    		$model_module=D($message['module']);
+	    		$module_userid=$model_module->getFieldByid($message['mid'],'userid');
+	    		if($module_userid!=$userid) {echo json_encode(array('code'=>'error','msg'=>'亲,这不是给您的留言,您不能更改状态!'));exit;}
+	    		
+	    		$data['status']='4';//状态   0未审核1显示 2用户隐藏  3管理员隐藏 4回收站(用户删除)
+	    		$data['id']=$id;
+	    		$list=$model->save($data);
+	    		if ($list!==false) { //保存成功
+	    			$return_html=$this->_getMessageLiList($message['module'],$message['mid']);
+	    			echo json_encode(array('code'=>'ok','msg'=>'用户删除成功','html'=>$return_html));exit;
+	    		}
+	    		else {
+	    			//失败提示
+	    			echo json_encode(array('code'=>'error','msg'=>'操作失败,请重试!'));exit;
+	    		}
+    		}
+    		else {
+    			//失败提示
+    			echo json_encode(array('code'=>'error','msg'=>'亲,数据出错了哦!'));exit;
+    		}
+    	}
+    }
     
 	/**
 	 * 用户操作支持/反对 

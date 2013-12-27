@@ -416,5 +416,35 @@ class UserAction extends CommonAction {
 
     }
     // ------------------------------------------------------------------------
+    /**
+     * 用户作品讨论区
+     *
+     * @access  public
+     * @return  void
+     */
+    function worksMessageList(){
+    	$id=$this->_get('id');
+    	$model=M("Works");
+    	$works=$model->getById($id);
+    	$this->assign('works',$works);
+    	
+    	//取得评论列表
+    	$model_message=D("Message");
+    	$allinone_m['where']="(message.status=1 or message.status=2) and message.module='Works' and mid='".$id."' ";
+    	$allinone_m['order']="message.id desc";
+    	$message=$model_message->getList($allinone_m);
+    	$this->assign('message',$message);
+    	 
+    	//当前页标志用户wgt_userNav
+    	$this->assign('currentpage','message');
+    	
+    	//当前页标志评论留言wgt_userMessage
+    	$this->assign('currPage','Works');
+    	$this->assign('currId',$id);
+    	$this->assign('fromurl',__INFO__);
+    	 
+    	$this->display();
+    }
+    // ------------------------------------------------------------------------
 	
 }

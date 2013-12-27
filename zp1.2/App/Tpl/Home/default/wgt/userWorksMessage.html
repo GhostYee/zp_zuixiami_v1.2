@@ -1,0 +1,25 @@
+<div class="wgt-zp-messsage box-shadow span10"  >
+  <h2 class="page-title" >
+    <if condition="$currPage eq 'Author'">
+    给Ta的留言
+    </if>
+    <if condition="$currPage eq 'WorksSpecial'">
+    针对专题的评论
+    </if>
+    <span class="message-total" >评论（{$message|count}）</span>
+  </h2>
+  <div class="pub-message">
+    <div class="pub-input">
+      <input type="hidden" id="message_to_user_id" /><span id="message_from_user_name"></span>
+      <textarea id="message_contents"></textarea>
+    </div>
+    <div class="btns">
+      <a class="btn-default" id="message_submit" >发布</a>
+    </div>
+  </div>
+  <div class="message-list">
+    <ul class="media-list" id="message_li_list">
+      <include file="wgt:messageLiList"/>
+    </ul>
+  </div>
+</div>
