@@ -82,6 +82,10 @@
                 <input type="radio" name="status" value="4" <if condition="$vo['status'] eq 4">checked="checked"</if>/>回收站(用户删除)
             </div>
             <div class="unit">
+			  <label>审核不通过原因：</label>
+                <textarea name="not_pass_reason" cols="40" rows="8" class="bigsize" id="not_pass_reason">{$vo[not_pass_reason]}</textarea>
+            </div>
+            <div class="unit">
 				<label>推荐：</label>
                 <input name="is_top" type="checkbox" id="is_top" value="1" <if condition="$vo['is_top'] eq 1">checked="checked"</if>/>
   	    推荐
