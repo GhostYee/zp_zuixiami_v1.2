@@ -355,6 +355,26 @@ function arrayToObject($d) {
 			return '';
 		}
 
+		/**
+		 * 站内相对路径不需要加http://
+		 * 测试：
+		 * var_export(array(
+		 * prep_url(''),             
+		 * prep_url('http://'),      
+		 * prep_url('http://a.com/'),
+		 * prep_url('a.com'),        
+		 * prep_url('a.com/'),       
+		 * prep_url('../images/'),   
+		 * prep_url('./images/'),    
+		 * prep_url('/images/'),     
+		 * prep_url('images/')       
+		 * ));
+		 */
+		if (preg_match("/^\/|^\.|^[^\.\/]+(\/|$)/i", $str))
+		{
+			return $str;
+		}
+
 		$url = parse_url($str);
 
 		if ( ! $url OR ! isset($url['scheme']))
