@@ -40,7 +40,7 @@ class IndexAction extends CommonAction {
     public function load_banner()
     {
         $banner_model=D("Banner");
-        $banner=$banner_model->query("select * from xiami_banner order by sid ");
+        $banner=$banner_model->query("select * from xiami_banner where status=1 order by sid ");
         $this->assign("banner",$banner);
     }
 

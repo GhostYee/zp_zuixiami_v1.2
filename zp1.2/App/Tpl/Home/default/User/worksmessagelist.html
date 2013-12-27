@@ -1,0 +1,34 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <include file="wgt:rainbow"/>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <include file="wgt:logo"/>
+        <include file="wgt:searchBar" />      
+      </div>
+      <include file="wgt:userNav" />
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb">
+            <a href="__APP__/">首页</a>/<a href="__APP__/user">用户中心</a>/<a href="__APP__/user/workslist">作品管理</a>/<span>{$works['name']} 作品评论</span>
+          </div>          
+          <include file="wgt:topNav"/>
+        </div>
+        <div class="l-b-row row-fluid">
+          <include file="wgt:userWorksMessage"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doMessageAction"/>
+</body>
+</html>

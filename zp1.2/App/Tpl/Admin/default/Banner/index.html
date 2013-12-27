@@ -38,6 +38,7 @@
 				<th>id</th>
 				<th>标题/地址/图片</th>
 				<th>排序</th>
+				<th>状态</th>
 				<th>操作</th>
 			</tr>
 			</thead>
@@ -50,8 +51,10 @@
 				    {$vo['url']}<br />
 				    <a href="__ROOT__/{$vo['img']}" target="_blank"><img src="__ROOT__/{$vo['img']}"  height="80"/></a></td>
 					<td>{$vo['sid']}</td>
+					<td>{$vo['status']|getStatus}</td>
 					<td>
                         <a class="edit" href="__URL__/edit/id/{$vo['id']}/navTabId/__MODULE__" target="navTab" rel="Banner_edit"><span>编辑</span></a>
+                        {$vo['status']|showStatus=$vo['id'],'navTabAjaxMenu'} 
                         <a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a>
                     </td>
 				</tr>

@@ -15,8 +15,15 @@
             <if condition="$Think.session.xiami_userid neq $val['from_user_id']">
             <a href="javascript:void(0)" onClick="do_message_reply({$val['from_user_id']},'{$val[from_user_nickname]}')">回复</a>
             </if>
-            <!--<a href="#">删除</a>-->
-            <!--<a href="#">隐藏/显示</a>-->
+            <if condition="$Think.session.xiami_userid eq $val['from_user_id']">
+            <a href="javascript:void(0)" onClick="do_message_del({$val['id']})">删除</a>
+            <if condition="$val['status'] eq '1'">
+            	<a href="javascript:void(0)" onClick="do_message_show({$val['id']},2)">隐藏</a>
+            </if>
+            <if condition="$val['status'] eq '2'">
+            	<a href="javascript:void(0)" onClick="do_message_show({$val['id']},1)">显示</a>
+            </if>
+            </if>
             <a href="javascript:void(0)" onClick="do_message_action('support',{$val['id']})">支持(<span id="do_message_action_support_{$val['id']}">{$val['support']}</span>)</a>
             <a href="javascript:void(0)" onClick="do_message_action('oppose',{$val['id']})">反对(<span id="do_message_action_oppose_{$val['id']}">{$val['oppose']}</span>)</a>
           </span>

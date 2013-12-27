@@ -32,6 +32,13 @@
 				<label>排序：</label>
                 <input name="sid" type="text" id="sid" value="{$vo['sid']}"/>
             </div>
+            <div class="unit">
+				<label>状态：</label>
+				<select name="status">
+					<option <eq name="vo.status" value="1" >selected</eq> value="1">启用</option>
+					<option <eq name="vo.status" value="0" >selected</eq> value="0">禁用</option>
+				</select>
+			</div>
 		</div>
 		
 		<div class="formBar">

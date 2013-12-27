@@ -35,7 +35,7 @@ $(document).ready(function() {
 		  dataType: "json",
 		  success: function(data){
 			if(data.code=='ok'){
-				if(data.msg!='')  {alert(data.msg);}
+				if(data.msg!='undefined')  {alert(data.msg);}
 			    $("#message_contents").val("");
 			    $("#message_li_list").html(data.html);
 			}
@@ -50,9 +50,57 @@ $(document).ready(function() {
 	});
 	
 });
-//回复留言 
+//回复留言 by wewe
 function do_message_reply(to_user_id,from_user_name){
 	$("#message_to_user_id").val(to_user_id);
 	$("#message_from_user_name").html("回复:"+from_user_name+":");
+}
+//评论删除 by wewe
+function do_message_del(id){
+  if(id!='')
+  {
+    $.ajax({
+      type: "POST",
+      url: "<?php echo __APP__;?>/message/ajax_del",
+      data: "id="+id,
+      dataType: "json",
+      success: function(data){
+        if(data.code=='ok'){
+		  $("#message_contents").val("");
+		  $("#message_li_list").html(data.html);
+        }
+		else if(data.code=='jump'){
+            location.href='<?php echo __APP__;?>/user/login/?fromurl='+$.base64.encode(fromurl);
+        }
+        else if(data.code=='error'){
+          	alert(data.msg);
+        }
+      }
+    });
+  }
+}
+//评论显示/隐藏 by wewe
+function do_message_show(id,mtype){
+  if(mtype!='' && id!='')
+  {
+    $.ajax({
+      type: "POST",
+      url: "<?php echo __APP__;?>/message/ajax_show",
+      data: "mtype="+mtype+"&id="+id,
+      dataType: "json",
+      success: function(data){
+        if(data.code=='ok'){
+		  $("#message_contents").val("");
+		  $("#message_li_list").html(data.html);
+        }
+		else if(data.code=='jump'){
+            location.href='<?php echo __APP__;?>/user/login/?fromurl='+$.base64.encode(fromurl);
+        }
+        else if(data.code=='error'){
+          	alert(data.msg);
+        }
+      }
+    });
+  }
 }
 </script>

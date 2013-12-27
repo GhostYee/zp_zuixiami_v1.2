@@ -196,3 +196,14 @@ INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `
 ( 'News', '新闻管理', 1, '', 0, 1, 2, 0, 14);
 INSERT INTO `xiami_node` ( `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`, `type`, `group_id`) VALUES
 ( 'Links', '友情连接管理', 1, '', 0, 1, 2, 0, 14);
+-- --------------------------------------------------------
+--
+-- banner管理，增加状态判断 by wewe 20131225
+--
+ALTER TABLE  `xiami_banner` ADD  `status` TINYINT NOT NULL DEFAULT  '0' COMMENT  '状态' AFTER  `sid` ;
+
+-- --------------------------------------------------------
+--
+-- 作品管理，增加审核不通过原因 by wewe 20131227
+--
+ALTER TABLE  `xiami_works` ADD  `not_pass_reason` VARCHAR( 255 ) NOT NULL COMMENT  '审核不通过原因' AFTER  `rank_count` ;
