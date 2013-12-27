@@ -26,7 +26,7 @@
     <div class="l-b-col l-main">
       <div class="l-inner">
         <div class="l-header">
-          <a href="zp-submit-1.html" class="btn-submitZP"> <em>+</em>
+          <a href="#" class="btn-submitZP"> <em>+</em>
             提交作品
           </a>
         </div>
