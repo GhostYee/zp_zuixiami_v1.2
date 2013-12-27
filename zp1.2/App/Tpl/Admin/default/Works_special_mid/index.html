@@ -52,7 +52,8 @@
 				<tr target="sid_user" rel="{$vo['id']}">
 				  <td width="40"><input name="ids" value="{$vo['id']}" type="checkbox" /></td>
 					<td>{$vo['id']}</td>
-					<td>{$vo['works_name']}</td>
+					<td>{$vo['works_name']}<br>
+                        <a href="{$vo['demourl']}" target="_blank">{$vo['demourl']}</a></td>
 					<td>{$vo['addtime']|inttodate}</td>
 					<td><a class="delete" href="__URL__/foreverdelete/id/{$vo['id']}/navTabId/__MODULE__" target="ajaxTodo" title="你确定要删除吗？" ><span>删除</span></a>
                     </td>
