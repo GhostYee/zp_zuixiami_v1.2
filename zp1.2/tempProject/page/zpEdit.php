@@ -258,7 +258,7 @@
                 $('<p/>').html("<img src=\""+file.url+"\" /><button class=\"btn-img btn-default\"  data-type=\""+file.deleteType+"\" data-url=\""+file.deleteUrl+"\">删除</button>").appendTo('#files');
                 var imgUrl=$("#imgUrl");
                 var imgUrlValue=$("#imgUrl").val();                
-                $("#imgUrl").val(imgUrlValue+file.url);                
+                $("#imgUrl").val(file.url);                
             }); 
         },
         progressall: function (e, data) {
