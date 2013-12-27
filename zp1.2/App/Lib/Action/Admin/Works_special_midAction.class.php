@@ -35,7 +35,7 @@ class Works_special_midAction extends CommonAction {
 		$model = D ( 'Works_special_mid' );
 		if (! empty ( $model )) {
 			$allinone['where']=$map;
-			$allinone['field']='Works_special_mid.*,works.name works_name';
+			$allinone['field']='Works_special_mid.*,works.name works_name, works.demourl, works.img';
 			$allinone['join']=array(C('DB_PREFIX')."works works ON works_special_mid.works_id=works.id");
 			$allinone['order']='works_special_mid.id DESC';
 			$this->_list_sql ( $model, $allinone );
