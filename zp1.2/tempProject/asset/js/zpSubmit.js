@@ -26,10 +26,17 @@
 				"zpID":encodeURI(zpID),
 				"author":encodeURI(author)
 				 },function(result){
-   				$("#zpID").val(result);
-   				$(".tip-ok .progress").hide("fast");
-   				$(".tip-ok .tip-ok-message").show("fast");   				
-   				$(".tip-ok .tip-ok-message>a").attr("href","http://zp.zuixiami.com/works/"+result);
+				 	if(result=='0')
+				 	{
+				 		alert("糟糕!程序有bug，请联系管理员！谢啦");
+				 	}
+				 	else
+				 	{
+		   				$("#zpID").val(result);
+		   				$(".tip-ok .progress").hide("fast");
+		   				$(".tip-ok .tip-ok-message").show("fast");   				
+		   				$(".tip-ok .tip-ok-message>a").attr("href","http://zp.zuixiami.com/works/"+result);
+   				    }
   			});
 		});
 	}
