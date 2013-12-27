@@ -50,7 +50,7 @@
 					<td>{$vo['title']}<br />
 				    {$vo['url']}<br />
                     <if condition="$vo[img] neq ''">
-				    <a href="{$vo['img']}" target="_blank"><img src="{$vo['img']}"  height="80"/></a>
+				    <a href="__ROOT__/{$vo['img']}" target="_blank"><img src="__ROOT__/{$vo['img']}"  height="80"/></a>
                     </if></td>
 					<td>{$vo['sid']}</td>
 					<td>{$vo['status']|getStatus}</td>
