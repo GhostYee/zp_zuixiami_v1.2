@@ -11,7 +11,7 @@ class RanklistAction extends CommonAction {
     public function index(){
     	$works_model=D('Works');
     	
-    	$orderby="good desc";
+    	$orderby="star desc,good desc";
     	
     	$limit="20";
 		
