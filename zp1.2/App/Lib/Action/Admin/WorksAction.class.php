@@ -399,6 +399,30 @@ class WorksAction extends CommonAction {
     	}
     		
     }
+    /**
+     +----------------------------------------------------------
+     * 同步作品表评星与用户操作内的用户评星
+     +----------------------------------------------------------
+     */
+    public function syncUserActionWorksRank() {
+    	$model_user_action=M('user_action');
+    	$model_works=D('Works');
+    	$where['module']='Works';
+    	$where['mtype']='rank';
+    	$user_action_list=$model_user_action->field("id,mid,count(*) rank_count,sum(value) rank_total")->where($where)->group('mid')->select();
+    	if($user_action_list){
+    		foreach($user_action_list as $val){
+    			$data=array();
+    			$data['rank_count']=$val['rank_count'];
+    			$data['rank_total']=$val['rank_total'];
+    			$data['id']=$val['mid'];
+    			$model_works->save($data);
+    		}
+    	}
+    	//echo $model_user_action->getLastSql();
+    	echo 'Sync OK';  	
+    
+    }
 	// ------------------------------------------------------------------------
 }
 ?>

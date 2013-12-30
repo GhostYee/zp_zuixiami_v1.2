@@ -9,16 +9,16 @@
           </h4>
           <div class="info">
             <span class="wgt-star star-{$val['star']}" id="do_rank_class_{$val['id']}" >
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'10')" title="0.5星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'20')" title="1星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'30')" title="1.5星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'40')" title="2星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'50')" title="2.5星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'60')" title="3星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'70')" title="3.5星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'80')" title="4星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'90')" title="4.5星"></a>
-                        <a href="javascript:void(0)" onClick="do_rank({$val['id']},'100')" title="5星"></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
+                        <a ></a>
             </span>
             <if condition="$val['rank'] eq ''">
             (0星)
@@ -29,7 +29,7 @@
             <switch name="val['status']" >
                <case value="1">等待审核</case>
                <case value="2">审核通过</case>
-               <case value="3">审核不通过</case>              
+               <case value="3">审核不通过<if condition="$val['not_pass_reason'] neq ''">({$val['not_pass_reason']})</if></case>              
                <default />异常
             </switch>
             <span class="division" >|</span>
@@ -40,7 +40,7 @@
             <span>
               <a href="__APP__/tempProject/page/zpEdit.php?wordid={$val['id']}">编辑</a>
               <a href="__APP__/works/del/id/{$val['id']}">删除</a>
-              <a href="__APP__/user/worksMessageList/id/{$val['id']}">评论(3)</a>
+              <a href="__APP__/user/worksMessageList/id/{$val['id']}">评论({$val['total_message']})</a>
             </span>
           </p>
         </div>

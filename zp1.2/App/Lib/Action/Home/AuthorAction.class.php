@@ -100,7 +100,7 @@ class AuthorAction extends CommonAction {
     	
     	//取得评论列表
     	$model_message=D("Message");
-    	$allinone_m['where']="message.status=1 and message.module='Author' and mid='".$userid."' ";
+    	$allinone_m['where']="message.status=1 and message.module='User' and mid='".$userid."' ";
     	$allinone_m['order']="message.id desc";
     	$message=$model_message->getList($allinone_m);
     	$this->assign('message',$message);

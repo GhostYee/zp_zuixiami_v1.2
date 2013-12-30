@@ -6,6 +6,7 @@ php框架thinkphp 3.1.3  http://www.thinkphp.cn
 后台模板DWZ 1.45 http://www.j-ui.com
 
 需要开启伪静态
+需要支持php短标签 short_open_tag=ON 
 
 #### 二:数据库文件 ####
 在MySQL命令行执行zuixiami.init.sql文件创建数据库和表

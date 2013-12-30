@@ -152,9 +152,9 @@ class UserAction extends CommonAction {
 
     	$works_model=D("Works");
     	//个人作品
-        $sql="SELECT * FROM xiami_works WHERE userid=".$userid." and status!=4 order by ".$orderby;
+        $sql="SELECT *,floor(works.rank_total/works.rank_count/2/5)*5 as star,round(floor(works.rank_total/works.rank_count/2/5)*5/10,1) rank,(SELECT count(*) FROM ".C('DB_PREFIX')."message WHERE module='Works' and mid=works.id and status=1) total_message FROM xiami_works works WHERE userid=".$userid." and status!=4 order by ".$orderby;
     	$userlist=$works_model->query($sql);
-    	
+
     	//团队作品
     	$team_model=D("Team");
     	$teamlist=$team_model->getTeamListByUserID($userid);
