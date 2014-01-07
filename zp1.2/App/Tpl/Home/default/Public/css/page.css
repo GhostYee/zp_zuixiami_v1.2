@@ -496,8 +496,9 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-itemIntro .tip{color:#999;}
 
 .wgt-stage.modal{width:900px;height:500px;margin-left: -450px;display: none;}
-.wgt-stage.modal .modal-body{overflow: hidden;
-}
+.wgt-stage.modal .modal-body{overflow: hidden;}
+.wgt-stage .btn-toView{margin-left: 10px;}
+.wgt-stage a.author{color:#29a8e1;font-size:14px;position:absolute;right:35px;top:10px;}
 
 /* fileUpdateInput */
 .fileUpdateInput{position:relative;display:inline-block;overflow:hidden;}

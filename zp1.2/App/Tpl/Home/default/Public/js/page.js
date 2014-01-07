@@ -9,10 +9,15 @@ function showStageDialog(){
 	$('.stageLink').click(function(){ 
 	    var frameSrc=$(this).attr("src");
 	    var title=$(this).attr("aria-labelledby");
-	    var zpid=$(this).attr("zpid");	   
+	    var zpid=$(this).attr("zpid");	
+	    var author=$(this).attr("author");
+	    var uid=$(this).attr("uid");
 		$('#myModal').on('show', function (){
             $('#myModal iframe').attr("src",frameSrc);    
             $('#myModalLabel').text(title);
+            var authorLink=$('#myModal .author');
+            authorLink.text("作者："+author);
+            authorLink.attr("href","http://zp.zuixiami.com/author/"+uid);            
             $('#myModal .btn-toView').click(function(){            	
             	window.location.href='http://zp.zuixiami.com/works/'+zpid;
             });      
