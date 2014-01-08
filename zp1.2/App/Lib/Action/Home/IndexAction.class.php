@@ -24,7 +24,7 @@ class IndexAction extends CommonAction {
 
         //排行榜列表
         $works_model=D('Works');
-        $works  = $works_model->query("SELECT * FROM xiami_works WHERE STATUS =2 ORDER BY addtime DESC , is_top LIMIT 5"); 
+        $works  = $works_model->query("SELECT * FROM xiami_works WHERE STATUS =2 ORDER BY checktime DESC,addtime DESC , is_top LIMIT 10"); 
         $this->assign('rankList',$works);
         
         //作品列表    	     
