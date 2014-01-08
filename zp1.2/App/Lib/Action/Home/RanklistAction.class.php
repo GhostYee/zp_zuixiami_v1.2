@@ -11,9 +11,9 @@ class RanklistAction extends CommonAction {
     public function index(){
     	$works_model=D('Works');
     	
-    	$orderby="star desc,good desc";
+    	$orderby="hot_value desc";
     	
-    	$limit="20";
+    	$limit="30";
 		
     	// 取出需要的数据
     	$allinone['where']=$where;

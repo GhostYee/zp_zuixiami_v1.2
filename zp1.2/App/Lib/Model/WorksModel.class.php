@@ -260,7 +260,7 @@ class WorksModel extends CommonModel {
 		$this->field("works.*,user.figureurl figureurl,user.await await,"
 				."user.nickname nickname,IFNULL(works.author,nickname) author,"
 				."works_sort.name sortname,qun_sort.name qunname,"
-				."floor(works.rank_total/works.rank_count/2/5)*5 as star,round(floor(works.rank_total/works.rank_count/2/5)*5/10,1) rank, "
+				."floor(works.rank_total/works.rank_count/2/5)*5 as star, (works.good*5+works.rank_total) as hot_value, round(floor(works.rank_total/works.rank_count/2/5)*5/10,1) rank, "
 				."(SELECT count(*) FROM ".C('DB_PREFIX')."message WHERE module='Works' and status=1 and mid=works.id) total_message "
 				.$field);
 		//join
