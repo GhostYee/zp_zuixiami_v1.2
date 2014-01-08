@@ -113,6 +113,10 @@ background-size: cover;}
 
 .fileupload-progress{}
 
+.progress-bar-success {background-color: #53b20e;}
+.progress-bar {float: left;width: 0;height: 100%;font-size: 12px;color: #fff;text-align: center;
+background-color: #53b20e;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+-webkit-transition: width .6s ease;transition: width .6s ease;}
 
 
 /*** 4= top wgt
@@ -408,7 +412,7 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-team-edit{display: block;padding:10px;margin-bottom: 20px;}
 .wgt-team-edit .input-prepend{margin-bottom: 0;}
 
-.wgt-zp-edit{padding:10px;margin-bottom: 20px;display: block;}
+.wgt-zp-edit{padding:10px;margin-bottom: 20px;display: block;overflow: hidden;}
 .wgt-zp-edit .wgt-tags{display: block;border:0;text-align:left;margin:2px 0;}
 .wgt-zp-edit .wgt-tags ul{margin: 0;padding: 0;margin-left: -5px;}
 .wgt-zp-edit .wgt-tags ul li{position: relative;padding: 0 7px;}
@@ -416,6 +420,9 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-zp-edit .wgt-tags ul li.selected input,
 .wgt-zp-edit .wgt-tags ul li:hover input{visibility: visible;}
 .wgt-zp-edit .wgt-tags.edit ul{margin-top: -8px;}
+.wgt-zp-edit>.inner{width:400%;position: relative;}
+.wgt-zp-edit>.inner>div{float:left;width:25%;margin-right:10px;}
+
 
 .wgt-submitFrom{position:relative; table-layout: fixed;}
 .wgt-submitFrom.form-horizontal .control-group{padding:5px 10px;margin-bottom: 10px;}
