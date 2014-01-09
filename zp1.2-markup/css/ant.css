@@ -19,22 +19,6 @@
   	-webkit-animation-name:'heartbeat';/*动画属性名，也就是我们前面keyframes定义的动画名*/
     -webkit-animation-duration: 0.9s;/*动画持续时间*/
     -webkit-animation-timing-function: ease-in-out; /*动画频率，和transition-timing-function是一样的*/
+    
     -webkit-animation-iteration-count: infinite;/*定义循环资料，infinite为无限次*/
-  }
-
-
-  @-webkit-keyframes 'opacity' {
-     0% {
-        opacity: 0;
-     }      
-     100% {
-        opacity: 1;
-     }
-  }
-
-  .wgt-zpList ul > li{  	
-	-webkit-animation-name:'opacity';
-    -webkit-animation-duration: 0.9s;
-    -webkit-animation-timing-function: ease-in-out; 
-    -webkit-animation-iteration-count: 1;
   }

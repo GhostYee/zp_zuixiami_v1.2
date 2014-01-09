@@ -52,6 +52,7 @@ class IndexAction extends CommonAction {
     }
     // ------------------------------------------------------------------------
 
+
     //装载 作品 数据
     public function load_works()
     {   
@@ -107,4 +108,12 @@ class IndexAction extends CommonAction {
         $this->assign('fromurl',$fromurl);
     }
     // ------------------------------------------------------------------------
+
+
+    public function allusers(){
+        $users_model=D('users');
+        $users=D('users')->query("SELECT COUNT( * ) AS num,u.* FROM xiami_works AS w LEFT JOIN xiami_user AS u ON u.id = w.userid WHERE u.id IS NOT NULL GROUP BY w.userid order by num desc");
+        $this->assign('users',$users);
+        $this->display();
+    }
 }

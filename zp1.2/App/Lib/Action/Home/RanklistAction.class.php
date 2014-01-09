@@ -13,7 +13,7 @@ class RanklistAction extends CommonAction {
     	
     	$orderby="hot_value desc";
     	
-    	$limit="30";
+    	$limit="20";
 		
     	// 取出需要的数据
     	$allinone['where']=$where;

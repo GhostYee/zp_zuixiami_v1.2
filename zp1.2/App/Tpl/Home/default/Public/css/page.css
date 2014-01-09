@@ -452,6 +452,14 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-submitFrom .labelInfo strong{font-size:16px;font-weight: 400}
 .wgt-submitFrom .labelInfo span{color:#999;margin:0 5px;}
 
+.wgt-users{}
+.wgt-users ul{padding: 0;margin: 0;}
+.wgt-users li{float:left;list-style:none;width:100px;text-align: center;font-size:14px;}
+.wgt-users li a{display: block;}
+.wgt-users li span{display: none;}
+.wgt-users ul>li.span2:nth-child(6n+1){margin-left: 0;}
+
+
 .span10 .wgt-submitFrom.form-horizontal .control-label{width:110px;}
 .span10 .wgt-submitFrom.form-horizontal .controls{margin-left: 120px;}
 .span10 .wgt-submitFrom.form-horizontal .form-actions{padding-left: 130px;}
