@@ -110,14 +110,12 @@ background-size: cover;}
 .fileupload-buttonbar .btn-default{padding:0 10px;line-height:29px;}
 .fileupload-buttonbar button.btn-default{line-height: normal}
 .fileupload-buttonbar .progress{margin-bottom: 10px;}
-
 .fileupload-progress{}
 
 .progress-bar-success {background-color: #53b20e;}
 .progress-bar {float: left;width: 0;height: 100%;font-size: 12px;color: #fff;text-align: center;
 background-color: #53b20e;-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
 -webkit-transition: width .6s ease;transition: width .6s ease;}
-
 
 /*** 4= top wgt
 ****************************************/
@@ -424,7 +422,6 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-zp-edit>.inner{width:400%;position: relative;}
 .wgt-zp-edit>.inner>div{float:left;width:25%;margin-right:10px;}
 
-
 .wgt-submitFrom{position:relative; table-layout: fixed;}
 .wgt-submitFrom.form-horizontal .control-group{padding:5px 10px;margin-bottom: 10px;}
 .wgt-submitFrom .help-block{margin-bottom: 0;}
@@ -451,6 +448,8 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-submitFrom .labelInfo{font-size:12px;padding:5px 0 0;line-height: 22px;margin: 0;color:#ccc;}
 .wgt-submitFrom .labelInfo strong{font-size:16px;font-weight: 400}
 .wgt-submitFrom .labelInfo span{color:#999;margin:0 5px;}
+.wgt-submitFrom .form-area-title{padding:3px 10px;background-color: #f5f5f5;color:#999;font-size: 16px;} 
+.wgt-submitFrom .text{font-size: 14px;line-height:20px;padding-top: 5px;}
 
 .wgt-users{}
 .wgt-users ul{padding: 0;margin: 0;}
@@ -458,7 +457,6 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-users li a{display: block;}
 .wgt-users li span{display: none;}
 .wgt-users ul>li.span2:nth-child(6n+1){margin-left: 0;}
-
 
 .span10 .wgt-submitFrom.form-horizontal .control-label{width:110px;}
 .span10 .wgt-submitFrom.form-horizontal .controls{margin-left: 120px;}
@@ -515,6 +513,16 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .wgt-stage.modal .modal-body{overflow: hidden;}
 .wgt-stage .btn-toView{margin-left: 10px;}
 .wgt-stage a.author{color:#29a8e1;font-size:14px;position:absolute;right:35px;top:10px;}
+
+.wgt-QZ-match{overflow: hidden;position: relative;top:-5px;}
+.wgt-QZ-match .table{font-size: 14px}
+.wgt-QZ-match .table .c0{width:2%;}
+.wgt-QZ-match .table .c1{width:58%;}
+.wgt-QZ-match .table .c2{width:25%;}
+.wgt-QZ-match .table .c3{width:15%;}
+.wgt-QZ-match .table .icon-remove{margin-left: 10px;vertical-align: middle;}
+.wgt-QZ-match .table .opts,
+.wgt-QZ-match .table .opts>*{vertical-align: middle;}
 
 /* fileUpdateInput */
 .fileUpdateInput{position:relative;display:inline-block;overflow:hidden;}

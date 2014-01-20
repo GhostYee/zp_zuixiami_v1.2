@@ -58,6 +58,9 @@ class CommonAction extends Action {
 	 */
 	public function _check_login(){
 		$fromurl=__INFO__;
+		//临时设置
+		session('xiami_userid',17);
+
 		$xiami_userid=session('xiami_userid');
 		if(empty($xiami_userid)){
 			$this->redirect('login/relogin/?fromurl='.base64_encode($fromurl));

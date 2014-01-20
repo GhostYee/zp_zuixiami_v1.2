@@ -1,0 +1,129 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <include file="wgt:rainbow"/>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <include file="wgt:logo"/>
+        <include file="wgt:searchBar" />
+      </div>
+      <include file="wgt:userNav" />
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb">
+            <a href="__APP__/">首页</a>
+            /
+            <a href="__APP__/user">用户中心</a>
+            /
+            <span>个人信息编辑</span>
+          </div>
+          <include file="wgt:topNav"/>
+        </div>
+        <div class="l-b-row row-fluid">
+          <div class="wgt-zp-edit box-shadow">
+            <fieldset class="wgt-submitFrom form-horizontal">
+              <legend class="page-title" >填写招聘信息</legend>
+              <h6  class="form-area-title" >公司信息</h6>
+              <div class="control-group">
+                <label class="control-label">公司名称：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value=""></div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >公司网站：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value=""></div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >公司概述：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value=""></div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >项目类型：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="不限">
+                  <span class="help-block">
+                    选中填入：
+                    <a href="#">电子商务</a>
+                    、
+                    <a href="#">游戏开发</a>
+                    、
+                    <a href="#">门户站点</a>
+                    、
+                    <a href="#">企业建站</a>
+                    、其他类型手动填写
+                  </span>
+                </div>
+              </div>
+              <h6  class="form-area-title"  >职位信息</h6>
+              <div class="control-group">
+                <label class="control-label">职位：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value=""></div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >职位要求：</label>
+                <div class="controls">
+                  <textarea name="description" class="input-xlarge" placeholder="" rows="4"></textarea>
+                  <span class="help-block">
+                    选中填入：
+                    <a href="#">js工程师</a>
+                    、
+                    <a href="#">页面重构</a>
+                    、
+                    <a href="#">全栈工程师</a>
+                    、
+                    <a href="#">游戏开发</a>
+                    、其他类型手动填写
+                  </span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">职位职责：</label>
+                <div class="controls">
+                  <textarea name="description" class="input-xlarge" placeholder="" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">薪资待遇：</label>
+                <div class="controls">
+                  <textarea name="description" class="input-xlarge" placeholder="" rows="4"></textarea>
+                </div>
+              </div>
+              <h6 class="form-area-title" >联系</h6>
+              <div class="control-group">
+                <label class="control-label" >公司地点：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value=""></div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >联系方式：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="" placeholder=""></div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >联系人：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="" placeholder=""></div>
+              </div>
+              <div class="form-actions">
+                <a href="#" class="btn-default" >提交保存</a>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
+</body>
+</html>

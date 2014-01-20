@@ -447,4 +447,67 @@ class UserAction extends CommonAction {
     }
     // ------------------------------------------------------------------------
 	
+
+    // ------------------------------------------------------------------------
+    /**
+     * 求职登记编辑
+     *
+     * @access  public
+     * @return  void
+     */
+    function job(){
+        $this->assign('currentpage','job');
+        $this->display();
+    }
+
+
+    // ------------------------------------------------------------------------
+    /**
+     * 匹配登记编辑
+     *
+     * @access  public
+     * @return  void
+     */
+    function jobs(){
+        $this->assign('currentpage','jobs');
+        $this->display();
+    }
+
+     // ------------------------------------------------------------------------
+    /**
+     * 招聘信息查看
+     *
+     * @access  public
+     * @return  void
+     */
+    function recruitmentView(){
+        $this->assign('currentpage','jobs');
+        $this->display();
+    }
+
+
+    // ------------------------------------------------------------------------
+    /**
+     * 招聘编辑
+     *
+     * @access  public
+     * @return  void
+     */
+    function recruitment(){
+        $this->assign('currentpage','recruitment');
+        $this->display();
+    }
+
+
+        // ------------------------------------------------------------------------
+    /**
+     * 招聘管理
+     *
+     * @access  public
+     * @return  void
+     */
+    function recruitments(){
+        $this->assign('currentpage','recruitments');
+        $this->display();
+    }
 }

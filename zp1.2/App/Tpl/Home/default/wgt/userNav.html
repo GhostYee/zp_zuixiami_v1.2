@@ -1,7 +1,11 @@
 <div class="wgt-nav box-shadow">
         <ul class="nav nav-list">
-          <li <if condition="$currentpage eq 'userinfo'">class="active"</if>><a href="__APP__/user">个人信息管理</a></li>
-          <li <if condition="$currentpage eq 'works'">class="active"</if>><a href="__APP__/user/workslist">作品管理</a></li>
+          <li <if condition="$currentpage eq 'userinfo'">class="active"</if>><a href="__APP__/user">个人信息</a></li>
+          <li <if condition="$currentpage eq 'works'">class="active"</if>><a href="__APP__/user/workslist">作品</a></li>
+          <li <if condition="$currentpage eq 'recruitment'">class="active"</if>><a href="__APP__/user/recruitment">招聘发布</a></li>
+          <li <if condition="$currentpage eq 'recruitments'">class="active"</if>><a href="__APP__/user/recruitments">招聘管理</a></li>
+          <li <if condition="$currentpage eq 'job'">class="active"</if>><a href="__APP__/user/job">求职登记</a></li>
+          <li <if condition="$currentpage eq 'jobs'">class="active"</if>><a href="__APP__/user/jobs">职位匹配</a></li>
           <!--
            <li <if condition="$currentpage eq 'team'">class="active"</if>>
               <a href="__APP__/user/teamList">团队管理</a>

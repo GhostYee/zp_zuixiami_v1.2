@@ -1,0 +1,141 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <include file="wgt:rainbow"/>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <include file="wgt:logo"/>
+        <include file="wgt:searchBar" />
+      </div>
+      <include file="wgt:userNav" />
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb">
+            <a href="__APP__/">首页</a>
+            /
+            <a href="__APP__/user">用户中心</a>
+            /
+            <span>个人信息编辑</span>
+          </div>
+          <include file="wgt:topNav"/>
+        </div>
+        <div class="l-b-row row-fluid">
+          <div class="wgt-zp-edit box-shadow">
+            <fieldset class="wgt-submitFrom form-horizontal">
+              <legend class="page-title" >填写求职资料，我们会找时间和你聊聊</legend>
+              <div class="alert alert-success">谢谢你对我们的信任，尽快找时间和你联系。</div>
+
+              <div class="control-group">
+                <label class="control-label">用户名：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="">
+                  <span class="help-block">默认使用昵称，建议填写真实姓名</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">联系邮箱：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="">
+                  <span class="help-block">默认使用QQ邮箱，建议填写常用邮箱</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >工作地点：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="">
+                  <span class="help-block">
+                    选中填入：
+                    <a href="#">厦门</a>
+                    、
+                    <a href="#">福州</a>
+                    、
+                    <a href="#">北京</a>
+                    、
+                    <a href="#">上海</a>
+                    ，
+                    <a href="#">深圳</a>
+                    、
+                    <a href="#">广州</a>
+                    、
+                    <a href="#">杭州</a>
+                    、其他地点手动填写
+                  </span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >中意的公司行业：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="不限">
+                  <span class="help-block">
+                    选中填入：
+                    <a href="#">电子商务</a>
+                    、
+                    <a href="#">游戏开发</a>
+                    、
+                    <a href="#">门户站点</a>
+                    、
+                    <a href="#">企业建站</a>
+                    、其他类型手动填写
+                  </span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >技术偏向：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="不限">
+                  <span class="help-block">
+                    选中填入：
+                    <a href="#">js工程师</a>
+                    、
+                    <a href="#">页面重构</a>
+                    、
+                    <a href="#">全栈工程师</a>
+                    、
+                    <a href="#">游戏开发</a>
+                    、其他类型手动填写
+                  </span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >性格：</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" value="不限">
+                  <span class="help-block">
+                    选中填入：
+                    <a href="#">内向</a>
+                    、
+                    <a href="#">闷骚</a>
+                    、
+                    <a href="#">好色</a>
+                    、
+                    <a href="#">搞激</a>
+                    、其他类型手动填写
+                  </span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">你的自述：</label>
+                <div class="controls">
+                  <textarea name="description" class="input-xlarge" placeholder="任何你想说得的，或者有任何想询问的。" rows="4"></textarea>
+                </div>
+              </div>
+              <div class="form-actions">
+                <a href="#" class="btn-default" >提交保存</a>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
+</body>
+</html>

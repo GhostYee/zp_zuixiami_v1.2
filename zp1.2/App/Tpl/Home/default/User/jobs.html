@@ -1,0 +1,94 @@
+<include file="Public:head"/>
+</head>
+<body>
+<div class="l-container">
+  <div class="l-b-row">
+    <include file="wgt:rainbow"/>
+  </div>
+  <div class="l-b-row ta-c">
+    <div class="l-b-col l-side">
+      <div class="box-shadow">
+        <include file="wgt:logo"/>
+        <include file="wgt:searchBar" />
+      </div>
+      <include file="wgt:userNav" />
+    </div>
+    <div class="l-b-col l-main">
+      <div class="l-inner">
+        <div class="l-header" >
+          <div class="wgt-breadcrumb">
+            <a href="__APP__/">首页</a>
+            /
+            <a href="__APP__/user">用户中心</a>
+            /
+            <span>个人信息编辑</span>
+          </div>
+          <include file="wgt:topNav"/>
+        </div>
+        <div class="l-b-row row-fluid">
+          <div class="wgt-zp-edit box-shadow">
+              <fieldset class="wgt-submitFrom form-horizontal">
+                <legend class="page-title">根据您的情况匹配推送</legend>  
+                <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button> <strong>说明：</strong>
+                  根据你的情况给你推送一招聘信息，如果有需要可以让我们内推。
+                </div>              
+                <div class="wgt-QZ-match">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th class="c0"></th>
+                        <th class="c1"></th>
+                        <th class="c2"></th>
+                        <th class="c3"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#</td>
+                        <td>4399游戏有限公司</td>
+                        <td>厦门</td>
+                        <td>
+                          <div class="opts">
+                            <a href="__APP__/user/recruitmentView">查看</a>
+                            <a href="#" class="icon-remove"></a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#</td>
+                        <td>4399游戏有限公司</td>
+                        <td>厦门</td>
+                        <td>
+                          <div class="opts">
+                            <a href="__APP__/user/recruitmentView">查看</a>
+                            <a href="#" class="icon-remove"></a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#</td>
+                        <td>4399游戏有限公司</td>
+                        <td>厦门</td>
+                        <td>
+                          <div class="opts">
+                            <a href="__APP__/user/recruitmentView">查看</a>
+                            <a href="#" class="icon-remove"></a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </fieldset>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:footer"/>
+<include file="js:doGoodAwait"/>
+</body>
+</html>
