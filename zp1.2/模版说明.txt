@@ -1,58 +1,57 @@
-1.×¨ÌâÁĞ±í
+1.ä¸“é¢˜åˆ—è¡¨
 TPL:
 tpl/WorksSpecial_index.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/works_special
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/zt.html
 
-2.ÍÅ¶ÓÁĞ±í
+2.å›¢é˜Ÿåˆ—è¡¨
 TPL:
 tpl/Team_index.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/team
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/teams.html
 
-3.¾ßÌåÄ³¸öÍÅ¶Ó
-TPL£º
+3.å…·ä½“æŸä¸ªå›¢é˜Ÿ
+TPLï¼š
 tpl/Team_view.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/team/view
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/teamView.html
 
 
-4.¾ßÌåÄ³¸öÍÅ¶ÓµÄ³ÉÔ±
-TPL£º
+4.å…·ä½“æŸä¸ªå›¢é˜Ÿçš„æˆå‘˜
+TPLï¼š
 tpl/Team_member.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/team/members
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/teamusers.html
 
-5.×÷Õßµ¥Ò³
+5.ä½œè€…å•é¡µ
 TPL:
 tpl/Author_index.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/author/1
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/authorView.html
 
-6.×÷ÕßÍÅ¶Ó
+6.ä½œè€…å›¢é˜Ÿ
 TPL:
 tpl/Author_team.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/author/team
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/authorTeam.html
 
-7.×÷ÕßÁôÑÔ
+7.ä½œè€…ç•™è¨€
 TPL:
 tpl/Author_message.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/author/message
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/authorMessage.html
 
-8.×÷Æ·ÏêÏ¸
+8.ä½œå“è¯¦ç»†
 TPL:
 tpl/Works_view.html
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2/works/view
 markup:
 http://127.0.0.1/zuixiami/zp_zuixiami_v1.2/zp1.2-markup/zpView.html
-
 
